@@ -79,26 +79,6 @@ public enum BinaryOperator implements Enumerator {
 	LE(5, "LE", "LE"),
 
 	/**
-	 * The '<em><b>IS DEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IS_DEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IS_DEFINED(6, "IS_DEFINED", "IS_DEFINED"),
-
-	/**
-	 * The '<em><b>IS UNDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IS_UNDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IS_UNDEFINED(7, "IS_UNDEFINED", "IS_UNDEFINED"),
-
-	/**
 	 * The '<em><b>AND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,7 +86,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AND(8, "AND", "AND"),
+	AND(6, "AND", "AND"),
 
 	/**
 	 * The '<em><b>OR</b></em>' literal object.
@@ -116,7 +96,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OR(9, "OR", "OR"),
+	OR(7, "OR", "OR"),
 
 	/**
 	 * The '<em><b>XOR</b></em>' literal object.
@@ -126,7 +106,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	XOR(10, "XOR", "XOR"),
+	XOR(8, "XOR", "XOR"),
 
 	/**
 	 * The '<em><b>ADD</b></em>' literal object.
@@ -136,7 +116,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADD(11, "ADD", "ADD"),
+	ADD(9, "ADD", "ADD"),
 
 	/**
 	 * The '<em><b>SUBTRACT</b></em>' literal object.
@@ -146,7 +126,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SUBTRACT(12, "SUBTRACT", "SUBTRACT"),
+	SUBTRACT(10, "SUBTRACT", "SUBTRACT"),
 
 	/**
 	 * The '<em><b>MULTIPLY</b></em>' literal object.
@@ -156,7 +136,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MULTIPLY(13, "MULTIPLY", "MULTIPLY"),
+	MULTIPLY(11, "MULTIPLY", "MULTIPLY"),
 
 	/**
 	 * The '<em><b>DIVIDE</b></em>' literal object.
@@ -166,7 +146,15 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIVIDE(14, "DIVIDE", "DIVIDE");
+	DIVIDE(12, "DIVIDE", "DIVIDE"), /**
+	 * The '<em><b>MODULO</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MODULO_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MODULO(13, "MODULO", "MODULO");
 
 	/**
 	 * The '<em><b>EQ</b></em>' literal value.
@@ -259,36 +247,6 @@ public enum BinaryOperator implements Enumerator {
 	public static final int LE_VALUE = 5;
 
 	/**
-	 * The '<em><b>IS DEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>IS DEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #IS_DEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IS_DEFINED_VALUE = 6;
-
-	/**
-	 * The '<em><b>IS UNDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>IS UNDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #IS_UNDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IS_UNDEFINED_VALUE = 7;
-
-	/**
 	 * The '<em><b>AND</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -301,7 +259,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AND_VALUE = 8;
+	public static final int AND_VALUE = 6;
 
 	/**
 	 * The '<em><b>OR</b></em>' literal value.
@@ -316,7 +274,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OR_VALUE = 9;
+	public static final int OR_VALUE = 7;
 
 	/**
 	 * The '<em><b>XOR</b></em>' literal value.
@@ -331,7 +289,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int XOR_VALUE = 10;
+	public static final int XOR_VALUE = 8;
 
 	/**
 	 * The '<em><b>ADD</b></em>' literal value.
@@ -346,7 +304,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADD_VALUE = 11;
+	public static final int ADD_VALUE = 9;
 
 	/**
 	 * The '<em><b>SUBTRACT</b></em>' literal value.
@@ -361,7 +319,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUBTRACT_VALUE = 12;
+	public static final int SUBTRACT_VALUE = 10;
 
 	/**
 	 * The '<em><b>MULTIPLY</b></em>' literal value.
@@ -376,7 +334,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MULTIPLY_VALUE = 13;
+	public static final int MULTIPLY_VALUE = 11;
 
 	/**
 	 * The '<em><b>DIVIDE</b></em>' literal value.
@@ -391,7 +349,22 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIVIDE_VALUE = 14;
+	public static final int DIVIDE_VALUE = 12;
+
+	/**
+	 * The '<em><b>MODULO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MODULO</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MODULO
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MODULO_VALUE = 13;
 
 	/**
 	 * An array of all the '<em><b>Binary Operator</b></em>' enumerators.
@@ -407,8 +380,6 @@ public enum BinaryOperator implements Enumerator {
 			GE,
 			LT,
 			LE,
-			IS_DEFINED,
-			IS_UNDEFINED,
 			AND,
 			OR,
 			XOR,
@@ -416,6 +387,7 @@ public enum BinaryOperator implements Enumerator {
 			SUBTRACT,
 			MULTIPLY,
 			DIVIDE,
+			MODULO,
 		};
 
 	/**
@@ -478,8 +450,6 @@ public enum BinaryOperator implements Enumerator {
 			case GE_VALUE: return GE;
 			case LT_VALUE: return LT;
 			case LE_VALUE: return LE;
-			case IS_DEFINED_VALUE: return IS_DEFINED;
-			case IS_UNDEFINED_VALUE: return IS_UNDEFINED;
 			case AND_VALUE: return AND;
 			case OR_VALUE: return OR;
 			case XOR_VALUE: return XOR;
@@ -487,6 +457,7 @@ public enum BinaryOperator implements Enumerator {
 			case SUBTRACT_VALUE: return SUBTRACT;
 			case MULTIPLY_VALUE: return MULTIPLY;
 			case DIVIDE_VALUE: return DIVIDE;
+			case MODULO_VALUE: return MODULO;
 		}
 		return null;
 	}

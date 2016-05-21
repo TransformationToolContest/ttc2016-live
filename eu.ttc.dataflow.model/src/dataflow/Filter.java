@@ -32,7 +32,7 @@ public interface Filter extends Element {
 	 * @return the value of the '<em>Filter By Field</em>' attribute.
 	 * @see #setFilterByField(String)
 	 * @see dataflow.DataflowPackage#getFilter_FilterByField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getFilterByField();

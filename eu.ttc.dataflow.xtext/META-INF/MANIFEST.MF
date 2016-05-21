@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.ttc.dataflow.xtext
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: eu.ttc.dataflow.xtext; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: eu.ttc.dataflow.model,
+ org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: eu.ttc.dataflow.generator,
+ eu.ttc.dataflow.serializer,
+ eu.ttc.dataflow.scoping,
+ eu.ttc.dataflow.services,
+ eu.ttc.dataflow,
+ eu.ttc.dataflow.validation,
+ eu.ttc.dataflow.formatting,
+ eu.ttc.dataflow.parser.antlr.internal,
+ eu.ttc.dataflow.parser.antlr
+Import-Package: org.apache.log4j

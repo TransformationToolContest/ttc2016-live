@@ -127,13 +127,6 @@ public class DataflowSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DataflowPackage.UNSET_FEATURE: {
-				UnsetFeature unsetFeature = (UnsetFeature)theEObject;
-				T result = caseUnsetFeature(unsetFeature);
-				if (result == null) result = caseElement(unsetFeature);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DataflowPackage.NEW_CONTAINER: {
 				NewContainer newContainer = (NewContainer)theEObject;
 				T result = caseNewContainer(newContainer);
@@ -346,21 +339,6 @@ public class DataflowSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSetFeature(SetFeature object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unset Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unset Feature</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnsetFeature(UnsetFeature object) {
 		return null;
 	}
 

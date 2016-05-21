@@ -31,7 +31,7 @@ public interface Sort extends Element {
 	 * @return the value of the '<em>Sort By Field</em>' attribute.
 	 * @see #setSortByField(String)
 	 * @see dataflow.DataflowPackage#getSort_SortByField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getSortByField();

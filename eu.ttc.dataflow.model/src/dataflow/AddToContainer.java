@@ -14,7 +14,7 @@ package dataflow;
  * <ul>
  *   <li>{@link dataflow.AddToContainer#getListField <em>List Field</em>}</li>
  *   <li>{@link dataflow.AddToContainer#getValueField <em>Value Field</em>}</li>
- *   <li>{@link dataflow.AddToContainer#getPositionExpression <em>Position Expression</em>}</li>
+ *   <li>{@link dataflow.AddToContainer#getPositionField <em>Position Field</em>}</li>
  * </ul>
  *
  * @see dataflow.DataflowPackage#getAddToContainer()
@@ -33,7 +33,7 @@ public interface AddToContainer extends Element {
 	 * @return the value of the '<em>List Field</em>' attribute.
 	 * @see #setListField(String)
 	 * @see dataflow.DataflowPackage#getAddToContainer_ListField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getListField();
@@ -59,7 +59,7 @@ public interface AddToContainer extends Element {
 	 * @return the value of the '<em>Value Field</em>' attribute.
 	 * @see #setValueField(String)
 	 * @see dataflow.DataflowPackage#getAddToContainer_ValueField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getValueField();
@@ -75,29 +75,29 @@ public interface AddToContainer extends Element {
 	void setValueField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Position Expression</b></em>' attribute.
+	 * Returns the value of the '<em><b>Position Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Position Expression</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Position Field</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Position Expression</em>' attribute.
-	 * @see #setPositionExpression(String)
-	 * @see dataflow.DataflowPackage#getAddToContainer_PositionExpression()
+	 * @return the value of the '<em>Position Field</em>' attribute.
+	 * @see #setPositionField(String)
+	 * @see dataflow.DataflowPackage#getAddToContainer_PositionField()
 	 * @model
 	 * @generated
 	 */
-	String getPositionExpression();
+	String getPositionField();
 
 	/**
-	 * Sets the value of the '{@link dataflow.AddToContainer#getPositionExpression <em>Position Expression</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.AddToContainer#getPositionField <em>Position Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Position Expression</em>' attribute.
-	 * @see #getPositionExpression()
+	 * @param value the new value of the '<em>Position Field</em>' attribute.
+	 * @see #getPositionField()
 	 * @generated
 	 */
-	void setPositionExpression(String value);
+	void setPositionField(String value);
 
 } // AddToContainer

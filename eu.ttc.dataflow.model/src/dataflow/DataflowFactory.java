@@ -94,15 +94,6 @@ public interface DataflowFactory extends EFactory {
 	SetFeature createSetFeature();
 
 	/**
-	 * Returns a new object of class '<em>Unset Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unset Feature</em>'.
-	 * @generated
-	 */
-	UnsetFeature createUnsetFeature();
-
-	/**
 	 * Returns a new object of class '<em>New Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

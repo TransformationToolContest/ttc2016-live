@@ -104,10 +104,6 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 				return createSetFeatureAdapter();
 			}
 			@Override
-			public Adapter caseUnsetFeature(UnsetFeature object) {
-				return createUnsetFeatureAdapter();
-			}
-			@Override
 			public Adapter caseNewContainer(NewContainer object) {
 				return createNewContainerAdapter();
 			}
@@ -294,20 +290,6 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSetFeatureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link dataflow.UnsetFeature <em>Unset Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see dataflow.UnsetFeature
-	 * @generated
-	 */
-	public Adapter createUnsetFeatureAdapter() {
 		return null;
 	}
 

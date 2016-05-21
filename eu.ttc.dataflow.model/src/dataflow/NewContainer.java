@@ -32,7 +32,7 @@ public interface NewContainer extends Element {
 	 * @return the value of the '<em>List Field</em>' attribute.
 	 * @see #setListField(String)
 	 * @see dataflow.DataflowPackage#getNewContainer_ListField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getListField();

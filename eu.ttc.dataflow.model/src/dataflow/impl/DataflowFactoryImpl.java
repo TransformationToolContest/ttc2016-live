@@ -65,7 +65,6 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 			case DataflowPackage.PRODUCT: return createProduct();
 			case DataflowPackage.GET_FEATURE: return createGetFeature();
 			case DataflowPackage.SET_FEATURE: return createSetFeature();
-			case DataflowPackage.UNSET_FEATURE: return createUnsetFeature();
 			case DataflowPackage.NEW_CONTAINER: return createNewContainer();
 			case DataflowPackage.ADD_TO_CONTAINER: return createAddToContainer();
 			case DataflowPackage.EVALUATE: return createEvaluate();
@@ -197,16 +196,6 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 	public SetFeature createSetFeature() {
 		SetFeatureImpl setFeature = new SetFeatureImpl();
 		return setFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnsetFeature createUnsetFeature() {
-		UnsetFeatureImpl unsetFeature = new UnsetFeatureImpl();
-		return unsetFeature;
 	}
 
 	/**

@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link dataflow.Element#getDescription <em>Description</em>}</li>
+ *   <li>{@link dataflow.Element#getName <em>Name</em>}</li>
  *   <li>{@link dataflow.Element#getTarget <em>Target</em>}</li>
  * </ul>
  *
@@ -23,30 +23,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Element extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see dataflow.DataflowPackage#getElement_Description()
-	 * @model
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see dataflow.DataflowPackage#getElement_Name()
+	 * @model id="true" required="true"
 	 * @generated
 	 */
-	String getDescription();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link dataflow.Element#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.Element#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setDescription(String value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link dataflow.impl.AddToContainerImpl#getListField <em>List Field</em>}</li>
  *   <li>{@link dataflow.impl.AddToContainerImpl#getValueField <em>Value Field</em>}</li>
- *   <li>{@link dataflow.impl.AddToContainerImpl#getPositionExpression <em>Position Expression</em>}</li>
+ *   <li>{@link dataflow.impl.AddToContainerImpl#getPositionField <em>Position Field</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,24 +65,24 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	protected String valueField = VALUE_FIELD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPositionExpression() <em>Position Expression</em>}' attribute.
+	 * The default value of the '{@link #getPositionField() <em>Position Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPositionExpression()
+	 * @see #getPositionField()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String POSITION_EXPRESSION_EDEFAULT = null;
+	protected static final String POSITION_FIELD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPositionExpression() <em>Position Expression</em>}' attribute.
+	 * The cached value of the '{@link #getPositionField() <em>Position Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPositionExpression()
+	 * @see #getPositionField()
 	 * @generated
 	 * @ordered
 	 */
-	protected String positionExpression = POSITION_EXPRESSION_EDEFAULT;
+	protected String positionField = POSITION_FIELD_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,8 +150,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPositionExpression() {
-		return positionExpression;
+	public String getPositionField() {
+		return positionField;
 	}
 
 	/**
@@ -159,11 +159,11 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPositionExpression(String newPositionExpression) {
-		String oldPositionExpression = positionExpression;
-		positionExpression = newPositionExpression;
+	public void setPositionField(String newPositionField) {
+		String oldPositionField = positionField;
+		positionField = newPositionField;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION, oldPositionExpression, positionExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__POSITION_FIELD, oldPositionField, positionField));
 	}
 
 	/**
@@ -178,8 +178,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 				return getListField();
 			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
 				return getValueField();
-			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				return getPositionExpression();
+			case DataflowPackage.ADD_TO_CONTAINER__POSITION_FIELD:
+				return getPositionField();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -198,8 +198,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
 				setValueField((String)newValue);
 				return;
-			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				setPositionExpression((String)newValue);
+			case DataflowPackage.ADD_TO_CONTAINER__POSITION_FIELD:
+				setPositionField((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,8 +219,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
 				setValueField(VALUE_FIELD_EDEFAULT);
 				return;
-			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				setPositionExpression(POSITION_EXPRESSION_EDEFAULT);
+			case DataflowPackage.ADD_TO_CONTAINER__POSITION_FIELD:
+				setPositionField(POSITION_FIELD_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -238,8 +238,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 				return LIST_FIELD_EDEFAULT == null ? listField != null : !LIST_FIELD_EDEFAULT.equals(listField);
 			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
 				return VALUE_FIELD_EDEFAULT == null ? valueField != null : !VALUE_FIELD_EDEFAULT.equals(valueField);
-			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				return POSITION_EXPRESSION_EDEFAULT == null ? positionExpression != null : !POSITION_EXPRESSION_EDEFAULT.equals(positionExpression);
+			case DataflowPackage.ADD_TO_CONTAINER__POSITION_FIELD:
+				return POSITION_FIELD_EDEFAULT == null ? positionField != null : !POSITION_FIELD_EDEFAULT.equals(positionField);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -258,8 +258,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 		result.append(listField);
 		result.append(", valueField: ");
 		result.append(valueField);
-		result.append(", positionExpression: ");
-		result.append(positionExpression);
+		result.append(", positionField: ");
+		result.append(positionField);
 		result.append(')');
 		return result.toString();
 	}

@@ -105,13 +105,13 @@ public interface DataflowPackage extends EPackage {
 	int ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__DESCRIPTION = 0;
+	int ELEMENT__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -151,13 +151,13 @@ public interface DataflowPackage extends EPackage {
 	int ALL_INSTANCES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALL_INSTANCES__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int ALL_INSTANCES__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -224,13 +224,13 @@ public interface DataflowPackage extends EPackage {
 	int NEW_INSTANCE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_INSTANCE__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int NEW_INSTANCE__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -297,13 +297,13 @@ public interface DataflowPackage extends EPackage {
 	int FILTER = 4;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTER__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int FILTER__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -361,13 +361,13 @@ public interface DataflowPackage extends EPackage {
 	int SORT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SORT__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int SORT__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -416,13 +416,13 @@ public interface DataflowPackage extends EPackage {
 	int PRODUCT = 6;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int PRODUCT__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -462,13 +462,13 @@ public interface DataflowPackage extends EPackage {
 	int GET_FEATURE = 7;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GET_FEATURE__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int GET_FEATURE__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -535,13 +535,13 @@ public interface DataflowPackage extends EPackage {
 	int SET_FEATURE = 8;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_FEATURE__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int SET_FEATURE__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -598,70 +598,6 @@ public interface DataflowPackage extends EPackage {
 	int SET_FEATURE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link dataflow.impl.UnsetFeatureImpl <em>Unset Feature</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see dataflow.impl.UnsetFeatureImpl
-	 * @see dataflow.impl.DataflowPackageImpl#getUnsetFeature()
-	 * @generated
-	 */
-	int UNSET_FEATURE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSET_FEATURE__DESCRIPTION = ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSET_FEATURE__TARGET = ELEMENT__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Object Field</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSET_FEATURE__OBJECT_FIELD = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Feature</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSET_FEATURE__FEATURE = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Unset Feature</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSET_FEATURE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Unset Feature</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSET_FEATURE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link dataflow.impl.NewContainerImpl <em>New Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -669,16 +605,16 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getNewContainer()
 	 * @generated
 	 */
-	int NEW_CONTAINER = 10;
+	int NEW_CONTAINER = 9;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_CONTAINER__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int NEW_CONTAINER__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -733,16 +669,16 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getAddToContainer()
 	 * @generated
 	 */
-	int ADD_TO_CONTAINER = 11;
+	int ADD_TO_CONTAINER = 10;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_TO_CONTAINER__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int ADD_TO_CONTAINER__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -772,13 +708,13 @@ public interface DataflowPackage extends EPackage {
 	int ADD_TO_CONTAINER__VALUE_FIELD = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Position Expression</b></em>' attribute.
+	 * The feature id for the '<em><b>Position Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_TO_CONTAINER__POSITION_EXPRESSION = ELEMENT_FEATURE_COUNT + 2;
+	int ADD_TO_CONTAINER__POSITION_FIELD = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Add To Container</em>' class.
@@ -806,16 +742,16 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getEvaluate()
 	 * @generated
 	 */
-	int EVALUATE = 12;
+	int EVALUATE = 11;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVALUATE__DESCRIPTION = ELEMENT__DESCRIPTION;
+	int EVALUATE__NAME = ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -870,7 +806,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 13;
+	int EXPRESSION = 12;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -898,7 +834,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getIntegerLiteral()
 	 * @generated
 	 */
-	int INTEGER_LITERAL = 14;
+	int INTEGER_LITERAL = 13;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -935,7 +871,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getBooleanLiteral()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL = 15;
+	int BOOLEAN_LITERAL = 14;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -972,7 +908,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getRealLiteral()
 	 * @generated
 	 */
-	int REAL_LITERAL = 16;
+	int REAL_LITERAL = 15;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1009,7 +945,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getStringLiteral()
 	 * @generated
 	 */
-	int STRING_LITERAL = 17;
+	int STRING_LITERAL = 16;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1046,7 +982,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getFieldReference()
 	 * @generated
 	 */
-	int FIELD_REFERENCE = 18;
+	int FIELD_REFERENCE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Field</b></em>' attribute.
@@ -1083,7 +1019,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getUnaryOperation()
 	 * @generated
 	 */
-	int UNARY_OPERATION = 19;
+	int UNARY_OPERATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1129,7 +1065,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getBinaryOperation()
 	 * @generated
 	 */
-	int BINARY_OPERATION = 20;
+	int BINARY_OPERATION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1184,7 +1120,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 21;
+	int UNARY_OPERATOR = 20;
 
 	/**
 	 * The meta object id for the '{@link dataflow.BinaryOperator <em>Binary Operator</em>}' enum.
@@ -1194,7 +1130,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getBinaryOperator()
 	 * @generated
 	 */
-	int BINARY_OPERATOR = 22;
+	int BINARY_OPERATOR = 21;
 
 	/**
 	 * The meta object id for the '{@link dataflow.ContainerType <em>Container Type</em>}' enum.
@@ -1204,7 +1140,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see dataflow.impl.DataflowPackageImpl#getContainerType()
 	 * @generated
 	 */
-	int CONTAINER_TYPE = 23;
+	int CONTAINER_TYPE = 22;
 
 
 	/**
@@ -1239,15 +1175,15 @@ public interface DataflowPackage extends EPackage {
 	EClass getElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link dataflow.Element#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.Element#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see dataflow.Element#getDescription()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see dataflow.Element#getName()
 	 * @see #getElement()
 	 * @generated
 	 */
-	EAttribute getElement_Description();
+	EAttribute getElement_Name();
 
 	/**
 	 * Returns the meta object for the reference '{@link dataflow.Element#getTarget <em>Target</em>}'.
@@ -1496,38 +1432,6 @@ public interface DataflowPackage extends EPackage {
 	EAttribute getSetFeature_Feature();
 
 	/**
-	 * Returns the meta object for class '{@link dataflow.UnsetFeature <em>Unset Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unset Feature</em>'.
-	 * @see dataflow.UnsetFeature
-	 * @generated
-	 */
-	EClass getUnsetFeature();
-
-	/**
-	 * Returns the meta object for the attribute '{@link dataflow.UnsetFeature#getObjectField <em>Object Field</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Object Field</em>'.
-	 * @see dataflow.UnsetFeature#getObjectField()
-	 * @see #getUnsetFeature()
-	 * @generated
-	 */
-	EAttribute getUnsetFeature_ObjectField();
-
-	/**
-	 * Returns the meta object for the attribute '{@link dataflow.UnsetFeature#getFeature <em>Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Feature</em>'.
-	 * @see dataflow.UnsetFeature#getFeature()
-	 * @see #getUnsetFeature()
-	 * @generated
-	 */
-	EAttribute getUnsetFeature_Feature();
-
-	/**
 	 * Returns the meta object for class '{@link dataflow.NewContainer <em>New Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1592,15 +1496,15 @@ public interface DataflowPackage extends EPackage {
 	EAttribute getAddToContainer_ValueField();
 
 	/**
-	 * Returns the meta object for the attribute '{@link dataflow.AddToContainer#getPositionExpression <em>Position Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.AddToContainer#getPositionField <em>Position Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Position Expression</em>'.
-	 * @see dataflow.AddToContainer#getPositionExpression()
+	 * @return the meta object for the attribute '<em>Position Field</em>'.
+	 * @see dataflow.AddToContainer#getPositionField()
 	 * @see #getAddToContainer()
 	 * @generated
 	 */
-	EAttribute getAddToContainer_PositionExpression();
+	EAttribute getAddToContainer_PositionField();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.Evaluate <em>Evaluate</em>}'.
@@ -1906,12 +1810,12 @@ public interface DataflowPackage extends EPackage {
 		EClass ELEMENT = eINSTANCE.getElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ELEMENT__DESCRIPTION = eINSTANCE.getElement_Description();
+		EAttribute ELEMENT__NAME = eINSTANCE.getElement_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
@@ -2112,32 +2016,6 @@ public interface DataflowPackage extends EPackage {
 		EAttribute SET_FEATURE__FEATURE = eINSTANCE.getSetFeature_Feature();
 
 		/**
-		 * The meta object literal for the '{@link dataflow.impl.UnsetFeatureImpl <em>Unset Feature</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see dataflow.impl.UnsetFeatureImpl
-		 * @see dataflow.impl.DataflowPackageImpl#getUnsetFeature()
-		 * @generated
-		 */
-		EClass UNSET_FEATURE = eINSTANCE.getUnsetFeature();
-
-		/**
-		 * The meta object literal for the '<em><b>Object Field</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute UNSET_FEATURE__OBJECT_FIELD = eINSTANCE.getUnsetFeature_ObjectField();
-
-		/**
-		 * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute UNSET_FEATURE__FEATURE = eINSTANCE.getUnsetFeature_Feature();
-
-		/**
 		 * The meta object literal for the '{@link dataflow.impl.NewContainerImpl <em>New Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2190,12 +2068,12 @@ public interface DataflowPackage extends EPackage {
 		EAttribute ADD_TO_CONTAINER__VALUE_FIELD = eINSTANCE.getAddToContainer_ValueField();
 
 		/**
-		 * The meta object literal for the '<em><b>Position Expression</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Position Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ADD_TO_CONTAINER__POSITION_EXPRESSION = eINSTANCE.getAddToContainer_PositionExpression();
+		EAttribute ADD_TO_CONTAINER__POSITION_FIELD = eINSTANCE.getAddToContainer_PositionField();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.EvaluateImpl <em>Evaluate</em>}' class.

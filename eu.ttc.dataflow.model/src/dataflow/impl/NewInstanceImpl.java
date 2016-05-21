@@ -66,6 +66,15 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	protected String nsURI = NS_URI_EDEFAULT;
 
 	/**
+	 * This is true if the Ns URI attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean nsURIESet;
+
+	/**
 	 * The default value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,8 +151,33 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	public void setNsURI(String newNsURI) {
 		String oldNsURI = nsURI;
 		nsURI = newNsURI;
+		boolean oldNsURIESet = nsURIESet;
+		nsURIESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__NS_URI, oldNsURI, nsURI));
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__NS_URI, oldNsURI, nsURI, !oldNsURIESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNsURI() {
+		String oldNsURI = nsURI;
+		boolean oldNsURIESet = nsURIESet;
+		nsURI = NS_URI_EDEFAULT;
+		nsURIESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, DataflowPackage.NEW_INSTANCE__NS_URI, oldNsURI, NS_URI_EDEFAULT, oldNsURIESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNsURI() {
+		return nsURIESet;
 	}
 
 	/**
@@ -218,7 +252,7 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 				setField(FIELD_EDEFAULT);
 				return;
 			case DataflowPackage.NEW_INSTANCE__NS_URI:
-				setNsURI(NS_URI_EDEFAULT);
+				unsetNsURI();
 				return;
 			case DataflowPackage.NEW_INSTANCE__TYPE_NAME:
 				setTypeName(TYPE_NAME_EDEFAULT);
@@ -238,7 +272,7 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 			case DataflowPackage.NEW_INSTANCE__FIELD:
 				return FIELD_EDEFAULT == null ? field != null : !FIELD_EDEFAULT.equals(field);
 			case DataflowPackage.NEW_INSTANCE__NS_URI:
-				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
+				return isSetNsURI();
 			case DataflowPackage.NEW_INSTANCE__TYPE_NAME:
 				return TYPE_NAME_EDEFAULT == null ? typeName != null : !TYPE_NAME_EDEFAULT.equals(typeName);
 		}
@@ -258,7 +292,7 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 		result.append(" (field: ");
 		result.append(field);
 		result.append(", nsURI: ");
-		result.append(nsURI);
+		if (nsURIESet) result.append(nsURI); else result.append("<unset>");
 		result.append(", typeName: ");
 		result.append(typeName);
 		result.append(')');

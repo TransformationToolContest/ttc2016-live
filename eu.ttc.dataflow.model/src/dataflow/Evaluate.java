@@ -32,7 +32,7 @@ public interface Evaluate extends Element {
 	 * @return the value of the '<em>Field</em>' attribute.
 	 * @see #setField(String)
 	 * @see dataflow.DataflowPackage#getEvaluate_Field()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getField();
@@ -58,7 +58,7 @@ public interface Evaluate extends Element {
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(Expression)
 	 * @see dataflow.DataflowPackage#getEvaluate_Expression()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Expression getExpression();

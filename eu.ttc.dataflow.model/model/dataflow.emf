@@ -1,17 +1,19 @@
 @namespace(uri="http://transformation-tool-contest.eu/2016/dataflow", prefix="df")
 package dataflow;
 
-// TODO: allow for placing expressions inside more places (would require spending more time with Sirius)
+// TODO: allow for placing expressions inside more places
+
+// TODO: make Sirius integration nicer
 
 class Model {
 	val Element[*] elements;
 }
 
 abstract class Element {
-	attr String description;
+	id attr String[1] name;
 
 	// target element that will consume the produced rows
-	ref Element target;
+	ref Element[?] target;
 }
 
 /// INSTANCE HANDLING  //////////////////////////////////////////////////////////////////
@@ -20,15 +22,15 @@ abstract class Element {
 // As intermediate node: for each input row, duplicates it with a different instance of a type 
 class AllInstances extends Element {
 	attr String[1] field;
-	attr String[?] nsURI;    // can be omitted (interpreter would need to know somehow just from the type)
+	unsettable attr String nsURI;    // can be omitted (interpreter would need to know somehow just from the type)
 	attr String[1] typeName;
 }
 
 // As initial node: creates a row with one instance of a type
 // As intermediate node: for each input row, creates one instance of the type
 class NewInstance extends Element {
-	attr String field;
-	attr String[?] nsURI;    // can be omitted (interpreter would need to know somehow just from the type)
+	attr String[1] field;
+	unsettable attr String nsURI;    // can be omitted (interpreter would need to know somehow just from the type)
 	attr String[1] typeName;
 }
 
@@ -37,16 +39,16 @@ class NewInstance extends Element {
 // Not valid as initial node
 // As intermediate node: splits a stream into two according to a condition
 class Filter extends Element {
-	attr String filterByField;
+	attr String[1] filterByField;
 
     // if set, this will consume the *rejected* rows
-	ref Element rejectTarget;
+	ref Element[?] rejectTarget;
 }
 
 // Not valid as initial node
 // Reads all incoming rows and then sorts by ascending value of the expression
 class Sort extends Element {
-	attr String sortByField;
+	attr String[1] sortByField;
 }
 
 // Not valid as initial node
@@ -57,38 +59,32 @@ class Product extends Element {}
 
 // Retrieves a specific feature in the object in 'field' and places it in the 'valueField'
 class GetFeature extends Element {
-	attr String objectField; // field that has the object to work with
-    attr String valueField;  // field that will have the retrieved value
-	attr String feature;
+	attr String[1] objectField; // field that has the object to work with
+    attr String[1] valueField;  // field that will have the retrieved value
+	attr String[1] feature;
 }
 
 // Sets a specific feature in the object in 'field' to the value in the 'valueField'
 class SetFeature extends Element {
-	attr String objectField; // field that has the object to work with
-	attr String valueField; // expression to compute the value to be set
-	attr String feature;
-}
-
-// Unsets a specific feature in the object in 'field'
-class UnsetFeature extends Element {
-	attr String objectField; // field that has the object to work with
-	attr String feature;
+	attr String[1] objectField; // field that has the object to work with
+	attr String[?] valueField; // expression to compute the value to be set, if not set, feature will be unset
+	attr String[1] feature;
 }
 
 // CONTAINERS ////////////////////////////////////////////////////////////////////////////////
 
 class NewContainer extends Element {
-	attr String listField;
-	attr ContainerType containerType;
+	attr String[1] listField;
+	attr ContainerType[?] containerType;
 }
 
 // Adds an element to a container
 class AddToContainer extends Element {
-	attr String listField;
-	attr String valueField;
+	attr String[1] listField;
+	attr String[1] valueField;
 
 	// if not set, adds at the end
-	attr String positionExpression;
+	attr String[?] positionField;
 }
 
 // we don't have remove/clear (we're only targeting exogenous transformations right now)
@@ -96,8 +92,8 @@ class AddToContainer extends Element {
 // EXPRESSION LANGUAGE ///////////////////////////////////////////////////////////////////////
 
 class Evaluate extends Element {
-	attr String field;
-	val Expression expression;
+	attr String[1] field;
+	val Expression[1] expression;
 }
 
 abstract class Expression {}
@@ -134,11 +130,11 @@ class BinaryOperation extends Expression {
 }
 
 enum UnaryOperator {
-	NOT; NEGATION; SIZE;
+	NOT; NEGATION; SIZE; IS_DEFINED; IS_UNDEFINED;
 }
 
 enum BinaryOperator {
-	EQ; NE; GT; GE; LT; LE; IS_DEFINED; IS_UNDEFINED; AND; OR; XOR; ADD; SUBTRACT; MULTIPLY; DIVIDE;
+	EQ; NE; GT; GE; LT; LE; AND; OR; XOR; ADD; SUBTRACT; MULTIPLY; DIVIDE; MODULO;
 }
 
 enum ContainerType {

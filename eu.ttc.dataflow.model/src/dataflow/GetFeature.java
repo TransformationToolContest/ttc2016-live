@@ -32,7 +32,7 @@ public interface GetFeature extends Element {
 	 * @return the value of the '<em>Object Field</em>' attribute.
 	 * @see #setObjectField(String)
 	 * @see dataflow.DataflowPackage#getGetFeature_ObjectField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getObjectField();
@@ -58,7 +58,7 @@ public interface GetFeature extends Element {
 	 * @return the value of the '<em>Value Field</em>' attribute.
 	 * @see #setValueField(String)
 	 * @see dataflow.DataflowPackage#getGetFeature_ValueField()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getValueField();
@@ -84,7 +84,7 @@ public interface GetFeature extends Element {
 	 * @return the value of the '<em>Feature</em>' attribute.
 	 * @see #setFeature(String)
 	 * @see dataflow.DataflowPackage#getGetFeature_Feature()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getFeature();

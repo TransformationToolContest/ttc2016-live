@@ -4,7 +4,7 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Model diagram" initialisation="true" showOnStartup="true" domainClass="dataflow.Model" enablePopupBars="true">
       <defaultLayer name="Default">
         <nodeMappings name="ElementNode" labelDirectEdit="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='editDescription']" semanticCandidatesExpression="feature:elements" domainClass="dataflow.Element">
-          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelExpression="aql:self.eClass().name + ' &quot;' + self.description + '&quot;'" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelExpression="aql:self.eClass().name + ' &quot;' + self.name + '&quot;'" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
@@ -60,15 +60,6 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.SetFeature" referenceName="elements"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createUnsetFeature" label="Unset Feature" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.UnsetFeature" referenceName="elements"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -252,7 +243,7 @@
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_2:TreeDescription" name="Evaluation tree" domainClass="dataflow.Evaluate">
       <subItemMappings name="evaluateTreeItem" domainClass="dataflow.Evaluate" semanticCandidatesExpression="aql:self">
-        <defaultStyle labelExpression="aql:'Evaluate ' + self.description">
+        <defaultStyle labelExpression="aql:'Evaluate ' + self.name">
           <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
         </defaultStyle>
