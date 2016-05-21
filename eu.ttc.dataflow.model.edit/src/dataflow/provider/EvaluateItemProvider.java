@@ -63,7 +63,7 @@ public class EvaluateItemProvider extends ElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DataflowPackage.Literals.EVALUATE__FIELD);
-			childrenFeatures.add(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION);
+			childrenFeatures.add(DataflowPackage.Literals.EVALUATE__EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -120,7 +120,7 @@ public class EvaluateItemProvider extends ElementItemProvider {
 
 		switch (notification.getFeatureID(Evaluate.class)) {
 			case DataflowPackage.EVALUATE__FIELD:
-			case DataflowPackage.EVALUATE__VALUE_EXPRESSION:
+			case DataflowPackage.EVALUATE__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -141,65 +141,42 @@ public class EvaluateItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.EVALUATE__FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
+				 ""));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createIntegerLiteral()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createBooleanLiteral()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createRealLiteral()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createStringLiteral()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createFieldReference()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createUnaryOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION,
+				(DataflowPackage.Literals.EVALUATE__EXPRESSION,
 				 DataflowFactory.eINSTANCE.createBinaryOperation()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == DataflowPackage.Literals.EVALUATE__FIELD ||
-			childFeature == DataflowPackage.Literals.EVALUATE__VALUE_EXPRESSION;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

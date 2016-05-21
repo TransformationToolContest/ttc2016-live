@@ -5,8 +5,6 @@ package dataflow.impl;
 import dataflow.DataflowPackage;
 import dataflow.Evaluate;
 import dataflow.Expression;
-import dataflow.FieldReference;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -24,31 +22,41 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link dataflow.impl.EvaluateImpl#getField <em>Field</em>}</li>
- *   <li>{@link dataflow.impl.EvaluateImpl#getValueExpression <em>Value Expression</em>}</li>
+ *   <li>{@link dataflow.impl.EvaluateImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class EvaluateImpl extends ElementImpl implements Evaluate {
 	/**
-	 * The cached value of the '{@link #getField() <em>Field</em>}' containment reference.
+	 * The default value of the '{@link #getField() <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getField()
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldReference field;
+	protected static final String FIELD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getField() <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValueExpression()
+	 * @see #getField()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression valueExpression;
+	protected String field = FIELD_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression expression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +82,7 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FieldReference getField() {
+	public String getField() {
 		return field;
 	}
 
@@ -83,11 +91,32 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetField(FieldReference newField, NotificationChain msgs) {
-		FieldReference oldField = field;
+	public void setField(String newField) {
+		String oldField = field;
 		field = newField;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__FIELD, oldField, field));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression getExpression() {
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExpression(Expression newExpression, NotificationChain msgs) {
+		Expression oldExpression = expression;
+		expression = newExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__FIELD, oldField, newField);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__EXPRESSION, oldExpression, newExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -98,61 +127,18 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setField(FieldReference newField) {
-		if (newField != field) {
+	public void setExpression(Expression newExpression) {
+		if (newExpression != expression) {
 			NotificationChain msgs = null;
-			if (field != null)
-				msgs = ((InternalEObject)field).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.EVALUATE__FIELD, null, msgs);
-			if (newField != null)
-				msgs = ((InternalEObject)newField).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.EVALUATE__FIELD, null, msgs);
-			msgs = basicSetField(newField, msgs);
+			if (expression != null)
+				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.EVALUATE__EXPRESSION, null, msgs);
+			if (newExpression != null)
+				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.EVALUATE__EXPRESSION, null, msgs);
+			msgs = basicSetExpression(newExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__FIELD, newField, newField));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getValueExpression() {
-		return valueExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetValueExpression(Expression newValueExpression, NotificationChain msgs) {
-		Expression oldValueExpression = valueExpression;
-		valueExpression = newValueExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__VALUE_EXPRESSION, oldValueExpression, newValueExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValueExpression(Expression newValueExpression) {
-		if (newValueExpression != valueExpression) {
-			NotificationChain msgs = null;
-			if (valueExpression != null)
-				msgs = ((InternalEObject)valueExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.EVALUATE__VALUE_EXPRESSION, null, msgs);
-			if (newValueExpression != null)
-				msgs = ((InternalEObject)newValueExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.EVALUATE__VALUE_EXPRESSION, null, msgs);
-			msgs = basicSetValueExpression(newValueExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__VALUE_EXPRESSION, newValueExpression, newValueExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.EVALUATE__EXPRESSION, newExpression, newExpression));
 	}
 
 	/**
@@ -163,10 +149,8 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DataflowPackage.EVALUATE__FIELD:
-				return basicSetField(null, msgs);
-			case DataflowPackage.EVALUATE__VALUE_EXPRESSION:
-				return basicSetValueExpression(null, msgs);
+			case DataflowPackage.EVALUATE__EXPRESSION:
+				return basicSetExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -181,8 +165,8 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 		switch (featureID) {
 			case DataflowPackage.EVALUATE__FIELD:
 				return getField();
-			case DataflowPackage.EVALUATE__VALUE_EXPRESSION:
-				return getValueExpression();
+			case DataflowPackage.EVALUATE__EXPRESSION:
+				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,10 +180,10 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataflowPackage.EVALUATE__FIELD:
-				setField((FieldReference)newValue);
+				setField((String)newValue);
 				return;
-			case DataflowPackage.EVALUATE__VALUE_EXPRESSION:
-				setValueExpression((Expression)newValue);
+			case DataflowPackage.EVALUATE__EXPRESSION:
+				setExpression((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,10 +198,10 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.EVALUATE__FIELD:
-				setField((FieldReference)null);
+				setField(FIELD_EDEFAULT);
 				return;
-			case DataflowPackage.EVALUATE__VALUE_EXPRESSION:
-				setValueExpression((Expression)null);
+			case DataflowPackage.EVALUATE__EXPRESSION:
+				setExpression((Expression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -232,11 +216,27 @@ public class EvaluateImpl extends ElementImpl implements Evaluate {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.EVALUATE__FIELD:
-				return field != null;
-			case DataflowPackage.EVALUATE__VALUE_EXPRESSION:
-				return valueExpression != null;
+				return FIELD_EDEFAULT == null ? field != null : !FIELD_EDEFAULT.equals(field);
+			case DataflowPackage.EVALUATE__EXPRESSION:
+				return expression != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (field: ");
+		result.append(field);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EvaluateImpl

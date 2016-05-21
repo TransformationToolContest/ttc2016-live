@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.ttc.dataflow.viewpoint
+Bundle-SymbolicName: eu.ttc.dataflow.viewpoint;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: eu.ttc.dataflow.viewpoint.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.sirius,
+ org.eclipse.sirius.common.acceleo.aql,
+ eu.ttc.dataflow.model
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

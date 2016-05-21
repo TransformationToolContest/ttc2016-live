@@ -3,7 +3,6 @@
 package dataflow.provider;
 
 
-import dataflow.DataflowFactory;
 import dataflow.DataflowPackage;
 import dataflow.NewContainer;
 
@@ -167,7 +166,7 @@ public class NewContainerItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.NEW_CONTAINER__LIST_FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
+				 ""));
 	}
 
 }

@@ -3,16 +3,10 @@
 package dataflow.impl;
 
 import dataflow.DataflowPackage;
-import dataflow.FieldReference;
 import dataflow.UnsetFeature;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -31,24 +25,44 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	/**
-	 * The cached value of the '{@link #getObjectField() <em>Object Field</em>}' containment reference.
+	 * The default value of the '{@link #getObjectField() <em>Object Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getObjectField()
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldReference objectField;
+	protected static final String OBJECT_FIELD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+	 * The cached value of the '{@link #getObjectField() <em>Object Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getObjectField()
+	 * @generated
+	 * @ordered
+	 */
+	protected String objectField = OBJECT_FIELD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature feature;
+	protected static final String FEATURE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected String feature = FEATURE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +88,7 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FieldReference getObjectField() {
+	public String getObjectField() {
 		return objectField;
 	}
 
@@ -83,14 +97,11 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetObjectField(FieldReference newObjectField, NotificationChain msgs) {
-		FieldReference oldObjectField = objectField;
+	public void setObjectField(String newObjectField) {
+		String oldObjectField = objectField;
 		objectField = newObjectField;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.UNSET_FEATURE__OBJECT_FIELD, oldObjectField, newObjectField);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.UNSET_FEATURE__OBJECT_FIELD, oldObjectField, objectField));
 	}
 
 	/**
@@ -98,34 +109,7 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setObjectField(FieldReference newObjectField) {
-		if (newObjectField != objectField) {
-			NotificationChain msgs = null;
-			if (objectField != null)
-				msgs = ((InternalEObject)objectField).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.UNSET_FEATURE__OBJECT_FIELD, null, msgs);
-			if (newObjectField != null)
-				msgs = ((InternalEObject)newObjectField).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.UNSET_FEATURE__OBJECT_FIELD, null, msgs);
-			msgs = basicSetObjectField(newObjectField, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.UNSET_FEATURE__OBJECT_FIELD, newObjectField, newObjectField));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EStructuralFeature getFeature() {
-		if (feature != null && feature.eIsProxy()) {
-			InternalEObject oldFeature = (InternalEObject)feature;
-			feature = (EStructuralFeature)eResolveProxy(oldFeature);
-			if (feature != oldFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataflowPackage.UNSET_FEATURE__FEATURE, oldFeature, feature));
-			}
-		}
+	public String getFeature() {
 		return feature;
 	}
 
@@ -134,34 +118,11 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature basicGetFeature() {
-		return feature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFeature(EStructuralFeature newFeature) {
-		EStructuralFeature oldFeature = feature;
+	public void setFeature(String newFeature) {
+		String oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.UNSET_FEATURE__FEATURE, oldFeature, feature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DataflowPackage.UNSET_FEATURE__OBJECT_FIELD:
-				return basicSetObjectField(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -175,8 +136,7 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 			case DataflowPackage.UNSET_FEATURE__OBJECT_FIELD:
 				return getObjectField();
 			case DataflowPackage.UNSET_FEATURE__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
+				return getFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -190,10 +150,10 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataflowPackage.UNSET_FEATURE__OBJECT_FIELD:
-				setObjectField((FieldReference)newValue);
+				setObjectField((String)newValue);
 				return;
 			case DataflowPackage.UNSET_FEATURE__FEATURE:
-				setFeature((EStructuralFeature)newValue);
+				setFeature((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,10 +168,10 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.UNSET_FEATURE__OBJECT_FIELD:
-				setObjectField((FieldReference)null);
+				setObjectField(OBJECT_FIELD_EDEFAULT);
 				return;
 			case DataflowPackage.UNSET_FEATURE__FEATURE:
-				setFeature((EStructuralFeature)null);
+				setFeature(FEATURE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -226,11 +186,29 @@ public class UnsetFeatureImpl extends ElementImpl implements UnsetFeature {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.UNSET_FEATURE__OBJECT_FIELD:
-				return objectField != null;
+				return OBJECT_FIELD_EDEFAULT == null ? objectField != null : !OBJECT_FIELD_EDEFAULT.equals(objectField);
 			case DataflowPackage.UNSET_FEATURE__FEATURE:
-				return feature != null;
+				return FEATURE_EDEFAULT == null ? feature != null : !FEATURE_EDEFAULT.equals(feature);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (objectField: ");
+		result.append(objectField);
+		result.append(", feature: ");
+		result.append(feature);
+		result.append(')');
+		return result.toString();
 	}
 
 } //UnsetFeatureImpl

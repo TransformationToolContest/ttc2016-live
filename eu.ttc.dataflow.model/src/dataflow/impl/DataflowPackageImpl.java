@@ -332,8 +332,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAllInstances_Field() {
-		return (EReference)allInstancesEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAllInstances_Field() {
+		return (EAttribute)allInstancesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -341,8 +341,17 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAllInstances_Type() {
-		return (EReference)allInstancesEClass.getEStructuralFeatures().get(1);
+	public EAttribute getAllInstances_NsURI() {
+		return (EAttribute)allInstancesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAllInstances_TypeName() {
+		return (EAttribute)allInstancesEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -359,8 +368,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewInstance_Field() {
-		return (EReference)newInstanceEClass.getEStructuralFeatures().get(0);
+	public EAttribute getNewInstance_Field() {
+		return (EAttribute)newInstanceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -368,8 +377,17 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewInstance_Type() {
-		return (EReference)newInstanceEClass.getEStructuralFeatures().get(1);
+	public EAttribute getNewInstance_NsURI() {
+		return (EAttribute)newInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNewInstance_TypeName() {
+		return (EAttribute)newInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -386,8 +404,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFilter_FilterBy() {
-		return (EReference)filterEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFilter_FilterByField() {
+		return (EAttribute)filterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -413,8 +431,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSort_SortBy() {
-		return (EReference)sortEClass.getEStructuralFeatures().get(0);
+	public EAttribute getSort_SortByField() {
+		return (EAttribute)sortEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -440,8 +458,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGetFeature_ObjectField() {
-		return (EReference)getFeatureEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGetFeature_ObjectField() {
+		return (EAttribute)getFeatureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -449,8 +467,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGetFeature_ValueField() {
-		return (EReference)getFeatureEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGetFeature_ValueField() {
+		return (EAttribute)getFeatureEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -458,8 +476,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGetFeature_Feature() {
-		return (EReference)getFeatureEClass.getEStructuralFeatures().get(2);
+	public EAttribute getGetFeature_Feature() {
+		return (EAttribute)getFeatureEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -476,8 +494,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSetFeature_ObjectField() {
-		return (EReference)setFeatureEClass.getEStructuralFeatures().get(0);
+	public EAttribute getSetFeature_ObjectField() {
+		return (EAttribute)setFeatureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -485,8 +503,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSetFeature_ValueExpression() {
-		return (EReference)setFeatureEClass.getEStructuralFeatures().get(1);
+	public EAttribute getSetFeature_ValueField() {
+		return (EAttribute)setFeatureEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -494,8 +512,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSetFeature_Feature() {
-		return (EReference)setFeatureEClass.getEStructuralFeatures().get(2);
+	public EAttribute getSetFeature_Feature() {
+		return (EAttribute)setFeatureEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -512,8 +530,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUnsetFeature_ObjectField() {
-		return (EReference)unsetFeatureEClass.getEStructuralFeatures().get(0);
+	public EAttribute getUnsetFeature_ObjectField() {
+		return (EAttribute)unsetFeatureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -521,8 +539,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUnsetFeature_Feature() {
-		return (EReference)unsetFeatureEClass.getEStructuralFeatures().get(1);
+	public EAttribute getUnsetFeature_Feature() {
+		return (EAttribute)unsetFeatureEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -539,8 +557,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNewContainer_ListField() {
-		return (EReference)newContainerEClass.getEStructuralFeatures().get(0);
+	public EAttribute getNewContainer_ListField() {
+		return (EAttribute)newContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -566,8 +584,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddToContainer_ListField() {
-		return (EReference)addToContainerEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAddToContainer_ListField() {
+		return (EAttribute)addToContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -575,8 +593,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddToContainer_ValueExpression() {
-		return (EReference)addToContainerEClass.getEStructuralFeatures().get(1);
+	public EAttribute getAddToContainer_ValueField() {
+		return (EAttribute)addToContainerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -584,8 +602,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddToContainer_PositionExpression() {
-		return (EReference)addToContainerEClass.getEStructuralFeatures().get(2);
+	public EAttribute getAddToContainer_PositionExpression() {
+		return (EAttribute)addToContainerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -602,8 +620,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvaluate_Field() {
-		return (EReference)evaluateEClass.getEStructuralFeatures().get(0);
+	public EAttribute getEvaluate_Field() {
+		return (EAttribute)evaluateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -611,7 +629,7 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvaluate_ValueExpression() {
+	public EReference getEvaluate_Expression() {
 		return (EReference)evaluateEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -840,48 +858,50 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		createEReference(elementEClass, ELEMENT__TARGET);
 
 		allInstancesEClass = createEClass(ALL_INSTANCES);
-		createEReference(allInstancesEClass, ALL_INSTANCES__FIELD);
-		createEReference(allInstancesEClass, ALL_INSTANCES__TYPE);
+		createEAttribute(allInstancesEClass, ALL_INSTANCES__FIELD);
+		createEAttribute(allInstancesEClass, ALL_INSTANCES__NS_URI);
+		createEAttribute(allInstancesEClass, ALL_INSTANCES__TYPE_NAME);
 
 		newInstanceEClass = createEClass(NEW_INSTANCE);
-		createEReference(newInstanceEClass, NEW_INSTANCE__FIELD);
-		createEReference(newInstanceEClass, NEW_INSTANCE__TYPE);
+		createEAttribute(newInstanceEClass, NEW_INSTANCE__FIELD);
+		createEAttribute(newInstanceEClass, NEW_INSTANCE__NS_URI);
+		createEAttribute(newInstanceEClass, NEW_INSTANCE__TYPE_NAME);
 
 		filterEClass = createEClass(FILTER);
-		createEReference(filterEClass, FILTER__FILTER_BY);
+		createEAttribute(filterEClass, FILTER__FILTER_BY_FIELD);
 		createEReference(filterEClass, FILTER__REJECT_TARGET);
 
 		sortEClass = createEClass(SORT);
-		createEReference(sortEClass, SORT__SORT_BY);
+		createEAttribute(sortEClass, SORT__SORT_BY_FIELD);
 
 		productEClass = createEClass(PRODUCT);
 
 		getFeatureEClass = createEClass(GET_FEATURE);
-		createEReference(getFeatureEClass, GET_FEATURE__OBJECT_FIELD);
-		createEReference(getFeatureEClass, GET_FEATURE__VALUE_FIELD);
-		createEReference(getFeatureEClass, GET_FEATURE__FEATURE);
+		createEAttribute(getFeatureEClass, GET_FEATURE__OBJECT_FIELD);
+		createEAttribute(getFeatureEClass, GET_FEATURE__VALUE_FIELD);
+		createEAttribute(getFeatureEClass, GET_FEATURE__FEATURE);
 
 		setFeatureEClass = createEClass(SET_FEATURE);
-		createEReference(setFeatureEClass, SET_FEATURE__OBJECT_FIELD);
-		createEReference(setFeatureEClass, SET_FEATURE__VALUE_EXPRESSION);
-		createEReference(setFeatureEClass, SET_FEATURE__FEATURE);
+		createEAttribute(setFeatureEClass, SET_FEATURE__OBJECT_FIELD);
+		createEAttribute(setFeatureEClass, SET_FEATURE__VALUE_FIELD);
+		createEAttribute(setFeatureEClass, SET_FEATURE__FEATURE);
 
 		unsetFeatureEClass = createEClass(UNSET_FEATURE);
-		createEReference(unsetFeatureEClass, UNSET_FEATURE__OBJECT_FIELD);
-		createEReference(unsetFeatureEClass, UNSET_FEATURE__FEATURE);
+		createEAttribute(unsetFeatureEClass, UNSET_FEATURE__OBJECT_FIELD);
+		createEAttribute(unsetFeatureEClass, UNSET_FEATURE__FEATURE);
 
 		newContainerEClass = createEClass(NEW_CONTAINER);
-		createEReference(newContainerEClass, NEW_CONTAINER__LIST_FIELD);
+		createEAttribute(newContainerEClass, NEW_CONTAINER__LIST_FIELD);
 		createEAttribute(newContainerEClass, NEW_CONTAINER__CONTAINER_TYPE);
 
 		addToContainerEClass = createEClass(ADD_TO_CONTAINER);
-		createEReference(addToContainerEClass, ADD_TO_CONTAINER__LIST_FIELD);
-		createEReference(addToContainerEClass, ADD_TO_CONTAINER__VALUE_EXPRESSION);
-		createEReference(addToContainerEClass, ADD_TO_CONTAINER__POSITION_EXPRESSION);
+		createEAttribute(addToContainerEClass, ADD_TO_CONTAINER__LIST_FIELD);
+		createEAttribute(addToContainerEClass, ADD_TO_CONTAINER__VALUE_FIELD);
+		createEAttribute(addToContainerEClass, ADD_TO_CONTAINER__POSITION_EXPRESSION);
 
 		evaluateEClass = createEClass(EVALUATE);
-		createEReference(evaluateEClass, EVALUATE__FIELD);
-		createEReference(evaluateEClass, EVALUATE__VALUE_EXPRESSION);
+		createEAttribute(evaluateEClass, EVALUATE__FIELD);
+		createEReference(evaluateEClass, EVALUATE__EXPRESSION);
 
 		expressionEClass = createEClass(EXPRESSION);
 
@@ -971,48 +991,50 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		initEReference(getElement_Target(), this.getElement(), null, "target", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(allInstancesEClass, AllInstances.class, "AllInstances", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAllInstances_Field(), this.getFieldReference(), null, "field", null, 0, 1, AllInstances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAllInstances_Type(), ecorePackage.getEClass(), null, "type", null, 1, 1, AllInstances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAllInstances_Field(), ecorePackage.getEString(), "field", null, 1, 1, AllInstances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAllInstances_NsURI(), ecorePackage.getEString(), "nsURI", null, 0, 1, AllInstances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAllInstances_TypeName(), ecorePackage.getEString(), "typeName", null, 1, 1, AllInstances.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(newInstanceEClass, NewInstance.class, "NewInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNewInstance_Field(), this.getFieldReference(), null, "field", null, 0, 1, NewInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNewInstance_Type(), ecorePackage.getEClass(), null, "type", null, 1, 1, NewInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNewInstance_Field(), ecorePackage.getEString(), "field", null, 0, 1, NewInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNewInstance_NsURI(), ecorePackage.getEString(), "nsURI", null, 0, 1, NewInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNewInstance_TypeName(), ecorePackage.getEString(), "typeName", null, 1, 1, NewInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFilter_FilterBy(), this.getExpression(), null, "filterBy", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilter_FilterByField(), ecorePackage.getEString(), "filterByField", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFilter_RejectTarget(), this.getElement(), null, "rejectTarget", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sortEClass, Sort.class, "Sort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSort_SortBy(), this.getExpression(), null, "sortBy", null, 0, 1, Sort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSort_SortByField(), ecorePackage.getEString(), "sortByField", null, 0, 1, Sort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(getFeatureEClass, GetFeature.class, "GetFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGetFeature_ObjectField(), this.getFieldReference(), null, "objectField", null, 0, 1, GetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGetFeature_ValueField(), this.getFieldReference(), null, "valueField", null, 0, 1, GetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGetFeature_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 1, 1, GetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetFeature_ObjectField(), ecorePackage.getEString(), "objectField", null, 0, 1, GetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetFeature_ValueField(), ecorePackage.getEString(), "valueField", null, 0, 1, GetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetFeature_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, GetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(setFeatureEClass, SetFeature.class, "SetFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSetFeature_ObjectField(), this.getFieldReference(), null, "objectField", null, 0, 1, SetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSetFeature_ValueExpression(), this.getExpression(), null, "valueExpression", null, 0, 1, SetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSetFeature_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 1, 1, SetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetFeature_ObjectField(), ecorePackage.getEString(), "objectField", null, 0, 1, SetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetFeature_ValueField(), ecorePackage.getEString(), "valueField", null, 0, 1, SetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSetFeature_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, SetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unsetFeatureEClass, UnsetFeature.class, "UnsetFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnsetFeature_ObjectField(), this.getFieldReference(), null, "objectField", null, 0, 1, UnsetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUnsetFeature_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 1, 1, UnsetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnsetFeature_ObjectField(), ecorePackage.getEString(), "objectField", null, 0, 1, UnsetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnsetFeature_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, UnsetFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(newContainerEClass, NewContainer.class, "NewContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNewContainer_ListField(), this.getFieldReference(), null, "listField", null, 0, 1, NewContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNewContainer_ListField(), ecorePackage.getEString(), "listField", null, 0, 1, NewContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNewContainer_ContainerType(), this.getContainerType(), "containerType", null, 0, 1, NewContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(addToContainerEClass, AddToContainer.class, "AddToContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAddToContainer_ListField(), this.getFieldReference(), null, "listField", null, 0, 1, AddToContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAddToContainer_ValueExpression(), this.getExpression(), null, "valueExpression", null, 0, 1, AddToContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAddToContainer_PositionExpression(), this.getExpression(), null, "positionExpression", null, 0, 1, AddToContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddToContainer_ListField(), ecorePackage.getEString(), "listField", null, 0, 1, AddToContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddToContainer_ValueField(), ecorePackage.getEString(), "valueField", null, 0, 1, AddToContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddToContainer_PositionExpression(), ecorePackage.getEString(), "positionExpression", null, 0, 1, AddToContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(evaluateEClass, Evaluate.class, "Evaluate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEvaluate_Field(), this.getFieldReference(), null, "field", null, 0, 1, Evaluate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEvaluate_ValueExpression(), this.getExpression(), null, "valueExpression", null, 0, 1, Evaluate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvaluate_Field(), ecorePackage.getEString(), "field", null, 0, 1, Evaluate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEvaluate_Expression(), this.getExpression(), null, "expression", null, 0, 1, Evaluate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

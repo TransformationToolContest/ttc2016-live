@@ -3,15 +3,10 @@
 package dataflow.impl;
 
 import dataflow.DataflowPackage;
-import dataflow.FieldReference;
 import dataflow.NewInstance;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -23,31 +18,72 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link dataflow.impl.NewInstanceImpl#getField <em>Field</em>}</li>
- *   <li>{@link dataflow.impl.NewInstanceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link dataflow.impl.NewInstanceImpl#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link dataflow.impl.NewInstanceImpl#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	/**
-	 * The cached value of the '{@link #getField() <em>Field</em>}' containment reference.
+	 * The default value of the '{@link #getField() <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getField()
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldReference field;
+	protected static final String FIELD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getField() <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getField()
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass type;
+	protected String field = FIELD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NS_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nsURI = NS_URI_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String typeName = TYPE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,7 +109,7 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FieldReference getField() {
+	public String getField() {
 		return field;
 	}
 
@@ -82,71 +118,11 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetField(FieldReference newField, NotificationChain msgs) {
-		FieldReference oldField = field;
+	public void setField(String newField) {
+		String oldField = field;
 		field = newField;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__FIELD, oldField, newField);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setField(FieldReference newField) {
-		if (newField != field) {
-			NotificationChain msgs = null;
-			if (field != null)
-				msgs = ((InternalEObject)field).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.NEW_INSTANCE__FIELD, null, msgs);
-			if (newField != null)
-				msgs = ((InternalEObject)newField).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.NEW_INSTANCE__FIELD, null, msgs);
-			msgs = basicSetField(newField, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__FIELD, newField, newField));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (EClass)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataflowPackage.NEW_INSTANCE__TYPE, oldType, type));
-			}
-		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(EClass newType) {
-		EClass oldType = type;
-		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__FIELD, oldField, field));
 	}
 
 	/**
@@ -154,13 +130,41 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DataflowPackage.NEW_INSTANCE__FIELD:
-				return basicSetField(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public String getNsURI() {
+		return nsURI;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNsURI(String newNsURI) {
+		String oldNsURI = nsURI;
+		nsURI = newNsURI;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__NS_URI, oldNsURI, nsURI));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTypeName() {
+		return typeName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeName(String newTypeName) {
+		String oldTypeName = typeName;
+		typeName = newTypeName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_INSTANCE__TYPE_NAME, oldTypeName, typeName));
 	}
 
 	/**
@@ -173,9 +177,10 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 		switch (featureID) {
 			case DataflowPackage.NEW_INSTANCE__FIELD:
 				return getField();
-			case DataflowPackage.NEW_INSTANCE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+			case DataflowPackage.NEW_INSTANCE__NS_URI:
+				return getNsURI();
+			case DataflowPackage.NEW_INSTANCE__TYPE_NAME:
+				return getTypeName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,10 +194,13 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataflowPackage.NEW_INSTANCE__FIELD:
-				setField((FieldReference)newValue);
+				setField((String)newValue);
 				return;
-			case DataflowPackage.NEW_INSTANCE__TYPE:
-				setType((EClass)newValue);
+			case DataflowPackage.NEW_INSTANCE__NS_URI:
+				setNsURI((String)newValue);
+				return;
+			case DataflowPackage.NEW_INSTANCE__TYPE_NAME:
+				setTypeName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -207,10 +215,13 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.NEW_INSTANCE__FIELD:
-				setField((FieldReference)null);
+				setField(FIELD_EDEFAULT);
 				return;
-			case DataflowPackage.NEW_INSTANCE__TYPE:
-				setType((EClass)null);
+			case DataflowPackage.NEW_INSTANCE__NS_URI:
+				setNsURI(NS_URI_EDEFAULT);
+				return;
+			case DataflowPackage.NEW_INSTANCE__TYPE_NAME:
+				setTypeName(TYPE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -225,11 +236,33 @@ public class NewInstanceImpl extends ElementImpl implements NewInstance {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.NEW_INSTANCE__FIELD:
-				return field != null;
-			case DataflowPackage.NEW_INSTANCE__TYPE:
-				return type != null;
+				return FIELD_EDEFAULT == null ? field != null : !FIELD_EDEFAULT.equals(field);
+			case DataflowPackage.NEW_INSTANCE__NS_URI:
+				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
+			case DataflowPackage.NEW_INSTANCE__TYPE_NAME:
+				return TYPE_NAME_EDEFAULT == null ? typeName != null : !TYPE_NAME_EDEFAULT.equals(typeName);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (field: ");
+		result.append(field);
+		result.append(", nsURI: ");
+		result.append(nsURI);
+		result.append(", typeName: ");
+		result.append(typeName);
+		result.append(')');
+		return result.toString();
 	}
 
 } //NewInstanceImpl

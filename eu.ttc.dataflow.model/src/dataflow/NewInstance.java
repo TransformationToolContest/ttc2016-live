@@ -2,8 +2,6 @@
  */
 package dataflow;
 
-import org.eclipse.emf.ecore.EClass;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>New Instance</b></em>'.
@@ -14,7 +12,8 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link dataflow.NewInstance#getField <em>Field</em>}</li>
- *   <li>{@link dataflow.NewInstance#getType <em>Type</em>}</li>
+ *   <li>{@link dataflow.NewInstance#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link dataflow.NewInstance#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @see dataflow.DataflowPackage#getNewInstance()
@@ -23,55 +22,81 @@ import org.eclipse.emf.ecore.EClass;
  */
 public interface NewInstance extends Element {
 	/**
-	 * Returns the value of the '<em><b>Field</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Field</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Field</em>' containment reference.
-	 * @see #setField(FieldReference)
+	 * @return the value of the '<em>Field</em>' attribute.
+	 * @see #setField(String)
 	 * @see dataflow.DataflowPackage#getNewInstance_Field()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	FieldReference getField();
+	String getField();
 
 	/**
-	 * Sets the value of the '{@link dataflow.NewInstance#getField <em>Field</em>}' containment reference.
+	 * Sets the value of the '{@link dataflow.NewInstance#getField <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Field</em>' containment reference.
+	 * @param value the new value of the '<em>Field</em>' attribute.
 	 * @see #getField()
 	 * @generated
 	 */
-	void setField(FieldReference value);
+	void setField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Ns URI</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * If the meaning of the '<em>Ns URI</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(EClass)
-	 * @see dataflow.DataflowPackage#getNewInstance_Type()
+	 * @return the value of the '<em>Ns URI</em>' attribute.
+	 * @see #setNsURI(String)
+	 * @see dataflow.DataflowPackage#getNewInstance_NsURI()
+	 * @model
+	 * @generated
+	 */
+	String getNsURI();
+
+	/**
+	 * Sets the value of the '{@link dataflow.NewInstance#getNsURI <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ns URI</em>' attribute.
+	 * @see #getNsURI()
+	 * @generated
+	 */
+	void setNsURI(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Name</em>' attribute.
+	 * @see #setTypeName(String)
+	 * @see dataflow.DataflowPackage#getNewInstance_TypeName()
 	 * @model required="true"
 	 * @generated
 	 */
-	EClass getType();
+	String getTypeName();
 
 	/**
-	 * Sets the value of the '{@link dataflow.NewInstance#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link dataflow.NewInstance#getTypeName <em>Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Type Name</em>' attribute.
+	 * @see #getTypeName()
 	 * @generated
 	 */
-	void setType(EClass value);
+	void setTypeName(String value);
 
 } // NewInstance

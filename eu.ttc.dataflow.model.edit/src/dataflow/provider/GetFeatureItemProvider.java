@@ -3,7 +3,6 @@
 package dataflow.provider;
 
 
-import dataflow.DataflowFactory;
 import dataflow.DataflowPackage;
 import dataflow.GetFeature;
 
@@ -17,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -69,7 +69,7 @@ public class GetFeatureItemProvider extends ElementItemProvider {
 				 true,
 				 false,
 				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -165,35 +165,12 @@ public class GetFeatureItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.GET_FEATURE__OBJECT_FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
+				 ""));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.GET_FEATURE__VALUE_FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == DataflowPackage.Literals.GET_FEATURE__OBJECT_FIELD ||
-			childFeature == DataflowPackage.Literals.GET_FEATURE__VALUE_FIELD;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+				 ""));
 	}
 
 }

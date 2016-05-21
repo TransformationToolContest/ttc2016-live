@@ -2,8 +2,6 @@
  */
 package dataflow;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Get Feature</b></em>'.
@@ -24,81 +22,81 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public interface GetFeature extends Element {
 	/**
-	 * Returns the value of the '<em><b>Object Field</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Object Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object Field</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object Field</em>' containment reference.
-	 * @see #setObjectField(FieldReference)
+	 * @return the value of the '<em>Object Field</em>' attribute.
+	 * @see #setObjectField(String)
 	 * @see dataflow.DataflowPackage#getGetFeature_ObjectField()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	FieldReference getObjectField();
+	String getObjectField();
 
 	/**
-	 * Sets the value of the '{@link dataflow.GetFeature#getObjectField <em>Object Field</em>}' containment reference.
+	 * Sets the value of the '{@link dataflow.GetFeature#getObjectField <em>Object Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object Field</em>' containment reference.
+	 * @param value the new value of the '<em>Object Field</em>' attribute.
 	 * @see #getObjectField()
 	 * @generated
 	 */
-	void setObjectField(FieldReference value);
+	void setObjectField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value Field</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Value Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value Field</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Field</em>' containment reference.
-	 * @see #setValueField(FieldReference)
+	 * @return the value of the '<em>Value Field</em>' attribute.
+	 * @see #setValueField(String)
 	 * @see dataflow.DataflowPackage#getGetFeature_ValueField()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	FieldReference getValueField();
+	String getValueField();
 
 	/**
-	 * Sets the value of the '{@link dataflow.GetFeature#getValueField <em>Value Field</em>}' containment reference.
+	 * Sets the value of the '{@link dataflow.GetFeature#getValueField <em>Value Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Field</em>' containment reference.
+	 * @param value the new value of the '<em>Value Field</em>' attribute.
 	 * @see #getValueField()
 	 * @generated
 	 */
-	void setValueField(FieldReference value);
+	void setValueField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Feature</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(EStructuralFeature)
+	 * @return the value of the '<em>Feature</em>' attribute.
+	 * @see #setFeature(String)
 	 * @see dataflow.DataflowPackage#getGetFeature_Feature()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
-	EStructuralFeature getFeature();
+	String getFeature();
 
 	/**
-	 * Sets the value of the '{@link dataflow.GetFeature#getFeature <em>Feature</em>}' reference.
+	 * Sets the value of the '{@link dataflow.GetFeature#getFeature <em>Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' reference.
+	 * @param value the new value of the '<em>Feature</em>' attribute.
 	 * @see #getFeature()
 	 * @generated
 	 */
-	void setFeature(EStructuralFeature value);
+	void setFeature(String value);
 
 } // GetFeature

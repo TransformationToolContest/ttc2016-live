@@ -4,15 +4,8 @@ package dataflow.impl;
 
 import dataflow.AddToContainer;
 import dataflow.DataflowPackage;
-import dataflow.Expression;
-import dataflow.FieldReference;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -24,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link dataflow.impl.AddToContainerImpl#getListField <em>List Field</em>}</li>
- *   <li>{@link dataflow.impl.AddToContainerImpl#getValueExpression <em>Value Expression</em>}</li>
+ *   <li>{@link dataflow.impl.AddToContainerImpl#getValueField <em>Value Field</em>}</li>
  *   <li>{@link dataflow.impl.AddToContainerImpl#getPositionExpression <em>Position Expression</em>}</li>
  * </ul>
  *
@@ -32,34 +25,64 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	/**
-	 * The cached value of the '{@link #getListField() <em>List Field</em>}' containment reference.
+	 * The default value of the '{@link #getListField() <em>List Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getListField()
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldReference listField;
+	protected static final String LIST_FIELD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getListField() <em>List Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValueExpression()
+	 * @see #getListField()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression valueExpression;
+	protected String listField = LIST_FIELD_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPositionExpression() <em>Position Expression</em>}' containment reference.
+	 * The default value of the '{@link #getValueField() <em>Value Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValueField()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_FIELD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValueField() <em>Value Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValueField()
+	 * @generated
+	 * @ordered
+	 */
+	protected String valueField = VALUE_FIELD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPositionExpression() <em>Position Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPositionExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression positionExpression;
+	protected static final String POSITION_EXPRESSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPositionExpression() <em>Position Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPositionExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected String positionExpression = POSITION_EXPRESSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,7 +108,7 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FieldReference getListField() {
+	public String getListField() {
 		return listField;
 	}
 
@@ -94,14 +117,11 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetListField(FieldReference newListField, NotificationChain msgs) {
-		FieldReference oldListField = listField;
+	public void setListField(String newListField) {
+		String oldListField = listField;
 		listField = newListField;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD, oldListField, newListField);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD, oldListField, listField));
 	}
 
 	/**
@@ -109,18 +129,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setListField(FieldReference newListField) {
-		if (newListField != listField) {
-			NotificationChain msgs = null;
-			if (listField != null)
-				msgs = ((InternalEObject)listField).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD, null, msgs);
-			if (newListField != null)
-				msgs = ((InternalEObject)newListField).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD, null, msgs);
-			msgs = basicSetListField(newListField, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD, newListField, newListField));
+	public String getValueField() {
+		return valueField;
 	}
 
 	/**
@@ -128,8 +138,11 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getValueExpression() {
-		return valueExpression;
+	public void setValueField(String newValueField) {
+		String oldValueField = valueField;
+		valueField = newValueField;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD, oldValueField, valueField));
 	}
 
 	/**
@@ -137,41 +150,7 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValueExpression(Expression newValueExpression, NotificationChain msgs) {
-		Expression oldValueExpression = valueExpression;
-		valueExpression = newValueExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION, oldValueExpression, newValueExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValueExpression(Expression newValueExpression) {
-		if (newValueExpression != valueExpression) {
-			NotificationChain msgs = null;
-			if (valueExpression != null)
-				msgs = ((InternalEObject)valueExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION, null, msgs);
-			if (newValueExpression != null)
-				msgs = ((InternalEObject)newValueExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION, null, msgs);
-			msgs = basicSetValueExpression(newValueExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION, newValueExpression, newValueExpression));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression getPositionExpression() {
+	public String getPositionExpression() {
 		return positionExpression;
 	}
 
@@ -180,51 +159,11 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPositionExpression(Expression newPositionExpression, NotificationChain msgs) {
-		Expression oldPositionExpression = positionExpression;
+	public void setPositionExpression(String newPositionExpression) {
+		String oldPositionExpression = positionExpression;
 		positionExpression = newPositionExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION, oldPositionExpression, newPositionExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPositionExpression(Expression newPositionExpression) {
-		if (newPositionExpression != positionExpression) {
-			NotificationChain msgs = null;
-			if (positionExpression != null)
-				msgs = ((InternalEObject)positionExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION, null, msgs);
-			if (newPositionExpression != null)
-				msgs = ((InternalEObject)newPositionExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION, null, msgs);
-			msgs = basicSetPositionExpression(newPositionExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION, newPositionExpression, newPositionExpression));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD:
-				return basicSetListField(null, msgs);
-			case DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION:
-				return basicSetValueExpression(null, msgs);
-			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				return basicSetPositionExpression(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION, oldPositionExpression, positionExpression));
 	}
 
 	/**
@@ -237,8 +176,8 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 		switch (featureID) {
 			case DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD:
 				return getListField();
-			case DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION:
-				return getValueExpression();
+			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
+				return getValueField();
 			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
 				return getPositionExpression();
 		}
@@ -254,13 +193,13 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD:
-				setListField((FieldReference)newValue);
+				setListField((String)newValue);
 				return;
-			case DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION:
-				setValueExpression((Expression)newValue);
+			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
+				setValueField((String)newValue);
 				return;
 			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				setPositionExpression((Expression)newValue);
+				setPositionExpression((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -275,13 +214,13 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD:
-				setListField((FieldReference)null);
+				setListField(LIST_FIELD_EDEFAULT);
 				return;
-			case DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION:
-				setValueExpression((Expression)null);
+			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
+				setValueField(VALUE_FIELD_EDEFAULT);
 				return;
 			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				setPositionExpression((Expression)null);
+				setPositionExpression(POSITION_EXPRESSION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -296,13 +235,33 @@ public class AddToContainerImpl extends ElementImpl implements AddToContainer {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.ADD_TO_CONTAINER__LIST_FIELD:
-				return listField != null;
-			case DataflowPackage.ADD_TO_CONTAINER__VALUE_EXPRESSION:
-				return valueExpression != null;
+				return LIST_FIELD_EDEFAULT == null ? listField != null : !LIST_FIELD_EDEFAULT.equals(listField);
+			case DataflowPackage.ADD_TO_CONTAINER__VALUE_FIELD:
+				return VALUE_FIELD_EDEFAULT == null ? valueField != null : !VALUE_FIELD_EDEFAULT.equals(valueField);
 			case DataflowPackage.ADD_TO_CONTAINER__POSITION_EXPRESSION:
-				return positionExpression != null;
+				return POSITION_EXPRESSION_EDEFAULT == null ? positionExpression != null : !POSITION_EXPRESSION_EDEFAULT.equals(positionExpression);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (listField: ");
+		result.append(listField);
+		result.append(", valueField: ");
+		result.append(valueField);
+		result.append(", positionExpression: ");
+		result.append(positionExpression);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AddToContainerImpl

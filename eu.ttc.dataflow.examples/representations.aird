@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tree="http://www.eclipse.org/sirius/tree/1.0.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/tree/description/1.0.0 http://www.eclipse.org/sirius/tree/1.0.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_CUiV4B93Eea9A-5MLBZhJg" selectedViews="_YknswB93Eea9A-5MLBZhJg" version="10.1.0.201509162000">
+  <semanticResources>example.dataflow</semanticResources>
+  <semanticResources>file:/home/antonio/Desktop/grabats2009/JDTAST.ecore</semanticResources>
+  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_YknswB93Eea9A-5MLBZhJg">
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_LXIIAB-IEeagurm6xCnVCg" name="new Expression diagram">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_LXIIAR-IEeagurm6xCnVCg" source="DANNOTATION_CUSTOMIZATION_KEY">
+        <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_LXIIAh-IEeagurm6xCnVCg"/>
+      </ownedAnnotationEntries>
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_LXMZcB-IEeagurm6xCnVCg" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_LXMZcR-IEeagurm6xCnVCg" type="Sirius" element="_LXIIAB-IEeagurm6xCnVCg" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_iz3fQh-IEeagurm6xCnVCg" type="2001" element="_izwxkB-IEeagurm6xCnVCg">
+            <children xmi:type="notation:Node" xmi:id="_iz4GUB-IEeagurm6xCnVCg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_iz4GUR-IEeagurm6xCnVCg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_iz5UcB-IEeagurm6xCnVCg" type="3003" element="_izwxkR-IEeagurm6xCnVCg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_iz5UcR-IEeagurm6xCnVCg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iz5Uch-IEeagurm6xCnVCg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_iz3fQx-IEeagurm6xCnVCg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iz3fRB-IEeagurm6xCnVCg" x="295" y="85" width="81" height="51"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_iz4GUh-IEeagurm6xCnVCg" type="2001" element="_izxYoB-IEeagurm6xCnVCg">
+            <children xmi:type="notation:Node" xmi:id="_iz4tYB-IEeagurm6xCnVCg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_iz4tYR-IEeagurm6xCnVCg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_iz5Ucx-IEeagurm6xCnVCg" type="3003" element="_izxYoR-IEeagurm6xCnVCg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_iz5UdB-IEeagurm6xCnVCg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iz5UdR-IEeagurm6xCnVCg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_iz4GUx-IEeagurm6xCnVCg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iz4GVB-IEeagurm6xCnVCg" x="180" y="5" width="96" height="51"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WMJ7YB-JEeagurm6xCnVCg" type="2001" element="_WMGRAB-JEeagurm6xCnVCg">
+            <children xmi:type="notation:Node" xmi:id="_WMKicB-JEeagurm6xCnVCg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_WMKicR-JEeagurm6xCnVCg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_WMLJgB-JEeagurm6xCnVCg" type="3003" element="_WMGRAR-JEeagurm6xCnVCg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_WMLJgR-JEeagurm6xCnVCg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WMLJgh-JEeagurm6xCnVCg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WMJ7YR-JEeagurm6xCnVCg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WMJ7Yh-JEeagurm6xCnVCg" x="95" y="85" width="76" height="51"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_LXMZch-IEeagurm6xCnVCg"/>
+          <edges xmi:type="notation:Edge" xmi:id="_BspKQB-JEeagurm6xCnVCg" type="4001" element="_BsmuAB-JEeagurm6xCnVCg" source="_iz4GUh-IEeagurm6xCnVCg" target="_iz3fQh-IEeagurm6xCnVCg">
+            <children xmi:type="notation:Node" xmi:id="_BspKRB-JEeagurm6xCnVCg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BspKRR-JEeagurm6xCnVCg" x="-7" y="-8"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_BspxUB-JEeagurm6xCnVCg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BspxUR-JEeagurm6xCnVCg" x="5" y="9"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_BspxUh-JEeagurm6xCnVCg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BspxUx-JEeagurm6xCnVCg" x="6" y="9"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_BspKQR-JEeagurm6xCnVCg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_BspKQh-JEeagurm6xCnVCg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BspKQx-JEeagurm6xCnVCg" points="[0, 0, 69, 60]$[-69, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BsqYYB-JEeagurm6xCnVCg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BsqYYR-JEeagurm6xCnVCg" id="(0.49382716049382713,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_Yta-QB-JEeagurm6xCnVCg" type="4001" element="_YtZJEB-JEeagurm6xCnVCg" source="_iz4GUh-IEeagurm6xCnVCg" target="_WMJ7YB-JEeagurm6xCnVCg">
+            <children xmi:type="notation:Node" xmi:id="_YtblUB-JEeagurm6xCnVCg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YtblUR-JEeagurm6xCnVCg" x="-9"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_YtblUh-JEeagurm6xCnVCg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YtblUx-JEeagurm6xCnVCg" x="9"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_YtdagB-JEeagurm6xCnVCg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YtdagR-JEeagurm6xCnVCg" x="9" y="1"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_Yta-QR-JEeagurm6xCnVCg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_Yta-Qh-JEeagurm6xCnVCg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Yta-Qx-JEeagurm6xCnVCg" points="[0, 0, -70, 60]$[70, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YteBkB-JEeagurm6xCnVCg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YteBkR-JEeagurm6xCnVCg" id="(0.5,1.0)"/>
+          </edges>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_izwxkB-IEeagurm6xCnVCg" name="Integer 3" incomingEdges="_BsmuAB-JEeagurm6xCnVCg" width="3" height="3" resizeKind="NSEW">
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_izwxkR-IEeagurm6xCnVCg" labelPosition="node">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@nodeMappings[name='intLiteralNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@nodeMappings[name='intLiteralNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_izxYoB-IEeagurm6xCnVCg" name="EQ" outgoingEdges="_BsmuAB-JEeagurm6xCnVCg _YtZJEB-JEeagurm6xCnVCg" width="3" height="3" resizeKind="NSEW">
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_izxYoR-IEeagurm6xCnVCg" labelPosition="node">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@nodeMappings[name='binaryOperationNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@nodeMappings[name='binaryOperationNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_BsmuAB-JEeagurm6xCnVCg" sourceNode="_izxYoB-IEeagurm6xCnVCg" targetNode="_izwxkB-IEeagurm6xCnVCg">
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_BsnVEB-JEeagurm6xCnVCg" size="2">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@edgeMappings[name='binaryOperationRightEdge']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_BsnVER-JEeagurm6xCnVCg"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@edgeMappings[name='binaryOperationRightEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WMGRAB-JEeagurm6xCnVCg" name="Boolean false" incomingEdges="_YtZJEB-JEeagurm6xCnVCg" width="3" height="3" resizeKind="NSEW">
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_WMGRAR-JEeagurm6xCnVCg" labelPosition="node">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@nodeMappings[name='booleanLiteralNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@nodeMappings[name='booleanLiteralNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_YtZJEB-JEeagurm6xCnVCg" sourceNode="_izxYoB-IEeagurm6xCnVCg" targetNode="_WMGRAB-JEeagurm6xCnVCg">
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_YtZJER-JEeagurm6xCnVCg" size="2">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@edgeMappings[name='binaryOperationLeftEdge']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_YtZJEh-JEeagurm6xCnVCg"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer/@edgeMappings[name='binaryOperationLeftEdge']"/>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_LXIIAx-IEeagurm6xCnVCg"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Expression%20diagram']/@defaultLayer"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_KxM20B-QEeaaJeXFj9f1gg" name="new Model diagram">
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_KxM20R-QEeaaJeXFj9f1gg" source="DANNOTATION_CUSTOMIZATION_KEY">
+        <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_KxM20h-QEeaaJeXFj9f1gg">
+          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_KxM20x-QEeaaJeXFj9f1gg" sizeComputationExpression="2">
+            <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+            <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_KxM21B-QEeaaJeXFj9f1gg" showIcon="false" labelExpression="aql:if self.oclIsKindOf(dataflow::Filter) then 'selected' else '' endif">
+              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </computedStyleDescriptions>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_KxiOAB-QEeaaJeXFj9f1gg" source="GMF_DIAGRAMS">
+        <data xmi:type="notation:Diagram" xmi:id="_KxiOAR-QEeaaJeXFj9f1gg" type="Sirius" element="_KxM20B-QEeaaJeXFj9f1gg" measurementUnit="Pixel">
+          <children xmi:type="notation:Node" xmi:id="_Kxl4YB-QEeaaJeXFj9f1gg" type="2001" element="_KxM21R-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_KyR04B-QEeaaJeXFj9f1gg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_KyR04R-QEeaaJeXFj9f1gg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KyhFcB-QEeaaJeXFj9f1gg" type="3003" element="_KxM21h-QEeaaJeXFj9f1gg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_KyhFcR-QEeaaJeXFj9f1gg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KyhFch-QEeaaJeXFj9f1gg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Kxl4YR-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kxl4Yh-QEeaaJeXFj9f1gg" x="61" y="290" width="105" height="46"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_KyYikB-QEeaaJeXFj9f1gg" type="2001" element="_KxM21x-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_KyZwsB-QEeaaJeXFj9f1gg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_KyZwsR-QEeaaJeXFj9f1gg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KyhsgB-QEeaaJeXFj9f1gg" type="3003" element="_KxM22B-QEeaaJeXFj9f1gg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_KyhsgR-QEeaaJeXFj9f1gg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kyhsgh-QEeaaJeXFj9f1gg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_KyYikR-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KyYikh-QEeaaJeXFj9f1gg" x="61" y="200" width="115" height="46"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_KyaXwB-QEeaaJeXFj9f1gg" type="2001" element="_KxM22R-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_Kya-0B-QEeaaJeXFj9f1gg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Kya-0R-QEeaaJeXFj9f1gg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KynMEB-QEeaaJeXFj9f1gg" type="3003" element="_KxM22h-QEeaaJeXFj9f1gg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_KynMER-QEeaaJeXFj9f1gg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KynMEh-QEeaaJeXFj9f1gg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_KyaXwR-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KyaXwh-QEeaaJeXFj9f1gg" x="90" y="90" width="86" height="51"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_Kya-0h-QEeaaJeXFj9f1gg" type="2001" element="_KxM22x-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_Kybl4B-QEeaaJeXFj9f1gg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Kybl4R-QEeaaJeXFj9f1gg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KynzIB-QEeaaJeXFj9f1gg" type="3003" element="_KxM23B-QEeaaJeXFj9f1gg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_KynzIR-QEeaaJeXFj9f1gg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KynzIh-QEeaaJeXFj9f1gg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Kya-0x-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kya-1B-QEeaaJeXFj9f1gg" y="90" width="30" height="30"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_KycM8B-QEeaaJeXFj9f1gg" type="2001" element="_KxM23R-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_KycM8x-QEeaaJeXFj9f1gg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_KycM9B-QEeaaJeXFj9f1gg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KyoaMB-QEeaaJeXFj9f1gg" type="3003" element="_KxM23h-QEeaaJeXFj9f1gg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_KyoaMR-QEeaaJeXFj9f1gg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KyoaMh-QEeaaJeXFj9f1gg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_KycM8R-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KycM8h-QEeaaJeXFj9f1gg" x="118" width="93" height="36"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_V7Ac0B-QEeaaJeXFj9f1gg" type="2001" element="_V65vIB-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_V7Ac0x-QEeaaJeXFj9f1gg" type="5002">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_V7Ac1B-QEeaaJeXFj9f1gg" y="5"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_V7BD4B-QEeaaJeXFj9f1gg" type="3003" element="_V65vIR-QEeaaJeXFj9f1gg">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_V7BD4R-QEeaaJeXFj9f1gg" fontName="Sans"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V7BD4h-QEeaaJeXFj9f1gg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_V7Ac0R-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V7Ac0h-QEeaaJeXFj9f1gg" x="270" y="82" width="146" height="46"/>
+          </children>
+          <styles xmi:type="notation:DiagramStyle" xmi:id="_KxiOAh-QEeaaJeXFj9f1gg"/>
+          <edges xmi:type="notation:Edge" xmi:id="_Kyug0B-QEeaaJeXFj9f1gg" type="4001" element="_KxM23x-QEeaaJeXFj9f1gg" source="_KyYikB-QEeaaJeXFj9f1gg" target="_Kya-0h-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_Ky3qwB-QEeaaJeXFj9f1gg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ky3qwR-QEeaaJeXFj9f1gg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Ky6HAB-QEeaaJeXFj9f1gg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ky6HAR-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Ky6uEB-QEeaaJeXFj9f1gg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ky6uER-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_Kyug0R-QEeaaJeXFj9f1gg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_Kyug0h-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Kyug0x-QEeaaJeXFj9f1gg" points="[0, 0, 59, 60]$[-59, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Ky-_gB-QEeaaJeXFj9f1gg" id="(0.13043478260869565,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Ky_mkB-QEeaaJeXFj9f1gg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_Ky_mkR-QEeaaJeXFj9f1gg" type="4001" element="_KxM24h-QEeaaJeXFj9f1gg" source="_Kxl4YB-QEeaaJeXFj9f1gg" target="_KyYikB-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_KzBbwB-QEeaaJeXFj9f1gg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzBbwR-QEeaaJeXFj9f1gg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KzCC0B-QEeaaJeXFj9f1gg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzCC0R-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KzCC0h-QEeaaJeXFj9f1gg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzCC0x-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_Ky_mkh-QEeaaJeXFj9f1gg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_Ky_mkx-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ky_mlB-QEeaaJeXFj9f1gg" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KzCp4B-QEeaaJeXFj9f1gg" id="(0.14285714285714285,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KzCp4R-QEeaaJeXFj9f1gg" id="(0.13043478260869565,0.6521739130434783)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_KzCp4h-QEeaaJeXFj9f1gg" type="4001" element="_KxM25R-QEeaaJeXFj9f1gg" source="_KyYikB-QEeaaJeXFj9f1gg" target="_KyaXwB-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_KzCp5h-QEeaaJeXFj9f1gg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzCp5x-QEeaaJeXFj9f1gg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KzDQ8B-QEeaaJeXFj9f1gg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzDQ8R-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KzDQ8h-QEeaaJeXFj9f1gg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzDQ8x-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_KzCp4x-QEeaaJeXFj9f1gg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_KzCp5B-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_KzCp5R-QEeaaJeXFj9f1gg" points="[0, 0, -59, 60]$[59, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KzDQ9B-QEeaaJeXFj9f1gg" id="(0.13043478260869565,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KzDQ9R-QEeaaJeXFj9f1gg" id="(0.5,1.0)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_KzDQ9h-QEeaaJeXFj9f1gg" type="4001" element="_KxM26B-QEeaaJeXFj9f1gg" source="_KyaXwB-QEeaaJeXFj9f1gg" target="_KycM8B-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_KzD4AB-QEeaaJeXFj9f1gg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzD4AR-QEeaaJeXFj9f1gg" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KzD4Ah-QEeaaJeXFj9f1gg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzD4Ax-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_KzD4BB-QEeaaJeXFj9f1gg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KzD4BR-QEeaaJeXFj9f1gg" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_KzDQ9x-QEeaaJeXFj9f1gg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_KzDQ-B-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_KzDQ-R-QEeaaJeXFj9f1gg" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KzD4Bh-QEeaaJeXFj9f1gg" id="(0.5,0.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KzEfEB-QEeaaJeXFj9f1gg" id="(0.16129032258064516,0.8333333333333334)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_XXV38B-QEeaaJeXFj9f1gg" type="4001" element="_XXPKQB-QEeaaJeXFj9f1gg" source="_KycM8B-QEeaaJeXFj9f1gg" target="_V7Ac0B-QEeaaJeXFj9f1gg">
+            <children xmi:type="notation:Node" xmi:id="_XXWfAB-QEeaaJeXFj9f1gg" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XXWfAR-QEeaaJeXFj9f1gg" x="2" y="-9"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_XXWfAh-QEeaaJeXFj9f1gg" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XXWfAx-QEeaaJeXFj9f1gg" x="-2" y="9"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_XXWfBB-QEeaaJeXFj9f1gg" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XXWfBR-QEeaaJeXFj9f1gg" x="-5" y="7"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_XXV38R-QEeaaJeXFj9f1gg"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_XXV38h-QEeaaJeXFj9f1gg" fontName="Sans" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XXV38x-QEeaaJeXFj9f1gg" points="[26, -9, -94, -55]$[120, 46, 0, 0]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XXXGEB-QEeaaJeXFj9f1gg" id="(0.7204301075268817,1.0)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XXXGER-QEeaaJeXFj9f1gg" id="(0.23972602739726026,0.0)"/>
+          </edges>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_KxM21R-QEeaaJeXFj9f1gg" name="AllInstances &quot;ASTNode.all&quot;" outgoingEdges="_KxM24h-QEeaaJeXFj9f1gg" width="3" height="3" resizeKind="NSEW">
+        <target xmi:type="df:AllInstances" href="example.dataflow#//@elements.0"/>
+        <semanticElements xmi:type="df:AllInstances" href="example.dataflow#//@elements.0"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_KxM21h-QEeaaJeXFj9f1gg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_KxM21x-QEeaaJeXFj9f1gg" name="Filter &quot;Grab stuff&quot;" outgoingEdges="_KxM23x-QEeaaJeXFj9f1gg _KxM25R-QEeaaJeXFj9f1gg" incomingEdges="_KxM24h-QEeaaJeXFj9f1gg" width="3" height="3" resizeKind="NSEW">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.1"/>
+        <semanticElements xmi:type="df:Filter" href="example.dataflow#//@elements.1"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_KxM22B-QEeaaJeXFj9f1gg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_KxM22R-QEeaaJeXFj9f1gg" name="Filter &quot;A&quot;" outgoingEdges="_KxM26B-QEeaaJeXFj9f1gg" incomingEdges="_KxM25R-QEeaaJeXFj9f1gg" width="3" height="3" resizeKind="NSEW">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.2"/>
+        <semanticElements xmi:type="df:Filter" href="example.dataflow#//@elements.2"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_KxM22h-QEeaaJeXFj9f1gg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_KxM22x-QEeaaJeXFj9f1gg" name="Filter &quot;B&quot;" incomingEdges="_KxM23x-QEeaaJeXFj9f1gg" width="3" height="3" resizeKind="NSEW">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.3"/>
+        <semanticElements xmi:type="df:Filter" href="example.dataflow#//@elements.3"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_KxM23B-QEeaaJeXFj9f1gg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_KxM23R-QEeaaJeXFj9f1gg" name="Filter &quot;Xyz&quot;" outgoingEdges="_XXPKQB-QEeaaJeXFj9f1gg" incomingEdges="_KxM26B-QEeaaJeXFj9f1gg" width="3" height="3" resizeKind="NSEW">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.4"/>
+        <semanticElements xmi:type="df:Filter" href="example.dataflow#//@elements.4"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_KxM23h-QEeaaJeXFj9f1gg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_V65vIB-QEeaaJeXFj9f1gg" name="Evaluate &quot;do stuff&quot;" incomingEdges="_XXPKQB-QEeaaJeXFj9f1gg" width="3" height="3" resizeKind="NSEW">
+        <target xmi:type="df:Evaluate" href="example.dataflow#//@elements.5"/>
+        <semanticElements xmi:type="df:Evaluate" href="example.dataflow#//@elements.5"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_V65vIR-QEeaaJeXFj9f1gg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_KxM23x-QEeaaJeXFj9f1gg" name="rejected" sourceNode="_KxM21x-QEeaaJeXFj9f1gg" targetNode="_KxM22x-QEeaaJeXFj9f1gg">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.1"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_KxM24B-QEeaaJeXFj9f1gg" size="2" strokeColor="156,12,12">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_KxM24R-QEeaaJeXFj9f1gg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_KxM24h-QEeaaJeXFj9f1gg" sourceNode="_KxM21R-QEeaaJeXFj9f1gg" targetNode="_KxM21x-QEeaaJeXFj9f1gg">
+        <target xmi:type="df:AllInstances" href="example.dataflow#//@elements.0"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_KxM24x-QEeaaJeXFj9f1gg" size="2" strokeColor="0,0,0">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_KxM25B-QEeaaJeXFj9f1gg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_KxM25R-QEeaaJeXFj9f1gg" name="selected" sourceNode="_KxM21x-QEeaaJeXFj9f1gg" targetNode="_KxM22R-QEeaaJeXFj9f1gg">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.1"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_KxM25h-QEeaaJeXFj9f1gg" description="_KxM20x-QEeaaJeXFj9f1gg" size="2" strokeColor="77,137,20">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_KxM25x-QEeaaJeXFj9f1gg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_KxM26B-QEeaaJeXFj9f1gg" name="selected" sourceNode="_KxM22R-QEeaaJeXFj9f1gg" targetNode="_KxM23R-QEeaaJeXFj9f1gg">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.2"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_KxM26R-QEeaaJeXFj9f1gg" description="_KxM20x-QEeaaJeXFj9f1gg" size="2" strokeColor="77,137,20">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_KxM26h-QEeaaJeXFj9f1gg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_XXPKQB-QEeaaJeXFj9f1gg" name="selected" sourceNode="_KxM23R-QEeaaJeXFj9f1gg" targetNode="_V65vIB-QEeaaJeXFj9f1gg">
+        <target xmi:type="df:Filter" href="example.dataflow#//@elements.4"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_XXPKQR-QEeaaJeXFj9f1gg" description="_KxM20x-QEeaaJeXFj9f1gg" size="2" strokeColor="77,137,20">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_XXPKQh-QEeaaJeXFj9f1gg" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+      </ownedDiagramElements>
+      <description xmi:type="description_1:DiagramDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']"/>
+      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_KxM26x-QEeaaJeXFj9f1gg"/>
+      <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer"/>
+      <target xmi:type="df:Model" href="example.dataflow#/"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="tree:DTree" xmi:id="_ct2poB-QEeaaJeXFj9f1gg" name="new Evaluation tree">
+      <target xmi:type="df:Evaluate" href="example.dataflow#//@elements.5"/>
+      <ownedTreeItems xmi:type="tree:DTreeItem" xmi:id="_ct2poR-QEeaaJeXFj9f1gg" name="Evaluate do stuff" expanded="true">
+        <target xmi:type="df:Evaluate" href="example.dataflow#//@elements.5"/>
+        <ownedTreeItems xmi:type="tree:DTreeItem" xmi:id="_3afEUB-QEeaaJeXFj9f1gg" name="IntegerLiteral 23">
+          <target xmi:type="df:IntegerLiteral" href="example.dataflow#//@elements.5/@expression"/>
+          <semanticElements xmi:type="df:IntegerLiteral" href="example.dataflow#//@elements.5/@expression"/>
+          <ownedStyle xmi:type="tree:TreeItemStyle" xmi:id="_3afEUR-QEeaaJeXFj9f1gg"/>
+          <actualMapping xmi:type="description_2:TreeItemMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Evaluation%20tree']/@subItemMappings[name='evaluateTreeItem']/@subItemMappings[name='rootExpressionTreeItem']"/>
+        </ownedTreeItems>
+        <semanticElements xmi:type="df:Evaluate" href="example.dataflow#//@elements.5"/>
+        <ownedStyle xmi:type="tree:TreeItemStyle" xmi:id="_ct2poh-QEeaaJeXFj9f1gg"/>
+        <actualMapping xmi:type="description_2:TreeItemMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Evaluation%20tree']/@subItemMappings[name='evaluateTreeItem']"/>
+      </ownedTreeItems>
+      <description xmi:type="description_2:TreeDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Evaluation%20tree']"/>
+    </ownedRepresentations>
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']"/>
+  </ownedViews>
+</viewpoint:DAnalysis>

@@ -169,7 +169,7 @@ public interface DataflowPackage extends EPackage {
 	int ALL_INSTANCES__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -178,13 +178,22 @@ public interface DataflowPackage extends EPackage {
 	int ALL_INSTANCES__FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALL_INSTANCES__TYPE = ELEMENT_FEATURE_COUNT + 1;
+	int ALL_INSTANCES__NS_URI = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_INSTANCES__TYPE_NAME = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>All Instances</em>' class.
@@ -193,7 +202,7 @@ public interface DataflowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALL_INSTANCES_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int ALL_INSTANCES_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>All Instances</em>' class.
@@ -233,7 +242,7 @@ public interface DataflowPackage extends EPackage {
 	int NEW_INSTANCE__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -242,13 +251,22 @@ public interface DataflowPackage extends EPackage {
 	int NEW_INSTANCE__FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_INSTANCE__TYPE = ELEMENT_FEATURE_COUNT + 1;
+	int NEW_INSTANCE__NS_URI = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_INSTANCE__TYPE_NAME = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>New Instance</em>' class.
@@ -257,7 +275,7 @@ public interface DataflowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_INSTANCE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int NEW_INSTANCE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>New Instance</em>' class.
@@ -297,13 +315,13 @@ public interface DataflowPackage extends EPackage {
 	int FILTER__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Filter By</b></em>' containment reference.
+	 * The feature id for the '<em><b>Filter By Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTER__FILTER_BY = ELEMENT_FEATURE_COUNT + 0;
+	int FILTER__FILTER_BY_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Reject Target</b></em>' reference.
@@ -361,13 +379,13 @@ public interface DataflowPackage extends EPackage {
 	int SORT__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Sort By</b></em>' containment reference.
+	 * The feature id for the '<em><b>Sort By Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SORT__SORT_BY = ELEMENT_FEATURE_COUNT + 0;
+	int SORT__SORT_BY_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Sort</em>' class.
@@ -462,7 +480,7 @@ public interface DataflowPackage extends EPackage {
 	int GET_FEATURE__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Object Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Object Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -471,7 +489,7 @@ public interface DataflowPackage extends EPackage {
 	int GET_FEATURE__OBJECT_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Value Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -480,7 +498,7 @@ public interface DataflowPackage extends EPackage {
 	int GET_FEATURE__VALUE_FIELD = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -535,7 +553,7 @@ public interface DataflowPackage extends EPackage {
 	int SET_FEATURE__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Object Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Object Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -544,16 +562,16 @@ public interface DataflowPackage extends EPackage {
 	int SET_FEATURE__OBJECT_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Value Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_FEATURE__VALUE_EXPRESSION = ELEMENT_FEATURE_COUNT + 1;
+	int SET_FEATURE__VALUE_FIELD = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -608,7 +626,7 @@ public interface DataflowPackage extends EPackage {
 	int UNSET_FEATURE__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Object Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Object Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -617,7 +635,7 @@ public interface DataflowPackage extends EPackage {
 	int UNSET_FEATURE__OBJECT_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -672,7 +690,7 @@ public interface DataflowPackage extends EPackage {
 	int NEW_CONTAINER__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>List Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>List Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -736,7 +754,7 @@ public interface DataflowPackage extends EPackage {
 	int ADD_TO_CONTAINER__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>List Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>List Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -745,16 +763,16 @@ public interface DataflowPackage extends EPackage {
 	int ADD_TO_CONTAINER__LIST_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Value Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_TO_CONTAINER__VALUE_EXPRESSION = ELEMENT_FEATURE_COUNT + 1;
+	int ADD_TO_CONTAINER__VALUE_FIELD = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Position Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Position Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -809,7 +827,7 @@ public interface DataflowPackage extends EPackage {
 	int EVALUATE__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Field</b></em>' containment reference.
+	 * The feature id for the '<em><b>Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -818,13 +836,13 @@ public interface DataflowPackage extends EPackage {
 	int EVALUATE__FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Value Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVALUATE__VALUE_EXPRESSION = ELEMENT_FEATURE_COUNT + 1;
+	int EVALUATE__EXPRESSION = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Evaluate</em>' class.
@@ -1253,26 +1271,37 @@ public interface DataflowPackage extends EPackage {
 	EClass getAllInstances();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.AllInstances#getField <em>Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.AllInstances#getField <em>Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Field</em>'.
+	 * @return the meta object for the attribute '<em>Field</em>'.
 	 * @see dataflow.AllInstances#getField()
 	 * @see #getAllInstances()
 	 * @generated
 	 */
-	EReference getAllInstances_Field();
+	EAttribute getAllInstances_Field();
 
 	/**
-	 * Returns the meta object for the reference '{@link dataflow.AllInstances#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see dataflow.AllInstances#getType()
+	 * @return the meta object for the attribute '<em>Ns URI</em>'.
+	 * @see dataflow.AllInstances#getNsURI()
 	 * @see #getAllInstances()
 	 * @generated
 	 */
-	EReference getAllInstances_Type();
+	EAttribute getAllInstances_NsURI();
+
+	/**
+	 * Returns the meta object for the attribute '{@link dataflow.AllInstances#getTypeName <em>Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type Name</em>'.
+	 * @see dataflow.AllInstances#getTypeName()
+	 * @see #getAllInstances()
+	 * @generated
+	 */
+	EAttribute getAllInstances_TypeName();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.NewInstance <em>New Instance</em>}'.
@@ -1285,26 +1314,37 @@ public interface DataflowPackage extends EPackage {
 	EClass getNewInstance();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.NewInstance#getField <em>Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.NewInstance#getField <em>Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Field</em>'.
+	 * @return the meta object for the attribute '<em>Field</em>'.
 	 * @see dataflow.NewInstance#getField()
 	 * @see #getNewInstance()
 	 * @generated
 	 */
-	EReference getNewInstance_Field();
+	EAttribute getNewInstance_Field();
 
 	/**
-	 * Returns the meta object for the reference '{@link dataflow.NewInstance#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.NewInstance#getNsURI <em>Ns URI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see dataflow.NewInstance#getType()
+	 * @return the meta object for the attribute '<em>Ns URI</em>'.
+	 * @see dataflow.NewInstance#getNsURI()
 	 * @see #getNewInstance()
 	 * @generated
 	 */
-	EReference getNewInstance_Type();
+	EAttribute getNewInstance_NsURI();
+
+	/**
+	 * Returns the meta object for the attribute '{@link dataflow.NewInstance#getTypeName <em>Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type Name</em>'.
+	 * @see dataflow.NewInstance#getTypeName()
+	 * @see #getNewInstance()
+	 * @generated
+	 */
+	EAttribute getNewInstance_TypeName();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.Filter <em>Filter</em>}'.
@@ -1317,15 +1357,15 @@ public interface DataflowPackage extends EPackage {
 	EClass getFilter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.Filter#getFilterBy <em>Filter By</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.Filter#getFilterByField <em>Filter By Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Filter By</em>'.
-	 * @see dataflow.Filter#getFilterBy()
+	 * @return the meta object for the attribute '<em>Filter By Field</em>'.
+	 * @see dataflow.Filter#getFilterByField()
 	 * @see #getFilter()
 	 * @generated
 	 */
-	EReference getFilter_FilterBy();
+	EAttribute getFilter_FilterByField();
 
 	/**
 	 * Returns the meta object for the reference '{@link dataflow.Filter#getRejectTarget <em>Reject Target</em>}'.
@@ -1349,15 +1389,15 @@ public interface DataflowPackage extends EPackage {
 	EClass getSort();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.Sort#getSortBy <em>Sort By</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.Sort#getSortByField <em>Sort By Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Sort By</em>'.
-	 * @see dataflow.Sort#getSortBy()
+	 * @return the meta object for the attribute '<em>Sort By Field</em>'.
+	 * @see dataflow.Sort#getSortByField()
 	 * @see #getSort()
 	 * @generated
 	 */
-	EReference getSort_SortBy();
+	EAttribute getSort_SortByField();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.Product <em>Product</em>}'.
@@ -1380,37 +1420,37 @@ public interface DataflowPackage extends EPackage {
 	EClass getGetFeature();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.GetFeature#getObjectField <em>Object Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.GetFeature#getObjectField <em>Object Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Object Field</em>'.
+	 * @return the meta object for the attribute '<em>Object Field</em>'.
 	 * @see dataflow.GetFeature#getObjectField()
 	 * @see #getGetFeature()
 	 * @generated
 	 */
-	EReference getGetFeature_ObjectField();
+	EAttribute getGetFeature_ObjectField();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.GetFeature#getValueField <em>Value Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.GetFeature#getValueField <em>Value Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value Field</em>'.
+	 * @return the meta object for the attribute '<em>Value Field</em>'.
 	 * @see dataflow.GetFeature#getValueField()
 	 * @see #getGetFeature()
 	 * @generated
 	 */
-	EReference getGetFeature_ValueField();
+	EAttribute getGetFeature_ValueField();
 
 	/**
-	 * Returns the meta object for the reference '{@link dataflow.GetFeature#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.GetFeature#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @return the meta object for the attribute '<em>Feature</em>'.
 	 * @see dataflow.GetFeature#getFeature()
 	 * @see #getGetFeature()
 	 * @generated
 	 */
-	EReference getGetFeature_Feature();
+	EAttribute getGetFeature_Feature();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.SetFeature <em>Set Feature</em>}'.
@@ -1423,37 +1463,37 @@ public interface DataflowPackage extends EPackage {
 	EClass getSetFeature();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.SetFeature#getObjectField <em>Object Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.SetFeature#getObjectField <em>Object Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Object Field</em>'.
+	 * @return the meta object for the attribute '<em>Object Field</em>'.
 	 * @see dataflow.SetFeature#getObjectField()
 	 * @see #getSetFeature()
 	 * @generated
 	 */
-	EReference getSetFeature_ObjectField();
+	EAttribute getSetFeature_ObjectField();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.SetFeature#getValueExpression <em>Value Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.SetFeature#getValueField <em>Value Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value Expression</em>'.
-	 * @see dataflow.SetFeature#getValueExpression()
+	 * @return the meta object for the attribute '<em>Value Field</em>'.
+	 * @see dataflow.SetFeature#getValueField()
 	 * @see #getSetFeature()
 	 * @generated
 	 */
-	EReference getSetFeature_ValueExpression();
+	EAttribute getSetFeature_ValueField();
 
 	/**
-	 * Returns the meta object for the reference '{@link dataflow.SetFeature#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.SetFeature#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @return the meta object for the attribute '<em>Feature</em>'.
 	 * @see dataflow.SetFeature#getFeature()
 	 * @see #getSetFeature()
 	 * @generated
 	 */
-	EReference getSetFeature_Feature();
+	EAttribute getSetFeature_Feature();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.UnsetFeature <em>Unset Feature</em>}'.
@@ -1466,26 +1506,26 @@ public interface DataflowPackage extends EPackage {
 	EClass getUnsetFeature();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.UnsetFeature#getObjectField <em>Object Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.UnsetFeature#getObjectField <em>Object Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Object Field</em>'.
+	 * @return the meta object for the attribute '<em>Object Field</em>'.
 	 * @see dataflow.UnsetFeature#getObjectField()
 	 * @see #getUnsetFeature()
 	 * @generated
 	 */
-	EReference getUnsetFeature_ObjectField();
+	EAttribute getUnsetFeature_ObjectField();
 
 	/**
-	 * Returns the meta object for the reference '{@link dataflow.UnsetFeature#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.UnsetFeature#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @return the meta object for the attribute '<em>Feature</em>'.
 	 * @see dataflow.UnsetFeature#getFeature()
 	 * @see #getUnsetFeature()
 	 * @generated
 	 */
-	EReference getUnsetFeature_Feature();
+	EAttribute getUnsetFeature_Feature();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.NewContainer <em>New Container</em>}'.
@@ -1498,15 +1538,15 @@ public interface DataflowPackage extends EPackage {
 	EClass getNewContainer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.NewContainer#getListField <em>List Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.NewContainer#getListField <em>List Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>List Field</em>'.
+	 * @return the meta object for the attribute '<em>List Field</em>'.
 	 * @see dataflow.NewContainer#getListField()
 	 * @see #getNewContainer()
 	 * @generated
 	 */
-	EReference getNewContainer_ListField();
+	EAttribute getNewContainer_ListField();
 
 	/**
 	 * Returns the meta object for the attribute '{@link dataflow.NewContainer#getContainerType <em>Container Type</em>}'.
@@ -1530,37 +1570,37 @@ public interface DataflowPackage extends EPackage {
 	EClass getAddToContainer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.AddToContainer#getListField <em>List Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.AddToContainer#getListField <em>List Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>List Field</em>'.
+	 * @return the meta object for the attribute '<em>List Field</em>'.
 	 * @see dataflow.AddToContainer#getListField()
 	 * @see #getAddToContainer()
 	 * @generated
 	 */
-	EReference getAddToContainer_ListField();
+	EAttribute getAddToContainer_ListField();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.AddToContainer#getValueExpression <em>Value Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.AddToContainer#getValueField <em>Value Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value Expression</em>'.
-	 * @see dataflow.AddToContainer#getValueExpression()
+	 * @return the meta object for the attribute '<em>Value Field</em>'.
+	 * @see dataflow.AddToContainer#getValueField()
 	 * @see #getAddToContainer()
 	 * @generated
 	 */
-	EReference getAddToContainer_ValueExpression();
+	EAttribute getAddToContainer_ValueField();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.AddToContainer#getPositionExpression <em>Position Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.AddToContainer#getPositionExpression <em>Position Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Position Expression</em>'.
+	 * @return the meta object for the attribute '<em>Position Expression</em>'.
 	 * @see dataflow.AddToContainer#getPositionExpression()
 	 * @see #getAddToContainer()
 	 * @generated
 	 */
-	EReference getAddToContainer_PositionExpression();
+	EAttribute getAddToContainer_PositionExpression();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.Evaluate <em>Evaluate</em>}'.
@@ -1573,26 +1613,26 @@ public interface DataflowPackage extends EPackage {
 	EClass getEvaluate();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.Evaluate#getField <em>Field</em>}'.
+	 * Returns the meta object for the attribute '{@link dataflow.Evaluate#getField <em>Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Field</em>'.
+	 * @return the meta object for the attribute '<em>Field</em>'.
 	 * @see dataflow.Evaluate#getField()
 	 * @see #getEvaluate()
 	 * @generated
 	 */
-	EReference getEvaluate_Field();
+	EAttribute getEvaluate_Field();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link dataflow.Evaluate#getValueExpression <em>Value Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link dataflow.Evaluate#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value Expression</em>'.
-	 * @see dataflow.Evaluate#getValueExpression()
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see dataflow.Evaluate#getExpression()
 	 * @see #getEvaluate()
 	 * @generated
 	 */
-	EReference getEvaluate_ValueExpression();
+	EReference getEvaluate_Expression();
 
 	/**
 	 * Returns the meta object for class '{@link dataflow.Expression <em>Expression</em>}'.
@@ -1892,20 +1932,28 @@ public interface DataflowPackage extends EPackage {
 		EClass ALL_INSTANCES = eINSTANCE.getAllInstances();
 
 		/**
-		 * The meta object literal for the '<em><b>Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ALL_INSTANCES__FIELD = eINSTANCE.getAllInstances_Field();
+		EAttribute ALL_INSTANCES__FIELD = eINSTANCE.getAllInstances_Field();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Ns URI</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ALL_INSTANCES__TYPE = eINSTANCE.getAllInstances_Type();
+		EAttribute ALL_INSTANCES__NS_URI = eINSTANCE.getAllInstances_NsURI();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ALL_INSTANCES__TYPE_NAME = eINSTANCE.getAllInstances_TypeName();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.NewInstanceImpl <em>New Instance</em>}' class.
@@ -1918,20 +1966,28 @@ public interface DataflowPackage extends EPackage {
 		EClass NEW_INSTANCE = eINSTANCE.getNewInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NEW_INSTANCE__FIELD = eINSTANCE.getNewInstance_Field();
+		EAttribute NEW_INSTANCE__FIELD = eINSTANCE.getNewInstance_Field();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Ns URI</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NEW_INSTANCE__TYPE = eINSTANCE.getNewInstance_Type();
+		EAttribute NEW_INSTANCE__NS_URI = eINSTANCE.getNewInstance_NsURI();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NEW_INSTANCE__TYPE_NAME = eINSTANCE.getNewInstance_TypeName();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.FilterImpl <em>Filter</em>}' class.
@@ -1944,12 +2000,12 @@ public interface DataflowPackage extends EPackage {
 		EClass FILTER = eINSTANCE.getFilter();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter By</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Filter By Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FILTER__FILTER_BY = eINSTANCE.getFilter_FilterBy();
+		EAttribute FILTER__FILTER_BY_FIELD = eINSTANCE.getFilter_FilterByField();
 
 		/**
 		 * The meta object literal for the '<em><b>Reject Target</b></em>' reference feature.
@@ -1970,12 +2026,12 @@ public interface DataflowPackage extends EPackage {
 		EClass SORT = eINSTANCE.getSort();
 
 		/**
-		 * The meta object literal for the '<em><b>Sort By</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Sort By Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SORT__SORT_BY = eINSTANCE.getSort_SortBy();
+		EAttribute SORT__SORT_BY_FIELD = eINSTANCE.getSort_SortByField();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.ProductImpl <em>Product</em>}' class.
@@ -1998,28 +2054,28 @@ public interface DataflowPackage extends EPackage {
 		EClass GET_FEATURE = eINSTANCE.getGetFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Object Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Object Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GET_FEATURE__OBJECT_FIELD = eINSTANCE.getGetFeature_ObjectField();
+		EAttribute GET_FEATURE__OBJECT_FIELD = eINSTANCE.getGetFeature_ObjectField();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GET_FEATURE__VALUE_FIELD = eINSTANCE.getGetFeature_ValueField();
+		EAttribute GET_FEATURE__VALUE_FIELD = eINSTANCE.getGetFeature_ValueField();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GET_FEATURE__FEATURE = eINSTANCE.getGetFeature_Feature();
+		EAttribute GET_FEATURE__FEATURE = eINSTANCE.getGetFeature_Feature();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.SetFeatureImpl <em>Set Feature</em>}' class.
@@ -2032,28 +2088,28 @@ public interface DataflowPackage extends EPackage {
 		EClass SET_FEATURE = eINSTANCE.getSetFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Object Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Object Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SET_FEATURE__OBJECT_FIELD = eINSTANCE.getSetFeature_ObjectField();
+		EAttribute SET_FEATURE__OBJECT_FIELD = eINSTANCE.getSetFeature_ObjectField();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SET_FEATURE__VALUE_EXPRESSION = eINSTANCE.getSetFeature_ValueExpression();
+		EAttribute SET_FEATURE__VALUE_FIELD = eINSTANCE.getSetFeature_ValueField();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SET_FEATURE__FEATURE = eINSTANCE.getSetFeature_Feature();
+		EAttribute SET_FEATURE__FEATURE = eINSTANCE.getSetFeature_Feature();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.UnsetFeatureImpl <em>Unset Feature</em>}' class.
@@ -2066,20 +2122,20 @@ public interface DataflowPackage extends EPackage {
 		EClass UNSET_FEATURE = eINSTANCE.getUnsetFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Object Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Object Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UNSET_FEATURE__OBJECT_FIELD = eINSTANCE.getUnsetFeature_ObjectField();
+		EAttribute UNSET_FEATURE__OBJECT_FIELD = eINSTANCE.getUnsetFeature_ObjectField();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Feature</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UNSET_FEATURE__FEATURE = eINSTANCE.getUnsetFeature_Feature();
+		EAttribute UNSET_FEATURE__FEATURE = eINSTANCE.getUnsetFeature_Feature();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.NewContainerImpl <em>New Container</em>}' class.
@@ -2092,12 +2148,12 @@ public interface DataflowPackage extends EPackage {
 		EClass NEW_CONTAINER = eINSTANCE.getNewContainer();
 
 		/**
-		 * The meta object literal for the '<em><b>List Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>List Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NEW_CONTAINER__LIST_FIELD = eINSTANCE.getNewContainer_ListField();
+		EAttribute NEW_CONTAINER__LIST_FIELD = eINSTANCE.getNewContainer_ListField();
 
 		/**
 		 * The meta object literal for the '<em><b>Container Type</b></em>' attribute feature.
@@ -2118,28 +2174,28 @@ public interface DataflowPackage extends EPackage {
 		EClass ADD_TO_CONTAINER = eINSTANCE.getAddToContainer();
 
 		/**
-		 * The meta object literal for the '<em><b>List Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>List Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ADD_TO_CONTAINER__LIST_FIELD = eINSTANCE.getAddToContainer_ListField();
+		EAttribute ADD_TO_CONTAINER__LIST_FIELD = eINSTANCE.getAddToContainer_ListField();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ADD_TO_CONTAINER__VALUE_EXPRESSION = eINSTANCE.getAddToContainer_ValueExpression();
+		EAttribute ADD_TO_CONTAINER__VALUE_FIELD = eINSTANCE.getAddToContainer_ValueField();
 
 		/**
-		 * The meta object literal for the '<em><b>Position Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Position Expression</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ADD_TO_CONTAINER__POSITION_EXPRESSION = eINSTANCE.getAddToContainer_PositionExpression();
+		EAttribute ADD_TO_CONTAINER__POSITION_EXPRESSION = eINSTANCE.getAddToContainer_PositionExpression();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.EvaluateImpl <em>Evaluate</em>}' class.
@@ -2152,20 +2208,20 @@ public interface DataflowPackage extends EPackage {
 		EClass EVALUATE = eINSTANCE.getEvaluate();
 
 		/**
-		 * The meta object literal for the '<em><b>Field</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EVALUATE__FIELD = eINSTANCE.getEvaluate_Field();
+		EAttribute EVALUATE__FIELD = eINSTANCE.getEvaluate_Field();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EVALUATE__VALUE_EXPRESSION = eINSTANCE.getEvaluate_ValueExpression();
+		EReference EVALUATE__EXPRESSION = eINSTANCE.getEvaluate_Expression();
 
 		/**
 		 * The meta object literal for the '{@link dataflow.impl.ExpressionImpl <em>Expression</em>}' class.

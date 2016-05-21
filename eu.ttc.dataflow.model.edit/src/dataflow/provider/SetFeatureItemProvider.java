@@ -3,7 +3,6 @@
 package dataflow.provider;
 
 
-import dataflow.DataflowFactory;
 import dataflow.DataflowPackage;
 import dataflow.SetFeature;
 
@@ -17,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -47,9 +47,32 @@ public class SetFeatureItemProvider extends ElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addValueFieldPropertyDescriptor(object);
 			addFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Value Field feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValueFieldPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SetFeature_valueField_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SetFeature_valueField_feature", "_UI_SetFeature_type"),
+				 DataflowPackage.Literals.SET_FEATURE__VALUE_FIELD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -69,7 +92,7 @@ public class SetFeatureItemProvider extends ElementItemProvider {
 				 true,
 				 false,
 				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -87,7 +110,6 @@ public class SetFeatureItemProvider extends ElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DataflowPackage.Literals.SET_FEATURE__OBJECT_FIELD);
-			childrenFeatures.add(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -143,8 +165,10 @@ public class SetFeatureItemProvider extends ElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SetFeature.class)) {
+			case DataflowPackage.SET_FEATURE__VALUE_FIELD:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case DataflowPackage.SET_FEATURE__OBJECT_FIELD:
-			case DataflowPackage.SET_FEATURE__VALUE_EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -165,65 +189,7 @@ public class SetFeatureItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.SET_FEATURE__OBJECT_FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createIntegerLiteral()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createBooleanLiteral()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createRealLiteral()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createStringLiteral()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createUnaryOperation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION,
-				 DataflowFactory.eINSTANCE.createBinaryOperation()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == DataflowPackage.Literals.SET_FEATURE__OBJECT_FIELD ||
-			childFeature == DataflowPackage.Literals.SET_FEATURE__VALUE_EXPRESSION;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+				 ""));
 	}
 
 }

@@ -4,7 +4,6 @@ package dataflow.provider;
 
 
 import dataflow.AllInstances;
-import dataflow.DataflowFactory;
 import dataflow.DataflowPackage;
 
 import java.util.Collection;
@@ -17,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -47,29 +47,52 @@ public class AllInstancesItemProvider extends ElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
+			addNsURIPropertyDescriptor(object);
+			addTypeNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This adds a property descriptor for the Ns URI feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addNsURIPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AllInstances_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AllInstances_type_feature", "_UI_AllInstances_type"),
-				 DataflowPackage.Literals.ALL_INSTANCES__TYPE,
+				 getString("_UI_AllInstances_nsURI_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AllInstances_nsURI_feature", "_UI_AllInstances_type"),
+				 DataflowPackage.Literals.ALL_INSTANCES__NS_URI,
 				 true,
 				 false,
-				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypeNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AllInstances_typeName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AllInstances_typeName_feature", "_UI_AllInstances_type"),
+				 DataflowPackage.Literals.ALL_INSTANCES__TYPE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -123,7 +146,7 @@ public class AllInstancesItemProvider extends ElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AllInstances)object).getDescription();
+		String label = ((AllInstances)object).getTypeName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_AllInstances_type") :
 			getString("_UI_AllInstances_type") + " " + label;
@@ -142,6 +165,10 @@ public class AllInstancesItemProvider extends ElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AllInstances.class)) {
+			case DataflowPackage.ALL_INSTANCES__NS_URI:
+			case DataflowPackage.ALL_INSTANCES__TYPE_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case DataflowPackage.ALL_INSTANCES__FIELD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -163,7 +190,7 @@ public class AllInstancesItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.ALL_INSTANCES__FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
+				 ""));
 	}
 
 }

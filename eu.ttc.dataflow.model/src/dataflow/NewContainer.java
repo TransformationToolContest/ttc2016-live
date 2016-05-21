@@ -22,30 +22,30 @@ package dataflow;
  */
 public interface NewContainer extends Element {
 	/**
-	 * Returns the value of the '<em><b>List Field</b></em>' containment reference.
+	 * Returns the value of the '<em><b>List Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>List Field</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>List Field</em>' containment reference.
-	 * @see #setListField(FieldReference)
+	 * @return the value of the '<em>List Field</em>' attribute.
+	 * @see #setListField(String)
 	 * @see dataflow.DataflowPackage#getNewContainer_ListField()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	FieldReference getListField();
+	String getListField();
 
 	/**
-	 * Sets the value of the '{@link dataflow.NewContainer#getListField <em>List Field</em>}' containment reference.
+	 * Sets the value of the '{@link dataflow.NewContainer#getListField <em>List Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>List Field</em>' containment reference.
+	 * @param value the new value of the '<em>List Field</em>' attribute.
 	 * @see #getListField()
 	 * @generated
 	 */
-	void setListField(FieldReference value);
+	void setListField(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Container Type</b></em>' attribute.

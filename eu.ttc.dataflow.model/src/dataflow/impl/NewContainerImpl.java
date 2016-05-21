@@ -4,15 +4,10 @@ package dataflow.impl;
 
 import dataflow.ContainerType;
 import dataflow.DataflowPackage;
-import dataflow.FieldReference;
 import dataflow.NewContainer;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -31,14 +26,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class NewContainerImpl extends ElementImpl implements NewContainer {
 	/**
-	 * The cached value of the '{@link #getListField() <em>List Field</em>}' containment reference.
+	 * The default value of the '{@link #getListField() <em>List Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getListField()
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldReference listField;
+	protected static final String LIST_FIELD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getListField() <em>List Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getListField()
+	 * @generated
+	 * @ordered
+	 */
+	protected String listField = LIST_FIELD_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getContainerType() <em>Container Type</em>}' attribute.
@@ -84,7 +89,7 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FieldReference getListField() {
+	public String getListField() {
 		return listField;
 	}
 
@@ -93,33 +98,11 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetListField(FieldReference newListField, NotificationChain msgs) {
-		FieldReference oldListField = listField;
+	public void setListField(String newListField) {
+		String oldListField = listField;
 		listField = newListField;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_CONTAINER__LIST_FIELD, oldListField, newListField);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setListField(FieldReference newListField) {
-		if (newListField != listField) {
-			NotificationChain msgs = null;
-			if (listField != null)
-				msgs = ((InternalEObject)listField).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.NEW_CONTAINER__LIST_FIELD, null, msgs);
-			if (newListField != null)
-				msgs = ((InternalEObject)newListField).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.NEW_CONTAINER__LIST_FIELD, null, msgs);
-			msgs = basicSetListField(newListField, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_CONTAINER__LIST_FIELD, newListField, newListField));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.NEW_CONTAINER__LIST_FIELD, oldListField, listField));
 	}
 
 	/**
@@ -149,20 +132,6 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DataflowPackage.NEW_CONTAINER__LIST_FIELD:
-				return basicSetListField(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DataflowPackage.NEW_CONTAINER__LIST_FIELD:
@@ -182,7 +151,7 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataflowPackage.NEW_CONTAINER__LIST_FIELD:
-				setListField((FieldReference)newValue);
+				setListField((String)newValue);
 				return;
 			case DataflowPackage.NEW_CONTAINER__CONTAINER_TYPE:
 				setContainerType((ContainerType)newValue);
@@ -200,7 +169,7 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.NEW_CONTAINER__LIST_FIELD:
-				setListField((FieldReference)null);
+				setListField(LIST_FIELD_EDEFAULT);
 				return;
 			case DataflowPackage.NEW_CONTAINER__CONTAINER_TYPE:
 				setContainerType(CONTAINER_TYPE_EDEFAULT);
@@ -218,7 +187,7 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DataflowPackage.NEW_CONTAINER__LIST_FIELD:
-				return listField != null;
+				return LIST_FIELD_EDEFAULT == null ? listField != null : !LIST_FIELD_EDEFAULT.equals(listField);
 			case DataflowPackage.NEW_CONTAINER__CONTAINER_TYPE:
 				return containerType != CONTAINER_TYPE_EDEFAULT;
 		}
@@ -235,7 +204,9 @@ public class NewContainerImpl extends ElementImpl implements NewContainer {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (containerType: ");
+		result.append(" (listField: ");
+		result.append(listField);
+		result.append(", containerType: ");
 		result.append(containerType);
 		result.append(')');
 		return result.toString();

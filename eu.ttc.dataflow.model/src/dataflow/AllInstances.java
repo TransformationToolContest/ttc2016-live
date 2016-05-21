@@ -2,8 +2,6 @@
  */
 package dataflow;
 
-import org.eclipse.emf.ecore.EClass;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>All Instances</b></em>'.
@@ -14,7 +12,8 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link dataflow.AllInstances#getField <em>Field</em>}</li>
- *   <li>{@link dataflow.AllInstances#getType <em>Type</em>}</li>
+ *   <li>{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link dataflow.AllInstances#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @see dataflow.DataflowPackage#getAllInstances()
@@ -23,55 +22,81 @@ import org.eclipse.emf.ecore.EClass;
  */
 public interface AllInstances extends Element {
 	/**
-	 * Returns the value of the '<em><b>Field</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Field</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Field</em>' containment reference.
-	 * @see #setField(FieldReference)
+	 * @return the value of the '<em>Field</em>' attribute.
+	 * @see #setField(String)
 	 * @see dataflow.DataflowPackage#getAllInstances_Field()
-	 * @model containment="true"
-	 * @generated
-	 */
-	FieldReference getField();
-
-	/**
-	 * Sets the value of the '{@link dataflow.AllInstances#getField <em>Field</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Field</em>' containment reference.
-	 * @see #getField()
-	 * @generated
-	 */
-	void setField(FieldReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(EClass)
-	 * @see dataflow.DataflowPackage#getAllInstances_Type()
 	 * @model required="true"
 	 * @generated
 	 */
-	EClass getType();
+	String getField();
 
 	/**
-	 * Sets the value of the '{@link dataflow.AllInstances#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link dataflow.AllInstances#getField <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Field</em>' attribute.
+	 * @see #getField()
 	 * @generated
 	 */
-	void setType(EClass value);
+	void setField(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Ns URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ns URI</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ns URI</em>' attribute.
+	 * @see #setNsURI(String)
+	 * @see dataflow.DataflowPackage#getAllInstances_NsURI()
+	 * @model
+	 * @generated
+	 */
+	String getNsURI();
+
+	/**
+	 * Sets the value of the '{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ns URI</em>' attribute.
+	 * @see #getNsURI()
+	 * @generated
+	 */
+	void setNsURI(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Name</em>' attribute.
+	 * @see #setTypeName(String)
+	 * @see dataflow.DataflowPackage#getAllInstances_TypeName()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getTypeName();
+
+	/**
+	 * Sets the value of the '{@link dataflow.AllInstances#getTypeName <em>Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type Name</em>' attribute.
+	 * @see #getTypeName()
+	 * @generated
+	 */
+	void setTypeName(String value);
 
 } // AllInstances

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<df:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow">
+  <elements xsi:type="df:AllInstances" description="ASTNode.all" target="//@elements.1" nsURI="xyz" typeName="ASTNode"/>
+  <elements xsi:type="df:Filter" description="Grab stuff" target="//@elements.2" rejectTarget="//@elements.3"/>
+  <elements xsi:type="df:Filter" description="A" target="//@elements.4"/>
+  <elements xsi:type="df:Filter" description="B"/>
+  <elements xsi:type="df:Filter" description="Xyz" target="//@elements.5"/>
+  <elements xsi:type="df:Evaluate" description="do stuff">
+    <expression xsi:type="df:IntegerLiteral" value="23"/>
+  </elements>
+</df:Model>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="dataflow" version="10.1.3.201511131800">
+  <ownedViewpoints name="dataflows" modelFileExtension="dataflow">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Model diagram" initialisation="true" showOnStartup="true" domainClass="dataflow.Model" enablePopupBars="true">
+      <defaultLayer name="Default">
+        <nodeMappings name="ElementNode" labelDirectEdit="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='editDescription']" semanticCandidatesExpression="feature:elements" domainClass="dataflow.Element">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelExpression="aql:self.eClass().name + ' &quot;' + self.description + '&quot;'" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="FilterRejectTargetEdge" preconditionExpression="aql:self.oclIsKindOf(dataflow::Filter)" deletionDescription="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='deleteRejectTargetEdge']" sourceMapping="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']" targetMapping="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']" targetFinderExpression="feature:rejectTarget" reconnections="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='reconnectRejectTargetT'] //@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='reconnectRejectTargetS']">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_red']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="aql:'rejected'">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="ElementTargetEdge" deletionDescription="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='deleteTargetEdge']" sourceMapping="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']" targetMapping="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']" targetFinderExpression="feature:target" reconnections="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='reconnectTargetT'] //@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='reconnectTargetS']">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="aql:if self.oclIsKindOf(dataflow::Filter) then 'selected' else '' endif">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="InstancesSection" label="Instances">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createAllInstances" label="All Instances" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.AllInstances" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createNewInstance" label="New Instance" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.NewInstance" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createGetFeature" label="Get Feature" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.GetFeature" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSetFeature" label="Set Feature" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.SetFeature" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createUnsetFeature" label="Unset Feature" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.UnsetFeature" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editDescription" inputLabelExpression="feature:description">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="description" valueExpression="var:0"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="StreamSection" label="Streams">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createFilter" label="Filter" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.Filter" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createSort" label="Sort" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.Sort" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createProduct" label="Product" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.Product" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Computations">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createNewContainer" label="New Container" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.NewContainer" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createAddToContainer" label="Add To Container" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.AddToContainer" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createEvaluate" label="Evaluate" nodeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="dataflow.Evaluate" referenceName="elements"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="EdgeSection" label="Edges">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createTarget" label="Target" edgeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createRejectTarget" label="Reject Target" edgeMappings="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']" connectionStartPrecondition="aql:preSource.oclIsKindOf(dataflow::Filter)">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="rejectTarget" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="deleteTargetEdge">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="deleteRejectTargetEdge">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="rejectTarget"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectTargetT">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectTargetS" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:target">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="aql:element.target"/>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                  <subModelOperations xsi:type="tool_1:Unset" featureName="target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectRejectTargetT">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="rejectTarget" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectRejectTargetS" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:target">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:target.oclIsKindOf(dataflow::Filter)">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="rejectTarget" valueExpression="aql:element.rejectTarget"/>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                    <subModelOperations xsi:type="tool_1:Unset" featureName="rejectTarget"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+        </toolSections>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.oclIsKindOf(dataflow::Filter)">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style" referenceName="strokeColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:TreeDescription" name="Evaluation tree" domainClass="dataflow.Evaluate">
+      <subItemMappings name="evaluateTreeItem" domainClass="dataflow.Evaluate" semanticCandidatesExpression="aql:self">
+        <defaultStyle labelExpression="aql:'Evaluate ' + self.description">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="rootExpressionTreeItem" domainClass="dataflow.Expression" semanticCandidatesExpression="feature:expression">
+          <defaultStyle labelExpression="aql:self.eClass().name + ' ' + self.operator + self.value">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+          <subItemMappings name="childExpressionTreeItem" domainClass="dataflow.Expression" semanticCandidatesExpression="aql:Sequence{self.leftExpression, self.rightExpression, self.expression}">
+            <defaultStyle labelExpression="aql:self.eClass().name + ' ' + self.operator + self.value">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </defaultStyle>
+          </subItemMappings>
+        </subItemMappings>
+        <delete name="deleteEvaluateDisabled">
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+        </delete>
+      </subItemMappings>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

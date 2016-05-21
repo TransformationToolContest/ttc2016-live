@@ -4,12 +4,9 @@ package dataflow.impl;
 
 import dataflow.DataflowPackage;
 import dataflow.Element;
-import dataflow.Expression;
 import dataflow.Filter;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -23,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link dataflow.impl.FilterImpl#getFilterBy <em>Filter By</em>}</li>
+ *   <li>{@link dataflow.impl.FilterImpl#getFilterByField <em>Filter By Field</em>}</li>
  *   <li>{@link dataflow.impl.FilterImpl#getRejectTarget <em>Reject Target</em>}</li>
  * </ul>
  *
@@ -31,14 +28,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class FilterImpl extends ElementImpl implements Filter {
 	/**
-	 * The cached value of the '{@link #getFilterBy() <em>Filter By</em>}' containment reference.
+	 * The default value of the '{@link #getFilterByField() <em>Filter By Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilterBy()
+	 * @see #getFilterByField()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression filterBy;
+	protected static final String FILTER_BY_FIELD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFilterByField() <em>Filter By Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilterByField()
+	 * @generated
+	 * @ordered
+	 */
+	protected String filterByField = FILTER_BY_FIELD_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRejectTarget() <em>Reject Target</em>}' reference.
@@ -74,8 +81,8 @@ public class FilterImpl extends ElementImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getFilterBy() {
-		return filterBy;
+	public String getFilterByField() {
+		return filterByField;
 	}
 
 	/**
@@ -83,33 +90,11 @@ public class FilterImpl extends ElementImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFilterBy(Expression newFilterBy, NotificationChain msgs) {
-		Expression oldFilterBy = filterBy;
-		filterBy = newFilterBy;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.FILTER__FILTER_BY, oldFilterBy, newFilterBy);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFilterBy(Expression newFilterBy) {
-		if (newFilterBy != filterBy) {
-			NotificationChain msgs = null;
-			if (filterBy != null)
-				msgs = ((InternalEObject)filterBy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.FILTER__FILTER_BY, null, msgs);
-			if (newFilterBy != null)
-				msgs = ((InternalEObject)newFilterBy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.FILTER__FILTER_BY, null, msgs);
-			msgs = basicSetFilterBy(newFilterBy, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.FILTER__FILTER_BY, newFilterBy, newFilterBy));
+	public void setFilterByField(String newFilterByField) {
+		String oldFilterByField = filterByField;
+		filterByField = newFilterByField;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.FILTER__FILTER_BY_FIELD, oldFilterByField, filterByField));
 	}
 
 	/**
@@ -156,24 +141,10 @@ public class FilterImpl extends ElementImpl implements Filter {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DataflowPackage.FILTER__FILTER_BY:
-				return basicSetFilterBy(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataflowPackage.FILTER__FILTER_BY:
-				return getFilterBy();
+			case DataflowPackage.FILTER__FILTER_BY_FIELD:
+				return getFilterByField();
 			case DataflowPackage.FILTER__REJECT_TARGET:
 				if (resolve) return getRejectTarget();
 				return basicGetRejectTarget();
@@ -189,8 +160,8 @@ public class FilterImpl extends ElementImpl implements Filter {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataflowPackage.FILTER__FILTER_BY:
-				setFilterBy((Expression)newValue);
+			case DataflowPackage.FILTER__FILTER_BY_FIELD:
+				setFilterByField((String)newValue);
 				return;
 			case DataflowPackage.FILTER__REJECT_TARGET:
 				setRejectTarget((Element)newValue);
@@ -207,8 +178,8 @@ public class FilterImpl extends ElementImpl implements Filter {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataflowPackage.FILTER__FILTER_BY:
-				setFilterBy((Expression)null);
+			case DataflowPackage.FILTER__FILTER_BY_FIELD:
+				setFilterByField(FILTER_BY_FIELD_EDEFAULT);
 				return;
 			case DataflowPackage.FILTER__REJECT_TARGET:
 				setRejectTarget((Element)null);
@@ -225,12 +196,28 @@ public class FilterImpl extends ElementImpl implements Filter {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataflowPackage.FILTER__FILTER_BY:
-				return filterBy != null;
+			case DataflowPackage.FILTER__FILTER_BY_FIELD:
+				return FILTER_BY_FIELD_EDEFAULT == null ? filterByField != null : !FILTER_BY_FIELD_EDEFAULT.equals(filterByField);
 			case DataflowPackage.FILTER__REJECT_TARGET:
 				return rejectTarget != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (filterByField: ");
+		result.append(filterByField);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FilterImpl

@@ -3,7 +3,6 @@
 package dataflow.provider;
 
 
-import dataflow.DataflowFactory;
 import dataflow.DataflowPackage;
 import dataflow.UnsetFeature;
 
@@ -17,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -69,7 +69,7 @@ public class UnsetFeatureItemProvider extends ElementItemProvider {
 				 true,
 				 false,
 				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -163,7 +163,7 @@ public class UnsetFeatureItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(DataflowPackage.Literals.UNSET_FEATURE__OBJECT_FIELD,
-				 DataflowFactory.eINSTANCE.createFieldReference()));
+				 ""));
 	}
 
 }
