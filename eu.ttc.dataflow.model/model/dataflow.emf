@@ -1,0 +1,140 @@
+@namespace(uri="http://transformation-tool-contest.eu/2016/dataflow", prefix="df")
+package dataflow;
+
+class Model {
+	val Element[*] elements;
+}
+
+abstract class Element {
+	attr String description;
+
+	// target element that will consume the produced rows
+	ref Element target;
+}
+
+/// BASIC STREAM PROCESSING //////////////////////////////////////////////////////////////////
+
+// As initial node: lists all instances of a type
+// As intermediate node: for each input row, duplicates it with a different instance of a type 
+class AllInstances extends Element {
+	val FieldReference field;
+	ref EClass[1] type;
+}
+
+// As initial node: creates a row with one instance of a type
+// As intermediate node: for each input row, creates one instance of the type
+class NewInstance extends Element {
+	val FieldReference field;
+	ref EClass[1] type;
+}
+
+// Not valid as initial node
+// As intermediate node: splits a stream into two according to a condition
+class Filter extends Element {
+	val Expression filterBy;
+
+    // if set, this will consume the *rejected* rows
+	ref Element rejectTarget;
+}
+
+// Not valid as initial node
+// Reads all incoming rows and then sorts by ascending value of the expression
+class Sort extends Element {
+	val Expression sortBy;
+}
+
+// Not valid as initial node
+// Does cartesian product of two streams
+class Product extends Element {}
+
+// FEATURE ///////////////////////////////////////////////////////////////////////////////////
+
+// Retrieves a specific feature in the object in 'field' and places it in the 'valueField'
+class GetFeature extends Element {
+	val FieldReference objectField; // field that has the object to work with
+    val FieldReference valueField;  // field that will have the retrieved value
+	ref ecore.EStructuralFeature[1] feature;
+}
+
+// Sets a specific feature in the object in 'field' to the value in the 'valueField'
+class SetFeature extends Element {
+	val FieldReference objectField; // field that has the object to work with
+	val Expression valueExpression; // expression to compute the value to be set
+	ref ecore.EStructuralFeature[1] feature;
+}
+
+// Unsets a specific feature in the object in 'field'
+class UnsetFeature extends Element {
+	val FieldReference objectField; // field that has the object to work with
+	ref ecore.EStructuralFeature[1] feature;
+}
+
+// CONTAINERS ////////////////////////////////////////////////////////////////////////////////
+
+class NewContainer extends Element {
+	val FieldReference listField;
+	attr ContainerType containerType;
+}
+
+// Adds an element to a container
+class AddToContainer extends Element {
+	val FieldReference listField;
+	val Expression valueExpression;
+
+	// if not set, adds at the end
+	val Expression positionExpression;
+}
+
+// we don't have remove/clear (we're only targeting exogenous transformations right now)
+
+// EXPRESSION LANGUAGE ///////////////////////////////////////////////////////////////////////
+
+class Evaluate extends Element {
+	val FieldReference field;
+	val Expression valueExpression;
+}
+
+abstract class Expression {}
+
+class IntegerLiteral extends Expression {
+	attr int value;
+}
+
+class BooleanLiteral extends Expression {
+	attr boolean value;
+}
+
+class RealLiteral extends Expression {
+	attr double value;
+}
+
+class StringLiteral extends Expression {
+	attr String value;
+}
+
+class FieldReference extends Expression {
+	attr String field;
+}
+
+class UnaryOperation extends Expression {
+	attr UnaryOperator operator;
+	val Expression expression;
+}
+
+class BinaryOperation extends Expression {
+	attr BinaryOperator operator;
+	val Expression leftExpression;
+	val Expression rightExpression;
+}
+
+enum UnaryOperator {
+	NOT; NEGATION; SIZE;
+}
+
+enum BinaryOperator {
+	EQ; NE; GT; GE; LT; LE; IS_DEFINED; IS_UNDEFINED; AND; OR; XOR; ADD; SUBTRACT; MULTIPLY; DIVIDE;
+}
+
+enum ContainerType {
+	LIST; SET;
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eu.ttc.dataflow.model/src" modelPluginID="eu.ttc.dataflow.model"
+    modelName="Dataflow" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>dataflow.ecore</foreignModel>
+  <genPackages prefix="Dataflow" disposableProviderFactory="true" ecorePackage="dataflow.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dataflow.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//UnaryOperator/NOT"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//UnaryOperator/NEGATION"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//UnaryOperator/SIZE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dataflow.ecore#//BinaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/NE"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/GT"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/GE"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/LE"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/IS_DEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/IS_UNDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/ADD"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/SUBTRACT"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/MULTIPLY"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//BinaryOperator/DIVIDE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dataflow.ecore#//ContainerType">
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//ContainerType/LIST"/>
+      <genEnumLiterals ecoreEnumLiteral="dataflow.ecore#//ContainerType/SET"/>
+    </genEnums>
+    <genClasses ecoreClass="dataflow.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//Model/elements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataflow.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//Element/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//Element/target"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//AllInstances">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//AllInstances/field"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//AllInstances/type"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//NewInstance">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//NewInstance/field"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//NewInstance/type"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//Filter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//Filter/filterBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//Filter/rejectTarget"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//Sort">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//Sort/sortBy"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//Product"/>
+    <genClasses ecoreClass="dataflow.ecore#//GetFeature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//GetFeature/objectField"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//GetFeature/valueField"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//GetFeature/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//SetFeature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//SetFeature/objectField"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//SetFeature/valueExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//SetFeature/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//UnsetFeature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//UnsetFeature/objectField"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataflow.ecore#//UnsetFeature/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//NewContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//NewContainer/listField"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//NewContainer/containerType"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//AddToContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//AddToContainer/listField"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//AddToContainer/valueExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//AddToContainer/positionExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//Evaluate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//Evaluate/field"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//Evaluate/valueExpression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataflow.ecore#//Expression"/>
+    <genClasses ecoreClass="dataflow.ecore#//IntegerLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//IntegerLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//BooleanLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//BooleanLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//RealLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//RealLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//StringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//FieldReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//FieldReference/field"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//UnaryOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//UnaryOperation/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//UnaryOperation/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="dataflow.ecore#//BinaryOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataflow.ecore#//BinaryOperation/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//BinaryOperation/leftExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataflow.ecore#//BinaryOperation/rightExpression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
