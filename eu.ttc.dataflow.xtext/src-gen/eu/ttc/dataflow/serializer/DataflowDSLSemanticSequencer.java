@@ -8,10 +8,14 @@ import dataflow.AddToContainer;
 import dataflow.AllInstances;
 import dataflow.BinaryOperation;
 import dataflow.BooleanLiteral;
+import dataflow.CollectBy;
+import dataflow.Copy;
 import dataflow.DataflowPackage;
 import dataflow.Evaluate;
+import dataflow.FeatureCall;
 import dataflow.FieldReference;
 import dataflow.Filter;
+import dataflow.ForEach;
 import dataflow.GetFeature;
 import dataflow.IntegerLiteral;
 import dataflow.Model;
@@ -61,14 +65,26 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 			case DataflowPackage.BOOLEAN_LITERAL:
 				sequence_PrimaryExpression(context, (BooleanLiteral) semanticObject); 
 				return; 
+			case DataflowPackage.COLLECT_BY:
+				sequence_CollectBy(context, (CollectBy) semanticObject); 
+				return; 
+			case DataflowPackage.COPY:
+				sequence_Copy(context, (Copy) semanticObject); 
+				return; 
 			case DataflowPackage.EVALUATE:
 				sequence_Evaluate(context, (Evaluate) semanticObject); 
+				return; 
+			case DataflowPackage.FEATURE_CALL:
+				sequence_FeatureCallExpression(context, (FeatureCall) semanticObject); 
 				return; 
 			case DataflowPackage.FIELD_REFERENCE:
 				sequence_PrimaryExpression(context, (FieldReference) semanticObject); 
 				return; 
 			case DataflowPackage.FILTER:
 				sequence_Filter(context, (Filter) semanticObject); 
+				return; 
+			case DataflowPackage.FOR_EACH:
+				sequence_ForEach(context, (ForEach) semanticObject); 
 				return; 
 			case DataflowPackage.GET_FEATURE:
 				sequence_GetFeature(context, (GetFeature) semanticObject); 
@@ -114,7 +130,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     AddToContainer returns AddToContainer
 	 *
 	 * Constraint:
-	 *     (name=ID listField=ID? valueField=ID? positionField=ID? target=[Element|ID]?)
+	 *     (name=ID listField=ID? value=OrExpression? position=OrExpression? target=[Element|ID]?)
 	 */
 	protected void sequence_AddToContainer(ISerializationContext context, AddToContainer semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -136,6 +152,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns BinaryOperation
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns BinaryOperation
 	 *     UnaryExpression returns BinaryOperation
+	 *     FeatureCallExpression returns BinaryOperation
+	 *     FeatureCallExpression.FeatureCall_1_0 returns BinaryOperation
 	 *     PrimaryExpression returns BinaryOperation
 	 *
 	 * Constraint:
@@ -159,9 +177,35 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     AllInstances returns AllInstances
 	 *
 	 * Constraint:
-	 *     (name=ID field=ID? nsURI=STRING? typeName=ID? target=[Element|ID]?)
+	 *     (name=ID field=ID? (model=ID? packageName=ID? typeName=ID)? target=[Element|ID]?)
 	 */
 	protected void sequence_AllInstances(ISerializationContext context, AllInstances semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Element returns CollectBy
+	 *     CollectBy returns CollectBy
+	 *
+	 * Constraint:
+	 *     (name=ID elementField=ID? collectBy=OrExpression? target=[Element|ID]?)
+	 */
+	protected void sequence_CollectBy(ISerializationContext context, CollectBy semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Element returns Copy
+	 *     Copy returns Copy
+	 *
+	 * Constraint:
+	 *     (name=ID target=[Element|ID]? copyTarget=[Element|ID]?)
+	 */
+	protected void sequence_Copy(ISerializationContext context, Copy semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -181,13 +225,53 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     OrExpression returns FeatureCall
+	 *     OrExpression.BinaryOperation_1_0 returns FeatureCall
+	 *     AndExpression returns FeatureCall
+	 *     AndExpression.BinaryOperation_1_0 returns FeatureCall
+	 *     EqualityExpression returns FeatureCall
+	 *     EqualityExpression.BinaryOperation_1_0 returns FeatureCall
+	 *     RelationalExpression returns FeatureCall
+	 *     RelationalExpression.BinaryOperation_1_0 returns FeatureCall
+	 *     AdditiveExpression returns FeatureCall
+	 *     AdditiveExpression.BinaryOperation_1_0 returns FeatureCall
+	 *     MultiplicativeExpression returns FeatureCall
+	 *     MultiplicativeExpression.BinaryOperation_1_0 returns FeatureCall
+	 *     UnaryExpression returns FeatureCall
+	 *     FeatureCallExpression returns FeatureCall
+	 *     FeatureCallExpression.FeatureCall_1_0 returns FeatureCall
+	 *     PrimaryExpression returns FeatureCall
+	 *
+	 * Constraint:
+	 *     (targetExpression=FeatureCallExpression_FeatureCall_1_0 feature=ID (parameters+=OrExpression parameters+=OrExpression*)?)
+	 */
+	protected void sequence_FeatureCallExpression(ISerializationContext context, FeatureCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Element returns Filter
 	 *     Filter returns Filter
 	 *
 	 * Constraint:
-	 *     (name=ID filterByField=ID? target=[Element|ID]? rejectTarget=[Element|ID]?)
+	 *     (name=ID filterBy=OrExpression? target=[Element|ID]? rejectTarget=[Element|ID]?)
 	 */
 	protected void sequence_Filter(ISerializationContext context, Filter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Element returns ForEach
+	 *     ForEach returns ForEach
+	 *
+	 * Constraint:
+	 *     (name=ID listField=ID? target=[Element|ID]?)
+	 */
+	protected void sequence_ForEach(ISerializationContext context, ForEach semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -236,7 +320,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     NewInstance returns NewInstance
 	 *
 	 * Constraint:
-	 *     (name=ID field=ID? nsURI=STRING? typeName=ID? target=[Element|ID]?)
+	 *     (name=ID instanceField=ID? key=OrExpression? (model=ID? packageName=ID? typeName=ID)? target=[Element|ID]?)
 	 */
 	protected void sequence_NewInstance(ISerializationContext context, NewInstance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -258,6 +342,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns BooleanLiteral
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns BooleanLiteral
 	 *     UnaryExpression returns BooleanLiteral
+	 *     FeatureCallExpression returns BooleanLiteral
+	 *     FeatureCallExpression.FeatureCall_1_0 returns BooleanLiteral
 	 *     PrimaryExpression returns BooleanLiteral
 	 *
 	 * Constraint:
@@ -289,6 +375,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns FieldReference
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns FieldReference
 	 *     UnaryExpression returns FieldReference
+	 *     FeatureCallExpression returns FieldReference
+	 *     FeatureCallExpression.FeatureCall_1_0 returns FieldReference
 	 *     PrimaryExpression returns FieldReference
 	 *
 	 * Constraint:
@@ -320,6 +408,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns IntegerLiteral
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns IntegerLiteral
 	 *     UnaryExpression returns IntegerLiteral
+	 *     FeatureCallExpression returns IntegerLiteral
+	 *     FeatureCallExpression.FeatureCall_1_0 returns IntegerLiteral
 	 *     PrimaryExpression returns IntegerLiteral
 	 *
 	 * Constraint:
@@ -351,6 +441,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns RealLiteral
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns RealLiteral
 	 *     UnaryExpression returns RealLiteral
+	 *     FeatureCallExpression returns RealLiteral
+	 *     FeatureCallExpression.FeatureCall_1_0 returns RealLiteral
 	 *     PrimaryExpression returns RealLiteral
 	 *
 	 * Constraint:
@@ -382,6 +474,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns StringLiteral
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns StringLiteral
 	 *     UnaryExpression returns StringLiteral
+	 *     FeatureCallExpression returns StringLiteral
+	 *     FeatureCallExpression.FeatureCall_1_0 returns StringLiteral
 	 *     PrimaryExpression returns StringLiteral
 	 *
 	 * Constraint:
@@ -417,7 +511,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     SetFeature returns SetFeature
 	 *
 	 * Constraint:
-	 *     (name=ID objectField=ID? valueField=ID? feature=ID? target=[Element|ID]?)
+	 *     (name=ID objectField=ID? value=OrExpression? feature=ID? target=[Element|ID]?)
 	 */
 	protected void sequence_SetFeature(ISerializationContext context, SetFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -430,7 +524,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Sort returns Sort
 	 *
 	 * Constraint:
-	 *     (name=ID sortByField=ID? target=[Element|ID]?)
+	 *     (name=ID sortBy=OrExpression? target=[Element|ID]?)
 	 */
 	protected void sequence_Sort(ISerializationContext context, Sort semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -452,6 +546,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     MultiplicativeExpression returns UnaryOperation
 	 *     MultiplicativeExpression.BinaryOperation_1_0 returns UnaryOperation
 	 *     UnaryExpression returns UnaryOperation
+	 *     FeatureCallExpression returns UnaryOperation
+	 *     FeatureCallExpression.FeatureCall_1_0 returns UnaryOperation
 	 *     PrimaryExpression returns UnaryOperation
 	 *
 	 * Constraint:

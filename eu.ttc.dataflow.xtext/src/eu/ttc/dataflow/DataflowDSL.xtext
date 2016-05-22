@@ -10,15 +10,14 @@ Model returns Model:
 ;
 
 Element:
-	AllInstances | NewInstance | Filter | Sort | Product | GetFeature | SetFeature | NewContainer | AddToContainer | Evaluate;
+	AllInstances | NewInstance | Filter | Sort | Copy | Product | GetFeature | SetFeature | NewContainer | AddToContainer | ForEach | CollectBy | Evaluate;
 
 AllInstances:
 	'AllInstances'
 	name=ID
 	'{'
 		('field' field=ID)?
-		('nsURI' nsURI=STRING)?
-		('typeName' typeName=ID)?
+		('type' (model=ID '!')? (packageName=ID '::')? typeName=ID)?
 		('target' target=[Element])?
 	'}';
 
@@ -26,9 +25,9 @@ NewInstance:
 	'NewInstance'
 	name=ID
 	'{'
-		('field' field=ID)?
-		('nsURI' nsURI=STRING)?
-		('typeName' typeName=ID)?
+		('instanceField' instanceField=ID)?
+		('key' key=OrExpression)?
+		('type' (model=ID '!')? (packageName=ID '::')? typeName=ID)?
 		('target' target=[Element])?
 	'}';
 
@@ -36,16 +35,24 @@ Filter:
 	'Filter'
 	name=ID
 	'{'
-		('filterByField' filterByField=ID)?
-		('target' target=[Element|ID])?
+		('filterBy' filterBy=OrExpression)?
+		('target' target=[Element])?
 		('rejectTarget' rejectTarget=[Element])?
+	'}';
+
+Copy:
+	'Copy'
+	name=ID
+	'{'
+		('target' target=[Element])?
+		('copyTarget' copyTarget=[Element])?
 	'}';
 
 Sort:
 	'Sort'
 	name=ID
 	'{'
-		('sortByField' sortByField=ID)?
+		('sortBy' sortBy=OrExpression)?
 		('target' target=[Element])?
 	'}';
 
@@ -71,7 +78,7 @@ SetFeature:
 	name=ID
 	'{'
 		('objectField' objectField=ID)?
-		('valueField' valueField=ID)?
+		('value' value=OrExpression)?
 		('feature' feature=ID)?
 		('target' target=[Element])?
 	'}';
@@ -90,8 +97,25 @@ AddToContainer:
 	name=ID
 	'{'
 		('listField' listField=ID)?
-		('valueField' valueField=ID)?
-		('positionField' positionField=ID)?
+		('value' value=OrExpression)?
+		('position' position=OrExpression)?
+		('target' target=[Element])?
+	'}';
+
+ForEach:
+	'ForEach'
+	name=ID
+	'{'
+		('listField' listField=ID)?
+		('target' target=[Element])?
+	'}';
+
+CollectBy:
+	'CollectBy'
+	name=ID
+	'{'
+		('elementField' elementField=ID)?
+		('collectBy' collectBy=OrExpression)?
 		('target' target=[Element])?
 	'}';
 
@@ -107,32 +131,36 @@ Evaluate:
 enum ContainerType returns ContainerType: LIST='list' | SET='set';
 
 OrExpression returns Expression:
-	AndExpression ({BinaryOperation.leftExpression=current} operator=OrOperator rightExpression=AndExpression)?
+	AndExpression ({BinaryOperation.leftExpression=current} operator=OrOperator rightExpression=AndExpression)*
 ;
 
 AndExpression returns Expression:
-	EqualityExpression ({BinaryOperation.leftExpression=current} operator=AndOperator rightExpression=EqualityExpression)?
+	EqualityExpression ({BinaryOperation.leftExpression=current} operator=AndOperator rightExpression=EqualityExpression)*
 ;
 
 EqualityExpression returns Expression:
-	RelationalExpression ({BinaryOperation.leftExpression=current} operator=EqualityOperator rightExpression=RelationalExpression)?
+	RelationalExpression ({BinaryOperation.leftExpression=current} operator=EqualityOperator rightExpression=RelationalExpression)*
 ;
 
 RelationalExpression returns Expression:
-	AdditiveExpression ({BinaryOperation.leftExpression=current} operator=RelationalOperator rightExpression=AdditiveExpression)?
+	AdditiveExpression ({BinaryOperation.leftExpression=current} operator=RelationalOperator rightExpression=AdditiveExpression)*
 ;
 
 AdditiveExpression returns Expression:
-	MultiplicativeExpression ({BinaryOperation.leftExpression=current} operator=AdditiveOperator rightExpression=MultiplicativeExpression)?
+	MultiplicativeExpression ({BinaryOperation.leftExpression=current} operator=AdditiveOperator rightExpression=MultiplicativeExpression)*
 ;
 
 MultiplicativeExpression returns Expression:
-	UnaryExpression ({BinaryOperation.leftExpression=current} operator=MultiplicativeOperator rightExpression=UnaryExpression)?
+	UnaryExpression ({BinaryOperation.leftExpression=current} operator=MultiplicativeOperator rightExpression=UnaryExpression)*
 ;
 
 UnaryExpression returns Expression:
 	{UnaryOperation} operator=UnaryOperator expression=UnaryExpression
-	| PrimaryExpression
+	| FeatureCallExpression
+;
+
+FeatureCallExpression returns Expression:
+	PrimaryExpression ({FeatureCall.targetExpression=current} '.' feature=ID ('(' (parameters+=OrExpression (',' parameters+=OrExpression )*)? ')')?)*
 ;
 
 PrimaryExpression returns Expression:
@@ -161,4 +189,5 @@ enum AdditiveOperator returns BinaryOperator : ADD='+' | SUBTRACT='-';
 enum MultiplicativeOperator returns BinaryOperator : MULTIPLY = '*' | DIVIDE = '/' | MODULO = '%';
 
 enum UnaryOperator returns UnaryOperator:
-	NOT = 'not' | NEGATION = '-' | SIZE = 'size' | IS_DEFINED = 'defined' | IS_UNDEFINED = 'undefined';
+	NOT = 'not' | NEGATION = '-'
+;

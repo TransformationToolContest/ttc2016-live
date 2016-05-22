@@ -13,8 +13,8 @@ package dataflow;
  * </p>
  * <ul>
  *   <li>{@link dataflow.AddToContainer#getListField <em>List Field</em>}</li>
- *   <li>{@link dataflow.AddToContainer#getValueField <em>Value Field</em>}</li>
- *   <li>{@link dataflow.AddToContainer#getPositionField <em>Position Field</em>}</li>
+ *   <li>{@link dataflow.AddToContainer#getValue <em>Value</em>}</li>
+ *   <li>{@link dataflow.AddToContainer#getPosition <em>Position</em>}</li>
  * </ul>
  *
  * @see dataflow.DataflowPackage#getAddToContainer()
@@ -49,55 +49,55 @@ public interface AddToContainer extends Element {
 	void setListField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value Field</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value Field</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Field</em>' attribute.
-	 * @see #setValueField(String)
-	 * @see dataflow.DataflowPackage#getAddToContainer_ValueField()
-	 * @model required="true"
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Expression)
+	 * @see dataflow.DataflowPackage#getAddToContainer_Value()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getValueField();
+	Expression getValue();
 
 	/**
-	 * Sets the value of the '{@link dataflow.AddToContainer#getValueField <em>Value Field</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.AddToContainer#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Field</em>' attribute.
-	 * @see #getValueField()
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
 	 * @generated
 	 */
-	void setValueField(String value);
+	void setValue(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Position Field</b></em>' attribute.
+	 * Returns the value of the '<em><b>Position</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Position Field</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Position</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Position Field</em>' attribute.
-	 * @see #setPositionField(String)
-	 * @see dataflow.DataflowPackage#getAddToContainer_PositionField()
-	 * @model
+	 * @return the value of the '<em>Position</em>' containment reference.
+	 * @see #setPosition(Expression)
+	 * @see dataflow.DataflowPackage#getAddToContainer_Position()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getPositionField();
+	Expression getPosition();
 
 	/**
-	 * Sets the value of the '{@link dataflow.AddToContainer#getPositionField <em>Position Field</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.AddToContainer#getPosition <em>Position</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Position Field</em>' attribute.
-	 * @see #getPositionField()
+	 * @param value the new value of the '<em>Position</em>' containment reference.
+	 * @see #getPosition()
 	 * @generated
 	 */
-	void setPositionField(String value);
+	void setPosition(Expression value);
 
 } // AddToContainer

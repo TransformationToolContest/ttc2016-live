@@ -36,33 +36,7 @@ public enum UnaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEGATION(1, "NEGATION", "NEGATION"),
-
-	/**
-	 * The '<em><b>SIZE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIZE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIZE(2, "SIZE", "SIZE"), /**
-	 * The '<em><b>IS DEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IS_DEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IS_DEFINED(3, "IS_DEFINED", "IS_DEFINED"), /**
-	 * The '<em><b>IS UNDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IS_UNDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IS_UNDEFINED(4, "IS_UNDEFINED", "IS_UNDEFINED");
+	NEGATION(1, "NEGATION", "NEGATION");
 
 	/**
 	 * The '<em><b>NOT</b></em>' literal value.
@@ -95,51 +69,6 @@ public enum UnaryOperator implements Enumerator {
 	public static final int NEGATION_VALUE = 1;
 
 	/**
-	 * The '<em><b>SIZE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SIZE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #SIZE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SIZE_VALUE = 2;
-
-	/**
-	 * The '<em><b>IS DEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>IS DEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #IS_DEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IS_DEFINED_VALUE = 3;
-
-	/**
-	 * The '<em><b>IS UNDEFINED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>IS UNDEFINED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #IS_UNDEFINED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IS_UNDEFINED_VALUE = 4;
-
-	/**
 	 * An array of all the '<em><b>Unary Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,9 +78,6 @@ public enum UnaryOperator implements Enumerator {
 		new UnaryOperator[] {
 			NOT,
 			NEGATION,
-			SIZE,
-			IS_DEFINED,
-			IS_UNDEFINED,
 		};
 
 	/**
@@ -210,9 +136,6 @@ public enum UnaryOperator implements Enumerator {
 		switch (value) {
 			case NOT_VALUE: return NOT;
 			case NEGATION_VALUE: return NEGATION;
-			case SIZE_VALUE: return SIZE;
-			case IS_DEFINED_VALUE: return IS_DEFINED;
-			case IS_UNDEFINED_VALUE: return IS_UNDEFINED;
 		}
 		return null;
 	}

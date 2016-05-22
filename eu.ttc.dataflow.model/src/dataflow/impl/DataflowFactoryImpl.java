@@ -62,11 +62,14 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 			case DataflowPackage.NEW_INSTANCE: return createNewInstance();
 			case DataflowPackage.FILTER: return createFilter();
 			case DataflowPackage.SORT: return createSort();
+			case DataflowPackage.COPY: return createCopy();
 			case DataflowPackage.PRODUCT: return createProduct();
 			case DataflowPackage.GET_FEATURE: return createGetFeature();
 			case DataflowPackage.SET_FEATURE: return createSetFeature();
 			case DataflowPackage.NEW_CONTAINER: return createNewContainer();
 			case DataflowPackage.ADD_TO_CONTAINER: return createAddToContainer();
+			case DataflowPackage.FOR_EACH: return createForEach();
+			case DataflowPackage.COLLECT_BY: return createCollectBy();
 			case DataflowPackage.EVALUATE: return createEvaluate();
 			case DataflowPackage.INTEGER_LITERAL: return createIntegerLiteral();
 			case DataflowPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
@@ -75,6 +78,7 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 			case DataflowPackage.FIELD_REFERENCE: return createFieldReference();
 			case DataflowPackage.UNARY_OPERATION: return createUnaryOperation();
 			case DataflowPackage.BINARY_OPERATION: return createBinaryOperation();
+			case DataflowPackage.FEATURE_CALL: return createFeatureCall();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -173,6 +177,16 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Copy createCopy() {
+		CopyImpl copy = new CopyImpl();
+		return copy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Product createProduct() {
 		ProductImpl product = new ProductImpl();
 		return product;
@@ -216,6 +230,26 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 	public AddToContainer createAddToContainer() {
 		AddToContainerImpl addToContainer = new AddToContainerImpl();
 		return addToContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ForEach createForEach() {
+		ForEachImpl forEach = new ForEachImpl();
+		return forEach;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CollectBy createCollectBy() {
+		CollectByImpl collectBy = new CollectByImpl();
+		return collectBy;
 	}
 
 	/**
@@ -296,6 +330,16 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 	public BinaryOperation createBinaryOperation() {
 		BinaryOperationImpl binaryOperation = new BinaryOperationImpl();
 		return binaryOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureCall createFeatureCall() {
+		FeatureCallImpl featureCall = new FeatureCallImpl();
+		return featureCall;
 	}
 
 	/**

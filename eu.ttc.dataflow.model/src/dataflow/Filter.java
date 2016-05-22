@@ -12,7 +12,7 @@ package dataflow;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link dataflow.Filter#getFilterByField <em>Filter By Field</em>}</li>
+ *   <li>{@link dataflow.Filter#getFilterBy <em>Filter By</em>}</li>
  *   <li>{@link dataflow.Filter#getRejectTarget <em>Reject Target</em>}</li>
  * </ul>
  *
@@ -22,30 +22,30 @@ package dataflow;
  */
 public interface Filter extends Element {
 	/**
-	 * Returns the value of the '<em><b>Filter By Field</b></em>' attribute.
+	 * Returns the value of the '<em><b>Filter By</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filter By Field</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Filter By</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filter By Field</em>' attribute.
-	 * @see #setFilterByField(String)
-	 * @see dataflow.DataflowPackage#getFilter_FilterByField()
-	 * @model required="true"
+	 * @return the value of the '<em>Filter By</em>' containment reference.
+	 * @see #setFilterBy(Expression)
+	 * @see dataflow.DataflowPackage#getFilter_FilterBy()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	String getFilterByField();
+	Expression getFilterBy();
 
 	/**
-	 * Sets the value of the '{@link dataflow.Filter#getFilterByField <em>Filter By Field</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.Filter#getFilterBy <em>Filter By</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filter By Field</em>' attribute.
-	 * @see #getFilterByField()
+	 * @param value the new value of the '<em>Filter By</em>' containment reference.
+	 * @see #getFilterBy()
 	 * @generated
 	 */
-	void setFilterByField(String value);
+	void setFilterBy(Expression value);
 
 	/**
 	 * Returns the value of the '<em><b>Reject Target</b></em>' reference.

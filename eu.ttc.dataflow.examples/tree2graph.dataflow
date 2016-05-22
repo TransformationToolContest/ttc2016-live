@@ -1,0 +1,51 @@
+AllInstances Trees {
+	field tree
+	type Tree!Tree
+	target CreateGraphNode
+}
+
+NewInstance CreateGraphNode {
+	instanceField graph
+	key tree
+	type Graph!Node
+	target SetNodeName 
+}
+
+SetFeature SetNodeName {
+	objectField graph
+	value tree.label
+	feature name
+	target IfParentDefined
+}
+
+Filter IfParentDefined {
+	filterBy tree.parent
+	target CreateGraphEdge
+}
+
+NewInstance CreateGraphEdge {
+	instanceField edge
+	key tree
+	type Graph!Edge
+	target CreateGraphParent
+}
+
+NewInstance CreateGraphParent {
+	instanceField parentGraph
+	key tree.parent
+	type Graph!Node
+	target SetEdgeSource
+}
+
+SetFeature SetEdgeSource {
+	objectField edge
+	value parentGraph
+	feature source
+	target SetEdgeTarget
+}
+
+SetFeature SetEdgeTarget {
+	objectField edge
+	value graph
+	feature ^target
+}

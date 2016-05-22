@@ -12,7 +12,7 @@ package dataflow;
  * </p>
  * <ul>
  *   <li>{@link dataflow.SetFeature#getObjectField <em>Object Field</em>}</li>
- *   <li>{@link dataflow.SetFeature#getValueField <em>Value Field</em>}</li>
+ *   <li>{@link dataflow.SetFeature#getValue <em>Value</em>}</li>
  *   <li>{@link dataflow.SetFeature#getFeature <em>Feature</em>}</li>
  * </ul>
  *
@@ -48,30 +48,30 @@ public interface SetFeature extends Element {
 	void setObjectField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value Field</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value Field</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Field</em>' attribute.
-	 * @see #setValueField(String)
-	 * @see dataflow.DataflowPackage#getSetFeature_ValueField()
-	 * @model
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Expression)
+	 * @see dataflow.DataflowPackage#getSetFeature_Value()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getValueField();
+	Expression getValue();
 
 	/**
-	 * Sets the value of the '{@link dataflow.SetFeature#getValueField <em>Value Field</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.SetFeature#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Field</em>' attribute.
-	 * @see #getValueField()
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
 	 * @generated
 	 */
-	void setValueField(String value);
+	void setValue(Expression value);
 
 	/**
 	 * Returns the value of the '<em><b>Feature</b></em>' attribute.

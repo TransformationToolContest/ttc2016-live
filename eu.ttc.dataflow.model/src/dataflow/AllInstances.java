@@ -12,7 +12,8 @@ package dataflow;
  * </p>
  * <ul>
  *   <li>{@link dataflow.AllInstances#getField <em>Field</em>}</li>
- *   <li>{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link dataflow.AllInstances#getModel <em>Model</em>}</li>
+ *   <li>{@link dataflow.AllInstances#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link dataflow.AllInstances#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
@@ -48,57 +49,110 @@ public interface AllInstances extends Element {
 	void setField(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Ns URI</b></em>' attribute.
+	 * Returns the value of the '<em><b>Model</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Ns URI</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Model</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ns URI</em>' attribute.
-	 * @see #isSetNsURI()
-	 * @see #unsetNsURI()
-	 * @see #setNsURI(String)
-	 * @see dataflow.DataflowPackage#getAllInstances_NsURI()
+	 * @return the value of the '<em>Model</em>' attribute.
+	 * @see #isSetModel()
+	 * @see #unsetModel()
+	 * @see #setModel(String)
+	 * @see dataflow.DataflowPackage#getAllInstances_Model()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	String getNsURI();
+	String getModel();
 
 	/**
-	 * Sets the value of the '{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}' attribute.
+	 * Sets the value of the '{@link dataflow.AllInstances#getModel <em>Model</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ns URI</em>' attribute.
-	 * @see #isSetNsURI()
-	 * @see #unsetNsURI()
-	 * @see #getNsURI()
+	 * @param value the new value of the '<em>Model</em>' attribute.
+	 * @see #isSetModel()
+	 * @see #unsetModel()
+	 * @see #getModel()
 	 * @generated
 	 */
-	void setNsURI(String value);
+	void setModel(String value);
 
 	/**
-	 * Unsets the value of the '{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}' attribute.
+	 * Unsets the value of the '{@link dataflow.AllInstances#getModel <em>Model</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetNsURI()
-	 * @see #getNsURI()
-	 * @see #setNsURI(String)
+	 * @see #isSetModel()
+	 * @see #getModel()
+	 * @see #setModel(String)
 	 * @generated
 	 */
-	void unsetNsURI();
+	void unsetModel();
 
 	/**
-	 * Returns whether the value of the '{@link dataflow.AllInstances#getNsURI <em>Ns URI</em>}' attribute is set.
+	 * Returns whether the value of the '{@link dataflow.AllInstances#getModel <em>Model</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Ns URI</em>' attribute is set.
-	 * @see #unsetNsURI()
-	 * @see #getNsURI()
-	 * @see #setNsURI(String)
+	 * @return whether the value of the '<em>Model</em>' attribute is set.
+	 * @see #unsetModel()
+	 * @see #getModel()
+	 * @see #setModel(String)
 	 * @generated
 	 */
-	boolean isSetNsURI();
+	boolean isSetModel();
+
+	/**
+	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Package Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Package Name</em>' attribute.
+	 * @see #isSetPackageName()
+	 * @see #unsetPackageName()
+	 * @see #setPackageName(String)
+	 * @see dataflow.DataflowPackage#getAllInstances_PackageName()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getPackageName();
+
+	/**
+	 * Sets the value of the '{@link dataflow.AllInstances#getPackageName <em>Package Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Package Name</em>' attribute.
+	 * @see #isSetPackageName()
+	 * @see #unsetPackageName()
+	 * @see #getPackageName()
+	 * @generated
+	 */
+	void setPackageName(String value);
+
+	/**
+	 * Unsets the value of the '{@link dataflow.AllInstances#getPackageName <em>Package Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetPackageName()
+	 * @see #getPackageName()
+	 * @see #setPackageName(String)
+	 * @generated
+	 */
+	void unsetPackageName();
+
+	/**
+	 * Returns whether the value of the '{@link dataflow.AllInstances#getPackageName <em>Package Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Package Name</em>' attribute is set.
+	 * @see #unsetPackageName()
+	 * @see #getPackageName()
+	 * @see #setPackageName(String)
+	 * @generated
+	 */
+	boolean isSetPackageName();
 
 	/**
 	 * Returns the value of the '<em><b>Type Name</b></em>' attribute.

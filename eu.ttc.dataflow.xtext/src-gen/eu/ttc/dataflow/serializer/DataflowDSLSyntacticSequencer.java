@@ -11,6 +11,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -20,12 +21,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class DataflowDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected DataflowDSLGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_FeatureCallExpression___LeftParenthesisKeyword_1_3_0_RightParenthesisKeyword_1_3_2__q;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_5_0_a;
 	protected AbstractElementAlias match_PrimaryExpression_LeftParenthesisKeyword_5_0_p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (DataflowDSLGrammarAccess) access;
+		match_FeatureCallExpression___LeftParenthesisKeyword_1_3_0_RightParenthesisKeyword_1_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFeatureCallExpressionAccess().getLeftParenthesisKeyword_1_3_0()), new TokenAlias(false, false, grammarAccess.getFeatureCallExpressionAccess().getRightParenthesisKeyword_1_3_2()));
 		match_PrimaryExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_5_0());
 		match_PrimaryExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_5_0());
 	}
@@ -42,7 +45,9 @@ public class DataflowDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_PrimaryExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
+			if (match_FeatureCallExpression___LeftParenthesisKeyword_1_3_0_RightParenthesisKeyword_1_3_2__q.equals(syntax))
+				emit_FeatureCallExpression___LeftParenthesisKeyword_1_3_0_RightParenthesisKeyword_1_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
 				emit_PrimaryExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrimaryExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
 				emit_PrimaryExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -50,6 +55,18 @@ public class DataflowDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ('(' ')')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     feature=ID (ambiguity) ')' (rule end)
+	 *     feature=ID (ambiguity) (rule end)
+	 */
+	protected void emit_FeatureCallExpression___LeftParenthesisKeyword_1_3_0_RightParenthesisKeyword_1_3_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     '('*
@@ -62,6 +79,7 @@ public class DataflowDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) value=EInt
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) {BinaryOperation.leftExpression=}
+	 *     (rule start) (ambiguity) {FeatureCall.targetExpression=}
 	 */
 	protected void emit_PrimaryExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -74,6 +92,7 @@ public class DataflowDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {BinaryOperation.leftExpression=}
+	 *     (rule start) (ambiguity) {FeatureCall.targetExpression=}
 	 */
 	protected void emit_PrimaryExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

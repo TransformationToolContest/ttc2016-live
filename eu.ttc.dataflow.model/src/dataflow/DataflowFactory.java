@@ -67,6 +67,15 @@ public interface DataflowFactory extends EFactory {
 	Sort createSort();
 
 	/**
+	 * Returns a new object of class '<em>Copy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Copy</em>'.
+	 * @generated
+	 */
+	Copy createCopy();
+
+	/**
 	 * Returns a new object of class '<em>Product</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,6 +119,24 @@ public interface DataflowFactory extends EFactory {
 	 * @generated
 	 */
 	AddToContainer createAddToContainer();
+
+	/**
+	 * Returns a new object of class '<em>For Each</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>For Each</em>'.
+	 * @generated
+	 */
+	ForEach createForEach();
+
+	/**
+	 * Returns a new object of class '<em>Collect By</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Collect By</em>'.
+	 * @generated
+	 */
+	CollectBy createCollectBy();
 
 	/**
 	 * Returns a new object of class '<em>Evaluate</em>'.
@@ -182,6 +209,15 @@ public interface DataflowFactory extends EFactory {
 	 * @generated
 	 */
 	BinaryOperation createBinaryOperation();
+
+	/**
+	 * Returns a new object of class '<em>Feature Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Call</em>'.
+	 * @generated
+	 */
+	FeatureCall createFeatureCall();
 
 	/**
 	 * Returns the package supported by this factory.

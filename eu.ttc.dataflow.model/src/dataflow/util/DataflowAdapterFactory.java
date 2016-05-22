@@ -92,6 +92,10 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 				return createSortAdapter();
 			}
 			@Override
+			public Adapter caseCopy(Copy object) {
+				return createCopyAdapter();
+			}
+			@Override
 			public Adapter caseProduct(Product object) {
 				return createProductAdapter();
 			}
@@ -110,6 +114,14 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAddToContainer(AddToContainer object) {
 				return createAddToContainerAdapter();
+			}
+			@Override
+			public Adapter caseForEach(ForEach object) {
+				return createForEachAdapter();
+			}
+			@Override
+			public Adapter caseCollectBy(CollectBy object) {
+				return createCollectByAdapter();
 			}
 			@Override
 			public Adapter caseEvaluate(Evaluate object) {
@@ -146,6 +158,10 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBinaryOperation(BinaryOperation object) {
 				return createBinaryOperationAdapter();
+			}
+			@Override
+			public Adapter caseFeatureCall(FeatureCall object) {
+				return createFeatureCallAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -252,6 +268,20 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link dataflow.Copy <em>Copy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dataflow.Copy
+	 * @generated
+	 */
+	public Adapter createCopyAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link dataflow.Product <em>Product</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -318,6 +348,34 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAddToContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link dataflow.ForEach <em>For Each</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dataflow.ForEach
+	 * @generated
+	 */
+	public Adapter createForEachAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link dataflow.CollectBy <em>Collect By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dataflow.CollectBy
+	 * @generated
+	 */
+	public Adapter createCollectByAdapter() {
 		return null;
 	}
 
@@ -444,6 +502,20 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBinaryOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link dataflow.FeatureCall <em>Feature Call</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see dataflow.FeatureCall
+	 * @generated
+	 */
+	public Adapter createFeatureCallAdapter() {
 		return null;
 	}
 

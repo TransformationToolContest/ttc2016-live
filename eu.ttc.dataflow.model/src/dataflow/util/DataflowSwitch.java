@@ -106,6 +106,13 @@ public class DataflowSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DataflowPackage.COPY: {
+				Copy copy = (Copy)theEObject;
+				T result = caseCopy(copy);
+				if (result == null) result = caseElement(copy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DataflowPackage.PRODUCT: {
 				Product product = (Product)theEObject;
 				T result = caseProduct(product);
@@ -138,6 +145,20 @@ public class DataflowSwitch<T> extends Switch<T> {
 				AddToContainer addToContainer = (AddToContainer)theEObject;
 				T result = caseAddToContainer(addToContainer);
 				if (result == null) result = caseElement(addToContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DataflowPackage.FOR_EACH: {
+				ForEach forEach = (ForEach)theEObject;
+				T result = caseForEach(forEach);
+				if (result == null) result = caseElement(forEach);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DataflowPackage.COLLECT_BY: {
+				CollectBy collectBy = (CollectBy)theEObject;
+				T result = caseCollectBy(collectBy);
+				if (result == null) result = caseElement(collectBy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,6 +221,13 @@ public class DataflowSwitch<T> extends Switch<T> {
 				BinaryOperation binaryOperation = (BinaryOperation)theEObject;
 				T result = caseBinaryOperation(binaryOperation);
 				if (result == null) result = caseExpression(binaryOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DataflowPackage.FEATURE_CALL: {
+				FeatureCall featureCall = (FeatureCall)theEObject;
+				T result = caseFeatureCall(featureCall);
+				if (result == null) result = caseExpression(featureCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -298,6 +326,21 @@ public class DataflowSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Copy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Copy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCopy(Copy object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Product</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -369,6 +412,36 @@ public class DataflowSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAddToContainer(AddToContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>For Each</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>For Each</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForEach(ForEach object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Collect By</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Collect By</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCollectBy(CollectBy object) {
 		return null;
 	}
 
@@ -504,6 +577,21 @@ public class DataflowSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBinaryOperation(BinaryOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Call</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureCall(FeatureCall object) {
 		return null;
 	}
 

@@ -3,10 +3,13 @@
 package dataflow.impl;
 
 import dataflow.DataflowPackage;
+import dataflow.Expression;
 import dataflow.SetFeature;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -18,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link dataflow.impl.SetFeatureImpl#getObjectField <em>Object Field</em>}</li>
- *   <li>{@link dataflow.impl.SetFeatureImpl#getValueField <em>Value Field</em>}</li>
+ *   <li>{@link dataflow.impl.SetFeatureImpl#getValue <em>Value</em>}</li>
  *   <li>{@link dataflow.impl.SetFeatureImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  *
@@ -46,24 +49,14 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 	protected String objectField = OBJECT_FIELD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValueField() <em>Value Field</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValueField()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_FIELD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValueField() <em>Value Field</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueField()
-	 * @generated
-	 * @ordered
-	 */
-	protected String valueField = VALUE_FIELD_EDEFAULT;
+	protected Expression value;
 
 	/**
 	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
@@ -130,8 +123,8 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValueField() {
-		return valueField;
+	public Expression getValue() {
+		return value;
 	}
 
 	/**
@@ -139,11 +132,33 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValueField(String newValueField) {
-		String oldValueField = valueField;
-		valueField = newValueField;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.SET_FEATURE__VALUE_FIELD, oldValueField, valueField));
+	public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs) {
+		Expression oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataflowPackage.SET_FEATURE__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(Expression newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.SET_FEATURE__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DataflowPackage.SET_FEATURE__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.SET_FEATURE__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -173,12 +188,26 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataflowPackage.SET_FEATURE__VALUE:
+				return basicSetValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DataflowPackage.SET_FEATURE__OBJECT_FIELD:
 				return getObjectField();
-			case DataflowPackage.SET_FEATURE__VALUE_FIELD:
-				return getValueField();
+			case DataflowPackage.SET_FEATURE__VALUE:
+				return getValue();
 			case DataflowPackage.SET_FEATURE__FEATURE:
 				return getFeature();
 		}
@@ -196,8 +225,8 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 			case DataflowPackage.SET_FEATURE__OBJECT_FIELD:
 				setObjectField((String)newValue);
 				return;
-			case DataflowPackage.SET_FEATURE__VALUE_FIELD:
-				setValueField((String)newValue);
+			case DataflowPackage.SET_FEATURE__VALUE:
+				setValue((Expression)newValue);
 				return;
 			case DataflowPackage.SET_FEATURE__FEATURE:
 				setFeature((String)newValue);
@@ -217,8 +246,8 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 			case DataflowPackage.SET_FEATURE__OBJECT_FIELD:
 				setObjectField(OBJECT_FIELD_EDEFAULT);
 				return;
-			case DataflowPackage.SET_FEATURE__VALUE_FIELD:
-				setValueField(VALUE_FIELD_EDEFAULT);
+			case DataflowPackage.SET_FEATURE__VALUE:
+				setValue((Expression)null);
 				return;
 			case DataflowPackage.SET_FEATURE__FEATURE:
 				setFeature(FEATURE_EDEFAULT);
@@ -237,8 +266,8 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 		switch (featureID) {
 			case DataflowPackage.SET_FEATURE__OBJECT_FIELD:
 				return OBJECT_FIELD_EDEFAULT == null ? objectField != null : !OBJECT_FIELD_EDEFAULT.equals(objectField);
-			case DataflowPackage.SET_FEATURE__VALUE_FIELD:
-				return VALUE_FIELD_EDEFAULT == null ? valueField != null : !VALUE_FIELD_EDEFAULT.equals(valueField);
+			case DataflowPackage.SET_FEATURE__VALUE:
+				return value != null;
 			case DataflowPackage.SET_FEATURE__FEATURE:
 				return FEATURE_EDEFAULT == null ? feature != null : !FEATURE_EDEFAULT.equals(feature);
 		}
@@ -257,8 +286,6 @@ public class SetFeatureImpl extends ElementImpl implements SetFeature {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (objectField: ");
 		result.append(objectField);
-		result.append(", valueField: ");
-		result.append(valueField);
 		result.append(", feature: ");
 		result.append(feature);
 		result.append(')');
