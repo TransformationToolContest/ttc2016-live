@@ -1,0 +1,239 @@
+var newInstanceMap = Map {};
+var runningElements = Dataflow!Element.all;
+
+var STATE_STARTING = 0;
+var STATE_RUNNING = 1;
+var STATE_FAILED = 2;
+var STATE_FINISHED = 3;
+
+// Mark all nodes as "live"
+for (element in runningElements) {
+  element.setUp();
+}
+
+// While we have live elements...
+while (runningElements.notEmpty) {
+  for (element in runningElements) {
+    element.processIncoming();
+  }
+  runningElements = runningElements.select(e|e.isRunning());
+}
+
+// Filter primitive
+
+operation Dataflow!Filter extraSetup() {
+  if (self.rejectTarget.isDefined()) {
+    self.rejectTarget.addSource(self);
+  }
+}
+
+operation Dataflow!Filter processIncoming() {
+  if (self.target.isDefined() or self.rejectTarget.isDefined()) {
+    for (incomingRow in self.~incomingRows) {
+      var filterResult = self.filterBy.evaluate(incomingRow);
+      var accepted = filterResult.isTruish();
+      if (accepted) {
+        if (self.target.isDefined()) {
+          self.target.addIncomingRow(incomingRow);
+        }
+      } else if (self.rejectTarget.isDefined()){
+        self.rejectTarget.addIncomingRow(incomingRow);
+      }
+    }
+    self.~incomingRows.clear();
+
+    if (not self.hasRunningSource()) {
+      self.~state = STATE_FINISHED;
+    }
+  } else {
+    self.~state = STATE_FINISHED;
+  }
+}
+
+// SetFeature primitive
+
+operation Dataflow!SetFeature processIncoming() {
+  for (incomingRow in self.~incomingRows) {
+    var instance = incomingRow.get(self.objectField);
+
+    // TODO: is there a generic way to get property by name in EOL?
+    // IModel has the getPropertyGetter, but here we'd just have the
+    // EObject.
+    var feature = instance.eClass.getEStructuralFeature(self.feature);
+    if (not feature.isDefined()) {
+      throw 'Unknown feature ' + self.feature + ' in ' + instance.eClass.name;
+    }
+    if (self.value.isDefined()) {
+      var value = self.value.evaluate(incomingRow);
+      instance.eSet(feature, value);
+    } else {
+      instance.eUnset(feature);
+    }
+
+    if (self.target.isDefined()) {
+      self.target.addIncomingRow(incomingRow);
+    }
+  }
+  self.~incomingRows.clear();
+
+  if (not self.hasRunningSource()) {
+    self.~state = STATE_FINISHED;
+  }
+}
+
+// NewInstance primitive
+
+operation Dataflow!NewInstance processIncoming() {
+  if (self.~sources.isEmpty) {
+    self.~incomingRows = Sequence { Map {} };
+  }
+
+  for (incomingRow in self.~incomingRows) {
+    var key = null;
+    var instance = null;
+    if (self.key.isDefined()) {
+      key = self.key.evaluate(incomingRow);
+      var typeInstances = newInstanceMap.get(self.typeName);
+      if (typeInstances.isDefined()) {
+        instance = typeInstances.get(key);
+      } else {
+        newInstanceMap.put(self.typeName, Map {});
+      }
+    }
+
+    if (not instance.isDefined()) {
+      instance = getModel(self.`model`).createInstance(self.typeName);
+      if (key.isDefined()) {
+        key.println('NewInstance -- associated key for type ' + self.typeName + ' to ' + instance + ': ');
+        newInstanceMap.get(self.typeName).put(key, instance);
+      }
+    }
+
+    incomingRow.put(self.instanceField, instance);
+    self.target.addIncomingRow(incomingRow); 
+  }
+  self.~incomingRows.clear();
+
+  if (not self.hasRunningSource()) {
+    self.~state = STATE_FINISHED;
+  }
+}
+
+// AllInstances primitive
+
+operation Dataflow!AllInstances processIncoming() {
+  if (self.isStarting()) {
+    self.~instances = getModel(self.`model`).getAllOfKind(self.typeName);
+    self.~state = STATE_RUNNING; 
+  }
+
+  if (self.~sources.isEmpty) {
+    self.~incomingRows = Sequence { Map {} };
+  }
+
+  for (incomingRow in self.~incomingRows) {
+    for (instance in self.~instances) {
+      var newRow = Map {};
+      newRow.putAll(incomingRow);
+      newRow.put(self.field, instance);
+      self.target.addIncomingRow(newRow);
+    }
+  }
+  self.~incomingRows.clear();
+
+  if (not self.hasRunningSource()) {
+    self.~state = STATE_FINISHED;
+  }
+}
+
+// Fallback implementation of any primitive ///////////////////////////////////
+
+operation Dataflow!Element setUp() {
+  self.~state = STATE_STARTING;
+  self.~incomingRows = Sequence {};
+  if (not self.~sources.isDefined()) {
+    self.~sources = Sequence {};
+  }
+  if (self.target.isDefined()) {
+    self.target.addSource(self); 
+  }
+
+  // For other types
+  self.extraSetup();
+}
+
+operation Dataflow!Element extraSetup() {}
+
+operation Dataflow!Element addSource(source : Dataflow!Element) {
+  if (not self.~sources.isDefined()) {
+    self.~sources = Sequence { source };
+  } else {
+    self.~sources.add(source);
+  }
+}
+
+operation Dataflow!Element processIncoming() {
+  self.println('Processing ');
+  return false;
+} 
+
+operation Dataflow!Element isRunning() : Boolean {
+  return self.~state == STATE_RUNNING;
+}
+
+operation Dataflow!Element isStarting() : Boolean {
+  return self.~state == STATE_STARTING;
+}
+
+operation Dataflow!Element hasRunningSource() : Boolean {
+  if (self.~sources.isDefined()) {
+    for (src in self.~sources) {
+      if (src.isRunning()) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+operation Dataflow!Element addIncomingRow(row : Map) {
+  self.~incomingRows.add(row);
+  row.println('Added row to ' + self.name + ': ');
+}
+
+// UTILITIES //////////////////////////////////////////////////////////////////
+
+operation getModel(modelName : String) {
+  return System.context.modelRepository.getModelByName(modelName);  
+}
+
+operation Any isTruish() {
+  if (not self.isDefined()) {
+    return false;
+  }
+
+  var str = self.toString();
+  if (str = 'true' or str = 'false') {
+    return str.asBoolean();
+  } else {
+    return true;
+  }
+}
+
+// EXPRESSION LANGUAGE ////////////////////////////////////////////////////////
+
+operation FieldReference evaluate(row : Map) {
+  return row.get(self.field);
+}
+
+operation FeatureCall evaluate(row : Map) {
+  var target = self.targetExpression.evaluate(row);
+  var feature = target.eClass.getEStructuralFeature(self.feature);
+  // TODO - support method calls
+  return target.eGet(feature);
+}
+
+operation Expression evaluate(row : Map) {
+  self.println('Unimplemented, returning null');
+  return null;
+}

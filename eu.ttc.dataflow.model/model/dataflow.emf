@@ -1,8 +1,6 @@
 @namespace(uri="http://transformation-tool-contest.eu/2016/dataflow", prefix="df")
 package dataflow;
 
-// TODO: make Sirius integration nicer
-
 class Model {
 	val Element[*] elements;
 }
@@ -99,9 +97,10 @@ class AddToContainer extends Element {
 	val Expression position;
 }
 
-// Splits a field with a collection into rows (one per element in each collection)
+// Splits a field with a collection into rows (one per element in each collection) + position
 class ForEach extends Element {
 	attr String[1] listField;
+	attr String[?] positionField;
 }
 
 // Aggregates rows into collections by another value

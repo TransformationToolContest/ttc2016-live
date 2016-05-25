@@ -2,6 +2,9 @@
 <viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_mahooB-jEeaVhaR-twSUEQ" selectedViews="_HEngQB-kEeaE_oxdK2gK9g" version="10.1.0.201509162000">
   <semanticResources>tree2graph.dataflow</semanticResources>
   <semanticResources>families2persons.dataflow</semanticResources>
+  <semanticResources>metamodels/Graph.ecore</semanticResources>
+  <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
+  <semanticResources>metamodels/Tree.ecore</semanticResources>
   <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_HEngQB-kEeaE_oxdK2gK9g">
     <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_3VKOQCAmEeaC0-etzjJfmw" name="Tree2Graph diagram">
       <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_3VKOQSAmEeaC0-etzjJfmw" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -386,7 +389,7 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsGooiA4EeamyPxlwOIubQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_Cr-s1CA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cr-s1SA4EeamyPxlwOIubQ" x="310" y="535" width="121" height="30"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cr-s1SA4EeamyPxlwOIubQ" x="140" y="465" width="121" height="30"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_CsDlUCA4EeamyPxlwOIubQ" type="2001" element="_Cr7phyA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsEMYCA4EeamyPxlwOIubQ" type="5002">
@@ -397,7 +400,7 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsGopSA4EeamyPxlwOIubQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_CsDlUSA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsDlUiA4EeamyPxlwOIubQ" x="310" y="445" width="121" height="30"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsDlUiA4EeamyPxlwOIubQ" x="140" y="375" width="121" height="30"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_CsEzcCA4EeamyPxlwOIubQ" type="2001" element="_Cr7piSA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsEzcyA4EeamyPxlwOIubQ" type="5002">
@@ -408,7 +411,7 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsHPsiA4EeamyPxlwOIubQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_CsEzcSA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsEzciA4EeamyPxlwOIubQ" x="310" y="355" width="121" height="30"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsEzciA4EeamyPxlwOIubQ" x="140" y="285" width="121" height="30"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_CsEzdSA4EeamyPxlwOIubQ" type="2001" element="_Cr7piyA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsFagCA4EeamyPxlwOIubQ" type="5002">
@@ -419,7 +422,7 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsJr8iA4EeamyPxlwOIubQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_CsEzdiA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsEzdyA4EeamyPxlwOIubQ" x="400" y="265" width="126" height="30"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsEzdyA4EeamyPxlwOIubQ" x="230" y="195" width="126" height="30"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_CsFagiA4EeamyPxlwOIubQ" type="2001" element="_Cr7pjSA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsGBkCA4EeamyPxlwOIubQ" type="5002">
@@ -430,7 +433,7 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsKTAiA4EeamyPxlwOIubQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_CsFagyA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsFahCA4EeamyPxlwOIubQ" x="215" y="265" width="125" height="30"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsFahCA4EeamyPxlwOIubQ" x="45" y="195" width="125" height="30"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_CsGBkiA4EeamyPxlwOIubQ" type="2001" element="_Cr7pjyA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsGBlSA4EeamyPxlwOIubQ" type="5002">
@@ -441,7 +444,7 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsKTBSA4EeamyPxlwOIubQ"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_CsGBkyA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsGBlCA4EeamyPxlwOIubQ" x="310" y="175" width="121" height="30"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsGBlCA4EeamyPxlwOIubQ" x="140" y="105" width="121" height="30"/>
           </children>
           <styles xmi:type="notation:DiagramStyle" xmi:id="_Cr-s0iA4EeamyPxlwOIubQ"/>
           <edges xmi:type="notation:Edge" xmi:id="_CsK6ECA4EeamyPxlwOIubQ" type="4001" element="_Cr7pkSA4EeamyPxlwOIubQ" source="_CsEzcCA4EeamyPxlwOIubQ" target="_CsFagiA4EeamyPxlwOIubQ">
