@@ -19,6 +19,25 @@ while (runningElements.notEmpty) {
   runningElements = runningElements.select(e|e.isRunning());
 }
 
+// Evaluate primitive
+
+operation Dataflow!Evaluate processIncoming() {
+  if (self.target.isDefined()) {
+    for (incomingRow in self.~incomingRows) {
+      var result = self.expression.evaluate(incomingRow);
+      incomingRow.put(self.field, result);
+      self.target.addIncomingRow(incomingRow);
+    }
+    self.~incomingRows.clear();
+
+    if (not self.hasRunningSource()) {
+      self.~state = STATE_FINISHED;
+    }
+  } else {
+    self.~state = STATE_FINISHED;
+  }
+}
+
 // Filter primitive
 
 operation Dataflow!Filter extraSetup() {
@@ -222,14 +241,59 @@ operation Any isTruish() {
 
 // EXPRESSION LANGUAGE ////////////////////////////////////////////////////////
 
+operation IntegerLiteral evaluate(row : Map) { return self.value; }
+operation BooleanLiteral evaluate(row : Map) { return self.value; }
+operation RealLiteral evaluate(row : Map) { return self.value; }
+operation StringLiteral evaluate(row : Map) { return self.value; }
+
 operation FieldReference evaluate(row : Map) {
   return row.get(self.field);
 }
 
+operation UnaryOperation evaluate(row : Map) {
+  var value = self.expression.evaluate(row);
+  switch (self.operator) {
+    case UnaryOperation#NOT: return not value;
+    case UnaryOperation#NEGATION: return -value;
+  }
+}
+
+operation BinaryOperation evaluate(row : Map) {
+  var l = self.leftExpression.evaluate(row);
+  var r = self.rightExpression.evaluate(row);
+  switch (self.operator) {
+    case BinaryOperator#EQ: return l == r;
+    case BinaryOperator#NE: return l <> r;
+    case BinaryOperator#GT: return l > r;
+    case BinaryOperator#GE: return l >= r;
+    case BinaryOperator#LT: return l < r;
+    case BinaryOperator#LE: return l <= r;
+    case BinaryOperator#AND: return l.isTruish() and r.isTruish();
+    case BinaryOperator#OR: return l.isTruish() or r.isTruish();
+    case BinaryOperator#XOR: return l.isTruish() xor r.isTruish();
+    case BinaryOperator#ADD: return l + r;
+    case BinaryOperator#SUBTRACT: return l - r;
+    case BinaryOperator#MULTIPLY: return l * r;
+    case BinaryOperator#DIVIDE: return l / r;
+    case BinaryOperator#MODULO:
+      var intDivision = (l / r).asInteger();
+      return l - intDivision * r;
+  }
+}
+
 operation FeatureCall evaluate(row : Map) {
   var target = self.targetExpression.evaluate(row);
+
+  // Support some useful EMF methods
+  if (self.feature = 'eContainer') {
+    return target.eContainer();
+  }
+
   var feature = target.eClass.getEStructuralFeature(self.feature);
-  // TODO - support method calls
+  if (not feature.isDefined()) {
+    throw target + " does not know about the feature " + self.feature;
+  }
+  // TODO - support method calls - which methods?
   return target.eGet(feature);
 }
 

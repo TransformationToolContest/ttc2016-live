@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:p="Persons">
+  <p:Male fullName="Jim March"/>
+  <p:Male fullName="Brandon March"/>
+  <p:Male fullName="Peter Sailor"/>
+  <p:Male fullName="David Sailor"/>
+  <p:Male fullName="Dylan Sailor"/>
+  <p:Female fullName="Cindy March"/>
+  <p:Female fullName="Brenda March"/>
+  <p:Female fullName="Jackie Sailor"/>
+  <p:Female fullName="Kelly Sailor"/>
+</xmi:XMI>

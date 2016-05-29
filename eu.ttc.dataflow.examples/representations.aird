@@ -447,22 +447,6 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsGBlCA4EeamyPxlwOIubQ" x="140" y="105" width="121" height="30"/>
           </children>
           <styles xmi:type="notation:DiagramStyle" xmi:id="_Cr-s0iA4EeamyPxlwOIubQ"/>
-          <edges xmi:type="notation:Edge" xmi:id="_CsK6ECA4EeamyPxlwOIubQ" type="4001" element="_Cr7pkSA4EeamyPxlwOIubQ" source="_CsEzcCA4EeamyPxlwOIubQ" target="_CsFagiA4EeamyPxlwOIubQ">
-            <children xmi:type="notation:Node" xmi:id="_CsK6FCA4EeamyPxlwOIubQ" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsK6FSA4EeamyPxlwOIubQ" x="47" y="-1"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_CsLhICA4EeamyPxlwOIubQ" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsLhISA4EeamyPxlwOIubQ" x="2" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_CsLhIiA4EeamyPxlwOIubQ" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsLhIyA4EeamyPxlwOIubQ" x="-3" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_CsK6ESA4EeamyPxlwOIubQ" routing="Rectilinear"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_CsK6EiA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CsK6EyA4EeamyPxlwOIubQ" points="[-15, 0, 30, 60]$[-15, -30, 30, 30]$[-45, -30, 0, 30]$[-45, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsPLgCA4EeamyPxlwOIubQ" id="(0.49586776859504134,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsPLgSA4EeamyPxlwOIubQ" id="(0.88,1.0)"/>
-          </edges>
           <edges xmi:type="notation:Edge" xmi:id="_CsPLgiA4EeamyPxlwOIubQ" type="4001" element="_Cr7plCA4EeamyPxlwOIubQ" source="_Cr-s0yA4EeamyPxlwOIubQ" target="_CsDlUCA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsPykCA4EeamyPxlwOIubQ" type="6001">
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsPykSA4EeamyPxlwOIubQ" y="-10"/>
@@ -494,22 +478,6 @@
             <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CsRAsyA4EeamyPxlwOIubQ" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsS14iA4EeamyPxlwOIubQ" id="(0.49586776859504134,0.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsS14yA4EeamyPxlwOIubQ" id="(0.49586776859504134,1.0)"/>
-          </edges>
-          <edges xmi:type="notation:Edge" xmi:id="_CsS15CA4EeamyPxlwOIubQ" type="4001" element="_Cr7pmiA4EeamyPxlwOIubQ" source="_CsEzcCA4EeamyPxlwOIubQ" target="_CsEzdSA4EeamyPxlwOIubQ">
-            <children xmi:type="notation:Node" xmi:id="_CsTc8CA4EeamyPxlwOIubQ" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsTc8SA4EeamyPxlwOIubQ" x="53" y="1"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_CsTc8iA4EeamyPxlwOIubQ" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsTc8yA4EeamyPxlwOIubQ" x="2" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_CsUEACA4EeamyPxlwOIubQ" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CsUEASA4EeamyPxlwOIubQ" x="-3" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_CsS15SA4EeamyPxlwOIubQ" routing="Rectilinear"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_CsS15iA4EeamyPxlwOIubQ" fontName="Sans" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CsS15yA4EeamyPxlwOIubQ" points="[15, 0, -30, 60]$[15, -30, -30, 30]$[45, -30, 0, 30]$[45, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsUEAiA4EeamyPxlwOIubQ" id="(0.49586776859504134,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsUEAyA4EeamyPxlwOIubQ" id="(0.11904761904761904,1.0)"/>
           </edges>
           <edges xmi:type="notation:Edge" xmi:id="_CsUEBCA4EeamyPxlwOIubQ" type="4001" element="_Cr7pnSA4EeamyPxlwOIubQ" source="_CsEzdSA4EeamyPxlwOIubQ" target="_CsGBkiA4EeamyPxlwOIubQ">
             <children xmi:type="notation:Node" xmi:id="_CsUrECA4EeamyPxlwOIubQ" type="6001">
@@ -543,6 +511,38 @@
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsV5NCA4EeamyPxlwOIubQ" id="(0.88,0.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CsV5NSA4EeamyPxlwOIubQ" id="(0.49586776859504134,1.0)"/>
           </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_2Nry8CWDEeagVKbD6Nyn2w" type="4001" element="_2NNR0CWDEeagVKbD6Nyn2w" source="_CsEzcCA4EeamyPxlwOIubQ" target="_CsEzdSA4EeamyPxlwOIubQ">
+            <children xmi:type="notation:Node" xmi:id="_2OENcCWDEeagVKbD6Nyn2w" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2OENcSWDEeagVKbD6Nyn2w" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_2OFbkCWDEeagVKbD6Nyn2w" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2OFbkSWDEeagVKbD6Nyn2w" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_2OGCoCWDEeagVKbD6Nyn2w" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2OGCoSWDEeagVKbD6Nyn2w" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_2Nry8SWDEeagVKbD6Nyn2w"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_2Nry8iWDEeagVKbD6Nyn2w" fontName="Ubuntu" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2Nry8yWDEeagVKbD6Nyn2w" points="[140, 285, 140, 285]$[230, 195, 230, 195]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2OKUECWDEeagVKbD6Nyn2w" id="(0.49586776859504134,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2OKUESWDEeagVKbD6Nyn2w" id="(0.5,0.5)"/>
+          </edges>
+          <edges xmi:type="notation:Edge" xmi:id="_2OKUEiWDEeagVKbD6Nyn2w" type="4001" element="_2NRjQCWDEeagVKbD6Nyn2w" source="_CsEzcCA4EeamyPxlwOIubQ" target="_CsFagiA4EeamyPxlwOIubQ">
+            <children xmi:type="notation:Node" xmi:id="_2OK7IyWDEeagVKbD6Nyn2w" type="6001">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2OK7JCWDEeagVKbD6Nyn2w" y="-10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_2OK7JSWDEeagVKbD6Nyn2w" type="6002">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2OK7JiWDEeagVKbD6Nyn2w" y="10"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_2OLiMCWDEeagVKbD6Nyn2w" type="6003">
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2OLiMSWDEeagVKbD6Nyn2w" y="10"/>
+            </children>
+            <styles xmi:type="notation:ConnectorStyle" xmi:id="_2OK7ICWDEeagVKbD6Nyn2w"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_2OK7ISWDEeagVKbD6Nyn2w" fontName="Ubuntu" fontHeight="8"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2OK7IiWDEeagVKbD6Nyn2w" points="[140, 285, 140, 285]$[45, 195, 45, 195]"/>
+            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2OLiMiWDEeagVKbD6Nyn2w" id="(0.49586776859504134,0.5)"/>
+            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2OLiMyWDEeagVKbD6Nyn2w" id="(0.496,0.5)"/>
+          </edges>
         </data>
       </ownedAnnotationEntries>
       <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7phSA4EeamyPxlwOIubQ" name="AllInstances &quot;AllMembers&quot;" outgoingEdges="_Cr7plCA4EeamyPxlwOIubQ" width="3" height="3" resizeKind="NSEW">
@@ -567,7 +567,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7piSA4EeamyPxlwOIubQ" name="Filter &quot;SplitByGender&quot;" outgoingEdges="_Cr7pkSA4EeamyPxlwOIubQ _Cr7pmiA4EeamyPxlwOIubQ" incomingEdges="_Cr7plyA4EeamyPxlwOIubQ" width="3" height="3" resizeKind="NSEW">
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7piSA4EeamyPxlwOIubQ" name="Filter &quot;SplitByGender&quot;" outgoingEdges="_2NNR0CWDEeagVKbD6Nyn2w _2NRjQCWDEeagVKbD6Nyn2w" incomingEdges="_Cr7plyA4EeamyPxlwOIubQ" width="3" height="3" resizeKind="NSEW">
         <target xmi:type="df:Filter" href="families2persons.dataflow#SplitByGender"/>
         <semanticElements xmi:type="df:Filter" href="families2persons.dataflow#SplitByGender"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -578,7 +578,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7piyA4EeamyPxlwOIubQ" name="NewInstance &quot;NewMale&quot;" outgoingEdges="_Cr7pnSA4EeamyPxlwOIubQ" incomingEdges="_Cr7pmiA4EeamyPxlwOIubQ" width="3" height="3" resizeKind="NSEW">
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7piyA4EeamyPxlwOIubQ" name="NewInstance &quot;NewMale&quot;" outgoingEdges="_Cr7pnSA4EeamyPxlwOIubQ" incomingEdges="_2NNR0CWDEeagVKbD6Nyn2w" width="3" height="3" resizeKind="NSEW">
         <target xmi:type="df:NewInstance" href="families2persons.dataflow#NewMale"/>
         <semanticElements xmi:type="df:NewInstance" href="families2persons.dataflow#NewMale"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -589,7 +589,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7pjSA4EeamyPxlwOIubQ" name="NewInstance &quot;NewFemale&quot;" outgoingEdges="_Cr7poCA4EeamyPxlwOIubQ" incomingEdges="_Cr7pkSA4EeamyPxlwOIubQ" width="3" height="3" resizeKind="NSEW">
+      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_Cr7pjSA4EeamyPxlwOIubQ" name="NewInstance &quot;NewFemale&quot;" outgoingEdges="_Cr7poCA4EeamyPxlwOIubQ" incomingEdges="_2NRjQCWDEeagVKbD6Nyn2w" width="3" height="3" resizeKind="NSEW">
         <target xmi:type="df:NewInstance" href="families2persons.dataflow#NewFemale"/>
         <semanticElements xmi:type="df:NewInstance" href="families2persons.dataflow#NewFemale"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -611,15 +611,6 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_Cr7pkSA4EeamyPxlwOIubQ" name="rejected" sourceNode="_Cr7piSA4EeamyPxlwOIubQ" targetNode="_Cr7pjSA4EeamyPxlwOIubQ">
-        <target xmi:type="df:Filter" href="families2persons.dataflow#SplitByGender"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Cr7pkiA4EeamyPxlwOIubQ" size="2" routingStyle="manhattan" strokeColor="156,12,12">
-          <customFeatures>routingStyle</customFeatures>
-          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']/@style"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_Cr7pkyA4EeamyPxlwOIubQ" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']"/>
-      </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_Cr7plCA4EeamyPxlwOIubQ" sourceNode="_Cr7phSA4EeamyPxlwOIubQ" targetNode="_Cr7phyA4EeamyPxlwOIubQ">
         <target xmi:type="df:AllInstances" href="families2persons.dataflow#AllMembers"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Cr7plSA4EeamyPxlwOIubQ" size="2" strokeColor="0,0,0">
@@ -633,14 +624,6 @@
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Cr7pmCA4EeamyPxlwOIubQ" size="2" strokeColor="0,0,0">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_Cr7pmSA4EeamyPxlwOIubQ" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_Cr7pmiA4EeamyPxlwOIubQ" name="selected" sourceNode="_Cr7piSA4EeamyPxlwOIubQ" targetNode="_Cr7piyA4EeamyPxlwOIubQ">
-        <target xmi:type="df:Filter" href="families2persons.dataflow#SplitByGender"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Cr7pmyA4EeamyPxlwOIubQ" description="_Cr7pgyA4EeamyPxlwOIubQ" size="2" routingStyle="manhattan" strokeColor="77,137,20">
-          <customFeatures>routingStyle</customFeatures>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_Cr7pnCA4EeamyPxlwOIubQ" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
       </ownedDiagramElements>
@@ -659,6 +642,21 @@
           <customFeatures>routingStyle</customFeatures>
           <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_Cr7poiA4EeamyPxlwOIubQ" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_2NNR0CWDEeagVKbD6Nyn2w" name="rejected" sourceNode="_Cr7piSA4EeamyPxlwOIubQ" targetNode="_Cr7piyA4EeamyPxlwOIubQ">
+        <target xmi:type="df:Filter" href="families2persons.dataflow#SplitByGender"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_2NN44CWDEeagVKbD6Nyn2w" size="2" strokeColor="156,12,12">
+          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']/@style"/>
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_2NN44SWDEeagVKbD6Nyn2w" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_2NRjQCWDEeagVKbD6Nyn2w" name="selected" sourceNode="_Cr7piSA4EeamyPxlwOIubQ" targetNode="_Cr7pjSA4EeamyPxlwOIubQ">
+        <target xmi:type="df:Filter" href="families2persons.dataflow#SplitByGender"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_2NRjQSWDEeagVKbD6Nyn2w" description="_Cr7pgyA4EeamyPxlwOIubQ" size="2" strokeColor="77,137,20">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_2NRjQiWDEeagVKbD6Nyn2w" showIcon="false"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
       </ownedDiagramElements>

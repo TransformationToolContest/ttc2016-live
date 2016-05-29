@@ -12,8 +12,8 @@ Evaluate ComputeFullName {
 
 Filter SplitByGender {
 	filterBy member.familyMother or member.familyDaughter
-	target NewMale
-	rejectTarget NewFemale
+	target NewFemale
+	rejectTarget NewMale
 }
 
 NewInstance NewMale {
