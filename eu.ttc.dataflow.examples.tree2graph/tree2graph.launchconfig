@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lc:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:lc="http://transformation-tool-contest.eu/2016/launch">
+  <dataflow location="transformation/tree2graph.dataflow"/>
+  <models name="Tree" location="input/tree.model">
+    <metamodels location="metamodels/Tree.ecore"/>
+  </models>
+  <models name="Graph" location="output/graph.model" readOnLoad="false" storeOnDisposal="true">
+    <metamodels location="metamodels/Graph.ecore"/>
+  </models>
+</lc:Configuration>

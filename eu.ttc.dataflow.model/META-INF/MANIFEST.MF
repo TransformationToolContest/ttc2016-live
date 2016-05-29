@@ -7,9 +7,12 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: dataflow,
- dataflow.impl,
- dataflow.util
+Export-Package: eu.ttc.dataflow.model.dataflow,
+ eu.ttc.dataflow.model.dataflow.impl,
+ eu.ttc.dataflow.model.dataflow.util,
+ eu.ttc.dataflow.model.launchConfiguration,
+ eu.ttc.dataflow.model.launchConfiguration.impl,
+ eu.ttc.dataflow.model.launchConfiguration.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

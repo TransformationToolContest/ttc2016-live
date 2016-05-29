@@ -10,8 +10,16 @@
       <!-- @generated dataflow -->
       <package
             uri="http://transformation-tool-contest.eu/2016/dataflow"
-            class="dataflow.DataflowPackage"
+            class="eu.ttc.dataflow.model.dataflow.DataflowPackage"
             genModel="model/dataflow.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated launchConfiguration -->
+      <package
+            uri="http://transformation-tool-contest.eu/2016/launch"
+            class="eu.ttc.dataflow.model.launchConfiguration.LaunchConfigPackage"
+            genModel="model/launchConfiguration.genmodel"/>
    </extension>
 
 </plugin>

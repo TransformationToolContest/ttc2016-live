@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SampleBatchInterpreter
+Bundle-SymbolicName: eu.ttc.dataflow.interpreter.batch
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: eu.ttc.dataflow.model,
+ eu.ttc.dataflow.xtext,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.xtext,
+ org.apache.log4j,
+ org.eclipse.epsilon.eol.engine,
+ org.eclipse.epsilon.emc.emf,
+ org.eclipse.xtext.xbase,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.core.runtime

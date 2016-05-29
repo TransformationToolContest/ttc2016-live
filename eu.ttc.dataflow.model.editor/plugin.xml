@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated launchConfiguration -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="eu.ttc.dataflow.model.launchConfiguration.presentation.LaunchConfigModelWizardID"
+            name="%_UI_LaunchConfigModelWizard_label"
+            class="eu.ttc.dataflow.model.launchConfiguration.presentation.LaunchConfigModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LaunchConfigModelFile.gif">
+         <description>%_UI_LaunchConfigModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated launchConfiguration -->
+      <editor
+            id="eu.ttc.dataflow.model.launchConfiguration.presentation.LaunchConfigEditorID"
+            name="%_UI_LaunchConfigEditor_label"
+            icon="icons/full/obj16/LaunchConfigModelFile.gif"
+            extensions="launchconfig"
+            class="eu.ttc.dataflow.model.launchConfiguration.presentation.LaunchConfigEditor"
+            contributorClass="eu.ttc.dataflow.model.launchConfiguration.presentation.LaunchConfigActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

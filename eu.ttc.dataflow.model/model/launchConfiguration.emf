@@ -1,0 +1,23 @@
+@namespace(uri="http://transformation-tool-contest.eu/2016/launch", prefix="lc")
+package launchConfiguration;
+
+class Configuration {
+	val Dataflow dataflow;
+	val Model[*] models;
+}
+
+class Dataflow {
+	attr String location;
+}
+
+class Model {
+	attr String name;
+	attr String location;
+	val Metamodel[*] metamodels;
+	attr boolean readOnLoad = true;
+	attr boolean storeOnDisposal = false;
+}
+
+class Metamodel {
+	attr String location;
+}
