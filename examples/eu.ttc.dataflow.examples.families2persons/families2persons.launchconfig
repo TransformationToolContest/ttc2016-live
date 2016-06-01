@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lc:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:lc="http://transformation-tool-contest.eu/2016/launch">
+  <dataflow location="transformation/families2persons.dataflow"/>
+  <models name="Families" location="input/families.model">
+    <metamodels location="metamodels/Families.ecore"/>
+  </models>
+  <models name="Persons" location="output/persons.model" readOnLoad="false" storeOnDisposal="true">
+    <metamodels location="metamodels/Persons.ecore"/>
+  </models>
+</lc:Configuration>

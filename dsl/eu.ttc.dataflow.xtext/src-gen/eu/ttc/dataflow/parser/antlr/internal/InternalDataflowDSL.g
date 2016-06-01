@@ -479,9 +479,9 @@ ruleNewInstance returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getNewInstanceAccess().getKeyOrExpressionParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getNewInstanceAccess().getKeyConditionalExpressionParserRuleCall_4_1_0());
 					}
-					lv_key_6_0=ruleOrExpression
+					lv_key_6_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getNewInstanceRule());
@@ -490,7 +490,7 @@ ruleNewInstance returns [EObject current=null]
 							$current,
 							"key",
 							lv_key_6_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -644,9 +644,9 @@ ruleFilter returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFilterAccess().getFilterByOrExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getFilterAccess().getFilterByConditionalExpressionParserRuleCall_3_1_0());
 					}
-					lv_filterBy_4_0=ruleOrExpression
+					lv_filterBy_4_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFilterRule());
@@ -655,7 +655,7 @@ ruleFilter returns [EObject current=null]
 							$current,
 							"filterBy",
 							lv_filterBy_4_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -843,9 +843,9 @@ ruleSort returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSortAccess().getSortByOrExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getSortAccess().getSortByConditionalExpressionParserRuleCall_3_1_0());
 					}
-					lv_sortBy_4_0=ruleOrExpression
+					lv_sortBy_4_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSortRule());
@@ -854,7 +854,7 @@ ruleSort returns [EObject current=null]
 							$current,
 							"sortBy",
 							lv_sortBy_4_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1168,9 +1168,9 @@ ruleSetFeature returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSetFeatureAccess().getValueOrExpressionParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getSetFeatureAccess().getValueConditionalExpressionParserRuleCall_4_1_0());
 					}
-					lv_value_6_0=ruleOrExpression
+					lv_value_6_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSetFeatureRule());
@@ -1179,7 +1179,7 @@ ruleSetFeature returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_6_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1426,9 +1426,9 @@ ruleAddToContainer returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAddToContainerAccess().getValueOrExpressionParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getAddToContainerAccess().getValueConditionalExpressionParserRuleCall_4_1_0());
 					}
-					lv_value_6_0=ruleOrExpression
+					lv_value_6_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddToContainerRule());
@@ -1437,7 +1437,7 @@ ruleAddToContainer returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_6_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1451,9 +1451,9 @@ ruleAddToContainer returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAddToContainerAccess().getPositionOrExpressionParserRuleCall_5_1_0());
+						newCompositeNode(grammarAccess.getAddToContainerAccess().getPositionConditionalExpressionParserRuleCall_5_1_0());
 					}
-					lv_position_8_0=ruleOrExpression
+					lv_position_8_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddToContainerRule());
@@ -1462,7 +1462,7 @@ ruleAddToContainer returns [EObject current=null]
 							$current,
 							"position",
 							lv_position_8_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1561,9 +1561,57 @@ ruleForEach returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_5='target'
+			otherlv_5='itemField'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getForEachAccess().getTargetKeyword_4_0());
+				newLeafNode(otherlv_5, grammarAccess.getForEachAccess().getItemFieldKeyword_4_0());
+			}
+			(
+				(
+					lv_itemField_6_0=RULE_ID
+					{
+						newLeafNode(lv_itemField_6_0, grammarAccess.getForEachAccess().getItemFieldIDTerminalRuleCall_4_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getForEachRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"itemField",
+							lv_itemField_6_0,
+							"org.eclipse.xtext.common.Terminals.ID");
+					}
+				)
+			)
+		)?
+		(
+			otherlv_7='positionField'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getForEachAccess().getPositionFieldKeyword_5_0());
+			}
+			(
+				(
+					lv_positionField_8_0=RULE_ID
+					{
+						newLeafNode(lv_positionField_8_0, grammarAccess.getForEachAccess().getPositionFieldIDTerminalRuleCall_5_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getForEachRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"positionField",
+							lv_positionField_8_0,
+							"org.eclipse.xtext.common.Terminals.ID");
+					}
+				)
+			)
+		)?
+		(
+			otherlv_9='target'
+			{
+				newLeafNode(otherlv_9, grammarAccess.getForEachAccess().getTargetKeyword_6_0());
 			}
 			(
 				(
@@ -1572,16 +1620,16 @@ ruleForEach returns [EObject current=null]
 							$current = createModelElement(grammarAccess.getForEachRule());
 						}
 					}
-					otherlv_6=RULE_ID
+					otherlv_10=RULE_ID
 					{
-						newLeafNode(otherlv_6, grammarAccess.getForEachAccess().getTargetElementCrossReference_4_1_0());
+						newLeafNode(otherlv_10, grammarAccess.getForEachAccess().getTargetElementCrossReference_6_1_0());
 					}
 				)
 			)
 		)?
-		otherlv_7='}'
+		otherlv_11='}'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getForEachAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_11, grammarAccess.getForEachAccess().getRightCurlyBracketKeyword_7());
 		}
 	)
 ;
@@ -1660,9 +1708,9 @@ ruleCollectBy returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getCollectByAccess().getCollectByOrExpressionParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getCollectByAccess().getCollectByConditionalExpressionParserRuleCall_4_1_0());
 					}
-					lv_collectBy_6_0=ruleOrExpression
+					lv_collectBy_6_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getCollectByRule());
@@ -1671,7 +1719,7 @@ ruleCollectBy returns [EObject current=null]
 							$current,
 							"collectBy",
 							lv_collectBy_6_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1777,9 +1825,9 @@ ruleEvaluate returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEvaluateAccess().getExpressionOrExpressionParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getEvaluateAccess().getExpressionConditionalExpressionParserRuleCall_4_1_0());
 					}
-					lv_expression_6_0=ruleOrExpression
+					lv_expression_6_0=ruleConditionalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEvaluateRule());
@@ -1788,7 +1836,7 @@ ruleEvaluate returns [EObject current=null]
 							$current,
 							"expression",
 							lv_expression_6_0,
-							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+							"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1816,6 +1864,101 @@ ruleEvaluate returns [EObject current=null]
 		otherlv_9='}'
 		{
 			newLeafNode(otherlv_9, grammarAccess.getEvaluateAccess().getRightCurlyBracketKeyword_6());
+		}
+	)
+;
+
+// Entry rule entryRuleConditionalExpression
+entryRuleConditionalExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConditionalExpressionRule()); }
+	iv_ruleConditionalExpression=ruleConditionalExpression
+	{ $current=$iv_ruleConditionalExpression.current; }
+	EOF;
+
+// Rule ConditionalExpression
+ruleConditionalExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='if'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getConditionalExpressionAccess().getIfKeyword_0_0());
+			}
+			{
+				newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOrExpressionParserRuleCall_0_1());
+			}
+			this_OrExpression_1=ruleOrExpression
+			{
+				$current = $this_OrExpression_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			(
+				{
+					$current = forceCreateModelElementAndSet(
+						grammarAccess.getConditionalExpressionAccess().getConditionalExpressionConditionExpressionAction_0_2(),
+						$current);
+				}
+			)
+			otherlv_3='then'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getConditionalExpressionAccess().getThenKeyword_0_3());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getThenExpressionOrExpressionParserRuleCall_0_4_0());
+					}
+					lv_thenExpression_4_0=ruleOrExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
+						}
+						set(
+							$current,
+							"thenExpression",
+							lv_thenExpression_4_0,
+							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_5='else'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getConditionalExpressionAccess().getElseKeyword_0_5());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getElseExpressionOrExpressionParserRuleCall_0_6_0());
+					}
+					lv_elseExpression_6_0=ruleOrExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
+						}
+						set(
+							$current,
+							"elseExpression",
+							lv_elseExpression_6_0,
+							"eu.ttc.dataflow.DataflowDSL.OrExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		{
+			newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOrExpressionParserRuleCall_1());
+		}
+		this_OrExpression_7=ruleOrExpression
+		{
+			$current = $this_OrExpression_7.current;
+			afterParserOrEnumRuleCall();
 		}
 	)
 ;

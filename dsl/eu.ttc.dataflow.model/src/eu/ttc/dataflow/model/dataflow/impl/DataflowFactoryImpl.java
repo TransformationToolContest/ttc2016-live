@@ -79,6 +79,7 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 			case DataflowPackage.UNARY_OPERATION: return createUnaryOperation();
 			case DataflowPackage.BINARY_OPERATION: return createBinaryOperation();
 			case DataflowPackage.FEATURE_CALL: return createFeatureCall();
+			case DataflowPackage.CONDITIONAL_EXPRESSION: return createConditionalExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -340,6 +341,16 @@ public class DataflowFactoryImpl extends EFactoryImpl implements DataflowFactory
 	public FeatureCall createFeatureCall() {
 		FeatureCallImpl featureCall = new FeatureCallImpl();
 		return featureCall;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionalExpression createConditionalExpression() {
+		ConditionalExpressionImpl conditionalExpression = new ConditionalExpressionImpl();
+		return conditionalExpression;
 	}
 
 	/**

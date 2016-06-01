@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lc:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:lc="http://transformation-tool-contest.eu/2016/launch">
+  <dataflow location="transformation/flowchart2html-conditional.dataflow"/>
+  <models name="Flowchart" location="input/wakeup.model">
+    <metamodels location="metamodels/Flowchart.ecore"/>
+  </models>
+  <models name="HTML" location="output/html.model" readOnLoad="false" storeOnDisposal="true">
+    <metamodels location="metamodels/HTML.ecore"/>
+  </models>
+</lc:Configuration>

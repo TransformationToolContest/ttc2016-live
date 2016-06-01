@@ -63,7 +63,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="editDescription" inputLabelExpression="feature:description">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editDescription" inputLabelExpression="feature:name">
             <mask mask="{0}"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:SetValue" featureName="description" valueExpression="var:0"/>

@@ -72,6 +72,14 @@ public class DataflowDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('*
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'if' (ambiguity) field=ID
+	 *     (rule start) 'if' (ambiguity) operator=UnaryOperator
+	 *     (rule start) 'if' (ambiguity) value=EBoolean
+	 *     (rule start) 'if' (ambiguity) value=EDouble
+	 *     (rule start) 'if' (ambiguity) value=EInt
+	 *     (rule start) 'if' (ambiguity) value=STRING
+	 *     (rule start) 'if' (ambiguity) {BinaryOperation.leftExpression=}
+	 *     (rule start) 'if' (ambiguity) {FeatureCall.targetExpression=}
 	 *     (rule start) (ambiguity) field=ID
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) value=EBoolean

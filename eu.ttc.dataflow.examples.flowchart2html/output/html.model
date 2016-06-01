@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HTML="HTML">
+  <HTML:DIV>
+    <children xsi:type="HTML:H1" value="Wake up"/>
+    <children xsi:type="HTML:A" value="Next steps" ahref="Is it really too early?"/>
+  </HTML:DIV>
+  <HTML:DIV>
+    <children xsi:type="HTML:H1" value="Sleep"/>
+    <children xsi:type="HTML:A" value="Next steps" ahref="Wake up"/>
+  </HTML:DIV>
+  <HTML:DIV>
+    <children xsi:type="HTML:H1" value="Get up"/>
+  </HTML:DIV>
+  <HTML:DIV>
+    <children xsi:type="HTML:H1" value="begin"/>
+    <children xsi:type="HTML:A" value="Next steps" ahref="Wake up"/>
+  </HTML:DIV>
+  <HTML:DIV>
+    <children xsi:type="HTML:H1" value="Is it really too early?"/>
+    <children xsi:type="HTML:A" value="Sleep" ahref="Sleep"/>
+    <children xsi:type="HTML:A" value="Get up" ahref="Get up"/>
+  </HTML:DIV>
+</xmi:XMI>

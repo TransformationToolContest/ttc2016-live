@@ -164,6 +164,10 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureCallAdapter();
 			}
 			@Override
+			public Adapter caseConditionalExpression(ConditionalExpression object) {
+				return createConditionalExpressionAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -516,6 +520,20 @@ public class DataflowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureCallAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link eu.ttc.dataflow.model.dataflow.ConditionalExpression <em>Conditional Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see eu.ttc.dataflow.model.dataflow.ConditionalExpression
+	 * @generated
+	 */
+	public Adapter createConditionalExpressionAdapter() {
 		return null;
 	}
 

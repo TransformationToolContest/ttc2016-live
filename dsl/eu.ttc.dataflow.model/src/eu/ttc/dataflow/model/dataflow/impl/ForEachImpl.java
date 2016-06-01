@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link eu.ttc.dataflow.model.dataflow.impl.ForEachImpl#getListField <em>List Field</em>}</li>
+ *   <li>{@link eu.ttc.dataflow.model.dataflow.impl.ForEachImpl#getItemField <em>Item Field</em>}</li>
  *   <li>{@link eu.ttc.dataflow.model.dataflow.impl.ForEachImpl#getPositionField <em>Position Field</em>}</li>
  * </ul>
  *
@@ -45,6 +46,26 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 	 * @ordered
 	 */
 	protected String listField = LIST_FIELD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getItemField() <em>Item Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemField()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ITEM_FIELD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getItemField() <em>Item Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemField()
+	 * @generated
+	 * @ordered
+	 */
+	protected String itemField = ITEM_FIELD_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPositionField() <em>Position Field</em>}' attribute.
@@ -111,6 +132,27 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getItemField() {
+		return itemField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setItemField(String newItemField) {
+		String oldItemField = itemField;
+		itemField = newItemField;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.FOR_EACH__ITEM_FIELD, oldItemField, itemField));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getPositionField() {
 		return positionField;
 	}
@@ -137,6 +179,8 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 		switch (featureID) {
 			case DataflowPackage.FOR_EACH__LIST_FIELD:
 				return getListField();
+			case DataflowPackage.FOR_EACH__ITEM_FIELD:
+				return getItemField();
 			case DataflowPackage.FOR_EACH__POSITION_FIELD:
 				return getPositionField();
 		}
@@ -153,6 +197,9 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 		switch (featureID) {
 			case DataflowPackage.FOR_EACH__LIST_FIELD:
 				setListField((String)newValue);
+				return;
+			case DataflowPackage.FOR_EACH__ITEM_FIELD:
+				setItemField((String)newValue);
 				return;
 			case DataflowPackage.FOR_EACH__POSITION_FIELD:
 				setPositionField((String)newValue);
@@ -172,6 +219,9 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 			case DataflowPackage.FOR_EACH__LIST_FIELD:
 				setListField(LIST_FIELD_EDEFAULT);
 				return;
+			case DataflowPackage.FOR_EACH__ITEM_FIELD:
+				setItemField(ITEM_FIELD_EDEFAULT);
+				return;
 			case DataflowPackage.FOR_EACH__POSITION_FIELD:
 				setPositionField(POSITION_FIELD_EDEFAULT);
 				return;
@@ -189,6 +239,8 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 		switch (featureID) {
 			case DataflowPackage.FOR_EACH__LIST_FIELD:
 				return LIST_FIELD_EDEFAULT == null ? listField != null : !LIST_FIELD_EDEFAULT.equals(listField);
+			case DataflowPackage.FOR_EACH__ITEM_FIELD:
+				return ITEM_FIELD_EDEFAULT == null ? itemField != null : !ITEM_FIELD_EDEFAULT.equals(itemField);
 			case DataflowPackage.FOR_EACH__POSITION_FIELD:
 				return POSITION_FIELD_EDEFAULT == null ? positionField != null : !POSITION_FIELD_EDEFAULT.equals(positionField);
 		}
@@ -207,6 +259,8 @@ public class ForEachImpl extends ElementImpl implements ForEach {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (listField: ");
 		result.append(listField);
+		result.append(", itemField: ");
+		result.append(itemField);
 		result.append(", positionField: ");
 		result.append(positionField);
 		result.append(')');

@@ -100,6 +100,7 @@ class AddToContainer extends Element {
 // Splits a field with a collection into rows (one per element in each collection) + position
 class ForEach extends Element {
 	attr String[1] listField;
+	attr String[1] itemField;
 	attr String[?] positionField;
 }
 
@@ -154,6 +155,12 @@ class FeatureCall extends Expression {
 	val Expression targetExpression;
 	attr String feature;
 	val Expression[*] parameters;
+}
+
+class ConditionalExpression extends Expression {
+	val Expression conditionExpression;
+	val Expression thenExpression;
+	val Expression elseExpression;
 }
 
 enum UnaryOperator {

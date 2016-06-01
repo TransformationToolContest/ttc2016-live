@@ -36,6 +36,7 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getElementAccess().getAlternatives(), "rule__Element__Alternatives");
+					put(grammarAccess.getConditionalExpressionAccess().getAlternatives(), "rule__ConditionalExpression__Alternatives");
 					put(grammarAccess.getUnaryExpressionAccess().getAlternatives(), "rule__UnaryExpression__Alternatives");
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 					put(grammarAccess.getEBooleanAccess().getAlternatives(), "rule__EBoolean__Alternatives");
@@ -94,6 +95,8 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getForEachAccess().getGroup(), "rule__ForEach__Group__0");
 					put(grammarAccess.getForEachAccess().getGroup_3(), "rule__ForEach__Group_3__0");
 					put(grammarAccess.getForEachAccess().getGroup_4(), "rule__ForEach__Group_4__0");
+					put(grammarAccess.getForEachAccess().getGroup_5(), "rule__ForEach__Group_5__0");
+					put(grammarAccess.getForEachAccess().getGroup_6(), "rule__ForEach__Group_6__0");
 					put(grammarAccess.getCollectByAccess().getGroup(), "rule__CollectBy__Group__0");
 					put(grammarAccess.getCollectByAccess().getGroup_3(), "rule__CollectBy__Group_3__0");
 					put(grammarAccess.getCollectByAccess().getGroup_4(), "rule__CollectBy__Group_4__0");
@@ -102,6 +105,7 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEvaluateAccess().getGroup_3(), "rule__Evaluate__Group_3__0");
 					put(grammarAccess.getEvaluateAccess().getGroup_4(), "rule__Evaluate__Group_4__0");
 					put(grammarAccess.getEvaluateAccess().getGroup_5(), "rule__Evaluate__Group_5__0");
+					put(grammarAccess.getConditionalExpressionAccess().getGroup_0(), "rule__ConditionalExpression__Group_0__0");
 					put(grammarAccess.getOrExpressionAccess().getGroup(), "rule__OrExpression__Group__0");
 					put(grammarAccess.getOrExpressionAccess().getGroup_1(), "rule__OrExpression__Group_1__0");
 					put(grammarAccess.getAndExpressionAccess().getGroup(), "rule__AndExpression__Group__0");
@@ -175,7 +179,9 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAddToContainerAccess().getTargetAssignment_6_1(), "rule__AddToContainer__TargetAssignment_6_1");
 					put(grammarAccess.getForEachAccess().getNameAssignment_1(), "rule__ForEach__NameAssignment_1");
 					put(grammarAccess.getForEachAccess().getListFieldAssignment_3_1(), "rule__ForEach__ListFieldAssignment_3_1");
-					put(grammarAccess.getForEachAccess().getTargetAssignment_4_1(), "rule__ForEach__TargetAssignment_4_1");
+					put(grammarAccess.getForEachAccess().getItemFieldAssignment_4_1(), "rule__ForEach__ItemFieldAssignment_4_1");
+					put(grammarAccess.getForEachAccess().getPositionFieldAssignment_5_1(), "rule__ForEach__PositionFieldAssignment_5_1");
+					put(grammarAccess.getForEachAccess().getTargetAssignment_6_1(), "rule__ForEach__TargetAssignment_6_1");
 					put(grammarAccess.getCollectByAccess().getNameAssignment_1(), "rule__CollectBy__NameAssignment_1");
 					put(grammarAccess.getCollectByAccess().getElementFieldAssignment_3_1(), "rule__CollectBy__ElementFieldAssignment_3_1");
 					put(grammarAccess.getCollectByAccess().getCollectByAssignment_4_1(), "rule__CollectBy__CollectByAssignment_4_1");
@@ -184,6 +190,8 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEvaluateAccess().getFieldAssignment_3_1(), "rule__Evaluate__FieldAssignment_3_1");
 					put(grammarAccess.getEvaluateAccess().getExpressionAssignment_4_1(), "rule__Evaluate__ExpressionAssignment_4_1");
 					put(grammarAccess.getEvaluateAccess().getTargetAssignment_5_1(), "rule__Evaluate__TargetAssignment_5_1");
+					put(grammarAccess.getConditionalExpressionAccess().getThenExpressionAssignment_0_4(), "rule__ConditionalExpression__ThenExpressionAssignment_0_4");
+					put(grammarAccess.getConditionalExpressionAccess().getElseExpressionAssignment_0_6(), "rule__ConditionalExpression__ElseExpressionAssignment_0_6");
 					put(grammarAccess.getOrExpressionAccess().getOperatorAssignment_1_1(), "rule__OrExpression__OperatorAssignment_1_1");
 					put(grammarAccess.getOrExpressionAccess().getRightExpressionAssignment_1_2(), "rule__OrExpression__RightExpressionAssignment_1_2");
 					put(grammarAccess.getAndExpressionAccess().getOperatorAssignment_1_1(), "rule__AndExpression__OperatorAssignment_1_1");

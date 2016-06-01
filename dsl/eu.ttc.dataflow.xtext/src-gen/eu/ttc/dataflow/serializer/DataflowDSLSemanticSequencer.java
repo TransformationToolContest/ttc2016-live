@@ -9,6 +9,7 @@ import eu.ttc.dataflow.model.dataflow.AllInstances;
 import eu.ttc.dataflow.model.dataflow.BinaryOperation;
 import eu.ttc.dataflow.model.dataflow.BooleanLiteral;
 import eu.ttc.dataflow.model.dataflow.CollectBy;
+import eu.ttc.dataflow.model.dataflow.ConditionalExpression;
 import eu.ttc.dataflow.model.dataflow.Copy;
 import eu.ttc.dataflow.model.dataflow.DataflowPackage;
 import eu.ttc.dataflow.model.dataflow.Evaluate;
@@ -67,6 +68,9 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 				return; 
 			case DataflowPackage.COLLECT_BY:
 				sequence_CollectBy(context, (CollectBy) semanticObject); 
+				return; 
+			case DataflowPackage.CONDITIONAL_EXPRESSION:
+				sequence_ConditionalExpression(context, (ConditionalExpression) semanticObject); 
 				return; 
 			case DataflowPackage.COPY:
 				sequence_Copy(context, (Copy) semanticObject); 
@@ -130,7 +134,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     AddToContainer returns AddToContainer
 	 *
 	 * Constraint:
-	 *     (name=ID listField=ID? value=OrExpression? position=OrExpression? target=[Element|ID]?)
+	 *     (name=ID listField=ID? value=ConditionalExpression? position=ConditionalExpression? target=[Element|ID]?)
 	 */
 	protected void sequence_AddToContainer(ISerializationContext context, AddToContainer semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -139,6 +143,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns BinaryOperation
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns BinaryOperation
 	 *     OrExpression returns BinaryOperation
 	 *     OrExpression.BinaryOperation_1_0 returns BinaryOperation
 	 *     AndExpression returns BinaryOperation
@@ -190,10 +196,34 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     CollectBy returns CollectBy
 	 *
 	 * Constraint:
-	 *     (name=ID elementField=ID? collectBy=OrExpression? target=[Element|ID]?)
+	 *     (name=ID elementField=ID? collectBy=ConditionalExpression? target=[Element|ID]?)
 	 */
 	protected void sequence_CollectBy(ISerializationContext context, CollectBy semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConditionalExpression returns ConditionalExpression
+	 *
+	 * Constraint:
+	 *     (conditionExpression=ConditionalExpression_ConditionalExpression_0_2 thenExpression=OrExpression elseExpression=OrExpression)
+	 */
+	protected void sequence_ConditionalExpression(ISerializationContext context, ConditionalExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DataflowPackage.Literals.CONDITIONAL_EXPRESSION__CONDITION_EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DataflowPackage.Literals.CONDITIONAL_EXPRESSION__CONDITION_EXPRESSION));
+			if (transientValues.isValueTransient(semanticObject, DataflowPackage.Literals.CONDITIONAL_EXPRESSION__THEN_EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DataflowPackage.Literals.CONDITIONAL_EXPRESSION__THEN_EXPRESSION));
+			if (transientValues.isValueTransient(semanticObject, DataflowPackage.Literals.CONDITIONAL_EXPRESSION__ELSE_EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DataflowPackage.Literals.CONDITIONAL_EXPRESSION__ELSE_EXPRESSION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getConditionalExpressionConditionExpressionAction_0_2(), semanticObject.getConditionExpression());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getThenExpressionOrExpressionParserRuleCall_0_4_0(), semanticObject.getThenExpression());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getElseExpressionOrExpressionParserRuleCall_0_6_0(), semanticObject.getElseExpression());
+		feeder.finish();
 	}
 	
 	
@@ -216,7 +246,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Evaluate returns Evaluate
 	 *
 	 * Constraint:
-	 *     (name=ID field=ID? expression=OrExpression? target=[Element|ID]?)
+	 *     (name=ID field=ID? expression=ConditionalExpression? target=[Element|ID]?)
 	 */
 	protected void sequence_Evaluate(ISerializationContext context, Evaluate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -225,6 +255,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns FeatureCall
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns FeatureCall
 	 *     OrExpression returns FeatureCall
 	 *     OrExpression.BinaryOperation_1_0 returns FeatureCall
 	 *     AndExpression returns FeatureCall
@@ -256,7 +288,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Filter returns Filter
 	 *
 	 * Constraint:
-	 *     (name=ID filterBy=OrExpression? target=[Element|ID]? rejectTarget=[Element|ID]?)
+	 *     (name=ID filterBy=ConditionalExpression? target=[Element|ID]? rejectTarget=[Element|ID]?)
 	 */
 	protected void sequence_Filter(ISerializationContext context, Filter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -269,7 +301,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     ForEach returns ForEach
 	 *
 	 * Constraint:
-	 *     (name=ID listField=ID? target=[Element|ID]?)
+	 *     (name=ID listField=ID? itemField=ID? positionField=ID? target=[Element|ID]?)
 	 */
 	protected void sequence_ForEach(ISerializationContext context, ForEach semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -320,7 +352,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     NewInstance returns NewInstance
 	 *
 	 * Constraint:
-	 *     (name=ID instanceField=ID? key=OrExpression? (model=ID? packageName=ID? typeName=ID)? target=[Element|ID]?)
+	 *     (name=ID instanceField=ID? key=ConditionalExpression? (model=ID? packageName=ID? typeName=ID)? target=[Element|ID]?)
 	 */
 	protected void sequence_NewInstance(ISerializationContext context, NewInstance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -329,6 +361,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns BooleanLiteral
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns BooleanLiteral
 	 *     OrExpression returns BooleanLiteral
 	 *     OrExpression.BinaryOperation_1_0 returns BooleanLiteral
 	 *     AndExpression returns BooleanLiteral
@@ -362,6 +396,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns FieldReference
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns FieldReference
 	 *     OrExpression returns FieldReference
 	 *     OrExpression.BinaryOperation_1_0 returns FieldReference
 	 *     AndExpression returns FieldReference
@@ -395,6 +431,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns IntegerLiteral
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns IntegerLiteral
 	 *     OrExpression returns IntegerLiteral
 	 *     OrExpression.BinaryOperation_1_0 returns IntegerLiteral
 	 *     AndExpression returns IntegerLiteral
@@ -428,6 +466,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns RealLiteral
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns RealLiteral
 	 *     OrExpression returns RealLiteral
 	 *     OrExpression.BinaryOperation_1_0 returns RealLiteral
 	 *     AndExpression returns RealLiteral
@@ -461,6 +501,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns StringLiteral
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns StringLiteral
 	 *     OrExpression returns StringLiteral
 	 *     OrExpression.BinaryOperation_1_0 returns StringLiteral
 	 *     AndExpression returns StringLiteral
@@ -511,7 +553,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     SetFeature returns SetFeature
 	 *
 	 * Constraint:
-	 *     (name=ID objectField=ID? value=OrExpression? feature=ID? target=[Element|ID]?)
+	 *     (name=ID objectField=ID? value=ConditionalExpression? feature=ID? target=[Element|ID]?)
 	 */
 	protected void sequence_SetFeature(ISerializationContext context, SetFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -524,7 +566,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Sort returns Sort
 	 *
 	 * Constraint:
-	 *     (name=ID sortBy=OrExpression? target=[Element|ID]?)
+	 *     (name=ID sortBy=ConditionalExpression? target=[Element|ID]?)
 	 */
 	protected void sequence_Sort(ISerializationContext context, Sort semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -533,6 +575,8 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Contexts:
+	 *     ConditionalExpression returns UnaryOperation
+	 *     ConditionalExpression.ConditionalExpression_0_2 returns UnaryOperation
 	 *     OrExpression returns UnaryOperation
 	 *     OrExpression.BinaryOperation_1_0 returns UnaryOperation
 	 *     AndExpression returns UnaryOperation

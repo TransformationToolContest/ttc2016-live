@@ -854,13 +854,22 @@ public interface DataflowPackage extends EPackage {
 	int FOR_EACH__LIST_FIELD = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Item Field</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH__ITEM_FIELD = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Position Field</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_EACH__POSITION_FIELD = ELEMENT_FEATURE_COUNT + 1;
+	int FOR_EACH__POSITION_FIELD = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>For Each</em>' class.
@@ -869,7 +878,7 @@ public interface DataflowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_EACH_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int FOR_EACH_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>For Each</em>' class.
@@ -1378,6 +1387,61 @@ public interface DataflowPackage extends EPackage {
 	int FEATURE_CALL_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link eu.ttc.dataflow.model.dataflow.impl.ConditionalExpressionImpl <em>Conditional Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see eu.ttc.dataflow.model.dataflow.impl.ConditionalExpressionImpl
+	 * @see eu.ttc.dataflow.model.dataflow.impl.DataflowPackageImpl#getConditionalExpression()
+	 * @generated
+	 */
+	int CONDITIONAL_EXPRESSION = 24;
+
+	/**
+	 * The feature id for the '<em><b>Condition Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_EXPRESSION__CONDITION_EXPRESSION = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Then Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_EXPRESSION__THEN_EXPRESSION = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Else Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_EXPRESSION__ELSE_EXPRESSION = EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Conditional Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Conditional Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link eu.ttc.dataflow.model.dataflow.UnaryOperator <em>Unary Operator</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1385,7 +1449,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see eu.ttc.dataflow.model.dataflow.impl.DataflowPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 24;
+	int UNARY_OPERATOR = 25;
 
 	/**
 	 * The meta object id for the '{@link eu.ttc.dataflow.model.dataflow.BinaryOperator <em>Binary Operator</em>}' enum.
@@ -1395,7 +1459,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see eu.ttc.dataflow.model.dataflow.impl.DataflowPackageImpl#getBinaryOperator()
 	 * @generated
 	 */
-	int BINARY_OPERATOR = 25;
+	int BINARY_OPERATOR = 26;
 
 	/**
 	 * The meta object id for the '{@link eu.ttc.dataflow.model.dataflow.ContainerType <em>Container Type</em>}' enum.
@@ -1405,7 +1469,7 @@ public interface DataflowPackage extends EPackage {
 	 * @see eu.ttc.dataflow.model.dataflow.impl.DataflowPackageImpl#getContainerType()
 	 * @generated
 	 */
-	int CONTAINER_TYPE = 26;
+	int CONTAINER_TYPE = 27;
 
 
 	/**
@@ -1847,6 +1911,17 @@ public interface DataflowPackage extends EPackage {
 	EAttribute getForEach_ListField();
 
 	/**
+	 * Returns the meta object for the attribute '{@link eu.ttc.dataflow.model.dataflow.ForEach#getItemField <em>Item Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Item Field</em>'.
+	 * @see eu.ttc.dataflow.model.dataflow.ForEach#getItemField()
+	 * @see #getForEach()
+	 * @generated
+	 */
+	EAttribute getForEach_ItemField();
+
+	/**
 	 * Returns the meta object for the attribute '{@link eu.ttc.dataflow.model.dataflow.ForEach#getPositionField <em>Position Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2153,6 +2228,49 @@ public interface DataflowPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeatureCall_Parameters();
+
+	/**
+	 * Returns the meta object for class '{@link eu.ttc.dataflow.model.dataflow.ConditionalExpression <em>Conditional Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Conditional Expression</em>'.
+	 * @see eu.ttc.dataflow.model.dataflow.ConditionalExpression
+	 * @generated
+	 */
+	EClass getConditionalExpression();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link eu.ttc.dataflow.model.dataflow.ConditionalExpression#getConditionExpression <em>Condition Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition Expression</em>'.
+	 * @see eu.ttc.dataflow.model.dataflow.ConditionalExpression#getConditionExpression()
+	 * @see #getConditionalExpression()
+	 * @generated
+	 */
+	EReference getConditionalExpression_ConditionExpression();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link eu.ttc.dataflow.model.dataflow.ConditionalExpression#getThenExpression <em>Then Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Then Expression</em>'.
+	 * @see eu.ttc.dataflow.model.dataflow.ConditionalExpression#getThenExpression()
+	 * @see #getConditionalExpression()
+	 * @generated
+	 */
+	EReference getConditionalExpression_ThenExpression();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link eu.ttc.dataflow.model.dataflow.ConditionalExpression#getElseExpression <em>Else Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Else Expression</em>'.
+	 * @see eu.ttc.dataflow.model.dataflow.ConditionalExpression#getElseExpression()
+	 * @see #getConditionalExpression()
+	 * @generated
+	 */
+	EReference getConditionalExpression_ElseExpression();
 
 	/**
 	 * Returns the meta object for enum '{@link eu.ttc.dataflow.model.dataflow.UnaryOperator <em>Unary Operator</em>}'.
@@ -2562,6 +2680,14 @@ public interface DataflowPackage extends EPackage {
 		EAttribute FOR_EACH__LIST_FIELD = eINSTANCE.getForEach_ListField();
 
 		/**
+		 * The meta object literal for the '<em><b>Item Field</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FOR_EACH__ITEM_FIELD = eINSTANCE.getForEach_ItemField();
+
+		/**
 		 * The meta object literal for the '<em><b>Position Field</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2814,6 +2940,40 @@ public interface DataflowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE_CALL__PARAMETERS = eINSTANCE.getFeatureCall_Parameters();
+
+		/**
+		 * The meta object literal for the '{@link eu.ttc.dataflow.model.dataflow.impl.ConditionalExpressionImpl <em>Conditional Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see eu.ttc.dataflow.model.dataflow.impl.ConditionalExpressionImpl
+		 * @see eu.ttc.dataflow.model.dataflow.impl.DataflowPackageImpl#getConditionalExpression()
+		 * @generated
+		 */
+		EClass CONDITIONAL_EXPRESSION = eINSTANCE.getConditionalExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITIONAL_EXPRESSION__CONDITION_EXPRESSION = eINSTANCE.getConditionalExpression_ConditionExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Then Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITIONAL_EXPRESSION__THEN_EXPRESSION = eINSTANCE.getConditionalExpression_ThenExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Else Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITIONAL_EXPRESSION__ELSE_EXPRESSION = eINSTANCE.getConditionalExpression_ElseExpression();
 
 		/**
 		 * The meta object literal for the '{@link eu.ttc.dataflow.model.dataflow.UnaryOperator <em>Unary Operator</em>}' enum.

@@ -19,6 +19,59 @@ while (runningElements.notEmpty) {
   runningElements = runningElements.select(e|e.isRunning());
 }
 
+// ForEach primitive
+
+operation Dataflow!ForEach processIncoming() {
+  if (self.target.isDefined()) {
+    for (incomingRow in self.~incomingRows) {
+      var container = incomingRow.get(self.listField);
+      var position = 0;
+      for (element in container) {
+        var newRow = Map {};
+        newRow.putAll(incomingRow);
+        newRow.put(self.itemField, element);
+        if (self.positionField.isDefined()) {
+          newRow.put(self.positionField, position);
+        }
+        self.target.addIncomingRow(newRow);
+        position++;
+      }
+    }
+    self.~incomingRows.clear();
+
+    if (not self.hasRunningSource()) {
+      self.~state = STATE_FINISHED;
+    }
+  } else {
+    self.~state = STATE_FINISHED;
+  }
+}
+
+// AddToContainer primitive
+
+operation Dataflow!AddToContainer processIncoming() {
+  if (self.target.isDefined()) {
+    for (incomingRow in self.~incomingRows) {
+      var container = incomingRow.get(self.listField);
+      var value = self.value.evaluate(incomingRow);
+      if (self.position.isDefined()) {
+        var position = self.position.evaluate(incomingRow);
+        container.add(position, value);
+      } else {
+        container.add(value);
+      }
+      self.target.addIncomingRow(incomingRow);
+    }
+    self.~incomingRows.clear();
+
+    if (not self.hasRunningSource()) {
+      self.~state = STATE_FINISHED;
+    }
+  } else {
+    self.~state = STATE_FINISHED;
+  }
+}
+
 // Evaluate primitive
 
 operation Dataflow!Evaluate processIncoming() {
@@ -240,6 +293,15 @@ operation Any isTruish() {
 }
 
 // EXPRESSION LANGUAGE ////////////////////////////////////////////////////////
+
+operation Dataflow!ConditionalExpression evaluate(row : Map) {
+  var value = self.conditionExpression.evaluate(row);
+  if (value) {
+    return self.thenExpression.evaluate(row);
+  } else {
+    return self.elseExpression.evaluate(row);
+  }
+}
 
 operation Dataflow!IntegerLiteral evaluate(row : Map) { return self.value; }
 operation Dataflow!BooleanLiteral evaluate(row : Map) { return self.value; }

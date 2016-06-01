@@ -26,7 +26,7 @@ NewInstance:
 	name=ID
 	'{'
 		('instanceField' instanceField=ID)?
-		('key' key=OrExpression)?
+		('key' key=ConditionalExpression)?
 		('type' (model=ID '!')? (packageName=ID '::')? typeName=ID)?
 		('target' target=[Element])?
 	'}';
@@ -35,7 +35,7 @@ Filter:
 	'Filter'
 	name=ID
 	'{'
-		('filterBy' filterBy=OrExpression)?
+		('filterBy' filterBy=ConditionalExpression)?
 		('target' target=[Element])?
 		('rejectTarget' rejectTarget=[Element])?
 	'}';
@@ -52,7 +52,7 @@ Sort:
 	'Sort'
 	name=ID
 	'{'
-		('sortBy' sortBy=OrExpression)?
+		('sortBy' sortBy=ConditionalExpression)?
 		('target' target=[Element])?
 	'}';
 
@@ -78,7 +78,7 @@ SetFeature:
 	name=ID
 	'{'
 		('objectField' objectField=ID)?
-		('value' value=OrExpression)?
+		('value' value=ConditionalExpression)?
 		('feature' feature=ID)?
 		('target' target=[Element])?
 	'}';
@@ -97,8 +97,8 @@ AddToContainer:
 	name=ID
 	'{'
 		('listField' listField=ID)?
-		('value' value=OrExpression)?
-		('position' position=OrExpression)?
+		('value' value=ConditionalExpression)?
+		('position' position=ConditionalExpression)?
 		('target' target=[Element])?
 	'}';
 
@@ -107,6 +107,8 @@ ForEach:
 	name=ID
 	'{'
 		('listField' listField=ID)?
+		('itemField' itemField=ID)?
+		('positionField' positionField=ID)?
 		('target' target=[Element])?
 	'}';
 
@@ -115,7 +117,7 @@ CollectBy:
 	name=ID
 	'{'
 		('elementField' elementField=ID)?
-		('collectBy' collectBy=OrExpression)?
+		('collectBy' collectBy=ConditionalExpression)?
 		('target' target=[Element])?
 	'}';
 
@@ -124,11 +126,16 @@ Evaluate:
 	name=ID
 	'{'
 		('field' field=ID)?
-		('expression' expression=OrExpression)?
+		('expression' expression=ConditionalExpression)?
 		('target' target=[Element])?
 	'}';
 
 enum ContainerType returns ContainerType: LIST='list' | SET='set';
+
+ConditionalExpression returns Expression:
+	'if' OrExpression {ConditionalExpression.conditionExpression=current} 'then' thenExpression=OrExpression 'else' elseExpression=OrExpression
+	| OrExpression
+;
 
 OrExpression returns Expression:
 	AndExpression ({BinaryOperation.leftExpression=current} operator=OrOperator rightExpression=AndExpression)*

@@ -1,0 +1,107 @@
+// This shows that it might be interesting to be able to
+// reuse subflows - how would it work in the language?
+
+AllInstances allActions {
+	field element
+	type Flowchart!Action
+	target markAsAction
+}
+
+Evaluate markAsAction {
+	field elementType
+	expression 'A'
+	target containerDiv
+}
+
+AllInstances allDecisions {
+	field element
+	type Flowchart!Decision
+	target markAsDecision
+}
+
+Evaluate markAsDecision {
+	field elementType
+	expression 'D'
+	target containerDiv
+}
+
+NewInstance containerDiv {
+	instanceField container
+	key element
+	type HTML!DIV
+	target titleDiv
+}
+
+NewInstance titleDiv {
+	instanceField title
+	key element
+	type HTML!H1
+	target titleValue
+}
+
+SetFeature titleValue {
+	objectField title
+	value element.name
+	feature ^value
+	target containerChildren
+}
+
+Evaluate containerChildren {
+	field children
+	expression container.children
+	target addTitle
+}
+
+AddToContainer addTitle {
+	listField children
+	value title
+	target outgoing
+}
+
+Evaluate outgoing {
+	field lOutgoing
+	expression element.outgoing
+	target forEachOutgoing
+}
+
+ForEach forEachOutgoing {
+	listField lOutgoing
+	itemField iOutgoing
+	positionField pOutgoing
+	target filterOutgoing
+}
+
+Filter filterOutgoing {
+	// We want all the outgoing links of the decisions,
+	// and only the first link of the actions
+	filterBy elementType = 'D' or pOutgoing = 0
+	target outgoingLink
+}
+
+NewInstance outgoingLink {
+	instanceField outgoingLink
+	// Need to produce combined key - future version
+	// might want to support composite keys
+	key element + iOutgoing
+	type HTML!A
+	target addOutgoingLink
+}
+
+AddToContainer addOutgoingLink {
+	listField children
+	value outgoingLink
+	target outgoingLinkHref
+}
+
+SetFeature outgoingLinkHref {
+	objectField outgoingLink
+	value iOutgoing.^target.name
+	feature ahref
+	target outgoingLinkValue
+}
+
+SetFeature outgoingLinkValue {
+	objectField outgoingLink
+	value if elementType = 'A' then 'Next steps' else iOutgoing.^target.name
+	feature ^value
+}

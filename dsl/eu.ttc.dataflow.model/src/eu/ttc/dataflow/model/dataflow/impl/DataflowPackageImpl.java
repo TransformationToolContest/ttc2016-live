@@ -8,6 +8,7 @@ import eu.ttc.dataflow.model.dataflow.BinaryOperation;
 import eu.ttc.dataflow.model.dataflow.BinaryOperator;
 import eu.ttc.dataflow.model.dataflow.BooleanLiteral;
 import eu.ttc.dataflow.model.dataflow.CollectBy;
+import eu.ttc.dataflow.model.dataflow.ConditionalExpression;
 import eu.ttc.dataflow.model.dataflow.ContainerType;
 import eu.ttc.dataflow.model.dataflow.Copy;
 import eu.ttc.dataflow.model.dataflow.DataflowFactory;
@@ -214,6 +215,13 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * @generated
 	 */
 	private EClass featureCallEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionalExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -671,8 +679,17 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getForEach_PositionField() {
+	public EAttribute getForEach_ItemField() {
 		return (EAttribute)forEachEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getForEach_PositionField() {
+		return (EAttribute)forEachEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -932,6 +949,42 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConditionalExpression() {
+		return conditionalExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionalExpression_ConditionExpression() {
+		return (EReference)conditionalExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionalExpression_ThenExpression() {
+		return (EReference)conditionalExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionalExpression_ElseExpression() {
+		return (EReference)conditionalExpressionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUnaryOperator() {
 		return unaryOperatorEEnum;
 	}
@@ -1035,6 +1088,7 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 
 		forEachEClass = createEClass(FOR_EACH);
 		createEAttribute(forEachEClass, FOR_EACH__LIST_FIELD);
+		createEAttribute(forEachEClass, FOR_EACH__ITEM_FIELD);
 		createEAttribute(forEachEClass, FOR_EACH__POSITION_FIELD);
 
 		collectByEClass = createEClass(COLLECT_BY);
@@ -1075,6 +1129,11 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		createEReference(featureCallEClass, FEATURE_CALL__TARGET_EXPRESSION);
 		createEAttribute(featureCallEClass, FEATURE_CALL__FEATURE);
 		createEReference(featureCallEClass, FEATURE_CALL__PARAMETERS);
+
+		conditionalExpressionEClass = createEClass(CONDITIONAL_EXPRESSION);
+		createEReference(conditionalExpressionEClass, CONDITIONAL_EXPRESSION__CONDITION_EXPRESSION);
+		createEReference(conditionalExpressionEClass, CONDITIONAL_EXPRESSION__THEN_EXPRESSION);
+		createEReference(conditionalExpressionEClass, CONDITIONAL_EXPRESSION__ELSE_EXPRESSION);
 
 		// Create enums
 		unaryOperatorEEnum = createEEnum(UNARY_OPERATOR);
@@ -1131,6 +1190,7 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		unaryOperationEClass.getESuperTypes().add(this.getExpression());
 		binaryOperationEClass.getESuperTypes().add(this.getExpression());
 		featureCallEClass.getESuperTypes().add(this.getExpression());
+		conditionalExpressionEClass.getESuperTypes().add(this.getExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1186,6 +1246,7 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 
 		initEClass(forEachEClass, ForEach.class, "ForEach", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getForEach_ListField(), ecorePackage.getEString(), "listField", null, 1, 1, ForEach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getForEach_ItemField(), ecorePackage.getEString(), "itemField", null, 1, 1, ForEach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getForEach_PositionField(), ecorePackage.getEString(), "positionField", null, 0, 1, ForEach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(collectByEClass, CollectBy.class, "CollectBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1226,6 +1287,11 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		initEReference(getFeatureCall_TargetExpression(), this.getExpression(), null, "targetExpression", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureCall_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureCall_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionalExpressionEClass, ConditionalExpression.class, "ConditionalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConditionalExpression_ConditionExpression(), this.getExpression(), null, "conditionExpression", null, 0, 1, ConditionalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalExpression_ThenExpression(), this.getExpression(), null, "thenExpression", null, 0, 1, ConditionalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalExpression_ElseExpression(), this.getExpression(), null, "elseExpression", null, 0, 1, ConditionalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(unaryOperatorEEnum, UnaryOperator.class, "UnaryOperator");

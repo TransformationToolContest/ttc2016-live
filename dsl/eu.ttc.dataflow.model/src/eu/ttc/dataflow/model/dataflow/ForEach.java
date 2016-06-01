@@ -13,6 +13,7 @@ package eu.ttc.dataflow.model.dataflow;
  * </p>
  * <ul>
  *   <li>{@link eu.ttc.dataflow.model.dataflow.ForEach#getListField <em>List Field</em>}</li>
+ *   <li>{@link eu.ttc.dataflow.model.dataflow.ForEach#getItemField <em>Item Field</em>}</li>
  *   <li>{@link eu.ttc.dataflow.model.dataflow.ForEach#getPositionField <em>Position Field</em>}</li>
  * </ul>
  *
@@ -46,6 +47,32 @@ public interface ForEach extends Element {
 	 * @generated
 	 */
 	void setListField(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Item Field</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Item Field</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Item Field</em>' attribute.
+	 * @see #setItemField(String)
+	 * @see eu.ttc.dataflow.model.dataflow.DataflowPackage#getForEach_ItemField()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getItemField();
+
+	/**
+	 * Sets the value of the '{@link eu.ttc.dataflow.model.dataflow.ForEach#getItemField <em>Item Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Item Field</em>' attribute.
+	 * @see #getItemField()
+	 * @generated
+	 */
+	void setItemField(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Position Field</b></em>' attribute.
