@@ -134,7 +134,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     AddToContainer returns AddToContainer
 	 *
 	 * Constraint:
-	 *     (name=ID listField=ID? value=ConditionalExpression? position=ConditionalExpression? target=[Element|ID]?)
+	 *     (name=ID (listField=ID | value=ConditionalExpression | position=ConditionalExpression | target=[Element|ID])*)
 	 */
 	protected void sequence_AddToContainer(ISerializationContext context, AddToContainer semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -183,7 +183,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     AllInstances returns AllInstances
 	 *
 	 * Constraint:
-	 *     (name=ID field=ID? (model=ID? packageName=ID? typeName=ID)? target=[Element|ID]?)
+	 *     (name=ID ((field=ID | target=[Element|ID])? (model=ID? packageName=ID? typeName=ID)?)+)
 	 */
 	protected void sequence_AllInstances(ISerializationContext context, AllInstances semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -196,7 +196,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     CollectBy returns CollectBy
 	 *
 	 * Constraint:
-	 *     (name=ID elementField=ID? collectBy=ConditionalExpression? target=[Element|ID]?)
+	 *     (name=ID (elementField=ID | collectBy=ConditionalExpression | target=[Element|ID])*)
 	 */
 	protected void sequence_CollectBy(ISerializationContext context, CollectBy semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -233,7 +233,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Copy returns Copy
 	 *
 	 * Constraint:
-	 *     (name=ID target=[Element|ID]? copyTarget=[Element|ID]?)
+	 *     (name=ID (target=[Element|ID] | copyTarget=[Element|ID])*)
 	 */
 	protected void sequence_Copy(ISerializationContext context, Copy semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -246,7 +246,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Evaluate returns Evaluate
 	 *
 	 * Constraint:
-	 *     (name=ID field=ID? expression=ConditionalExpression? target=[Element|ID]?)
+	 *     (name=ID (field=ID | expression=ConditionalExpression | target=[Element|ID])*)
 	 */
 	protected void sequence_Evaluate(ISerializationContext context, Evaluate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -288,7 +288,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Filter returns Filter
 	 *
 	 * Constraint:
-	 *     (name=ID filterBy=ConditionalExpression? target=[Element|ID]? rejectTarget=[Element|ID]?)
+	 *     (name=ID (filterBy=ConditionalExpression | target=[Element|ID] | rejectTarget=[Element|ID])*)
 	 */
 	protected void sequence_Filter(ISerializationContext context, Filter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -301,7 +301,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     ForEach returns ForEach
 	 *
 	 * Constraint:
-	 *     (name=ID listField=ID? itemField=ID? positionField=ID? target=[Element|ID]?)
+	 *     (name=ID (listField=ID | itemField=ID | positionField=ID | target=[Element|ID])*)
 	 */
 	protected void sequence_ForEach(ISerializationContext context, ForEach semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -314,7 +314,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     GetFeature returns GetFeature
 	 *
 	 * Constraint:
-	 *     (name=ID objectField=ID? valueField=ID? feature=ID? target=[Element|ID]?)
+	 *     (name=ID (objectField=ID | valueField=ID | feature=ID | target=[Element|ID])*)
 	 */
 	protected void sequence_GetFeature(ISerializationContext context, GetFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -352,7 +352,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     NewInstance returns NewInstance
 	 *
 	 * Constraint:
-	 *     (name=ID instanceField=ID? key=ConditionalExpression? (model=ID? packageName=ID? typeName=ID)? target=[Element|ID]?)
+	 *     (name=ID ((instanceField=ID | key=ConditionalExpression | target=[Element|ID])? (model=ID? packageName=ID? typeName=ID)?)+)
 	 */
 	protected void sequence_NewInstance(ISerializationContext context, NewInstance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -553,7 +553,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     SetFeature returns SetFeature
 	 *
 	 * Constraint:
-	 *     (name=ID objectField=ID? value=ConditionalExpression? feature=ID? target=[Element|ID]?)
+	 *     (name=ID (objectField=ID | value=ConditionalExpression | feature=ID | target=[Element|ID])*)
 	 */
 	protected void sequence_SetFeature(ISerializationContext context, SetFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -566,7 +566,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Sort returns Sort
 	 *
 	 * Constraint:
-	 *     (name=ID sortBy=ConditionalExpression? target=[Element|ID]?)
+	 *     (name=ID (sortBy=ConditionalExpression | target=[Element|ID])*)
 	 */
 	protected void sequence_Sort(ISerializationContext context, Sort semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

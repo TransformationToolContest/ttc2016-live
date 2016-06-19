@@ -26,21 +26,21 @@ Evaluate markAsDecision {
 }
 
 NewInstance containerDiv {
-	instanceField container
+	field container
 	key element
 	type HTML!DIV
 	target titleDiv
 }
 
 NewInstance titleDiv {
-	instanceField title
+	field title
 	key element
 	type HTML!H1
 	target titleValue
 }
 
 SetFeature titleValue {
-	objectField title
+	field title
 	value element.name
 	feature ^value
 	target containerChildren
@@ -53,7 +53,7 @@ Evaluate containerChildren {
 }
 
 AddToContainer addTitle {
-	listField children
+	field children
 	value title
 	target outgoing
 }
@@ -79,7 +79,7 @@ Filter filterOutgoing {
 }
 
 NewInstance outgoingLink {
-	instanceField outgoingLink
+	field outgoingLink
 	// Need to produce combined key - future version
 	// might want to support composite keys
 	key element + iOutgoing
@@ -88,20 +88,20 @@ NewInstance outgoingLink {
 }
 
 AddToContainer addOutgoingLink {
-	listField children
+	field children
 	value outgoingLink
 	target outgoingLinkHref
 }
 
 SetFeature outgoingLinkHref {
-	objectField outgoingLink
+	field outgoingLink
 	value iOutgoing.^target.name
 	feature ahref
 	target outgoingLinkValue
 }
 
 SetFeature outgoingLinkValue {
-	objectField outgoingLink
+	field outgoingLink
 	value if elementType = 'A' then 'Next steps' else iOutgoing.^target.name
 	feature ^value
 }

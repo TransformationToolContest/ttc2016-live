@@ -17,21 +17,21 @@ Filter SplitByGender {
 }
 
 NewInstance NewMale {
-	instanceField person
+	field person
 	key member
 	type Persons!Male
 	target SetPersonName
 }
 
 NewInstance NewFemale {
-	instanceField person
+	field person
 	key member
 	type Persons!Female
 	target SetPersonName
 }
 
 SetFeature SetPersonName {
-	objectField person
+	field person
 	value fullName
 	feature fullName
 }

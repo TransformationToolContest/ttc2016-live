@@ -5,14 +5,14 @@ AllInstances Trees {
 }
 
 NewInstance CreateGraphNode {
-	instanceField graph
+	field graph
 	key tree
 	type Graph!Node
 	target SetNodeName 
 }
 
 SetFeature SetNodeName {
-	objectField graph
+	field graph
 	value tree.label
 	feature name
 	target IfParentDefined
@@ -24,28 +24,28 @@ Filter IfParentDefined {
 }
 
 NewInstance CreateGraphEdge {
-	instanceField edge
+	field edge
 	key tree
 	type Graph!Edge
 	target CreateGraphParent
 }
 
 NewInstance CreateGraphParent {
-	instanceField parentGraph
+	field parentGraph
 	key tree.parent
 	type Graph!Node
 	target SetEdgeSource
 }
 
 SetFeature SetEdgeSource {
-	objectField edge
+	field edge
 	value parentGraph
 	feature source
 	target SetEdgeTarget
 }
 
 SetFeature SetEdgeTarget {
-	objectField edge
+	field edge
 	value graph
 	feature ^target
 }

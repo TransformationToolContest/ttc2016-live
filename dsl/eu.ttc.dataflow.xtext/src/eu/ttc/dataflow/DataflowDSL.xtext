@@ -16,44 +16,44 @@ AllInstances:
 	'AllInstances'
 	name=ID
 	'{'
-		('field' field=ID)?
-		('type' (model=ID '!')? (packageName=ID '::')? typeName=ID)?
-		('target' target=[Element])?
+		('field' field=ID
+		|'type' (model=ID '!')? (packageName=ID '::')? typeName=ID
+		| 'target' target=[Element])*
 	'}';
 
 NewInstance:
 	'NewInstance'
 	name=ID
 	'{'
-		('instanceField' instanceField=ID)?
-		('key' key=ConditionalExpression)?
-		('type' (model=ID '!')? (packageName=ID '::')? typeName=ID)?
-		('target' target=[Element])?
+		('field' instanceField=ID
+		|'key' key=ConditionalExpression
+		|'type' (model=ID '!')? (packageName=ID '::')? typeName=ID
+		|'target' target=[Element])*
 	'}';
 
 Filter:
 	'Filter'
 	name=ID
 	'{'
-		('filterBy' filterBy=ConditionalExpression)?
-		('target' target=[Element])?
-		('rejectTarget' rejectTarget=[Element])?
+		('filterBy' filterBy=ConditionalExpression
+		|'target' target=[Element]
+		|'rejectTarget' rejectTarget=[Element])*
 	'}';
 
 Copy:
 	'Copy'
 	name=ID
 	'{'
-		('target' target=[Element])?
-		('copyTarget' copyTarget=[Element])?
+		('target' target=[Element]
+		|'copyTarget' copyTarget=[Element])*
 	'}';
 
 Sort:
 	'Sort'
 	name=ID
 	'{'
-		('sortBy' sortBy=ConditionalExpression)?
-		('target' target=[Element])?
+		('sortBy' sortBy=ConditionalExpression
+		|'target' target=[Element])*
 	'}';
 
 Product:
@@ -67,27 +67,27 @@ GetFeature:
 	'GetFeature'
 	name=ID
 	'{'
-		('objectField' objectField=ID)?
-		('valueField' valueField=ID)?
-		('feature' feature=ID)?
-		('target' target=[Element])?
+		('objectField' objectField=ID
+		|'valueField' valueField=ID
+		|'feature' feature=ID
+		|'target' target=[Element])*
 	'}';
 
 SetFeature:
 	'SetFeature'
 	name=ID
 	'{'
-		('objectField' objectField=ID)?
-		('value' value=ConditionalExpression)?
-		('feature' feature=ID)?
-		('target' target=[Element])?
+		('field' objectField=ID
+		|'value' value=ConditionalExpression
+		|'feature' feature=ID
+		|'target' target=[Element])*
 	'}';
 
 NewContainer:
 	'NewContainer'
 	name=ID
 	'{'
-		('listField' listField=ID)?
+		('field' listField=ID)?
 		('containerType' containerType=ContainerType)?
 		('target' target=[Element])?
 	'}';
@@ -96,38 +96,38 @@ AddToContainer:
 	'AddToContainer'
 	name=ID
 	'{'
-		('listField' listField=ID)?
-		('value' value=ConditionalExpression)?
-		('position' position=ConditionalExpression)?
-		('target' target=[Element])?
+		('field' listField=ID
+		|'value' value=ConditionalExpression
+		|'position' position=ConditionalExpression
+		|'target' target=[Element])*
 	'}';
 
 ForEach:
 	'ForEach'
 	name=ID
 	'{'
-		('listField' listField=ID)?
-		('itemField' itemField=ID)?
-		('positionField' positionField=ID)?
-		('target' target=[Element])?
+		('listField' listField=ID
+		|'itemField' itemField=ID
+		|'positionField' positionField=ID
+		|'target' target=[Element])*
 	'}';
 
 CollectBy:
 	'CollectBy'
 	name=ID
 	'{'
-		('elementField' elementField=ID)?
-		('collectBy' collectBy=ConditionalExpression)?
-		('target' target=[Element])?
+		('field' elementField=ID
+		|'collectBy' collectBy=ConditionalExpression
+		|'target' target=[Element])*
 	'}';
 
 Evaluate:
 	'Evaluate'
 	name=ID
 	'{'
-		('field' field=ID)?
-		('expression' expression=ConditionalExpression)?
-		('target' target=[Element])?
+		('field' field=ID
+		|'expression' expression=ConditionalExpression
+		|'target' target=[Element])*
 	'}';
 
 enum ContainerType returns ContainerType: LIST='list' | SET='set';

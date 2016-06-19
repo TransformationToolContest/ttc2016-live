@@ -50,24 +50,22 @@ operation Dataflow!ForEach processIncoming() {
 // AddToContainer primitive
 
 operation Dataflow!AddToContainer processIncoming() {
-  if (self.target.isDefined()) {
-    for (incomingRow in self.~incomingRows) {
-      var container = incomingRow.get(self.listField);
-      var value = self.value.evaluate(incomingRow);
-      if (self.position.isDefined()) {
-        var position = self.position.evaluate(incomingRow);
-        container.add(position, value);
-      } else {
-        container.add(value);
-      }
+  for (incomingRow in self.~incomingRows) {
+    var container = incomingRow.get(self.listField);
+    var value = self.value.evaluate(incomingRow);
+    if (self.position.isDefined()) {
+      var position = self.position.evaluate(incomingRow);
+      container.add(position, value);
+    } else {
+      container.add(value);
+    }
+    if (self.target.isDefined()) {
       self.target.addIncomingRow(incomingRow);
     }
-    self.~incomingRows.clear();
+  }
+  self.~incomingRows.clear();
 
-    if (not self.hasRunningSource()) {
-      self.~state = STATE_FINISHED;
-    }
-  } else {
+  if (not self.hasRunningSource()) {
     self.~state = STATE_FINISHED;
   }
 }
@@ -182,7 +180,9 @@ operation Dataflow!NewInstance processIncoming() {
     }
 
     incomingRow.put(self.instanceField, instance);
-    self.target.addIncomingRow(incomingRow); 
+    if (self.target.isDefined()) {
+      self.target.addIncomingRow(incomingRow);
+    }
   }
   self.~incomingRows.clear();
 
@@ -349,6 +349,8 @@ operation Dataflow!FeatureCall evaluate(row : Map) {
   // Support some useful EMF methods
   if (self.feature = 'eContainer') {
     return target.eContainer();
+  } else if (self.feature = 'eClass') {
+    return target.eClass();
   }
 
   var feature = target.eClass.getEStructuralFeature(self.feature);
