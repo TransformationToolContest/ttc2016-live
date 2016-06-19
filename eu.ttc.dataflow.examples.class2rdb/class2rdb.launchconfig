@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lc:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:lc="http://transformation-tool-contest.eu/2016/launch">
+  <dataflow location="transformation/class2rdb.dataflow"/>
+  <models name="Class" location="input/classes.xmi">
+    <metamodels location="metamodels/Class.ecore"/>
+  </models>
+  <models name="DB" location="output/db.model" readOnLoad="false" storeOnDisposal="true">
+    <metamodels location="metamodels/Relational.ecore"/>
+  </models>
+</lc:Configuration>

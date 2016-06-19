@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:cl="Class">
+  <cl:Class
+      name="Family">
+    <attr name="name"
+        multiValued="false"
+        type="/2"/>
+    <attr name="members"
+        multiValued="true"
+        type="/1"/>
+  </cl:Class>
+  <cl:Class
+      name="Person">
+    <attr name="firstName"
+        multiValued="false"
+        type="/2"/>
+    <attr name="closestFriend"
+        multiValued="false"
+        type="/1"/>
+    <attr name="emailAddresses"
+        multiValued="true"
+        type="/2"/>
+    <attr name="worstEnemies"
+        multiValued="true"
+        type="/1"/>
+  </cl:Class>
+  <cl:DataType
+      name="String"/>
+  <cl:DataType
+      name="Integer"/>
+</xmi:XMI>

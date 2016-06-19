@@ -1,0 +1,342 @@
+AllInstances Attributes {
+	field attribute
+	type Class!Attribute
+	target IntegerType
+}
+
+NewInstance IntegerType {
+	field integerType
+	key 'type_Integer'
+	type DB!Type
+	target IntegerTypeName
+}
+
+SetFeature IntegerTypeName {
+	field integerType
+	feature name
+	value 'Integer'
+	target AttributeType
+}
+
+Filter AttributeType {
+	filterBy attribute.^type.eClass.name = 'Class'
+	target ClassAttribute
+	rejectTarget DataTypeAttribute
+}
+
+/* DATATYPE ATTRIBUTES */
+
+NewInstance DataTypeAttribute {
+	field dbType
+	key 'type_' + attribute.^type.name
+	type DB!Type
+	target DataTypeName
+}
+
+SetFeature DataTypeName {
+	field dbType
+	value attribute.^type.name
+	feature name
+	target DataTypeAttributeMultiplicity
+}
+
+Filter DataTypeAttributeMultiplicity {
+	filterBy attribute.multiValued
+	target MVDataTypeAttributeTable
+	rejectTarget SVDataTypeAttributeColumn
+}
+
+/* Single-valued + Class */
+
+NewInstance SVDataTypeAttributeColumn {
+	field attrColumn
+	type DB!Column
+	key attribute
+	target SVDataTypeAttributeColumnName
+}
+
+SetFeature SVDataTypeAttributeColumnName {
+	field attrColumn
+	feature name
+	value attribute.name
+	target SVDataTypeAttributeColumnType
+}
+
+SetFeature SVDataTypeAttributeColumnType {
+	field attrColumn
+	feature ^type
+	value dbType
+	target SVColumnTable
+}
+
+/* Multi-valued + Class */
+
+NewInstance MVDataTypeAttributeTable {
+	field attrTable
+	type DB!Table
+	key attribute
+	target MVDataTypeAttributeTableName
+}
+
+// TODO need to mention eClass in spec
+SetFeature MVDataTypeAttributeTableName {
+	field attrTable
+	feature name
+	value attribute.^type.name + '_' + attribute.name
+	target MVDataTypeAttributeTableCols
+}
+
+Evaluate MVDataTypeAttributeTableCols {
+	expression attrTable.col
+	field attrTableCols
+	target MVDataTypeAttributeIDCol
+}
+
+// TODO future work - reusable subprocesses (+ imports)
+
+NewInstance MVDataTypeAttributeIDCol {
+	field idColumn
+	key attrTable.name + '_idcol'
+	type DB!Column
+	target MVDataTypeAttributeIDColName
+}
+
+SetFeature MVDataTypeAttributeIDColName {
+	field idColumn
+	feature name
+	value 'id' + attribute.^type.name
+	target MVDataTypeAttributeIDColType
+}
+
+SetFeature MVDataTypeAttributeIDColType {
+	field idColumn
+	feature ^type
+	value integerType
+	target MVDataTypeAttributeIDColAdd
+}
+
+AddToContainer MVDataTypeAttributeIDColAdd {
+	field attrTableCols	
+	value idColumn
+	target MVDataTypeAttributeVCol
+}
+
+NewInstance MVDataTypeAttributeVCol {
+	field idColumn
+	key attrTable.name + '_vcol'
+	type DB!Column
+	target MVDataTypeAttributeVColName
+}
+
+SetFeature MVDataTypeAttributeVColName {
+	field idColumn
+	feature name
+	value attribute.name
+	target MVDataTypeAttributeVColType
+}
+
+SetFeature MVDataTypeAttributeVColType {
+	field idColumn
+	feature ^type
+	value dbType
+	target MVDataTypeAttributeVColAdd
+}
+
+AddToContainer MVDataTypeAttributeVColAdd {
+	field attrTableCols	
+	value idColumn
+}
+
+/* CLASS ATTRIBUTES */
+
+Filter ClassAttribute {
+	filterBy attribute.multiValued
+	target MVClassAttributeTable
+	rejectTarget SVClassAttributeColumn
+}
+
+/* Single-valued + Class */
+
+NewInstance SVClassAttributeColumn {
+	field attrColumn
+	key attribute
+	type DB!Column
+	target SVClassAttributeName
+}
+
+SetFeature SVClassAttributeName {
+	field attrColumn
+	value 'id' + attribute.name
+	feature name
+	target SVClassAttributeType
+}
+
+SetFeature SVClassAttributeType {
+	field attrColumn
+	feature ^type
+	value integerType
+	target SVColumnTable
+}
+
+/* Multi-valued + Class */
+
+NewInstance MVClassAttributeTable {
+	field attrTable
+	key attribute
+	type DB!Table
+	target MVClassAttributeTableName
+}
+
+SetFeature MVClassAttributeTableName {
+	field attrTable
+	value attribute.^type.name + '_' + attribute.name
+	feature name
+	target  MVClassAttributeTableCols
+}
+
+Evaluate MVClassAttributeTableCols {
+	expression attrTable.col
+	field attrTableCols
+	target MVClassAttributeIDCol
+}
+
+NewInstance MVClassAttributeIDCol {
+	field attrTableIDCol
+	type DB!Column
+	key attrTable.name + '_idcol'
+	target MVClassAttributeIDColName
+}
+
+SetFeature MVClassAttributeIDColName {
+	field attrTableIDCol
+	value 'id' + attribute.^type.name
+	feature name
+	target MVClassAttributeIDColType
+}
+
+SetFeature MVClassAttributeIDColType {
+	field attrTableIDCol
+	value integerType
+	feature ^type
+	target MVClassAttributeIDColAdd
+}
+
+AddToContainer MVClassAttributeIDColAdd {
+	field attrTableCols
+	value attrTableIDCol
+	target MVClassAttributeFKCol
+}
+
+NewInstance MVClassAttributeFKCol {
+	field attrTableFKCol
+	type DB!Column
+	key attrTable.name + '_fkcol'
+	target MVClassAttributeFKColName
+}
+
+SetFeature MVClassAttributeFKColName {
+	field attrTableFKCol
+	value 'id' + attribute.name
+	feature name
+	target MVClassAttributeFKColType
+}
+
+SetFeature MVClassAttributeFKColType {
+	field attrTableFKCol
+	value integerType
+	feature ^type
+	target MVClassAttributeFKColAdd
+}
+
+AddToContainer MVClassAttributeFKColAdd {
+	field attrTableCols
+	value attrTableFKCol
+}
+
+/* Add single-valued columns to a table */
+
+NewInstance SVColumnTable {
+	field attrColumnTable
+	key attribute.eContainer
+	type DB!Table
+	target SVColumnTableCols
+}
+
+Evaluate SVColumnTableCols {
+	expression attrColumnTable.col
+	field attrColumnTableCols
+	target SVColumnTableAdd
+}
+
+AddToContainer SVColumnTableAdd {
+	field attrColumnTableCols
+	value attrColumn
+}
+
+/* Map Classes to Tables */
+
+AllInstances Classes {
+	field class
+	type Class!Class
+	target ClassTable
+}
+
+NewInstance ClassTable {
+	field classTable
+	key class
+	type DB!Table
+	target ClassTableCols
+}
+
+Evaluate ClassTableCols {
+	field classTableCols
+	expression classTable.col
+	target ClassTableName
+}
+
+SetFeature ClassTableName {
+	field classTable
+	feature name
+	value class.name
+	target ClassTableIDCol
+}
+
+NewInstance ClassTableIDCol {
+	field idColumn
+	key class
+	type DB!Column
+	target ClassTableIDColName
+}
+
+SetFeature ClassTableIDColName {
+	field idColumn
+	feature name
+	value 'objectId'
+	target ClassTableIDColIntegerType
+}
+
+NewInstance ClassTableIDColIntegerType {
+	field integerType
+	key 'type_Integer'
+	type DB!Type
+	target ClassTableIDColType
+}
+
+SetFeature ClassTableIDColType {
+	field idColumn
+	feature ^type
+	value integerType
+	target ClassTableIDColKeyOf
+}
+
+SetFeature ClassTableIDColKeyOf {
+	field idColumn
+	feature keyOf
+	value classTable
+	target ClassTableIDColAdd
+}
+
+AddToContainer ClassTableIDColAdd {
+	field classTableCols
+	value idColumn 
+}

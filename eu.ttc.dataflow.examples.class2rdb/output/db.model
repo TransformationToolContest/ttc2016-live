@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rel="Relational">
+  <rel:Type name="Integer"/>
+  <rel:Type name="String"/>
+  <rel:Table name="String_emailAddresses">
+    <col name="idString" type="/0"/>
+    <col name="emailAddresses" type="/1"/>
+  </rel:Table>
+  <rel:Table name="Person_members">
+    <col name="idPerson" type="/0"/>
+    <col name="idmembers" type="/0"/>
+  </rel:Table>
+  <rel:Table name="Person_worstEnemies">
+    <col name="idPerson" type="/0"/>
+    <col name="idworstEnemies" type="/0"/>
+  </rel:Table>
+  <rel:Table name="Family" key="/5/@col.1">
+    <col name="name" type="/1"/>
+    <col name="objectId" keyOf="/5" type="/0"/>
+  </rel:Table>
+  <rel:Table name="Person" key="/6/@col.2">
+    <col name="firstName" type="/1"/>
+    <col name="idclosestFriend" type="/0"/>
+    <col name="objectId" keyOf="/6" type="/0"/>
+  </rel:Table>
+</xmi:XMI>
