@@ -1,0 +1,67 @@
+operation Flowchart create() {}
+
+$instances size * 20
+operation Action create() {
+  self.name = 'A' + Action.all.size;
+}
+
+$instances size
+operation Decision create() {
+  self.name = 'D' + Decision.all.size;
+}
+
+operation connect(src: Node, tgt: Node) {
+  var tr = new Transition;
+  tr.source = src;
+  tr.target = tgt;
+  tr.name = 'TR' + src.name + '_' + tgt.name;
+  src.eContainer.transitions.add(tr);
+}
+
+pattern addToFlow
+  n: Node
+  guard : n.eContainer.isUndefined() {
+    onmatch {
+      var flow = nextFromCollection(Flowchart.all);
+      flow.nodes.add(n);
+    }
+  }
+
+pattern linkAction
+  src: Action
+  guard : src.outgoing.isEmpty() {
+    onmatch {
+      var candidates = Node.all.select(n|n <> src);
+      if (candidates.size > 0) {
+        var tgt = nextFromCollection(candidates);
+        connect(src, tgt);
+      }
+    }
+  }
+
+pattern linkDecision
+  src: Decision
+  guard : src.outgoing.isEmpty() {
+    onmatch {
+      var nOut = 1 + nextInteger(3);
+      var candidates = Node.all.select(n|n <> src);
+      while (nOut > 0 and candidates.size > 0) {
+        var tgt = nextFromCollection(candidates);
+        candidates.remove(tgt);
+        connect(src, tgt);
+        nOut = nOut - 1;
+      }
+    }
+  }
+
+pattern linkDisconnected
+  n: Node
+  guard : n.incoming.isEmpty() {
+    onmatch {
+      var candidates = Node.all.select(src|src<>n and (src.outgoing.isEmpty() or src.isKindOf(Decision)));
+      if (candidates.size > 0) {
+        var src = nextFromCollection(candidates);
+        connect(src, n);
+      }
+    }
+  }

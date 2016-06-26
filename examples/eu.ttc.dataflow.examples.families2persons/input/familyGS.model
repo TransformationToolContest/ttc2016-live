@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:f="Families">
+  <f:Family lastName="AIzFtuBmWV">
+    <father firstName="ZqyzAwtbzt"/>
+    <sons firstName="INDqqcspHx"/>
+    <daughters firstName="nKQrFdenlH"/>
+  </f:Family>
+  <f:Family lastName="WBePppUAey">
+    <father firstName="exkVoNSudy"/>
+    <mother firstName="cnCynwRHvk"/>
+    <sons firstName="OOKqgwiTBo"/>
+    <daughters firstName="tXJklZEvTb"/>
+  </f:Family>
+  <f:Family lastName="OpGuIctZeU">
+    <father firstName="hCZYdKlLKz"/>
+    <mother firstName="fJgRmQuWus"/>
+    <sons firstName="BePPADnvta"/>
+    <sons firstName="dVgBQyJBrQ"/>
+    <sons firstName="rLqeDkfpII"/>
+  </f:Family>
+</xmi:XMI>

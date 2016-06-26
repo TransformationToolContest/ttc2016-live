@@ -1,0 +1,14 @@
+$instances Sequence {minNodes, maxNodes}
+operation Tree create() {
+  self.label = nextCamelCaseString(20, 10);
+}
+
+// Note: match pairings are not random?
+pattern linkNodes
+  p: Tree, q: Tree
+  guard : p.eContainer.isUndefined() and p <> q {
+    onmatch {
+      q.children.add(p);
+      ('Added ' + p + ' as children of ' + q).println();
+    }
+  }

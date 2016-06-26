@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ASCII"?>
+<flowchart:Flowchart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowchart="flowchart">
+  <nodes xsi:type="flowchart:Action" name="A1" outgoing="//@transitions.0" incoming="//@transitions.21"/>
+  <nodes xsi:type="flowchart:Action" name="A2" outgoing="//@transitions.1" incoming="//@transitions.11 //@transitions.12 //@transitions.15"/>
+  <nodes xsi:type="flowchart:Action" name="A3" outgoing="//@transitions.2" incoming="//@transitions.10 //@transitions.20"/>
+  <nodes xsi:type="flowchart:Action" name="A4" outgoing="//@transitions.3" incoming="//@transitions.1 //@transitions.7 //@transitions.19"/>
+  <nodes xsi:type="flowchart:Action" name="A5" outgoing="//@transitions.4" incoming="//@transitions.17"/>
+  <nodes xsi:type="flowchart:Action" name="A6" outgoing="//@transitions.5" incoming="//@transitions.8"/>
+  <nodes xsi:type="flowchart:Action" name="A7" outgoing="//@transitions.6" incoming="//@transitions.22"/>
+  <nodes xsi:type="flowchart:Action" name="A8" outgoing="//@transitions.7" incoming="//@transitions.23"/>
+  <nodes xsi:type="flowchart:Action" name="A9" outgoing="//@transitions.8" incoming="//@transitions.24"/>
+  <nodes xsi:type="flowchart:Action" name="A10" outgoing="//@transitions.9" incoming="//@transitions.25"/>
+  <nodes xsi:type="flowchart:Action" name="A11" outgoing="//@transitions.10" incoming="//@transitions.26"/>
+  <nodes xsi:type="flowchart:Action" name="A12" outgoing="//@transitions.11" incoming="//@transitions.13"/>
+  <nodes xsi:type="flowchart:Action" name="A13" outgoing="//@transitions.12" incoming="//@transitions.3 //@transitions.18"/>
+  <nodes xsi:type="flowchart:Action" name="A14" outgoing="//@transitions.13" incoming="//@transitions.0 //@transitions.5 //@transitions.14"/>
+  <nodes xsi:type="flowchart:Action" name="A15" outgoing="//@transitions.14" incoming="//@transitions.27"/>
+  <nodes xsi:type="flowchart:Action" name="A16" outgoing="//@transitions.15" incoming="//@transitions.16"/>
+  <nodes xsi:type="flowchart:Action" name="A17" outgoing="//@transitions.16" incoming="//@transitions.28"/>
+  <nodes xsi:type="flowchart:Action" name="A18" outgoing="//@transitions.17" incoming="//@transitions.9"/>
+  <nodes xsi:type="flowchart:Action" name="A19" outgoing="//@transitions.18" incoming="//@transitions.2"/>
+  <nodes xsi:type="flowchart:Action" name="A20" outgoing="//@transitions.19" incoming="//@transitions.6"/>
+  <nodes xsi:type="flowchart:Decision" name="D1" outgoing="//@transitions.20 //@transitions.21 //@transitions.22 //@transitions.23 //@transitions.24 //@transitions.25 //@transitions.26 //@transitions.27 //@transitions.28" incoming="//@transitions.4"/>
+  <transitions name="TRA1_A14" source="//@nodes.0" target="//@nodes.13"/>
+  <transitions name="TRA2_A4" source="//@nodes.1" target="//@nodes.3"/>
+  <transitions name="TRA3_A19" source="//@nodes.2" target="//@nodes.18"/>
+  <transitions name="TRA4_A13" source="//@nodes.3" target="//@nodes.12"/>
+  <transitions name="TRA5_D1" source="//@nodes.4" target="//@nodes.20"/>
+  <transitions name="TRA6_A14" source="//@nodes.5" target="//@nodes.13"/>
+  <transitions name="TRA7_A20" source="//@nodes.6" target="//@nodes.19"/>
+  <transitions name="TRA8_A4" source="//@nodes.7" target="//@nodes.3"/>
+  <transitions name="TRA9_A6" source="//@nodes.8" target="//@nodes.5"/>
+  <transitions name="TRA10_A18" source="//@nodes.9" target="//@nodes.17"/>
+  <transitions name="TRA11_A3" source="//@nodes.10" target="//@nodes.2"/>
+  <transitions name="TRA12_A2" source="//@nodes.11" target="//@nodes.1"/>
+  <transitions name="TRA13_A2" source="//@nodes.12" target="//@nodes.1"/>
+  <transitions name="TRA14_A12" source="//@nodes.13" target="//@nodes.11"/>
+  <transitions name="TRA15_A14" source="//@nodes.14" target="//@nodes.13"/>
+  <transitions name="TRA16_A2" source="//@nodes.15" target="//@nodes.1"/>
+  <transitions name="TRA17_A16" source="//@nodes.16" target="//@nodes.15"/>
+  <transitions name="TRA18_A5" source="//@nodes.17" target="//@nodes.4"/>
+  <transitions name="TRA19_A13" source="//@nodes.18" target="//@nodes.12"/>
+  <transitions name="TRA20_A4" source="//@nodes.19" target="//@nodes.3"/>
+  <transitions name="TRD1_A3" source="//@nodes.20" target="//@nodes.2"/>
+  <transitions name="TRD1_A1" source="//@nodes.20" target="//@nodes.0"/>
+  <transitions name="TRD1_A7" source="//@nodes.20" target="//@nodes.6"/>
+  <transitions name="TRD1_A8" source="//@nodes.20" target="//@nodes.7"/>
+  <transitions name="TRD1_A9" source="//@nodes.20" target="//@nodes.8"/>
+  <transitions name="TRD1_A10" source="//@nodes.20" target="//@nodes.9"/>
+  <transitions name="TRD1_A11" source="//@nodes.20" target="//@nodes.10"/>
+  <transitions name="TRD1_A15" source="//@nodes.20" target="//@nodes.14"/>
+  <transitions name="TRD1_A17" source="//@nodes.20" target="//@nodes.16"/>
+</flowchart:Flowchart>

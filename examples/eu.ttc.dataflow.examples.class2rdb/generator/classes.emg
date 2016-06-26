@@ -1,0 +1,45 @@
+$instances size
+operation Class create() {
+  self.name = nextString('LETTER', 5);
+}
+
+$instances size * 10
+operation Attribute create() {
+  self.name = nextString('LETTER', 5);
+}
+
+$instances size * 2
+operation DataType create() {
+  self.name = nextString('LETTER', 5);
+}
+
+pattern linkClass
+ cls : Class
+ guard : cls.isAbstract.isUndefined() {
+   onmatch {
+     var nb = nextInteger(99);
+     cls.isAbstract = nb < 20;
+     
+     var candidates = Class.all;
+     candidates.remove(cls);
+     cls.super.add(nextFromCollection(candidates));
+   }
+ }
+
+pattern linkAttribute
+ attr : Attribute
+ guard : attr.owner.isUndefined() {
+   onmatch {
+     attr.owner = nextFromCollection(Class.all);
+     
+     var nClass = nextInteger(99);
+     if (nClass < 25) {
+       attr.type = nextFromCollection(Class.all);
+     } else {
+       attr.type = nextFromCollection(DataType.all);
+     }
+
+     var nMV = nextInteger(99);
+     attr.multiValued = nMV < 30; 
+   }
+ }

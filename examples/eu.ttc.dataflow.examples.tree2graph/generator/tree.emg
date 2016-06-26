@@ -1,0 +1,28 @@
+pre {
+  var cachedCandidates;
+}
+
+$instances Sequence {minNodes, maxNodes}
+operation Tree create() {
+  self.label = nextCamelCaseString(20, 10);
+}
+
+// Note: matches don't seem to be random, so all
+// randomness must come from *inside* the onmatch.
+pattern linkNodes
+  p: Tree
+  guard : p.eContainer.isUndefined() {
+    onmatch {
+      if (cachedCandidates.isUndefined()) {
+        cachedCandidates = Tree.all.select(t|t.eContainer.isUndefined() and t <> p);
+      }
+
+      cachedCandidates.remove(p);
+      if (cachedCandidates.size() > 0) {
+        var pos = nextInteger(cachedCandidates.size() - 1);
+        var elem = cachedCandidates.get(pos);
+        cachedCandidates.size().println('Picked ' + pos + ', candidates left: ');
+        elem.children.add(p);
+      }
+    }
+  }

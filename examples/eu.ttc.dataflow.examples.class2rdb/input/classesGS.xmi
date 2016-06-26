@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cl="Class">
+  <cl:Class name="WOvoY">
+    <attr name="lEBml" multiValued="true" type="/2"/>
+    <attr name="qufCG" multiValued="false" type="/2"/>
+    <attr name="cwfYi" multiValued="false" type="/1"/>
+    <attr name="QhBBT" multiValued="false" type="/1"/>
+    <attr name="hwWJx" multiValued="true" type="/0"/>
+    <attr name="UkUEZ" multiValued="false" type="/0"/>
+    <attr name="LfWkr" multiValued="false" type="/2"/>
+    <attr name="YmPMg" multiValued="false" type="/1"/>
+    <attr name="BhSHT" multiValued="true" type="/1"/>
+    <attr name="cbgNU" multiValued="true" type="/1"/>
+  </cl:Class>
+  <cl:DataType name="YVaTx"/>
+  <cl:DataType name="GDSdi"/>
+</xmi:XMI>

@@ -1,0 +1,27 @@
+$instances families
+operation Family create() {
+  self.lastName = nextString('LETTER', 10);
+}
+
+$instances members
+operation Member create() {
+  self.firstName = nextString('LETTER', 10);
+}
+
+pattern linkMember
+  m : Member
+  guard : m.eContainer.isUndefined() {
+    onmatch {
+      var f = nextFromCollection(Family.all);
+      var option = nextInteger(3);
+      if (option == 0 and f.father.isUndefined()) {
+        f.father = m;
+      } else if (option == 1 and f.mother.isUndefined()) {
+        f.mother = m;
+      } else if (option < 2) {
+        f.sons.add(m);
+      } else {
+        f.daughters.add(m);
+      }
+    }
+  }
