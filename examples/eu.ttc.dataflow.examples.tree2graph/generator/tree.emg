@@ -14,7 +14,7 @@ pattern linkNodes
   guard : p.eContainer.isUndefined() {
     onmatch {
       if (cachedCandidates.isUndefined()) {
-        cachedCandidates = Tree.all.select(t|t.eContainer.isUndefined() and t <> p);
+        cachedCandidates = Tree.all;
       }
 
       cachedCandidates.remove(p);
