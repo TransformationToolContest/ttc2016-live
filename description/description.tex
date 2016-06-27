@@ -1,0 +1,130 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage[affil-it]{authblk}
+
+\newcommand*{\email}[1]{\texttt{#1}}
+
+\title{TTC'16 Live Contest Case Study}
+\subtitle{Execution of dataflow-based model transformations}
+
+\author{Antonio Garcia-Dominguez}
+\affil{\small Aston University, Birmingham, UK \\ \texttt{a.garcia-dominguez@aston.ac.uk}}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Abstract.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Model-to-model transformation frameworks and tools have evolved in the
+recent years to process larger models more efficiently. Traditional
+\emph{batch} transformation engines took the entire source model(s)
+and produced the entire target model(s) exactly once. A small change
+would require going again through the entire model. Alternatively, an
+\emph{incremental} transformation engine processes only the change
+itself, updating the target model(s) as needed.
+
+Various approaches for incremental transformations are present in the
+literature: for instance, ReactiveATL~\cite{tisi_lazy_2011} is an
+alternative execution engine of ATL which only computes and updates
+results on-demand as the model changes. VIATRA3 is a general purpose
+framework for reactive transformations~\cite{bergmann_viatra_2015}, in
+which users write rules that trigger as the model changes. Beyond
+model transformations, IncQuery~\cite{bergmann_incremental_2010} is an
+incremental query language that builds a RETE network and feeds EMF
+change notifications to keep query matches up to date. Streaming
+transformations have been studied by Cuadrado and
+Lara~\cite{cuadrado_streaming_2013} with the Eclectic tool and its
+ATL-like language, and by David, Rath, and
+Varró~\cite{david_streaming_2014} through complex event processing.
+
+Most of these systems can be seen as complex transformations of
+rule-based systems into event-driven systems, or frameworks that allow
+for writing these event-driven systems. This case suggests studying a
+type of notation that may be more directly amenable to incremental
+execution: a graph of model-oriented primitives which generate and
+process streams of tuples. The notation is inspired on popular
+Extract-Transform-Load (ETL) tools such as Pentaho Data
+Integration\footnote{\url{http://community.pentaho.com/projects/data-integration/}}
+or Talend Data
+Integration\footnote{\url{https://www.talend.com/products/data-integration}}. As
+data integration can be considered a form of model transformation,
+perhaps there might be lessons to learn from these languages. In
+addition to their potentially simpler incrementality, breaking rules
+into smaller primitives might increase the level of detail of the
+execution traces of the transformation.
+
+This case study presents a simplistic version of such a notation, with
+primitives subdivided into ``minimal'' and ``extended''
+sets. Participants are tasked with writing an execution engine using
+their favorite approach (e.g. code generation or model interpretation)
+and tool, which may support batch and/or incremental transformations.
+
+All the resources are included in the official Github
+repository\footnote{\url{https://github.com/TransformationToolContest/ttc16-live-contest}}. These
+resources are mentioned in Section~\ref{sec:case}. The evaluation
+criteria for the provided solutions are described in
+Section~\ref{sec:eval}. Contestants are invited to raise questions
+through GitHub issues should there be any unclear points in the
+description.
+
+\section{Case description}
+\label{sec:case}
+
+\subsection{Abstract syntax}
+\label{sec:asyn}
+
+Explain the abstract syntax of the language in rough terms, and also
+the primitives. Should mention the expected properties of a model
+element (eContainer and eClass so far).
+
+\subsection{Concrete syntax}
+\label{sec:csyn}
+
+Explain the textual (Xtext-based) and graphical (Sirius-based)
+notations. Doesn't need to be too detailed, as contestants won't
+actually write transformations.
+
+\subsection{Example: Families to Persons}
+\label{sec:f2p}
+
+Explain the Families2Persons example as described through the
+notations.
+
+\subsection{Task 1: base primitives}
+\label{sec:baseprim}
+
+% tree2graph: AllInstances, Evaluate, Filter, NewInstance, SetFeature
+% families2persons: AllInstances, Evaluate, Filter, NewInstance, SetFeature
+
+families2persons could be implemented, then tree2graph could be the
+``extra'' transformation for soundness.
+
+\subsection{Task 2: extended primitives}
+\label{sec:extprim}
+
+% flowchart2html: base + ForEach, AddToContainer
+% flowchart2html-alt: flowchart2html + conditional expressions
+% class2rdb: base + AddToContainer
+
+flowchart2html could be implemented, then class2rdb could be the
+``shadow'' transformation for soundness.
+
+\section{Evaluation}
+\label{sec:eval}
+
+Correctness (w/shadow transformation with base primitives revealed
+during conference), performance, extensibility.
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
