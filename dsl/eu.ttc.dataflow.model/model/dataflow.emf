@@ -106,7 +106,6 @@ class ForEach extends Element {
 
 // Aggregates rows into collections by another value
 class CollectBy extends Element {
-	attr String[1] elementField;
 	val Expression collectBy;
 }
 

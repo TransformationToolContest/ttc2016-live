@@ -4,8 +4,11 @@ operation Tree create() {
 }
 
 // Note: match pairings are not random?
+// Might make it useful to describe some common scenarios (e.g. the 'from' and 'in' clauses)
+// @random would be useful
+@random
 pattern linkNodes
-  p: Tree, q: Tree
+  p: Tree, q: Treetion
   guard : p.eContainer.isUndefined() and p <> q {
     onmatch {
       q.children.add(p);

@@ -196,7 +196,7 @@ public class DataflowDSLSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     CollectBy returns CollectBy
 	 *
 	 * Constraint:
-	 *     (name=ID (elementField=ID | collectBy=ConditionalExpression | target=[Element|ID])*)
+	 *     (name=ID (collectBy=ConditionalExpression | target=[Element|ID])*)
 	 */
 	protected void sequence_CollectBy(ISerializationContext context, CollectBy semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

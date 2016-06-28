@@ -22,33 +22,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link eu.ttc.dataflow.model.dataflow.impl.CollectByImpl#getElementField <em>Element Field</em>}</li>
  *   <li>{@link eu.ttc.dataflow.model.dataflow.impl.CollectByImpl#getCollectBy <em>Collect By</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CollectByImpl extends ElementImpl implements CollectBy {
-	/**
-	 * The default value of the '{@link #getElementField() <em>Element Field</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementField()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ELEMENT_FIELD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getElementField() <em>Element Field</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementField()
-	 * @generated
-	 * @ordered
-	 */
-	protected String elementField = ELEMENT_FIELD_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getCollectBy() <em>Collect By</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -76,27 +55,6 @@ public class CollectByImpl extends ElementImpl implements CollectBy {
 	@Override
 	protected EClass eStaticClass() {
 		return DataflowPackage.Literals.COLLECT_BY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getElementField() {
-		return elementField;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElementField(String newElementField) {
-		String oldElementField = elementField;
-		elementField = newElementField;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataflowPackage.COLLECT_BY__ELEMENT_FIELD, oldElementField, elementField));
 	}
 
 	/**
@@ -164,8 +122,6 @@ public class CollectByImpl extends ElementImpl implements CollectBy {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataflowPackage.COLLECT_BY__ELEMENT_FIELD:
-				return getElementField();
 			case DataflowPackage.COLLECT_BY__COLLECT_BY:
 				return getCollectBy();
 		}
@@ -180,9 +136,6 @@ public class CollectByImpl extends ElementImpl implements CollectBy {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataflowPackage.COLLECT_BY__ELEMENT_FIELD:
-				setElementField((String)newValue);
-				return;
 			case DataflowPackage.COLLECT_BY__COLLECT_BY:
 				setCollectBy((Expression)newValue);
 				return;
@@ -198,9 +151,6 @@ public class CollectByImpl extends ElementImpl implements CollectBy {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataflowPackage.COLLECT_BY__ELEMENT_FIELD:
-				setElementField(ELEMENT_FIELD_EDEFAULT);
-				return;
 			case DataflowPackage.COLLECT_BY__COLLECT_BY:
 				setCollectBy((Expression)null);
 				return;
@@ -216,28 +166,10 @@ public class CollectByImpl extends ElementImpl implements CollectBy {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataflowPackage.COLLECT_BY__ELEMENT_FIELD:
-				return ELEMENT_FIELD_EDEFAULT == null ? elementField != null : !ELEMENT_FIELD_EDEFAULT.equals(elementField);
 			case DataflowPackage.COLLECT_BY__COLLECT_BY:
 				return collectBy != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (elementField: ");
-		result.append(elementField);
-		result.append(')');
-		return result.toString();
 	}
 
 } //CollectByImpl

@@ -111,7 +111,6 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectByAccess().getGroup(), "rule__CollectBy__Group__0");
 					put(grammarAccess.getCollectByAccess().getGroup_3_0(), "rule__CollectBy__Group_3_0__0");
 					put(grammarAccess.getCollectByAccess().getGroup_3_1(), "rule__CollectBy__Group_3_1__0");
-					put(grammarAccess.getCollectByAccess().getGroup_3_2(), "rule__CollectBy__Group_3_2__0");
 					put(grammarAccess.getEvaluateAccess().getGroup(), "rule__Evaluate__Group__0");
 					put(grammarAccess.getEvaluateAccess().getGroup_3_0(), "rule__Evaluate__Group_3_0__0");
 					put(grammarAccess.getEvaluateAccess().getGroup_3_1(), "rule__Evaluate__Group_3_1__0");
@@ -194,9 +193,8 @@ public class DataflowDSLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getForEachAccess().getPositionFieldAssignment_3_2_1(), "rule__ForEach__PositionFieldAssignment_3_2_1");
 					put(grammarAccess.getForEachAccess().getTargetAssignment_3_3_1(), "rule__ForEach__TargetAssignment_3_3_1");
 					put(grammarAccess.getCollectByAccess().getNameAssignment_1(), "rule__CollectBy__NameAssignment_1");
-					put(grammarAccess.getCollectByAccess().getElementFieldAssignment_3_0_1(), "rule__CollectBy__ElementFieldAssignment_3_0_1");
-					put(grammarAccess.getCollectByAccess().getCollectByAssignment_3_1_1(), "rule__CollectBy__CollectByAssignment_3_1_1");
-					put(grammarAccess.getCollectByAccess().getTargetAssignment_3_2_1(), "rule__CollectBy__TargetAssignment_3_2_1");
+					put(grammarAccess.getCollectByAccess().getCollectByAssignment_3_0_1(), "rule__CollectBy__CollectByAssignment_3_0_1");
+					put(grammarAccess.getCollectByAccess().getTargetAssignment_3_1_1(), "rule__CollectBy__TargetAssignment_3_1_1");
 					put(grammarAccess.getEvaluateAccess().getNameAssignment_1(), "rule__Evaluate__NameAssignment_1");
 					put(grammarAccess.getEvaluateAccess().getFieldAssignment_3_0_1(), "rule__Evaluate__FieldAssignment_3_0_1");
 					put(grammarAccess.getEvaluateAccess().getExpressionAssignment_3_1_1(), "rule__Evaluate__ExpressionAssignment_3_1_1");

@@ -1223,31 +1223,25 @@ public class DataflowDSLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
-		private final Keyword cFieldKeyword_3_0_0 = (Keyword)cGroup_3_0.eContents().get(0);
-		private final Assignment cElementFieldAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
-		private final RuleCall cElementFieldIDTerminalRuleCall_3_0_1_0 = (RuleCall)cElementFieldAssignment_3_0_1.eContents().get(0);
+		private final Keyword cCollectByKeyword_3_0_0 = (Keyword)cGroup_3_0.eContents().get(0);
+		private final Assignment cCollectByAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
+		private final RuleCall cCollectByConditionalExpressionParserRuleCall_3_0_1_0 = (RuleCall)cCollectByAssignment_3_0_1.eContents().get(0);
 		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Keyword cCollectByKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cCollectByAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cCollectByConditionalExpressionParserRuleCall_3_1_1_0 = (RuleCall)cCollectByAssignment_3_1_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cAlternatives_3.eContents().get(2);
-		private final Keyword cTargetKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
-		private final Assignment cTargetAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final CrossReference cTargetElementCrossReference_3_2_1_0 = (CrossReference)cTargetAssignment_3_2_1.eContents().get(0);
-		private final RuleCall cTargetElementIDTerminalRuleCall_3_2_1_0_1 = (RuleCall)cTargetElementCrossReference_3_2_1_0.eContents().get(1);
+		private final Keyword cTargetKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cTargetAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final CrossReference cTargetElementCrossReference_3_1_1_0 = (CrossReference)cTargetAssignment_3_1_1.eContents().get(0);
+		private final RuleCall cTargetElementIDTerminalRuleCall_3_1_1_0_1 = (RuleCall)cTargetElementCrossReference_3_1_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//CollectBy:
 		//	'CollectBy'
 		//	name=ID
-		//	'{' ('field' elementField=ID
-		//	| 'collectBy' collectBy=ConditionalExpression
+		//	'{' ('collectBy' collectBy=ConditionalExpression
 		//	| 'target' target=[Element])*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'CollectBy' name=ID '{' ('field' elementField=ID | 'collectBy' collectBy=ConditionalExpression | 'target'
-		//target=[Element])* '}'
+		//'CollectBy' name=ID '{' ('collectBy' collectBy=ConditionalExpression | 'target' target=[Element])* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'CollectBy'
@@ -1262,47 +1256,35 @@ public class DataflowDSLGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('field' elementField=ID | 'collectBy' collectBy=ConditionalExpression | 'target' target=[Element])*
+		//('collectBy' collectBy=ConditionalExpression | 'target' target=[Element])*
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//'field' elementField=ID
+		//'collectBy' collectBy=ConditionalExpression
 		public Group getGroup_3_0() { return cGroup_3_0; }
 		
-		//'field'
-		public Keyword getFieldKeyword_3_0_0() { return cFieldKeyword_3_0_0; }
-		
-		//elementField=ID
-		public Assignment getElementFieldAssignment_3_0_1() { return cElementFieldAssignment_3_0_1; }
-		
-		//ID
-		public RuleCall getElementFieldIDTerminalRuleCall_3_0_1_0() { return cElementFieldIDTerminalRuleCall_3_0_1_0; }
-		
-		//'collectBy' collectBy=ConditionalExpression
-		public Group getGroup_3_1() { return cGroup_3_1; }
-		
 		//'collectBy'
-		public Keyword getCollectByKeyword_3_1_0() { return cCollectByKeyword_3_1_0; }
+		public Keyword getCollectByKeyword_3_0_0() { return cCollectByKeyword_3_0_0; }
 		
 		//collectBy=ConditionalExpression
-		public Assignment getCollectByAssignment_3_1_1() { return cCollectByAssignment_3_1_1; }
+		public Assignment getCollectByAssignment_3_0_1() { return cCollectByAssignment_3_0_1; }
 		
 		//ConditionalExpression
-		public RuleCall getCollectByConditionalExpressionParserRuleCall_3_1_1_0() { return cCollectByConditionalExpressionParserRuleCall_3_1_1_0; }
+		public RuleCall getCollectByConditionalExpressionParserRuleCall_3_0_1_0() { return cCollectByConditionalExpressionParserRuleCall_3_0_1_0; }
 		
 		//'target' target=[Element]
-		public Group getGroup_3_2() { return cGroup_3_2; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//'target'
-		public Keyword getTargetKeyword_3_2_0() { return cTargetKeyword_3_2_0; }
+		public Keyword getTargetKeyword_3_1_0() { return cTargetKeyword_3_1_0; }
 		
 		//target=[Element]
-		public Assignment getTargetAssignment_3_2_1() { return cTargetAssignment_3_2_1; }
+		public Assignment getTargetAssignment_3_1_1() { return cTargetAssignment_3_1_1; }
 		
 		//[Element]
-		public CrossReference getTargetElementCrossReference_3_2_1_0() { return cTargetElementCrossReference_3_2_1_0; }
+		public CrossReference getTargetElementCrossReference_3_1_1_0() { return cTargetElementCrossReference_3_1_1_0; }
 		
 		//ID
-		public RuleCall getTargetElementIDTerminalRuleCall_3_2_1_0_1() { return cTargetElementIDTerminalRuleCall_3_2_1_0_1; }
+		public RuleCall getTargetElementIDTerminalRuleCall_3_1_1_0_1() { return cTargetElementIDTerminalRuleCall_3_1_1_0_1; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -2524,8 +2506,7 @@ public class DataflowDSLGrammarAccess extends AbstractGrammarElementFinder {
 	//CollectBy:
 	//	'CollectBy'
 	//	name=ID
-	//	'{' ('field' elementField=ID
-	//	| 'collectBy' collectBy=ConditionalExpression
+	//	'{' ('collectBy' collectBy=ConditionalExpression
 	//	| 'target' target=[Element])*
 	//	'}';
 	public CollectByElements getCollectByAccess() {

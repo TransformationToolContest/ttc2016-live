@@ -116,8 +116,7 @@ CollectBy:
 	'CollectBy'
 	name=ID
 	'{'
-		('field' elementField=ID
-		|'collectBy' collectBy=ConditionalExpression
+		('collectBy' collectBy=ConditionalExpression
 		|'target' target=[Element])*
 	'}';
 

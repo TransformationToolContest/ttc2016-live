@@ -918,22 +918,13 @@ public interface DataflowPackage extends EPackage {
 	int COLLECT_BY__TARGET = ELEMENT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Element Field</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECT_BY__ELEMENT_FIELD = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Collect By</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECT_BY__COLLECT_BY = ELEMENT_FEATURE_COUNT + 1;
+	int COLLECT_BY__COLLECT_BY = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Collect By</em>' class.
@@ -942,7 +933,7 @@ public interface DataflowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECT_BY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int COLLECT_BY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Collect By</em>' class.
@@ -1943,17 +1934,6 @@ public interface DataflowPackage extends EPackage {
 	EClass getCollectBy();
 
 	/**
-	 * Returns the meta object for the attribute '{@link eu.ttc.dataflow.model.dataflow.CollectBy#getElementField <em>Element Field</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Element Field</em>'.
-	 * @see eu.ttc.dataflow.model.dataflow.CollectBy#getElementField()
-	 * @see #getCollectBy()
-	 * @generated
-	 */
-	EAttribute getCollectBy_ElementField();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link eu.ttc.dataflow.model.dataflow.CollectBy#getCollectBy <em>Collect By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2704,14 +2684,6 @@ public interface DataflowPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COLLECT_BY = eINSTANCE.getCollectBy();
-
-		/**
-		 * The meta object literal for the '<em><b>Element Field</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COLLECT_BY__ELEMENT_FIELD = eINSTANCE.getCollectBy_ElementField();
 
 		/**
 		 * The meta object literal for the '<em><b>Collect By</b></em>' containment reference feature.

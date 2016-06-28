@@ -706,17 +706,8 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCollectBy_ElementField() {
-		return (EAttribute)collectByEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getCollectBy_CollectBy() {
-		return (EReference)collectByEClass.getEStructuralFeatures().get(1);
+		return (EReference)collectByEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1092,7 +1083,6 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		createEAttribute(forEachEClass, FOR_EACH__POSITION_FIELD);
 
 		collectByEClass = createEClass(COLLECT_BY);
-		createEAttribute(collectByEClass, COLLECT_BY__ELEMENT_FIELD);
 		createEReference(collectByEClass, COLLECT_BY__COLLECT_BY);
 
 		evaluateEClass = createEClass(EVALUATE);
@@ -1250,7 +1240,6 @@ public class DataflowPackageImpl extends EPackageImpl implements DataflowPackage
 		initEAttribute(getForEach_PositionField(), ecorePackage.getEString(), "positionField", null, 0, 1, ForEach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(collectByEClass, CollectBy.class, "CollectBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCollectBy_ElementField(), ecorePackage.getEString(), "elementField", null, 1, 1, CollectBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCollectBy_CollectBy(), this.getExpression(), null, "collectBy", null, 0, 1, CollectBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(evaluateEClass, Evaluate.class, "Evaluate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

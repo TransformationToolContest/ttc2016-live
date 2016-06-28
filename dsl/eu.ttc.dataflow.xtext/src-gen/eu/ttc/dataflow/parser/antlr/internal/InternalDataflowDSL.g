@@ -1717,41 +1717,16 @@ ruleCollectBy returns [EObject current=null]
 		}
 		(
 			(
-				otherlv_3='field'
+				otherlv_3='collectBy'
 				{
-					newLeafNode(otherlv_3, grammarAccess.getCollectByAccess().getFieldKeyword_3_0_0());
-				}
-				(
-					(
-						lv_elementField_4_0=RULE_ID
-						{
-							newLeafNode(lv_elementField_4_0, grammarAccess.getCollectByAccess().getElementFieldIDTerminalRuleCall_3_0_1_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getCollectByRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"elementField",
-								lv_elementField_4_0,
-								"org.eclipse.xtext.common.Terminals.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				otherlv_5='collectBy'
-				{
-					newLeafNode(otherlv_5, grammarAccess.getCollectByAccess().getCollectByKeyword_3_1_0());
+					newLeafNode(otherlv_3, grammarAccess.getCollectByAccess().getCollectByKeyword_3_0_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getCollectByAccess().getCollectByConditionalExpressionParserRuleCall_3_1_1_0());
+							newCompositeNode(grammarAccess.getCollectByAccess().getCollectByConditionalExpressionParserRuleCall_3_0_1_0());
 						}
-						lv_collectBy_6_0=ruleConditionalExpression
+						lv_collectBy_4_0=ruleConditionalExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getCollectByRule());
@@ -1759,7 +1734,7 @@ ruleCollectBy returns [EObject current=null]
 							set(
 								$current,
 								"collectBy",
-								lv_collectBy_6_0,
+								lv_collectBy_4_0,
 								"eu.ttc.dataflow.DataflowDSL.ConditionalExpression");
 							afterParserOrEnumRuleCall();
 						}
@@ -1768,9 +1743,9 @@ ruleCollectBy returns [EObject current=null]
 			)
 			    |
 			(
-				otherlv_7='target'
+				otherlv_5='target'
 				{
-					newLeafNode(otherlv_7, grammarAccess.getCollectByAccess().getTargetKeyword_3_2_0());
+					newLeafNode(otherlv_5, grammarAccess.getCollectByAccess().getTargetKeyword_3_1_0());
 				}
 				(
 					(
@@ -1779,17 +1754,17 @@ ruleCollectBy returns [EObject current=null]
 								$current = createModelElement(grammarAccess.getCollectByRule());
 							}
 						}
-						otherlv_8=RULE_ID
+						otherlv_6=RULE_ID
 						{
-							newLeafNode(otherlv_8, grammarAccess.getCollectByAccess().getTargetElementCrossReference_3_2_1_0());
+							newLeafNode(otherlv_6, grammarAccess.getCollectByAccess().getTargetElementCrossReference_3_1_1_0());
 						}
 					)
 				)
 			)
 		)*
-		otherlv_9='}'
+		otherlv_7='}'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getCollectByAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_7, grammarAccess.getCollectByAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;

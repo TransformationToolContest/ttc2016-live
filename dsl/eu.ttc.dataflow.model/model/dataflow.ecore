@@ -82,8 +82,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="positionField" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectBy" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementField" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="collectBy" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
