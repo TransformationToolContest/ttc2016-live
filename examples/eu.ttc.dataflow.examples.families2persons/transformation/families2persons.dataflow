@@ -1,37 +1,32 @@
 AllInstances AllMembers {
-	field member
-	type Families!Member
-	target ComputeFullName
+  field member
+  type Families!Member
+  target ComputeFullName
 }
-
 Evaluate ComputeFullName {
-	field fullName
-	expression member.firstName + ' ' + member.eContainer.lastName
-	target SplitByGender
+  field fullName
+  expression member.firstName + ' ' + member.eContainer.lastName
+  target SplitByGender
 }
-
 Filter SplitByGender {
-	filterBy member.familyMother or member.familyDaughter
-	target NewFemale
-	rejectTarget NewMale
+  filterBy member.familyMother or member.familyDaughter
+  target NewFemale
+  rejectTarget NewMale
 }
-
 NewInstance NewMale {
-	field person
-	key member
-	type Persons!Male
-	target SetPersonName
+  field person
+  key member
+  type Persons!Male
+  target SetPersonName
 }
-
 NewInstance NewFemale {
-	field person
-	key member
-	type Persons!Female
-	target SetPersonName
+  field person
+  key member
+  type Persons!Female
+  target SetPersonName
 }
-
 SetFeature SetPersonName {
-	field person
-	value fullName
-	feature fullName
+  field person
+  value fullName
+  feature fullName
 }

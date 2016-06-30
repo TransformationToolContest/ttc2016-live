@@ -4,16 +4,30 @@
 \usepackage{url}
 \usepackage[affil-it]{authblk}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xspace}
 
 \newcommand*{\class}[1]{\textsc{#1}}
 \newcommand*{\email}[1]{\texttt{#1}}
+\newcommand{\FlowMM}{\emph{FlowM2M}\xspace}
 
 \title{TTC'16 Live Contest Case Study}
 \subtitle{Execution of dataflow-based model transformations}
 
 \author{Antonio Garcia-Dominguez}
 \affil{\small Aston University, Birmingham, UK \\ \texttt{a.garcia-dominguez@aston.ac.uk}}
-\date{}
+\date{4 July 2016}
+
+\lstdefinelanguage{FlowM2M}{
+morekeywords={AllInstances,Evaluate,Filter,NewInstance,SetFeature,field,type,target,expression,filterBy,rejectTarget,key,value,feature,or},
+sensitive=true,
+morecomment=[l]{//},
+morecomment=[s]{/*}{*/},
+morecomment=[s]{-*}{*-},
+morestring=[b]",
+morestring=[b]',
+showstringspaces=false
+}
 
 \begin{document}
 
@@ -65,11 +79,12 @@ addition to their potentially simpler incrementality, breaking rules
 into smaller primitives might increase the level of detail of the
 execution traces of the transformation.
 
-This case study presents a simplistic version of such a notation, with
-primitives subdivided into ``minimal'' and ``extended''
-sets. Participants are tasked with writing an execution engine using
-their favorite approach (e.g. code generation or model interpretation)
-and tool, which may support batch and/or incremental transformations.
+This case study presents an initial and simplified version of such a
+notation, called \FlowMM, with primitives subdivided into ``minimal''
+and ``extended'' sets. Participants are tasked with writing an
+execution engine using their favorite approach (e.g. code generation
+or model interpretation) and tool, which may support batch and/or
+incremental transformations.
 
 All the resources are included in the official Github
 repository\footnote{\url{https://github.com/TransformationToolContest/ttc16-live-contest}}. These
@@ -91,10 +106,9 @@ primitives, in order to be feasible for the time available during TTC.
 The first part of the description is dedicated to introducing the
 language. Section~\ref{sec:asyn} presents the abstract syntax of the
 language and describes the intended semantics for its various
-primitives. Section~\ref{sec:csyn} explains the concrete syntaxes
-defined, with a HUTN-like simple textual notation and a
-boxes-and-arrows graphical notation. Section~\ref{sec:f2p} gives a
-walkthrough of a simple transformation written in the language.
+primitives. Section~\ref{sec:f2p} summarizes the concrete syntaxes for
+the language through an example: these include a HUTN-like simple
+textual notation and a boxes-and-arrows graphical notation.
 
 After this, two tasks are defined: one is to support the most basic
 primitives so the simple example shown in Section~\ref{sec:f2p} can
@@ -250,6 +264,11 @@ is a tree of elements of various types:
   addition / string concatenation (\emph{ADD}), subtraction,
   multiplication, division or the modulo operation.
 
+  \emph{Note}: to simplify some cases, logical operators operate with
+  ``truish'' values as well (as in JavaScript). A ``truish'' value is
+  a ``true'' Boolean literal, a non-empty string, a non-null EObject,
+  a non-empty sequence or a non-zero number.
+
 \item \class{FeatureCall}s, which access a certain property or method
   within an object contained in the present row. If it is a method
   call, it will include a list of parameter subexpressions. The
@@ -264,18 +283,63 @@ is a tree of elements of various types:
   otherwise it will use the \emph{elseExpression}.
 \end{itemize}
 
-\subsection{Concrete syntax}
-\label{sec:csyn}
-
-Explain the textual (Xtext-based) and graphical (Sirius-based)
-notations. Doesn't need to be too detailed, as contestants won't
-actually write transformations.
-
 \subsection{Example: Families to Persons}
 \label{sec:f2p}
 
-Explain the Families2Persons example as described through the
-notations.
+Since the current case study does not involve writing new
+transformations but rather executing existing ones, the concrete
+syntax will be simply illustrated through the basic example to be
+executed: the classic ``Families to Persons'' transformation, as
+listed in the ATL
+Zoo\footnote{\url{https://www.eclipse.org/atl/atlTransformations/#Families2Persons}}.
+
+This transformation takes a collection of \class{Family} instances
+containing \class{Member}s, whose genders are derived from their role
+in the \class{Family}, and transforms them into either \class{Male} or
+\class{Female} instances depending on their gender, while preserving
+their first and last names.
+
+Two concrete syntaxes are provided in the Github repository for the
+abstract syntax shown in Section~\ref{sec:asyn}. The main syntax is
+textual (Xtext-based) and similar to OMG HUTN~\cite{hutn2004}, in
+order to allow users to comfortably write the embedded expressions
+included in primitives such as \class{Evaluate} or \class{Filter}. A
+graphical syntax has also been developed using Sirius, in order to
+more easily visualize and work with the underlying graph of
+primitives. It is possible to edit the same model graphically and
+textually, thanks to the viewpoint approach taken by Sirius.
+
+\lstinputlisting[float,label=lst:f2p,caption={Families to Persons, textual \FlowMM notation},language=FlowM2M,numbers=left,numberstyle=\scriptsize,frame=tb,columns=flexible,basicstyle=\small]{../examples/eu.ttc.dataflow.examples.families2persons/transformation/families2persons.dataflow}
+
+The textual representation of the ``Families to Persons'' example is
+shown in Listing~\ref{lst:f2p}. The transformation starts by
+retrieving all the instances of \class{Member} in ``AllMembers'', and
+then computing the full name in advance through the
+``ComputeFullName'' element. ``SplitByGender'' receives the resulting
+rows and distributes them between the ``NewMale'' and ``NewFemale''
+elements. This creates the appropriate \class{Male} or \class{Female}
+instance, which is sent to ``SetPersonName'' to have its full name
+set.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.4\textwidth]{families2persons}
+  \caption{Families to Persons, graphical \FlowMM notation}
+  \label{fig:f2p}
+\end{figure}
+
+The graphical representation of the ``Families to Persons'' example is
+shown in Figure~\ref{fig:f2p}. As it can be seen, it is only meant to
+be a viewpoint on the full model that emphasizes the flows between the
+different activities: it does not represent the embedded expressions
+themselves. The representation is mostly a simple ``boxes and arrows''
+affair, mentioning the primitive type and the name of the
+\class{Element}. This partial representation is editable,
+nevertheless, as it can be useful for detecting disconnected or
+wrongly connected elements in the flow. For clarity, the outgoing
+edges of the \class{Filter} steps are color-coded and labelled
+depending on whether they take the rows that passed the condition or
+not.
 
 \subsection{Task 1: base primitives}
 \label{sec:baseprim}
