@@ -10,12 +10,13 @@
 \newcommand*{\class}[1]{\textsc{#1}}
 \newcommand*{\email}[1]{\texttt{#1}}
 \newcommand{\FlowMM}{\emph{FlowM2M}\xspace}
+\newcommand*{\file}[1]{\texttt{#1}}
 
 \title{TTC'16 Live Contest Case Study}
 \subtitle{Execution of dataflow-based model transformations}
 
 \author{Antonio Garcia-Dominguez}
-\affil{\small Aston University, Birmingham, UK \\ \texttt{a.garcia-dominguez@aston.ac.uk}}
+\affil{\small Department of Computer Science, Aston University, Birmingham, UK \\ \texttt{a.garcia-dominguez@aston.ac.uk}}
 \date{4 July 2016}
 
 \lstdefinelanguage{FlowM2M}{
@@ -34,7 +35,21 @@ showstringspaces=false
 \maketitle
 
 \begin{abstract}
-  Abstract.
+  Incremental execution of model transformation has received much
+  attention in the past few years, due to the potential speedups in
+  keeping an output model up to date with regards to an input
+  model. Most of the proposed approaches are alternative execution
+  engines for existing languages, or frameworks for programming
+  event-driven transformations.
+
+  This live competition proposes a dataflow-driven notation that may
+  be more directly mappable to an incremental strategy. Contestants
+  will implement an execution engine that takes in one of the four
+  example transformations and runs it in batch or incremental mode,
+  using their favorite approach and technology. Solutions will be
+  compared in terms of batch correctness and performance, incremental
+  correctness and performance, and maintainability and
+  extensibility. A reference implementation is made available.
 \end{abstract}
 
 \section{Introduction}
@@ -65,11 +80,12 @@ Varró~\cite{david_streaming_2014} through complex event processing.
 
 Most of these systems can be seen as complex transformations of
 rule-based systems into event-driven systems, or frameworks that allow
-for writing these event-driven systems. This case suggests studying a
-type of notation that may be more directly amenable to incremental
-execution: a graph of model-oriented primitives which generate and
-process streams of tuples. The notation is inspired on popular
-Extract-Transform-Load (ETL) tools such as Pentaho Data
+for writing these event-driven systems through Java code. This case
+suggests studying a type of notation that may be more directly
+amenable to incremental execution: a graph of model-oriented
+primitives which generate and process streams of tuples. The notation
+is inspired on popular Extract-Transform-Load (ETL) tools such as
+Pentaho Data
 Integration\footnote{\url{http://community.pentaho.com/projects/data-integration/}}
 or Talend Data
 Integration\footnote{\url{https://www.talend.com/products/data-integration}}. As
@@ -98,10 +114,11 @@ description.
 \label{sec:case}
 
 The present case study requires contestants to use their favorite
-technology to write an execution engine for a dataflow-oriented
-model-to-model transformation language. The transformation language
-has been designed with a simplistic syntax and a limited set of
-primitives, in order to be feasible for the time available during TTC.
+technology to write a batch or incremental execution engine for a
+dataflow-oriented model-to-model transformation language. The
+transformation language has been designed with a simplistic syntax and
+a limited set of primitives, in order to be feasible for the time
+available during TTC.
 
 The first part of the description is dedicated to introducing the
 language. Section~\ref{sec:asyn} presents the abstract syntax of the
@@ -230,7 +247,7 @@ More primitives are available for managing rows:
   sequence.
 \end{itemize}
 
-While these are quite a few primitives, not all of them need to be
+While these are quite a few primitives, only some of them need to be
 implemented to run the transformations proposed in this case
 study. The required primitives will be mentioned later on.
 
@@ -301,13 +318,13 @@ their first and last names.
 
 Two concrete syntaxes are provided in the Github repository for the
 abstract syntax shown in Section~\ref{sec:asyn}. The main syntax is
-textual (Xtext-based) and similar to OMG HUTN~\cite{hutn2004}, in
-order to allow users to comfortably write the embedded expressions
-included in primitives such as \class{Evaluate} or \class{Filter}. A
-graphical syntax has also been developed using Sirius, in order to
-more easily visualize and work with the underlying graph of
-primitives. It is possible to edit the same model graphically and
-textually, thanks to the viewpoint approach taken by Sirius.
+textual (Xtext-based) and similar to OMG HUTN~\cite{hutn2004},
+allowing users to comfortably write the embedded expressions included
+in primitives such as \class{Evaluate} or \class{Filter}. A graphical
+syntax has also been developed using Sirius, for simpler visualization
+of the connections between the primitives. The same model can be
+edited through both notations at the same time, thanks to the
+viewpoint approach taken by Sirius.
 
 \lstinputlisting[float,label=lst:f2p,caption={Families to Persons, textual \FlowMM notation},language=FlowM2M,numbers=left,numberstyle=\scriptsize,frame=tb,columns=flexible,basicstyle=\small]{../examples/eu.ttc.dataflow.examples.families2persons/transformation/families2persons.dataflow}
 
@@ -347,8 +364,55 @@ not.
 % tree2graph: AllInstances, Evaluate, Filter, NewInstance, SetFeature
 % families2persons: AllInstances, Evaluate, Filter, NewInstance, SetFeature
 
-families2persons could be implemented, then tree2graph could be the
-``extra'' transformation for soundness.
+The first task of this case study is implementing an approach that
+enables the batch and/or incremental execution of two basic
+transformations: the ``Families to Persons'' example shown in
+Section~\ref{sec:f2p} and a ``Tree to Graph'' transformation that was
+also inspired from a case in the ATL Transformation Zoo. Both
+transformations are available as subfolders of the \file{examples}
+folder in the GitHub repository.
+
+The basic folder layout is the same for all examples:
+\begin{itemize}
+\item \file{input}: manually constructed model, plus a set of small,
+  medium and large synthetic models (with the \file{GS}, \file{GM} and
+  \file{GL} suffixes, respectively).
+\item \file{output}: expected output for the manually constructed
+  example.
+\item \file{metamodels}: Ecore metamodels for the input and output
+  models.
+\item \file{generator}: the Epsilon Model
+  Generator\footnote{\url{https://github.com/sop501/ModelCodes}}
+  script that produced the synthetic models.
+\item \file{transformation}: a \file{.dataflow} file specifying the
+  transformation according to the abstract syntax in
+  Section~\ref{sec:asyn} and the textual concrete syntax used in
+  Listing~\ref{lst:f2p}.
+\item The root folder of the example contains a \file{.launchconfig}
+  with the Ecore-based launch configuration used for the sample
+  Epsilon-based interpreter, a set of Eclipse launch configurations to
+  use the model generator, and an \file{.aird} file with a graphical
+  representation of the transformation.
+\end{itemize}
+
+A reference Epsilon\footnote{\url{http://eclipse.org/epsilon}}-based
+interpreter of \file{.dataflow} files is available in
+\file{solutions}. It is not designed for performance nor scalability,
+however: contestants are free to use their favorite approach to enable
+execution (e.g. Java code generation, transformation to another tool
+or better interpretation). Contestants are also invited to slightly
+tweak semantics if it improves incrementality, maintainability or
+performance, as long as the transformation produces the intended
+result.
+
+The base set of primitives for this task are \class{AllInstances},
+\class{Evaluate}, \class{Filter}, \class{NewInstance} and
+\class{SetFeature}. Contestants are free to limit the implementation
+of the expression language to the particular operators and methods
+that are required by these transformations.
+
+% tree2graph: AllInstances, Evaluate, Filter, NewInstance, SetFeature
+% families2persons: AllInstances, Evaluate, Filter, NewInstance, SetFeature
 
 \subsection{Task 2: extended primitives}
 \label{sec:extprim}
@@ -357,14 +421,64 @@ families2persons could be implemented, then tree2graph could be the
 % flowchart2html-alt: flowchart2html + conditional expressions
 % class2rdb: base + AddToContainer
 
-flowchart2html could be implemented, then class2rdb could be the
-``shadow'' transformation for soundness.
+The second task is a direct extension of the first one: this time, the
+two transformations to be enabled are more complex. One is an instance
+of the (in)famous ``Class to RDB'' example, while the other is a
+``Flowchart to HTML'' transformation. These transformations follow the
+same folder layout mentioned in Section~\ref{sec:baseprim}.
+
+This task requires implementing the primitives in the previous task,
+plus the \class{ForEach} and \class{AddToContainer} tasks. The fact
+that these primitives handle collections will naturally complicate
+their execution, especially in an incremental scenario. As for the
+expression language, more operators will have to be implemented: in
+particular, ``Flowchart to HTML'' includes an alternative version that
+takes advantage of the ternary ``if...then...else...'' operator.
 
 \section{Evaluation}
 \label{sec:eval}
 
-Correctness (w/shadow transformation with base primitives revealed
-during conference), performance, extensibility.
+Contestants should submit their solutions at the end of the day before
+the contest in a form that allows for easy execution by
+attendees. Solutions will be submitted as pull requests to the main
+GitHub repository, adding new subfolders to the \file{solutions}
+folder. Solutions should also report their execution times in
+milliseconds, to aid performance evaluation.
+
+The solutions shall be evaluated according to the following criteria:
+\begin{itemize}
+\item Batch correctness -- how many of the manually constructed models
+  are transformed correctly?
+
+\item Incremental correctness -- how many of the manually constructed
+  models are recalculated/updated correctly after a change in the
+  model?
+
+  The actual changes to the model will be:
+  \begin{itemize}
+  \item For ``Families to Persons'': change the role of a member of a
+    family, so that their gender changes.
+  \item For ``Tree to Graph'': remove a subtree, which should result
+    in removing a subgraph.
+  \item For ``Class to RDB'': add a new multivalued scalar attribute,
+    producing a new table.
+  \item For ``Flowchart to HTML'': add a new transition, which should
+    result in a new link.
+  \end{itemize}
+
+\item Batch performance -- is the solution faster than the others at
+  transforming the large synthetic model? \emph{Requires batch
+    correctness.}
+
+\item Incremental performance -- is the solution faster than the
+  others at producing the updated model after changing the large
+  synthetic model as mentioned above? \emph{Requires incremental
+  correctness.}
+
+\item Maintainability and extensibility -- can the provided solution
+  be extended naturally to cover the other primitives which were not
+  used in this case study?
+\end{itemize}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
