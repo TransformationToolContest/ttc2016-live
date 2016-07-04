@@ -172,84 +172,95 @@ The primitives can be divided into several groups. First, there are
 the object handling primitives:
 
 \begin{itemize}
-\item \class{AllInstances}: for each input row $r$, it produces one
-  new row $r'$ for each instance of the specified type within the
-  specified package and model, where the specified field will be set
-  to that instance. Package and model are optional.
+\item \class{AllInstances} (needed for tasks 1 and 2): for each input
+  row $r$, it produces one new row $r'$ for each instance of the
+  specified type within the specified package and model, where the
+  specified field will be set to that instance. Package and model are
+  optional.
 
   If this step has no incoming edges, it will act as it received a
   single empty row, producing one row per instance of the specified
   type from scratch. It will be very commonly the first step in most
   transformations.
 
-\item \class{NewInstance}: evaluates the \emph{key} expression against
-  each input tuple and tests if an instance of the same type was
-  previously created against the same key (potentially from another
-  \class{NewInstance} step). If it was not, it will set the field
-  mentioned in \emph{instanceField} to a new instance of the specified
-  type and package within the specified model. Otherwise, it will set
-  the same field to the previously created element.
+\item \class{NewInstance} (needed for tasks 1 and 2): evaluates the
+  \emph{key} expression against each input tuple and tests if an
+  instance of the same type was previously created against the same
+  key (potentially from another \class{NewInstance} step). If it was
+  not, it will set the field mentioned in \emph{instanceField} to a
+  new instance of the specified type and package within the specified
+  model. Otherwise, it will set the same field to the previously
+  created element.
 
   The usage of a key is meant to provide a similar facility to the
   \emph{equivalent()} operation in popular languages such as ATL or
   ETL.
 
-\item \class{GetFeature}: reads a feature (e.g. an attribute or
-  reference) from an object in a field of the input row and places it
-  as a field of the output row. Useful in combination with
-  \class{AddToContainer} later.
+\item \class{GetFeature} (not needed for TTC): reads a feature
+  (e.g. an attribute or reference) from an object in a field of the
+  input row and places it as a field of the output row. Useful in
+  combination with \class{AddToContainer} later.
 
-\item \class{SetFeature}: sets a feature of an object to the result of
-  a certain \class{Expression} on each input row.
+\item \class{SetFeature} (needed for tasks 1 and 2): sets a feature of
+  an object to the result of a certain \class{Expression} on each
+  input row.
 \end{itemize}
 
 There are primitives for computing derived values and operating on
 collections:
 
 \begin{itemize}
-\item \class{Evaluate}: computes an arbitrary expression on the
-  current input row and places it as a field on the output row.
+\item \class{Evaluate} (needed for tasks 1 and 2): computes an
+  arbitrary expression on the current input row and places it as a
+  field on the output row.
 
-\item \class{NewContainer}: creates a new, empty container as a field
-  on each input row. The container may be a set, or a list.
+\item \class{NewContainer} (not needed for TTC): creates a new, empty
+  container as a field on each input row. The container may be a set,
+  or a list.
 
-\item \class{AddToContainer}: adds an element (potentially at a
-  certain position) to the container present in a certain field of the
-  input row. This operation has been treated as a primitive, as it may
-  need specific considerations for incremental processing.
+\item \class{AddToContainer} (needed for task 2): adds an element
+  (potentially at a certain position) to the container present in a
+  certain field of the input row. This operation has been treated as a
+  primitive, as it may need specific considerations for incremental
+  processing.
 \end{itemize}
 
 More primitives are available for managing rows:
 
 \begin{itemize}
-\item \class{Filter}: for each input row, evaluates the
-  \emph{filterBy} expression. Rows that produce a \emph{true} value
-  are sent through the \emph{target} element, and those that produce a
-  \emph{false} value are sent through the \emph{rejectTarget} element.
+\item \class{Filter} (needed for tasks 1 and 2): for each input row,
+  evaluates the \emph{filterBy} expression. Rows that produce a
+  \emph{true} value are sent through the \emph{target} element, and
+  those that produce a \emph{false} value are sent through the
+  \emph{rejectTarget} element.
 
-\item \class{Copy}: duplicates the same input rows in the same order
-  to the \emph{target} and \emph{copyTarget} elements.
+\item \class{Copy} (not needed for TTC): duplicates the same input
+  rows in the same order to the \emph{target} and \emph{copyTarget}
+  elements.
 
-\item \class{Product}: this step is intended to receive rows from two
-  \class{Element}s and generate the cartesian product of the two sets
-  of rows (e.g. produce all pairs of rows from both elements).
+\item \class{Product} (not needed for TTC): this step is intended to
+  receive rows from two \class{Element}s and generate the cartesian
+  product of the two sets of rows (e.g. produce all pairs of rows from
+  both elements).
 
-\item \class{Sort}: reads in all the rows and then sorts them
-  according to the values produced by the \emph{sortBy} expression.
+\item \class{Sort} (not needed for TTC): reads in all the rows and
+  then sorts them according to the values produced by the
+  \emph{sortBy} expression.
 
-\item \class{ForEach}: for each input row with a collection on a
-  certain field, it produces as many rows as elements in that
-  collection, setting a certain field to each of its elements.
+\item \class{ForEach} (needed for task 2): for each input row with a
+  collection on a certain field, it produces as many rows as elements
+  in that collection, setting a certain field to each of its elements.
 
-\item \class{CollectBy}: for each sequence of contiguous rows with the
-  same value for \emph{collectBy}, it will produce one row replacing
-  all fields with collections of their respective values in the
-  sequence.
+\item \class{CollectBy} (not needed for TTC): for each sequence of
+  contiguous rows with the same value for \emph{collectBy}, it will
+  produce one row replacing all fields with collections of their
+  respective values in the sequence.
 \end{itemize}
 
 While these are quite a few primitives, only some of them need to be
 implemented to run the transformations proposed in this case
-study. The required primitives will be mentioned later on.
+study. This has been mentioned above, and will be listed again within
+each task.
 
 \subsubsection{Expressions}
 
@@ -337,6 +348,17 @@ rows and distributes them between the ``NewMale'' and ``NewFemale''
 elements. This creates the appropriate \class{Male} or \class{Female}
 instance, which is sent to ``SetPersonName'' to have its full name
 set.
+
+The textual syntax provides a slight simplification over the metamodel
+in Figure~\ref{fig:ast-primitives}: if a particular primitive only
+takes one field name, the textual syntax simply uses the ``field''
+keyword to refer to it. This is the case for \class{AllInstances}
+(which has ``field''), \class{NewInstance} (has ``instanceField''),
+\class{SetFeature} (has ``objectField''), \class{NewContainer} (has
+``listField''), \class{AddToContainer} (has ``listField''), and
+\class{Evaluate} (has ``field''). For the primitives that use multiple
+field names, these are preserved as-is: this is the case for
+\class{GetFeature} and \class{ForEach}.
 
 \begin{figure}
   \centering
