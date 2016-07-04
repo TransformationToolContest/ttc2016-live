@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ASCII"?>
+<df:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow">
+  <elements xsi:type="df:AllInstances" name="AllMembers" field="member" model="Families" typeName="Member">
+    <target xsi:type="df:AllInstances" href="families2persons.dataflow#|0"/>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="ComputeFullName" field="fullName">
+    <target xsi:type="df:AllInstances" href="families2persons.dataflow#|1"/>
+    <expression xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:BinaryOperation" operator="ADD">
+        <leftExpression xsi:type="df:FeatureCall" feature="firstName">
+          <targetExpression xsi:type="df:FieldReference" field="member"/>
+        </leftExpression>
+        <rightExpression xsi:type="df:StringLiteral" value=" "/>
+      </leftExpression>
+      <rightExpression xsi:type="df:FeatureCall" feature="lastName">
+        <targetExpression xsi:type="df:FeatureCall" feature="eContainer">
+          <targetExpression xsi:type="df:FieldReference" field="member"/>
+        </targetExpression>
+      </rightExpression>
+    </expression>
+  </elements>
+  <elements xsi:type="df:Filter" name="SplitByGender">
+    <target xsi:type="df:AllInstances" href="families2persons.dataflow#|2"/>
+    <filterBy xsi:type="df:BinaryOperation" operator="OR">
+      <leftExpression xsi:type="df:FeatureCall" feature="familyMother">
+        <targetExpression xsi:type="df:FieldReference" field="member"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:FeatureCall" feature="familyDaughter">
+        <targetExpression xsi:type="df:FieldReference" field="member"/>
+      </rightExpression>
+    </filterBy>
+    <rejectTarget xsi:type="df:AllInstances" href="families2persons.dataflow#|3"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="NewMale" instanceField="person" model="Persons" typeName="Male">
+    <target xsi:type="df:AllInstances" href="families2persons.dataflow#|4"/>
+    <key xsi:type="df:FieldReference" field="member"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="NewFemale" instanceField="person" model="Persons" typeName="Female">
+    <target xsi:type="df:AllInstances" href="families2persons.dataflow#|5"/>
+    <key xsi:type="df:FieldReference" field="member"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="SetPersonName" objectField="person" feature="fullName">
+    <value xsi:type="df:FieldReference" field="fullName"/>
+  </elements>
+</df:Model>

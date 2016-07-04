@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtext to XMI converter
+Bundle-SymbolicName: eu.ttc.dataflow.xtext.convertxmi;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Antonio Garcia-Dominguez
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.expressions,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ eu.ttc.dataflow.model,
+ eu.ttc.dataflow.model.edit,
+ eu.ttc.dataflow.xtext,
+ org.eclipse.emf.ecore.xmi

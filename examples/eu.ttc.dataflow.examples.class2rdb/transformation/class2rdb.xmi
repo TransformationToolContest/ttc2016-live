@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="ASCII"?>
+<df:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow">
+  <elements xsi:type="df:AllInstances" name="Attributes" field="attribute" model="Class" typeName="Attribute">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|0"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="IntegerType" instanceField="integerType" model="DB" typeName="Type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|1"/>
+    <key xsi:type="df:StringLiteral" value="type_Integer"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="IntegerTypeName" objectField="integerType" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|2"/>
+    <value xsi:type="df:StringLiteral" value="Integer"/>
+  </elements>
+  <elements xsi:type="df:Filter" name="AttributeType">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|3"/>
+    <filterBy xsi:type="df:BinaryOperation">
+      <leftExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FeatureCall" feature="eClass">
+          <targetExpression xsi:type="df:FeatureCall" feature="type">
+            <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+          </targetExpression>
+        </targetExpression>
+      </leftExpression>
+      <rightExpression xsi:type="df:StringLiteral" value="Class"/>
+    </filterBy>
+    <rejectTarget xsi:type="df:AllInstances" href="class2rdb.dataflow#|4"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="DataTypeAttribute" instanceField="dbType" model="DB" typeName="Type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|5"/>
+    <key xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:StringLiteral" value="type_"/>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FeatureCall" feature="type">
+          <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+        </targetExpression>
+      </rightExpression>
+    </key>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="DataTypeName" objectField="dbType" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|6"/>
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FeatureCall" feature="type">
+        <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+      </targetExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:Filter" name="DataTypeAttributeMultiplicity">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|7"/>
+    <filterBy xsi:type="df:FeatureCall" feature="multiValued">
+      <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+    </filterBy>
+    <rejectTarget xsi:type="df:AllInstances" href="class2rdb.dataflow#|8"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="SVDataTypeAttributeColumn" instanceField="attrColumn" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|9"/>
+    <key xsi:type="df:FieldReference" field="attribute"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="SVDataTypeAttributeColumnName" objectField="attrColumn" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|10"/>
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+    </value>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="SVDataTypeAttributeColumnType" objectField="attrColumn" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|11"/>
+    <value xsi:type="df:FieldReference" field="dbType"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="MVDataTypeAttributeTable" instanceField="attrTable" model="DB" typeName="Table">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|12"/>
+    <key xsi:type="df:FieldReference" field="attribute"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVDataTypeAttributeTableName" objectField="attrTable" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|13"/>
+    <value xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:BinaryOperation" operator="ADD">
+        <leftExpression xsi:type="df:FeatureCall" feature="name">
+          <targetExpression xsi:type="df:FeatureCall" feature="type">
+            <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+          </targetExpression>
+        </leftExpression>
+        <rightExpression xsi:type="df:StringLiteral" value="_"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+      </rightExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="MVDataTypeAttributeTableCols" field="attrTableCols">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|14"/>
+    <expression xsi:type="df:FeatureCall" feature="col">
+      <targetExpression xsi:type="df:FieldReference" field="attrTable"/>
+    </expression>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="MVDataTypeAttributeIDCol" instanceField="idColumn" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|15"/>
+    <key xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attrTable"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:StringLiteral" value="_idcol"/>
+    </key>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVDataTypeAttributeIDColName" objectField="idColumn" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|16"/>
+    <value xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:StringLiteral" value="id"/>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FeatureCall" feature="type">
+          <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+        </targetExpression>
+      </rightExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVDataTypeAttributeIDColType" objectField="idColumn" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|17"/>
+    <value xsi:type="df:FieldReference" field="integerType"/>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="MVDataTypeAttributeIDColAdd" listField="attrTableCols">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|18"/>
+    <value xsi:type="df:FieldReference" field="idColumn"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="MVDataTypeAttributeVCol" instanceField="idColumn" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|19"/>
+    <key xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attrTable"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:StringLiteral" value="_vcol"/>
+    </key>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVDataTypeAttributeVColName" objectField="idColumn" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|20"/>
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+    </value>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVDataTypeAttributeVColType" objectField="idColumn" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|21"/>
+    <value xsi:type="df:FieldReference" field="dbType"/>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="MVDataTypeAttributeVColAdd" listField="attrTableCols">
+    <value xsi:type="df:FieldReference" field="idColumn"/>
+  </elements>
+  <elements xsi:type="df:Filter" name="ClassAttribute">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|22"/>
+    <filterBy xsi:type="df:FeatureCall" feature="multiValued">
+      <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+    </filterBy>
+    <rejectTarget xsi:type="df:AllInstances" href="class2rdb.dataflow#|23"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="SVClassAttributeColumn" instanceField="attrColumn" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|24"/>
+    <key xsi:type="df:FieldReference" field="attribute"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="SVClassAttributeName" objectField="attrColumn" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|25"/>
+    <value xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:StringLiteral" value="id"/>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+      </rightExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="SVClassAttributeType" objectField="attrColumn" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|26"/>
+    <value xsi:type="df:FieldReference" field="integerType"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="MVClassAttributeTable" instanceField="attrTable" model="DB" typeName="Table">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|27"/>
+    <key xsi:type="df:FieldReference" field="attribute"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVClassAttributeTableName" objectField="attrTable" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|28"/>
+    <value xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:BinaryOperation" operator="ADD">
+        <leftExpression xsi:type="df:FeatureCall" feature="name">
+          <targetExpression xsi:type="df:FeatureCall" feature="type">
+            <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+          </targetExpression>
+        </leftExpression>
+        <rightExpression xsi:type="df:StringLiteral" value="_"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+      </rightExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="MVClassAttributeTableCols" field="attrTableCols">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|29"/>
+    <expression xsi:type="df:FeatureCall" feature="col">
+      <targetExpression xsi:type="df:FieldReference" field="attrTable"/>
+    </expression>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="MVClassAttributeIDCol" instanceField="attrTableIDCol" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|30"/>
+    <key xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attrTable"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:StringLiteral" value="_idcol"/>
+    </key>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVClassAttributeIDColName" objectField="attrTableIDCol" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|31"/>
+    <value xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:StringLiteral" value="id"/>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FeatureCall" feature="type">
+          <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+        </targetExpression>
+      </rightExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVClassAttributeIDColType" objectField="attrTableIDCol" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|32"/>
+    <value xsi:type="df:FieldReference" field="integerType"/>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="MVClassAttributeIDColAdd" listField="attrTableCols">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|33"/>
+    <value xsi:type="df:FieldReference" field="attrTableIDCol"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="MVClassAttributeFKCol" instanceField="attrTableFKCol" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|34"/>
+    <key xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attrTable"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:StringLiteral" value="_fkcol"/>
+    </key>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVClassAttributeFKColName" objectField="attrTableFKCol" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|35"/>
+    <value xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:StringLiteral" value="id"/>
+      <rightExpression xsi:type="df:FeatureCall" feature="name">
+        <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+      </rightExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="MVClassAttributeFKColType" objectField="attrTableFKCol" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|36"/>
+    <value xsi:type="df:FieldReference" field="integerType"/>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="MVClassAttributeFKColAdd" listField="attrTableCols">
+    <value xsi:type="df:FieldReference" field="attrTableFKCol"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="SVColumnTable" instanceField="attrColumnTable" model="DB" typeName="Table">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|37"/>
+    <key xsi:type="df:FeatureCall" feature="eContainer">
+      <targetExpression xsi:type="df:FieldReference" field="attribute"/>
+    </key>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="SVColumnTableCols" field="attrColumnTableCols">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|38"/>
+    <expression xsi:type="df:FeatureCall" feature="col">
+      <targetExpression xsi:type="df:FieldReference" field="attrColumnTable"/>
+    </expression>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="SVColumnTableAdd" listField="attrColumnTableCols">
+    <value xsi:type="df:FieldReference" field="attrColumn"/>
+  </elements>
+  <elements xsi:type="df:AllInstances" name="Classes" field="class" model="Class" typeName="Class">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|39"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="ClassTable" instanceField="classTable" model="DB" typeName="Table">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|40"/>
+    <key xsi:type="df:FieldReference" field="class"/>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="ClassTableCols" field="classTableCols">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|41"/>
+    <expression xsi:type="df:FeatureCall" feature="col">
+      <targetExpression xsi:type="df:FieldReference" field="classTable"/>
+    </expression>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="ClassTableName" objectField="classTable" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|42"/>
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FieldReference" field="class"/>
+    </value>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="ClassTableIDCol" instanceField="idColumn" model="DB" typeName="Column">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|43"/>
+    <key xsi:type="df:FieldReference" field="class"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="ClassTableIDColName" objectField="idColumn" feature="name">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|44"/>
+    <value xsi:type="df:StringLiteral" value="objectId"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="ClassTableIDColIntegerType" instanceField="integerType" model="DB" typeName="Type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|45"/>
+    <key xsi:type="df:StringLiteral" value="type_Integer"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="ClassTableIDColType" objectField="idColumn" feature="type">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|46"/>
+    <value xsi:type="df:FieldReference" field="integerType"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="ClassTableIDColKeyOf" objectField="idColumn" feature="keyOf">
+    <target xsi:type="df:AllInstances" href="class2rdb.dataflow#|47"/>
+    <value xsi:type="df:FieldReference" field="classTable"/>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="ClassTableIDColAdd" listField="classTableCols">
+    <value xsi:type="df:FieldReference" field="idColumn"/>
+  </elements>
+</df:Model>

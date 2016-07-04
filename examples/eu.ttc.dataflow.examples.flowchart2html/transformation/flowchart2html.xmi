@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ASCII"?>
+<df:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow">
+  <elements xsi:type="df:AllInstances" name="allActions" field="element" model="Flowchart" typeName="Action">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|0"/>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="markAsAction" field="elementType">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|1"/>
+    <expression xsi:type="df:StringLiteral" value="A"/>
+  </elements>
+  <elements xsi:type="df:AllInstances" name="allDecisions" field="element" model="Flowchart" typeName="Decision">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|2"/>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="markAsDecision" field="elementType">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|3"/>
+    <expression xsi:type="df:StringLiteral" value="D"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="containerDiv" instanceField="container" model="HTML" typeName="DIV">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|4"/>
+    <key xsi:type="df:FieldReference" field="element"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="titleDiv" instanceField="title" model="HTML" typeName="H1">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|5"/>
+    <key xsi:type="df:FieldReference" field="element"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="titleValue" objectField="title" feature="value">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|6"/>
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FieldReference" field="element"/>
+    </value>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="containerChildren" field="children">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|7"/>
+    <expression xsi:type="df:FeatureCall" feature="children">
+      <targetExpression xsi:type="df:FieldReference" field="container"/>
+    </expression>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="addTitle" listField="children">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|8"/>
+    <value xsi:type="df:FieldReference" field="title"/>
+  </elements>
+  <elements xsi:type="df:Evaluate" name="outgoing" field="lOutgoing">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|9"/>
+    <expression xsi:type="df:FeatureCall" feature="outgoing">
+      <targetExpression xsi:type="df:FieldReference" field="element"/>
+    </expression>
+  </elements>
+  <elements xsi:type="df:ForEach" name="forEachOutgoing" listField="lOutgoing" itemField="iOutgoing" positionField="pOutgoing">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|10"/>
+  </elements>
+  <elements xsi:type="df:Filter" name="filterOutgoing">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|11"/>
+    <filterBy xsi:type="df:BinaryOperation" operator="OR">
+      <leftExpression xsi:type="df:BinaryOperation">
+        <leftExpression xsi:type="df:FieldReference" field="elementType"/>
+        <rightExpression xsi:type="df:StringLiteral" value="D"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:BinaryOperation">
+        <leftExpression xsi:type="df:FieldReference" field="pOutgoing"/>
+        <rightExpression xsi:type="df:IntegerLiteral"/>
+      </rightExpression>
+    </filterBy>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="outgoingLink" instanceField="outgoingLink" model="HTML" typeName="A">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|12"/>
+    <key xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:FieldReference" field="element"/>
+      <rightExpression xsi:type="df:FieldReference" field="iOutgoing"/>
+    </key>
+  </elements>
+  <elements xsi:type="df:AddToContainer" name="addOutgoingLink" listField="children">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|13"/>
+    <value xsi:type="df:FieldReference" field="outgoingLink"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="outgoingLinkHref" objectField="outgoingLink" feature="ahref">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|14"/>
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FeatureCall" feature="target">
+        <targetExpression xsi:type="df:FieldReference" field="iOutgoing"/>
+      </targetExpression>
+    </value>
+  </elements>
+  <elements xsi:type="df:Filter" name="outgoingLinkValueIf">
+    <target xsi:type="df:AllInstances" href="flowchart2html.dataflow#|15"/>
+    <filterBy xsi:type="df:BinaryOperation">
+      <leftExpression xsi:type="df:FieldReference" field="elementType"/>
+      <rightExpression xsi:type="df:StringLiteral" value="A"/>
+    </filterBy>
+    <rejectTarget xsi:type="df:AllInstances" href="flowchart2html.dataflow#|16"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="outgoingLinkValueIfAction" objectField="outgoingLink" feature="value">
+    <value xsi:type="df:StringLiteral" value="Next steps"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="outgoingLinkValueIfDecision" objectField="outgoingLink" feature="value">
+    <value xsi:type="df:FeatureCall" feature="name">
+      <targetExpression xsi:type="df:FeatureCall" feature="target">
+        <targetExpression xsi:type="df:FieldReference" field="iOutgoing"/>
+      </targetExpression>
+    </value>
+  </elements>
+</df:Model>
