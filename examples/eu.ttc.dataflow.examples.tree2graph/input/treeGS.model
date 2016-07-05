@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"/>
+<Tree:Tree xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Tree="http://ttc/Tree" label="TugjxzyabufkFlwkvyiti">
+  <children label="QsajcuizzxqtItlopwsqw"/>
+  <children label="ZpqvfqnqtqmzJutdyrujc">
+    <children label="RunzyfjbxsmbYbuyeyovy"/>
+    <children label="PqdrcvlxbzxfGuedsqkzb"/>
+    <children label="TvvilnqkkvnsEbxmkymzv"/>
+  </children>
+  <children label="VpzgnalykyacRzohynbqc">
+    <children label="LxpvtsqhzvrnRnuunrafy"/>
+    <children label="GnudkjiaoypoAffxhkrrn">
+      <children label="EofejyoxlvdtVizmfquae"/>
+    </children>
+  </children>
+</Tree:Tree>

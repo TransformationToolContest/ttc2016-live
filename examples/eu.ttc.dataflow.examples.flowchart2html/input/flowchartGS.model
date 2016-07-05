@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<flowchart:Flowchart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowchart="flowchart">
+<flowchart:Flowchart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowchart="http://ttc/flowchart">
   <nodes xsi:type="flowchart:Action" name="A1" outgoing="//@transitions.0" incoming="//@transitions.21"/>
   <nodes xsi:type="flowchart:Action" name="A2" outgoing="//@transitions.1" incoming="//@transitions.11 //@transitions.12 //@transitions.15"/>
   <nodes xsi:type="flowchart:Action" name="A3" outgoing="//@transitions.2" incoming="//@transitions.10 //@transitions.20"/>

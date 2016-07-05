@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rel="Relational">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rel="http://ttc/Relational">
   <rel:Type name="Integer"/>
   <rel:Type name="String"/>
   <rel:Table name="String_emailAddresses">

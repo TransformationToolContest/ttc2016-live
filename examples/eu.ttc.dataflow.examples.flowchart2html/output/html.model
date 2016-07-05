@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HTML="HTML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HTML="http://ttc/HTML">
   <HTML:DIV>
     <children xsi:type="HTML:H1" value="Wake up"/>
     <children xsi:type="HTML:A" value="Next steps" ahref="Is it really too early?"/>

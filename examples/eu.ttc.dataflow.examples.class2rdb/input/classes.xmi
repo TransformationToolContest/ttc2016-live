@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:cl="Class">
+    xmlns:cl="http://ttc/Class">
   <cl:Class
       name="Family">
     <attr name="name"

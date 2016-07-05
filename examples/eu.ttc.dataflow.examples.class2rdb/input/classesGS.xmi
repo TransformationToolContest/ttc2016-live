@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cl="Class">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cl="http://ttc/Class">
   <cl:Class name="WOvoY">
     <attr name="lEBml" multiValued="true" type="/2"/>
     <attr name="qufCG" multiValued="false" type="/2"/>

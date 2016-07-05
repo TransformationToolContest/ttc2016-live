@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<Tree:Tree xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Tree="Tree" label="PzsrvcqmjdicVbhsljhzj">
+<Tree:Tree xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Tree="http://ttc/Tree" label="PzsrvcqmjdicVbhsljhzj">
   <children label="EhkhovtynpiwPnduvkjfj">
     <children label="GtflqqxgahxqQspfvdcgb"/>
   </children>
