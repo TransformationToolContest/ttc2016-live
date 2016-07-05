@@ -3,6 +3,7 @@ package eu.ttc.dataflow.xtext.convertxmi;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -50,10 +52,8 @@ public class ConvertToXMICommand extends AbstractHandler implements IHandler {
 		srcResource.load(null);
 		
 		final XMIResourceImpl destModel = new XMIResourceImpl(URI.createFileURI(dest.getAbsolutePath()));
-		final List<EObject> contents = new ArrayList<>(srcResource.getContents());
-		for (EObject eob : contents) {
-			destModel.getContents().add(eob);
-		}
+		final Collection<EObject> copy = EcoreUtil.copyAll(srcResource.getContents());
+		destModel.getContents().addAll(copy);
 		destModel.save(null);
 	}
 
