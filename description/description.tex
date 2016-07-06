@@ -360,6 +360,12 @@ keyword to refer to it. This is the case for \class{AllInstances}
 field names, these are preserved as-is: this is the case for
 \class{GetFeature} and \class{ForEach}.
 
+Another note regarding the textual syntax: in some cases, field or
+feature names may conflict with keywords in the language
+(e.g. ``type''). To solve this issue, identifiers can be escaped with
+``\^{}'': ``\^{}type'' will be understood by the notation as a reference to
+the ``type'' field or feature, instead of the ``type'' keyword.
+
 \begin{figure}
   \centering
   \includegraphics[width=.4\textwidth]{families2persons}
