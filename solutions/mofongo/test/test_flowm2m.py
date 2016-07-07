@@ -214,13 +214,13 @@ def main():
     parser.add_argument('input_transformation',
                         help='The path to the FlowM2M transformation (*/*.dataflow)')
     parser.add_argument('input_model_name',
-                        help='The name of the input model (*/*.model)')
+                        help='The name of the input model')
     parser.add_argument('input_model',
                         help='The path to the input model (*/*.model)')
     parser.add_argument('input_metamodel',
                         help='The path to the input meta model (*/*.ecore)')
     parser.add_argument('output_model_name',
-                        help='The name of the output model (*/*.model)')
+                        help='The name of the output model')
     parser.add_argument('output_model',
                         help='The path to the output model (*/*.model)')
     parser.add_argument('output_metamodel',
