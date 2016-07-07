@@ -1,0 +1,14 @@
+import fr.unice.i3s.sigma.emf.tool.GenerateSigmaSupport
+
+GenerateSigmaSupport(Array(
+  "-i","../../dsl/eu.ttc.dataflow.model/model/dataflow.genmodel",
+  "-o","src-gen/main/scala",
+  "--clean",
+  "--use-option"
+))
+
+GenerateSigmaSupport(Array(
+  "-i","../dsl/eu.ttc.dataflow.model/model/launchConfiguration.genmodel",
+  "-o","src-gen/main/scala",
+  "--use-option"
+))
