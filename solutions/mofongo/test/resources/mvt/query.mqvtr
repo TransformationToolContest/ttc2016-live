@@ -1,0 +1,9 @@
+query StateContainsState(cState:hstmMM_p::State, mState:hstmMM_p::State):Boolean
+{
+    if not mState.containedInState:
+        return False
+    elif mState.containedInState is cState:
+        return True
+    else:
+        return StateContainsState(cState, mState.containedInState)
+}
