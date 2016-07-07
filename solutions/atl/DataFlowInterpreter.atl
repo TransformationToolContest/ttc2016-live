@@ -48,8 +48,8 @@ helper context DF!Evaluate def : evaluate(rows : Sequence(Map(String,OclAny))) :
 	self.target.evaluate(rows -> collect(x| x.including(self.field,self.expression.eval(x))));
 
 helper context DF!Filter def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny)) = 
-		self.target.evaluate( rows.debug() -> select(x| self.filterBy.eval(x).asBoolean))
-		-> union( self.rejectTarget.evaluate( rows.debug() -> reject(x| self.filterBy.eval(x).asBoolean)));
+		self.target.evaluate( rows -> select(x| self.filterBy.eval(x).asBoolean))
+		-> union( self.rejectTarget.evaluate( rows -> reject(x| self.filterBy.eval(x).asBoolean)));
 
 helper context DF!NewInstance def : evaluate(rows : Sequence(Map(String,OclAny))) :  Sequence(Map(String,OclAny)) = 
 	self.target.evaluate(
@@ -67,7 +67,6 @@ rule ni(type : Ecore!EClass,
 		v : OclAny = thisModule.newInstanceCache.get(actualKey);
 	}
 	do {
-		actualKey.debug('Creating for');
 		if(v.oclIsUndefined()) {
 			v <- type.newInstance();
 			thisModule.newInstanceCache <- thisModule.newInstanceCache.including(actualKey, v);
