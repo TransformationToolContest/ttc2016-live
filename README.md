@@ -10,4 +10,4 @@ It includes:
 
 Please use the issue tracker for any questions you might have. 
 
-The submission deadline is __Thursday, 7. July @ 12PM__ (lunch time).  You have to submit your solution as a pull request to this project: if working in a team, it may be useful to have one of your members appointed to the task.
+The submission deadline is __Thursday, 7. July @ 6PM__ (EXTENDED until the reception).  You have to submit your solution as a pull request to this project: if working in a team, it may be useful to have one of your members appointed to the task.
