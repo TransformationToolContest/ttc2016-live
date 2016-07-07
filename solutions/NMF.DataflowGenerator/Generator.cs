@@ -19,11 +19,19 @@ namespace TTC2016.LiveContest.DataflowGenerator
         private HashSet<Dataflow.IElement> elementsProcessed = new HashSet<Dataflow.IElement>();
         private CodeMemberMethod main;
         private CodeTypeMember truish;
-        private IDictionary<string, INamespace> metamodels; 
+        private IDictionary<string, IEnumerable<INamespace>> metamodels; 
         private string ns;
-        private Dictionary<string, Stack<IType>> symbolTable = new Dictionary<string, Stack<IType>>();
+        private Dictionary<string, Stack<SymbolInfo>> symbolTable = new Dictionary<string, Stack<SymbolInfo>>();
 
-        public static CodeCompileUnit GenerateCode(IEnumerable<Dataflow.IElement> elements, string ns, IDictionary<string, INamespace> metamodels, IList<IModel> models)
+        private struct SymbolInfo
+        {
+            public IType Type { get; set; }
+            public bool IsOrdered { get; set; }
+            public bool IsCollection { get; set; }
+            public bool IsTraced { get; set; }
+        }
+
+        public static CodeCompileUnit GenerateCode(IEnumerable<Dataflow.IElement> elements, string ns, IDictionary<string, IEnumerable<INamespace>> metamodels, IList<IModel> models)
         {
             var instance = new Generator();
             instance.ns = ns;
@@ -44,6 +52,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
             };
             programClass.Members.Add(instance.main);
             programClass.Members.Add(instance.truish);
+            programClass.Members.Add(instance.CreateTraceEntry());
             codeNs.Types.Add(programClass);
             return unit;
         }
@@ -66,7 +75,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
             {
                 var reference = new CodeVariableReferenceExpression(model.Name.ToCamelCase() + "Model");
                 CodeExpression initExpression;
-                if (model.ReadOnLoad.GetValueOrDefault(false))
+                if (model.ReadOnLoad.GetValueOrDefault(true))
                 {
                     initExpression = new CodeMethodInvokeExpression(repositoryRef, "Resolve", new CodeIndexerExpression(argsRef, new CodePrimitiveExpression(index)));
                 }
@@ -121,6 +130,47 @@ namespace TTC2016.LiveContest.DataflowGenerator
         }");
         }
 
+        private CodeTypeMember CreateTraceEntry()
+        {
+            return new CodeSnippetTypeMember(@"
+        private struct TraceEntry : System.IEquatable<TraceEntry>
+        {
+            public object Element { get; set; }
+            public System.Type Type { get; set; }
+
+            public TraceEntry(object element, System.Type type) : this()
+            {
+                Element = element;
+                Type = type;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is TraceEntry)
+                {
+                    return Equals((TraceEntry)obj);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public bool Equals(TraceEntry other)
+            {
+                return Element == other.Element && Type == other.Type;
+            }
+
+            public override int GetHashCode()
+            {
+                var hash = 0;
+                if (Element != null) hash ^= Element.GetHashCode();
+                if (Type != null) hash ^= Type.GetHashCode();
+                return hash;
+            }
+        }");
+        }
+
         private void GenerateElement(Dataflow.IElement element, CodeStatementCollection scope)
         {
             elementsProcessed.Add(element);
@@ -130,6 +180,24 @@ namespace TTC2016.LiveContest.DataflowGenerator
         private CodeExpression GenerateExpression(Dataflow.IExpression expression)
         {
             return GenerateExpressionInternal((dynamic)expression);
+        }
+
+        private void GenerateElementInternal(Dataflow.AddToContainer element, CodeStatementCollection scope)
+        {
+            var value = GenerateExpression(element.Value);
+            var isList = element.Position != null && value.UserData.Contains("ordered");
+            if (isList)
+            {
+                scope.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(element.ListField), "Insert", GenerateExpression(element.Position), value));
+            }
+            else
+            {
+                scope.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(element.ListField), "Add", value));
+            }
+            if (element.Target != null)
+            {
+                GenerateElement(element.Target, scope);
+            }
         }
 
         private void GenerateElementInternal(Dataflow.AllInstances element, CodeStatementCollection scope)
@@ -143,13 +211,55 @@ namespace TTC2016.LiveContest.DataflowGenerator
             scope.Add(foreachLoop);
             var fieldDef = new CodeVariableDeclarationStatement(type, element.Field, new CodePropertyReferenceExpression(enumeratorRef, "Current"));
             foreachLoop.Statements.Add(fieldDef);
-            Stack<IType> symbol;
+            Stack<SymbolInfo> symbol;
             if (!symbolTable.TryGetValue(element.Field, out symbol))
             {
-                symbol = new Stack<IType>();
+                symbol = new Stack<SymbolInfo>();
                 symbolTable.Add(element.Field, symbol);
             }
-            symbol.Push(FindType(element.Model, element.TypeName));
+            symbol.Push(new SymbolInfo()
+            {
+                Type = FindType(element.Model, element.TypeName),
+                IsCollection = false,
+                IsOrdered = false
+            });
+            if (element.Target != null)
+            {
+                GenerateElement(element.Target, foreachLoop.Statements);
+            }
+            symbol.Pop();
+        }
+
+        private void GenerateElementInternal(Dataflow.ForEach element, CodeStatementCollection scope)
+        {
+            IType type = null;
+            try
+            {
+                type = symbolTable[element.ListField].Peek().Type;
+            }
+            catch (Exception)
+            {
+            }
+            var collection = new CodeVariableReferenceExpression(element.ListField);
+            var enumeratorDef = new CodeVariableDeclarationStatement("var", element.ItemField + "Enumerator");
+            enumeratorDef.InitExpression = new CodeMethodInvokeExpression(collection, "GetEnumerator");
+            var enumeratorRef = new CodeVariableReferenceExpression(enumeratorDef.Name);
+            var foreachLoop = new CodeIterationStatement(enumeratorDef, new CodeMethodInvokeExpression(enumeratorRef, "MoveNext"), new CodeSnippetStatement());
+            scope.Add(foreachLoop);
+            var fieldDef = new CodeVariableDeclarationStatement("var", element.ItemField, new CodePropertyReferenceExpression(enumeratorRef, "Current"));
+            foreachLoop.Statements.Add(fieldDef);
+            Stack<SymbolInfo> symbol;
+            if (!symbolTable.TryGetValue(element.ItemField, out symbol))
+            {
+                symbol = new Stack<SymbolInfo>();
+                symbolTable.Add(element.ItemField, symbol);
+            }
+            symbol.Push(new SymbolInfo()
+            {
+                Type = type,
+                IsCollection = false,
+                IsOrdered = false
+            });
             if (element.Target != null)
             {
                 GenerateElement(element.Target, foreachLoop.Statements);
@@ -159,10 +269,14 @@ namespace TTC2016.LiveContest.DataflowGenerator
 
         private IType FindType(string model, string typeName)
         {
-            INamespace ns;
+            IEnumerable<INamespace> ns;
             if (metamodels.TryGetValue(model, out ns))
             {
-                return FindType(ns, typeName);   
+                foreach (var package in ns)
+                {
+                    var candidate = FindType(package, typeName);
+                    if (candidate != null) return candidate;
+                }
             }
             return null;
         }
@@ -210,13 +324,31 @@ namespace TTC2016.LiveContest.DataflowGenerator
 
         private void GenerateElementInternal(Dataflow.NewInstance element, CodeStatementCollection scope)
         {
+            Stack<SymbolInfo> symbol;
+            if (!symbolTable.TryGetValue(element.InstanceField, out symbol))
+            {
+                symbol = new Stack<SymbolInfo>();
+                symbolTable.Add(element.InstanceField, symbol);
+            }
             CodeTypeReference type = CreateTypeReference(element.Model, element.TypeName);
             var instanceRef = new CodeVariableReferenceExpression(element.InstanceField);
             var instanceTraceRef = new CodeVariableReferenceExpression("_" + element.InstanceField + "Traced");
             var keyRef = new CodeVariableReferenceExpression("_" + element.InstanceField + "Key");
-            scope.Add(new CodeVariableDeclarationStatement(type, instanceRef.VariableName));
-            scope.Add(new CodeVariableDeclarationStatement(typeof(IModelElement), instanceTraceRef.VariableName));
-            scope.Add(new CodeVariableDeclarationStatement(typeof(object), keyRef.VariableName, GenerateExpression(element.Key)));
+            if (symbol.Count == 0)
+            {
+                scope.Add(new CodeVariableDeclarationStatement(type, instanceRef.VariableName));
+            }
+            if (symbol.Count == 0 || !symbol.Peek().IsTraced)
+            {
+                scope.Add(new CodeVariableDeclarationStatement(typeof(IModelElement), instanceTraceRef.VariableName));
+                scope.Add(new CodeVariableDeclarationStatement("TraceEntry", keyRef.VariableName, 
+                    new CodeObjectCreateExpression("TraceEntry", GenerateExpression(element.Key), new CodeTypeOfExpression(type))));
+            }
+            else
+            {
+                scope.Add(new CodeAssignStatement(keyRef, 
+                    new CodeObjectCreateExpression("TraceEntry", GenerateExpression(element.Key), new CodeTypeOfExpression(type))));
+            }
             var checkTrace = new CodeConditionStatement();
             checkTrace.Condition = new CodeMethodInvokeExpression(trace, "TryGetValue", keyRef, new CodeDirectionExpression(FieldDirection.Out, instanceTraceRef));
             checkTrace.TrueStatements.Add(new CodeAssignStatement(instanceRef, new CodeCastExpression(type, instanceTraceRef)));
@@ -225,13 +357,13 @@ namespace TTC2016.LiveContest.DataflowGenerator
             checkTrace.FalseStatements.Add(new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(modelReference, "RootElements"), "Add", instanceRef));
             checkTrace.FalseStatements.Add(new CodeMethodInvokeExpression(trace, "Add", keyRef, instanceRef));
             scope.Add(checkTrace);
-            Stack<IType> symbol;
-            if (!symbolTable.TryGetValue(element.InstanceField, out symbol))
+            symbol.Push(new SymbolInfo()
             {
-                symbol = new Stack<IType>();
-                symbolTable.Add(element.InstanceField, symbol);
-            }
-            symbol.Push(FindType(element.Model, element.TypeName));
+                Type = FindType(element.Model, element.TypeName),
+                IsCollection = false,
+                IsOrdered = false,
+                IsTraced = true
+            });
             if (element.Target != null)
             {
                 GenerateElement(element.Target, scope);
@@ -241,16 +373,21 @@ namespace TTC2016.LiveContest.DataflowGenerator
 
         private void GenerateElementInternal(Dataflow.Evaluate element, CodeStatementCollection scope)
         {
-            var type = new CodeTypeReference(typeof(string));
+            var type = new CodeTypeReference("var");
             var expression = GenerateExpression(element.Expression);
             scope.Add(new CodeVariableDeclarationStatement(type, element.Field, expression));
-            Stack<IType> symbol;
+            Stack<SymbolInfo> symbol;
             if (!symbolTable.TryGetValue(element.Field, out symbol))
             {
-                symbol = new Stack<IType>();
+                symbol = new Stack<SymbolInfo>();
                 symbolTable.Add(element.Field, symbol);
             }
-            symbol.Push(FindType(expression));
+            symbol.Push(new SymbolInfo()
+            {
+                Type = FindType(expression),
+                IsCollection = expression.UserData.Contains("collection"),
+                IsOrdered = expression.UserData.Contains("ordered")
+            });
             if (element.Target != null)
             {
                 GenerateElement(element.Target, scope);
@@ -359,21 +496,50 @@ namespace TTC2016.LiveContest.DataflowGenerator
                 }
                 if (potentialParents.Count != 1) throw new InvalidOperationException("The type of the parent could not be detected automatically.");
                 var parentType = CreateTypeReference(potentialParents[0]);
-                return new CodeCastExpression(parentType, new CodePropertyReferenceExpression(target, "Parent"));
+                var result = new CodeCastExpression(parentType, new CodePropertyReferenceExpression(target, "Parent"));
+                result.UserData.Add("type", potentialParents[0]);
+                return result;
             }
             else
             {
-                return new CodePropertyReferenceExpression(target, expression.Feature.ToPascalCase());
+                var result = new CodePropertyReferenceExpression(target, expression.Feature.ToPascalCase());
+                var targetType = FindType(target) as IClass;
+                if (targetType != null)
+                {
+                    var feature = (ITypedElement)targetType.LookupAttribute(expression.Feature) ?? targetType.LookupReference(expression.Feature);
+                    if (feature != null)
+                    {
+                        result.UserData.Add("type", feature.Type);
+                        if (feature.UpperBound != 1)
+                        {
+                            result.UserData.Add("collection", true);
+                        }
+                        if (feature.IsOrdered)
+                        {
+                            result.UserData.Add("ordered", true);
+                        }
+                    }
+                }
+                return result;
             }
         }
 
         private CodeExpression GenerateExpressionInternal(Dataflow.FieldReference expression)
         {
             var result = new CodeVariableReferenceExpression(expression.Field);
-            Stack<IType> symbol;
+            Stack<SymbolInfo> symbol;
             if (symbolTable.TryGetValue(expression.Field, out symbol))
             {
-                result.UserData["type"] = symbol.Peek();
+                SymbolInfo info = symbol.Peek();
+                result.UserData.Add("type", info.Type);
+                if (info.IsCollection)
+                {
+                    result.UserData.Add("collection", true);
+                }
+                if (info.IsOrdered)
+                {
+                    result.UserData.Add("ordered", true);
+                }
             }
             return result;
         }

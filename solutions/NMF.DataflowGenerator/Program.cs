@@ -46,29 +46,43 @@ namespace DataflowGenerator
             var ns = Path.GetFileNameWithoutExtension(launchConfig.Dataflow.Location).ToPascalCase();
             var directory = Path.GetDirectoryName(launchConfig.Dataflow.Location);
             var codeFiles = new List<string>();
-            var metamodelDict = new Dictionary<string, INamespace>();
-            var metamodelsCovered = new Dictionary<string, INamespace>();
+            var metamodelDict = new Dictionary<string, IEnumerable<INamespace>>();
+            var metamodelsCovered = new Dictionary<string, IEnumerable<INamespace>>();
             foreach (var model in launchConfig.Models)
             {
                 foreach (var metamodel in model.Metamodels)
                 {
-                    INamespace nMeta;
+                    IEnumerable<INamespace> nMeta;
                     if (!metamodelsCovered.TryGetValue(metamodel.Location, out nMeta))
                     {
                         var ecoreFile = EcoreInterop.LoadPackageFromFile(metamodel.Location);
-                        nMeta = EcoreInterop.Transform2Meta(ecoreFile);
+                        nMeta = EcoreInterop.Transform2Meta(ecoreFile.Model.RootElements.OfType<EPackage>());
 
                         var metamodelpath = Path.Combine(directory, Path.GetFileNameWithoutExtension(metamodel.Location) + ".nmf");
-                        repository.Save(nMeta, metamodelpath);
-                        var code = MetaFacade.CreateCode(nMeta, ns);
-                        code.AssemblyCustomAttributes.Add(new CodeAttributeDeclaration("NMF.Models.ModelMetadata",
-                            new CodeAttributeArgument(new CodePrimitiveExpression(nMeta.Uri.AbsoluteUri)),
-                            new CodeAttributeArgument(new CodePrimitiveExpression(ns + "." + Path.GetFileNameWithoutExtension(metamodel.Location) + ".nmf"))));
-                        using (var sw = new StreamWriter(Path.ChangeExtension(metamodelpath, ".cs")))
+                        var packageIndex = 0;
+                        foreach (var package in nMeta)
                         {
-                            csharp.GenerateCodeFromCompileUnit(code, sw, csharpSettings);
+                            var code = MetaFacade.CreateCode(package, ns);
+                            var packagePath = Path.GetFileNameWithoutExtension(metamodelpath);
+                            if (packageIndex > 0)
+                            {
+                                packagePath += packageIndex.ToString();
+                            }
+                            else
+                            {
+                                code.AssemblyCustomAttributes.Add(new CodeAttributeDeclaration("NMF.Models.ModelMetadata",
+                                    new CodeAttributeArgument(new CodePrimitiveExpression(package.Model.ModelUri.AbsoluteUri)),
+                                    new CodeAttributeArgument(new CodePrimitiveExpression(Path.GetFileNameWithoutExtension(metamodel.Location) + ".nmf"))));
+                            }
+                            packagePath = Path.Combine(directory, packagePath + ".cs");
+                            using (var sw = new StreamWriter(packagePath))
+                            {
+                                csharp.GenerateCodeFromCompileUnit(code, sw, csharpSettings);
+                            }
+                            codeFiles.Add(packagePath);
+                            packageIndex++;
                         }
-                        codeFiles.Add(Path.ChangeExtension(metamodelpath, ".cs"));
+                        repository.Save(nMeta.First().Model, metamodelpath);
                         metamodelsCovered.Add(metamodel.Location, nMeta);
                     }
                     metamodelDict.Add(model.Name, nMeta);
@@ -84,7 +98,7 @@ namespace DataflowGenerator
             }
 
             var projectFile = Path.ChangeExtension(dataflowFile, ".csproj");
-            File.WriteAllText(projectFile, GenerateProjectFile(codeFiles, metamodelsCovered));
+            File.WriteAllText(projectFile, GenerateProjectFile(codeFiles, metamodelsCovered.Keys));
             stopwatch.Stop();
             Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
 
@@ -95,6 +109,13 @@ namespace DataflowGenerator
             stopwatch.Stop();
             Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
 
+            if (buildJob.ExitCode != 0)
+            {
+                Console.Error.WriteLine("Build Failed. Please revise the dataflow algorithm.");
+                Environment.ExitCode = buildJob.ExitCode;
+                return;
+            }
+
             stopwatch.Restart();
             Console.WriteLine("Running model transformation for specified inputs...");
             var transformationPath = Path.Combine(Path.GetDirectoryName(projectFile), "bin", Path.GetFileNameWithoutExtension(projectFile) + ".exe");
@@ -102,13 +123,12 @@ namespace DataflowGenerator
             runJob.Start();
             stopwatch.Stop();
             Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
-            Console.Read();
         }
 
-        private static string GenerateProjectFile(List<string> codeFiles, Dictionary<string, INamespace> metamodelsCovered)
+        private static string GenerateProjectFile(List<string> codeFiles, IEnumerable<string> metamodelsCovered)
         {
             var compileFilesSnippet = string.Concat(codeFiles.Select(file => Environment.NewLine + string.Format("   <Compile Include=\"{0}\" />", Path.GetFileName(file))));
-            var embedFilesSnippet = string.Concat(metamodelsCovered.Keys.Select(file => Environment.NewLine + string.Format("   <EmbeddedResource Include=\"{0}.nmf\" />", Path.GetFileNameWithoutExtension(file))));
+            var embedFilesSnippet = string.Concat(metamodelsCovered.Select(file => Environment.NewLine + string.Format("   <EmbeddedResource Include=\"{0}.nmf\" />", Path.GetFileNameWithoutExtension(file))));
             var collectionsPath = (typeof(ObservableSet<>)).Assembly.Location;
             var expressionsPath = (typeof(INotifyExpression)).Assembly.Location;
             var expressionsLinqPath = (typeof(ExpressionExtensions)).Assembly.Location;
