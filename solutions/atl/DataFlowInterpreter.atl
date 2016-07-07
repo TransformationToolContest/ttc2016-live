@@ -5,15 +5,6 @@
 module DataFlowInterpreter;
 create om : OM from df : DF, im : IM;
 
-helper def : counter : Integer = 0;
-
-helper def : getID() : String = 'ID' + thisModule.refSetValue('counter', thisModule.counter+1).counter;
-
-helper def : map : Map(String,Sequence(TupleType(key:String,val:OclAny))) = Map{};
-
-helper def : target : Sequence(String) = Sequence{};
-helper def : rejectTarget : Sequence(String) = Sequence{};
-
 helper def : allElements : Sequence(DF!Element) = DF!Element.allInstances();
 
 helper def : initialElements : Sequence(DF!Element) = thisModule.allElements 
@@ -28,13 +19,10 @@ helper def: typeByName : Map(String,Ecore!EClass) =
 helper context String def: type : Ecore!EClass =
 	thisModule.typeByName.get(self);
 
-helper context DF!Element def : visitElement(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny)) = 
-	self.evaluate(rows);
 
-endpoint rule Main(){
-	
+endpoint rule Main2(){
 	do{
-		thisModule.initialElements -> collect(x|x.visitElement());
+		thisModule.initialElements -> collect(x|x.evaluate(Sequence{}));
 	}
 }
 
@@ -48,7 +36,7 @@ helper context DF!Evaluate def : evaluate(rows : Sequence(Map(String,OclAny))) :
 	self.target.evaluate(rows -> collect(x| x.including(self.field,self.expression.eval(x))));
 
 helper context DF!Filter def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny)) = 
-		self.target.evaluate( rows -> select(x| self.filterBy.eval(x).asBoolean))
+	self.target.evaluate( rows -> select(x| self.filterBy.eval(x).asBoolean))
 		-> union( self.rejectTarget.evaluate( rows -> reject(x| self.filterBy.eval(x).asBoolean)));
 
 helper context DF!NewInstance def : evaluate(rows : Sequence(Map(String,OclAny))) :  Sequence(Map(String,OclAny)) = 
@@ -86,8 +74,6 @@ helper context DF!SetFeature def : evaluate(rows : Sequence(Map(String,OclAny)))
 helper context OclAny def : evaluate(rows : Sequence(Map(String,OclAny))) :Sequence(Map(String,OclAny)) = 
 	rows;
 
-helper context DF!Element def : evaluate() : Map(String,Sequence(TupleType(key:String,val:OclAny))) = OclUndefined;
-
 
 -- Implementation of different operation types
 
@@ -103,7 +89,6 @@ helper context OclAny def: asBoolean : Boolean =
 	else
 		true
 	endif endif;
-
 
 helper context DF!FeatureCall def : eval(e : Map(String,OclAny)) : OclAny = 
 	if self.feature = 'eContainer' then
