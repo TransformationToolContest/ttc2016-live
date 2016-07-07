@@ -1,0 +1,138 @@
+﻿using System;
+using System.CodeDom;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using NMF.Collections.ObjectModel;
+using NMF.Expressions;
+using NMF.Expressions.Linq;
+using NMF.Interop.Ecore;
+using NMF.Models.Meta;
+using NMF.Models.Repository;
+using NMF.Serialization;
+using NMF.Utilities;
+using TTC2016.LiveContest.DataflowGenerator;
+using TTC2016.LiveContest.LaunchConfiguration;
+using System.Diagnostics;
+
+namespace DataflowGenerator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Console.WriteLine("Initializing repository...");
+            var repository = new ModelRepository();
+            var launchConfig = repository.Resolve(args[0]).RootElements[0] as Configuration;
+            Environment.CurrentDirectory = Path.GetDirectoryName(Path.GetFullPath(args[0]));
+            var dataflow = repository.Resolve(Path.ChangeExtension(launchConfig.Dataflow.Location, ".xmi"));
+            stopwatch.Stop();
+            Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Restart();
+            Console.WriteLine("Generating transformation...");
+            var csharp = new Microsoft.CSharp.CSharpCodeProvider();
+            var csharpSettings = new CodeGeneratorOptions()
+            {
+                IndentString = "    ",
+                BracingStyle = "C",
+            };
+            var ns = Path.GetFileNameWithoutExtension(launchConfig.Dataflow.Location).ToPascalCase();
+            var directory = Path.GetDirectoryName(launchConfig.Dataflow.Location);
+            var codeFiles = new List<string>();
+            var metamodelDict = new Dictionary<string, INamespace>();
+            var metamodelsCovered = new Dictionary<string, INamespace>();
+            foreach (var model in launchConfig.Models)
+            {
+                foreach (var metamodel in model.Metamodels)
+                {
+                    INamespace nMeta;
+                    if (!metamodelsCovered.TryGetValue(metamodel.Location, out nMeta))
+                    {
+                        var ecoreFile = EcoreInterop.LoadPackageFromFile(metamodel.Location);
+                        nMeta = EcoreInterop.Transform2Meta(ecoreFile);
+
+                        var metamodelpath = Path.Combine(directory, Path.GetFileNameWithoutExtension(metamodel.Location) + ".nmf");
+                        repository.Save(nMeta, metamodelpath);
+                        var code = MetaFacade.CreateCode(nMeta, ns);
+                        code.AssemblyCustomAttributes.Add(new CodeAttributeDeclaration("NMF.Models.ModelMetadata",
+                            new CodeAttributeArgument(new CodePrimitiveExpression(nMeta.Uri.AbsoluteUri)),
+                            new CodeAttributeArgument(new CodePrimitiveExpression(ns + "." + Path.GetFileNameWithoutExtension(metamodel.Location) + ".nmf"))));
+                        using (var sw = new StreamWriter(Path.ChangeExtension(metamodelpath, ".cs")))
+                        {
+                            csharp.GenerateCodeFromCompileUnit(code, sw, csharpSettings);
+                        }
+                        codeFiles.Add(Path.ChangeExtension(metamodelpath, ".cs"));
+                        metamodelsCovered.Add(metamodel.Location, nMeta);
+                    }
+                    metamodelDict.Add(model.Name, nMeta);
+                }
+            }
+
+            var unit = Generator.GenerateCode(dataflow.RootElements[0].As<TTC2016.LiveContest.Dataflow.Model>().Elements, ns, metamodelDict, launchConfig.Models);
+            var dataflowFile = Path.ChangeExtension(launchConfig.Dataflow.Location, ".cs");
+            codeFiles.Add(dataflowFile);
+            using (var dataflowSw = new StreamWriter(dataflowFile))
+            {
+                csharp.GenerateCodeFromCompileUnit(unit, dataflowSw, csharpSettings);
+            }
+
+            var projectFile = Path.ChangeExtension(dataflowFile, ".csproj");
+            File.WriteAllText(projectFile, GenerateProjectFile(codeFiles, metamodelsCovered));
+            stopwatch.Stop();
+            Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Restart();
+            Console.WriteLine("Compiling transformation...");
+            var buildJob = Process.Start("MSBuild.exe", projectFile);
+            buildJob.WaitForExit();
+            stopwatch.Stop();
+            Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Restart();
+            Console.WriteLine("Running model transformation for specified inputs...");
+            var transformationPath = Path.Combine(Path.GetDirectoryName(projectFile), "bin", Path.GetFileNameWithoutExtension(projectFile) + ".exe");
+            var runJob = Process.Start(transformationPath, string.Join(" ", launchConfig.Models.Select(m => m.Location)));
+            runJob.Start();
+            stopwatch.Stop();
+            Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
+            Console.Read();
+        }
+
+        private static string GenerateProjectFile(List<string> codeFiles, Dictionary<string, INamespace> metamodelsCovered)
+        {
+            var compileFilesSnippet = string.Concat(codeFiles.Select(file => Environment.NewLine + string.Format("   <Compile Include=\"{0}\" />", Path.GetFileName(file))));
+            var embedFilesSnippet = string.Concat(metamodelsCovered.Keys.Select(file => Environment.NewLine + string.Format("   <EmbeddedResource Include=\"{0}.nmf\" />", Path.GetFileNameWithoutExtension(file))));
+            var collectionsPath = (typeof(ObservableSet<>)).Assembly.Location;
+            var expressionsPath = (typeof(INotifyExpression)).Assembly.Location;
+            var expressionsLinqPath = (typeof(ExpressionExtensions)).Assembly.Location;
+            var modelsPath = typeof(NMF.Models.Model).Assembly.Location;
+            var serializationsPath = typeof(XmlSerializer).Assembly.Location;
+            var utilitiesPath = typeof(MemoizedFunc<,>).Assembly.Location;
+
+            using (var projectTemplateStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("TTC2016.LiveContest.DataflowGenerator.ProjectTemplate.csproj"))
+            {
+                using (var sr = new StreamReader(projectTemplateStream))
+                {
+                    var projectTemplate = sr.ReadToEnd();
+
+                    return projectTemplate
+                        .Replace("%NMFCollectionsPath%", collectionsPath)
+                        .Replace("%NMFExpressionsPath%", expressionsPath)
+                        .Replace("%NMFExpressionsLinqPath%", expressionsLinqPath)
+                        .Replace("%NMFModelsPath%", modelsPath)
+                        .Replace("%NMFSerializationPath%", serializationsPath)
+                        .Replace("%NMFUtilitiesPath%", utilitiesPath)
+                        .Replace("%CompileFiles%", compileFilesSnippet)
+                        .Replace("%EmbedFiles%", embedFilesSnippet);
+                }
+            }
+        }
+    }
+}
