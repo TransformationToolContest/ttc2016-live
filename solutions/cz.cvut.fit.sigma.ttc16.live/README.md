@@ -4,12 +4,13 @@ This repository contains a [SIGMA](http://fikovnik.github.io/Sigma) solution for
 
 ## Prerequisites
 
-- [SBT - simple build tool](http://www.scala-sbt.org/download.html)
-- Cloned [TTC'16 Live Contest](https://github.com/bluezio/ttc2016-live) repository in Eclipse workspace
+- [Scala IDE](http://scala-ide.org/)
+- (optional) [SBT - simple build tool](http://www.scala-sbt.org/download.html)
 
 ## Running
 
-- There are launch configurations for Eclipse. 
+- Import all projects into Eclipse workspace
+- Run on of the `.launch` configuration 
 
 ## Sample Results
 
