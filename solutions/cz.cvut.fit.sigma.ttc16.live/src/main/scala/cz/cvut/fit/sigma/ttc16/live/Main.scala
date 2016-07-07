@@ -32,56 +32,69 @@ object Main extends App with LaunchConfig with Dataflow with Ecore {
   val config = EMFUtils.IO.loadFromFile[Configuration](configFile)
   
   def resolvePath(relativePath: String) = new File(configFile.getParentFile, relativePath)
+  def timed[T](name: String)(thunk: => T): T = {
+    val time = System.currentTimeMillis
+    val res = thunk
+    println(s"$name: ${System.currentTimeMillis - time} ms")
+    res
+  }
   
-  val metamodels: Map[Model, Seq[EPackage]] = 
-    config.models
-          .toSeq
-          .map { m =>            
-            val pkgs = 
-              m.metamodels
-               .toSeq
-               .map(x => x.location.get)
-               .distinct
-               .map(x => EMFUtils.IO.loadResourceFromFile(resolvePath(x)))
-               .flatMap { x => 
-                 x.getContents.collect { 
-                    case p : EPackage => { 
-              	      println(s"Loaded metamodel ${p.nsURI}")
-                      Registry.INSTANCE += p.nsURI -> p
-                      p 
-                    }
+  timed("Complete running time") {
+    val metamodels: Map[Model, Seq[EPackage]] = timed("Loading metamodels") {
+      config.models
+            .toSeq
+            .map { m =>            
+              val pkgs = 
+                m.metamodels
+                 .toSeq
+                 .map(x => x.location.get)
+                 .distinct
+                 .map(x => EMFUtils.IO.loadResourceFromFile(resolvePath(x)))
+                 .flatMap { x => 
+                   x.getContents.collect { 
+                      case p : EPackage => { 
+                	      println(s"- Loaded metamodel ${p.nsURI}")
+                        Registry.INSTANCE += p.nsURI -> p
+                        p 
+                      }
+                   }
                  }
-               }
-             (m, pkgs)
-           }
-           .toMap
-  
-  val models: Map[Model, Buffer[EObject]] = 
-    config.models
-          .map { x => 
-            if (x.isReadOnLoad()) {
-              x -> asScalaBuffer(EMFUtils.IO.loadResourceFromFile(resolvePath(x.location.get)).getContents)
-            } else {
-              x -> Buffer[EObject]()
-            }
-          }
-          .toMap
-
-  val dataflow = config.dataflow.map(x => EMFUtils.IO.loadFromFile[_dataflow.Model](resolvePath(x.location.get))).get
-  
-  val time = System.currentTimeMillis
-  
-  new Interpreter(
-      models.map(x => (x._1.name.get, x._2)),
-      metamodels.map(x => (x._1.name.get, x._2)),
-      dataflow).run()
-      
-  println(s"Execution took: ${System.currentTimeMillis - time} ms")
-      
-  for ((model, elements) <- models if model.isStoreOnDisposal()) {
-    val path = resolvePath(model.location.get)
+               (m, pkgs)
+             }
+             .toMap
+    }
     
-    println(s"Storing model ${model.name.get} to $path")
-    EMFUtils.IO.saveToFile(path, elements filter (_.eContainer() == null))      
+    val models: Map[Model, Buffer[EObject]] =  timed("Loading models") {
+      config.models
+            .map { x => 
+              if (x.isReadOnLoad()) {
+                x -> asScalaBuffer(EMFUtils.IO.loadResourceFromFile(resolvePath(x.location.get)).getContents)
+              } else {
+                x -> Buffer[EObject]()
+              }
+            }
+            .toMap
+    }
+  
+    val dataflow =  timed("Loading dataflow") { 
+      config.dataflow.map(x => EMFUtils.IO.loadFromFile[_dataflow.Model](resolvePath(x.location.get))).get
+    }
+    
+    timed("Transformation") {
+      new Interpreter(
+          models.map(x => (x._1.name.get, x._2)),
+          metamodels.map(x => (x._1.name.get, x._2)),
+          dataflow)
+        .run()
+    }
+        
+    timed("Saving EMF models") {
+      for ((model, elements) <- models if model.isStoreOnDisposal()) {
+        val path = resolvePath(model.location.get)
+        
+        println(s"- Storing model ${model.name.get} to $path")
+        EMFUtils.IO.saveToFile(path, elements filter (_.eContainer() == null))      
+      }
+    }
   }
 }
