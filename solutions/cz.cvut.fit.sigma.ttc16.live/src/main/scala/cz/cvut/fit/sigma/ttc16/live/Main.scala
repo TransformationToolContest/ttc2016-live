@@ -68,6 +68,7 @@ object Main extends App with LaunchConfig with Dataflow with Ecore {
       config.models
             .map { x => 
               if (x.isReadOnLoad()) {
+                println(s"- Loaded model ${x.name.get} from ${x.location.get})")
                 x -> asScalaBuffer(EMFUtils.IO.loadResourceFromFile(resolvePath(x.location.get)).getContents)
               } else {
                 x -> Buffer[EObject]()
