@@ -1,0 +1,120 @@
+-- @path DF=/eu.ttc.dataflow.model/model/dataflow.ecore
+-- @path IM=/eu.ttc.dataflow.examples.families2persons/metamodels/Families.ecore
+-- @path OM=/eu.ttc.dataflow.examples.families2persons/metamodels/Persons.ecore
+
+module DataFlowInterpreter;
+create om : OM from df : DF, im : IM;
+
+helper def : counter : Integer = 0;
+
+helper def : getID() : String = 'ID' + thisModule.refSetValue('counter', thisModule.counter+1).counter;
+
+helper def : map : Map(String,Sequence(TupleType(key:String,val:OclAny))) = Map{};
+
+helper def : target : Sequence(String) = Sequence{};
+helper def : rejectTarget : Sequence(String) = Sequence{};
+
+helper def : allElements : Sequence(DF!Element) = DF!Element.allInstances();
+
+helper def : initialElements : Sequence(DF!Element) = thisModule.allElements 
+	-> reject(x| thisModule.allElements -> exists(y|y.target = x or if(y.oclIsTypeOf(DF!Filter)) then y.rejectTarget = x
+			else false endif)); 
+
+helper def: typeByName : Map(String,Ecore!EClass) = 
+	Ecore!EClass.allInstances()->iterate(e; acc : Map(String,Ecore!EClass) = Map {} |
+		acc.including(e.name, e)
+	);
+
+helper context String def: type : Ecore!EClass =
+	thisModule.typeByName.get(self);
+
+helper context DF!Element def : visitElement(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny)) = 
+	self.evaluate(rows);
+
+endpoint rule Main(){
+	
+	do{
+		thisModule.initialElements -> collect(x|x.visitElement());
+	}
+}
+
+-- Implementation of different element types
+
+helper context DF!AllInstances def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny))  =
+	let type : OclType = self.typeName.type in
+	self.target.evaluate(type.allInstances() -> collect(x| Map{(self.field,x)}));
+
+helper context DF!Evaluate def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny))  =
+	self.target.evaluate(rows -> collect(x| x.including(self.field,self.expression.eval(x))));
+
+helper context DF!Filter def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny)) = 
+		self.target.evaluate( rows.debug() -> select(x| self.filterBy.eval(x).asBoolean))
+		-> union( self.rejectTarget.evaluate( rows.debug() -> reject(x| self.filterBy.eval(x).asBoolean)));
+
+helper context DF!NewInstance def : evaluate(rows : Sequence(Map(String,OclAny))) :  Sequence(Map(String,OclAny)) = 
+	self.target.evaluate(
+		rows -> collect(x| 
+			let type : OclType = self.typeName.type in 
+			x.including(self.instanceField, thisModule.ni(type, self.key.eval(x)))
+		)
+	);
+
+helper def: newInstanceCache : Map(Set(OclAny),OclAny) = Map {};
+rule ni(type : Ecore!EClass,
+		key : OclAny) {
+	using {
+		actualKey : Set(OclAny) = Set {type, key};
+		v : OclAny = thisModule.newInstanceCache.get(actualKey);
+	}
+	do {
+		actualKey.debug('Creating for');
+		if(v.oclIsUndefined()) {
+			v <- type.newInstance();
+			thisModule.newInstanceCache <- thisModule.newInstanceCache.including(actualKey, v);
+		}
+		v;
+	}
+}
+
+helper context DF!SetFeature def : evaluate(rows : Sequence(Map(String,OclAny))) :  Sequence(Map(String,OclAny)) = 
+	self.target.evaluate(
+		rows -> collect(x|
+			let foo : OclAny = x.get(self.objectField).refSetValue(self.feature, self.value.eval(x)) in
+			x
+		)
+	);
+
+helper context OclAny def : evaluate(rows : Sequence(Map(String,OclAny))) :Sequence(Map(String,OclAny)) = 
+	rows;
+
+helper context DF!Element def : evaluate() : Map(String,Sequence(TupleType(key:String,val:OclAny))) = OclUndefined;
+
+
+-- Implementation of different operation types
+
+helper context DF!BinaryOperation def : eval (e : Map(String,OclAny)) : OclAny = 
+	if (self.operator = #ADD) then self.leftExpression.eval(e) + self.rightExpression.eval(e) else 
+	if (self.operator = #OR) then self.leftExpression.eval(e).asBoolean or self.rightExpression.eval(e).asBoolean else '' endif endif;
+
+helper context OclAny def: asBoolean : Boolean =
+	if self.oclIsUndefined() then
+		false
+	else if self.oclIsKindOf(Boolean) then
+		self
+	else
+		true
+	endif endif;
+
+
+helper context DF!FeatureCall def : eval(e : Map(String,OclAny)) : OclAny = 
+	if self.feature = 'eContainer' then
+		self.targetExpression.eval(e).eContainer()
+	else
+		self.targetExpression.eval(e).refGetValue(self.feature)
+	endif;
+
+helper context DF!StringLiteral def : eval(e : Map(String,OclAny)) : String = 
+		self.value;
+
+helper context DF!FieldReference def : eval(e : Map(String,OclAny)) : String = 
+		e.get(self.field);
