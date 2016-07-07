@@ -1,6 +1,18 @@
 Mofongo
 =======
+Run script /mofongo/test/test_flowm2m.py (might need other modules to be installed: lxml, antlr4 the most prominent)
 
-Mofongo, standing for nothing in particular at all (perhaps MOdelling Framework), is a platform that provides services
-to facilitate users to perform model management tasks such as model transformation, model comparison, model merging,
-model refactoring and model validation using Python. Mofongo is inspired by `Epsilon <http://www.eclipse.org/epsilon/>`_.
+
+Execute FlowM2M.
+
+positional arguments:
+  input_transformation  The path to the FlowM2M transformation (*/*.dataflow)
+  input_model_name      The name of the input model (*/*.model)
+  input_model           The path to the input model (*/*.model)
+  input_metamodel       The path to the input meta model (*/*.ecore)
+  output_model_name     The name of the output model (*/*.model)
+  output_model          The path to the output model (*/*.model)
+  output_metamodel      The path to the output meta model (*/*.ecore)
+
+optional arguments:
+  -h, --help            show this help message and exit
