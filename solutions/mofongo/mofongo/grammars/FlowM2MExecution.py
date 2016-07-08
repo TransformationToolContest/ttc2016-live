@@ -8,6 +8,7 @@ from lxml import etree
 from antlr4 import *
 
 from mofongo.grammars.FlowM2MVisitor import FlowM2MVisitor
+from mofongo.presentation import MofMediator
 if __name__ is not None and "." in __name__:
     from .FlowM2MParser import FlowM2MParser
 else:
@@ -15,7 +16,7 @@ else:
 
 ALL_INSTANCES_QUEUE_SIZE = 100
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.CRITICAL)
 # create console handler and set level to debug
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
@@ -181,6 +182,8 @@ class SetFeatureWorker(ThreadElement):
         # FIXME how do we set containement properties?
         # Get the type, find the sf, if it is containment add as child
         logger.info('SetFeatureWorker setting {} <- {} @ {}'.format(self.feature, self.value.getText(), element))
+        if isinstance(feature_value, etree.ElementBase):
+            feature_value = feature_value.attrib[MofMediator.XMI+'id']
         element.attrib[self.feature] = feature_value
         #setattr(element, self.feature, feature_value)
 
@@ -346,7 +349,10 @@ class FlowM2MExecution(FlowM2MVisitor):
         target_queue = self.get_queue(target)
         source_queue = self.get_queue(ctx.name.text)
         field = ctx.objectField.text
-        worker = SetFeatureWorker(field=field, value=ctx.value, feature=ctx.feature.text, source_queue=source_queue, target_queue=target_queue)
+        feature = ctx.feature.text
+        if feature.startswith('^'):
+            feature = feature[1:]
+        worker = SetFeatureWorker(field=field, value=ctx.value, feature=feature, source_queue=source_queue, target_queue=target_queue)
         worker.setDaemon(True)
         worker.start()
         return worker

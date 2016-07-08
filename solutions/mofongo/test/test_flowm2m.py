@@ -173,6 +173,7 @@ def load_metamodel(path):
 
 def execute(tranformation_path, input_name, input_model_path, input_mm_path, output_name, output_model_path,
             output_mm_path):
+
     transformation_stream = FileStream(tranformation_path)
     lexer = FlowM2MLexer(transformation_stream)
     stream = CommonTokenStream(lexer)
@@ -206,7 +207,9 @@ def execute(tranformation_path, input_name, input_model_path, input_mm_path, out
         t.join()
     execute_end = time.time()
     # Safe the model
-    output_model.store(output_mediator)
+    rel = os.path.relpath(output_mm_path, output_model_path)
+    print(rel)
+    output_model.store(output_mediator, relative_location=rel)
     return execute_end - execute_start
 
 def main():
@@ -214,13 +217,13 @@ def main():
     parser.add_argument('input_transformation',
                         help='The path to the FlowM2M transformation (*/*.dataflow)')
     parser.add_argument('input_model_name',
-                        help='The name of the input model (*/*.model)')
+                        help='The name of the input model')
     parser.add_argument('input_model',
                         help='The path to the input model (*/*.model)')
     parser.add_argument('input_metamodel',
                         help='The path to the input meta model (*/*.ecore)')
     parser.add_argument('output_model_name',
-                        help='The name of the output model (*/*.model)')
+                        help='The name of the output model')
     parser.add_argument('output_model',
                         help='The path to the output model (*/*.model)')
     parser.add_argument('output_metamodel',
