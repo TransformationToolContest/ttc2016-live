@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{355830C3-E6B4-49E9-BFA7-B8BABF050AA6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TTC2016.LiveContest.DataflowGenerator</RootNamespace>
+    <AssemblyName>TTC2016.LiveContest.DataflowGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NMF.CodeGen, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.CodeGen.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Collections, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.EcoreInterop, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.EcoreInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Expressions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Expressions.Linq, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Expressions.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Layering, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Layering.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Models, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Models.MetaTransformation, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Models.MetaTransformation.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Serialization, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Transformations, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Transformations.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Transformations.Core, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Transformations.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NMF.Utilities, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NMF.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dataflow\AddToContainer.cs" />
+    <Compile Include="Dataflow\AllInstances.cs" />
+    <Compile Include="Dataflow\BinaryOperation.cs" />
+    <Compile Include="Dataflow\BinaryOperator.cs" />
+    <Compile Include="Dataflow\BooleanLiteral.cs" />
+    <Compile Include="Dataflow\CollectBy.cs" />
+    <Compile Include="Dataflow\ConditionalExpression.cs" />
+    <Compile Include="Dataflow\ContainerType.cs" />
+    <Compile Include="Dataflow\Copy.cs" />
+    <Compile Include="Dataflow\Element.cs" />
+    <Compile Include="Dataflow\Evaluate.cs" />
+    <Compile Include="Dataflow\Expression.cs" />
+    <Compile Include="Dataflow\FeatureCall.cs" />
+    <Compile Include="Dataflow\FieldReference.cs" />
+    <Compile Include="Dataflow\Filter.cs" />
+    <Compile Include="Dataflow\ForEach.cs" />
+    <Compile Include="Dataflow\GetFeature.cs" />
+    <Compile Include="Dataflow\IAddToContainer.cs" />
+    <Compile Include="Dataflow\IAllInstances.cs" />
+    <Compile Include="Dataflow\IBinaryOperation.cs" />
+    <Compile Include="Dataflow\IBooleanLiteral.cs" />
+    <Compile Include="Dataflow\ICollectBy.cs" />
+    <Compile Include="Dataflow\IConditionalExpression.cs" />
+    <Compile Include="Dataflow\ICopy.cs" />
+    <Compile Include="Dataflow\IElement.cs" />
+    <Compile Include="Dataflow\IEvaluate.cs" />
+    <Compile Include="Dataflow\IExpression.cs" />
+    <Compile Include="Dataflow\IFeatureCall.cs" />
+    <Compile Include="Dataflow\IFieldReference.cs" />
+    <Compile Include="Dataflow\IFilter.cs" />
+    <Compile Include="Dataflow\IForEach.cs" />
+    <Compile Include="Dataflow\IGetFeature.cs" />
+    <Compile Include="Dataflow\IIntegerLiteral.cs" />
+    <Compile Include="Dataflow\IModel.cs" />
+    <Compile Include="Dataflow\INewContainer.cs" />
+    <Compile Include="Dataflow\INewInstance.cs" />
+    <Compile Include="Dataflow\IntegerLiteral.cs" />
+    <Compile Include="Dataflow\IProduct.cs" />
+    <Compile Include="Dataflow\IRealLiteral.cs" />
+    <Compile Include="Dataflow\ISetFeature.cs" />
+    <Compile Include="Dataflow\ISort.cs" />
+    <Compile Include="Dataflow\IStringLiteral.cs" />
+    <Compile Include="Dataflow\IUnaryOperation.cs" />
+    <Compile Include="Dataflow\Model.cs" />
+    <Compile Include="Dataflow\NewContainer.cs" />
+    <Compile Include="Dataflow\NewInstance.cs" />
+    <Compile Include="Dataflow\Product.cs" />
+    <Compile Include="Dataflow\RealLiteral.cs" />
+    <Compile Include="Dataflow\SetFeature.cs" />
+    <Compile Include="Dataflow\Sort.cs" />
+    <Compile Include="Dataflow\StringLiteral.cs" />
+    <Compile Include="Dataflow\UnaryOperation.cs" />
+    <Compile Include="Dataflow\UnaryOperator.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="LaunchConfiguration\Configuration.cs" />
+    <Compile Include="LaunchConfiguration\Dataflow.cs" />
+    <Compile Include="LaunchConfiguration\IConfiguration.cs" />
+    <Compile Include="LaunchConfiguration\IDataflow.cs" />
+    <Compile Include="LaunchConfiguration\IMetamodel.cs" />
+    <Compile Include="LaunchConfiguration\IModel.cs" />
+    <Compile Include="LaunchConfiguration\Metamodel.cs" />
+    <Compile Include="LaunchConfiguration\Model.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Dataflow.nmf" />
+    <None Include="LaunchConfiguration.nmf" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectTemplate.csproj">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

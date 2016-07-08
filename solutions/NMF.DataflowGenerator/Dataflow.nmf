@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://transformation-tool-contest.eu/2016/dataflow" Prefix="df" Name="dataflow" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" Name="Model">
+    <References IsContainment="True" ReferenceType="//Element/" IsOrdered="True" UpperBound="-1" Name="elements" />
+  </Types>
+  <Types xsi:type="nmeta:Class" IsAbstract="True" Identifier="//Element//name/" Name="Element">
+    <References ReferenceType="//Element/" IsOrdered="True" Name="target" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="name" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="AllInstances">
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="field" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="model" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="packageName" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="typeName" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="NewInstance">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" LowerBound="1" Name="key" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="instanceField" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="model" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="packageName" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="typeName" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="Filter">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" LowerBound="1" Name="filterBy" />
+    <References ReferenceType="//Element/" IsOrdered="True" Name="rejectTarget" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="Sort">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" LowerBound="1" Name="sortBy" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="Copy">
+    <References ReferenceType="//Element/" IsOrdered="True" Name="copyTarget" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="Product" />
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="GetFeature">
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="objectField" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="valueField" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="feature" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="SetFeature">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="value" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="objectField" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="feature" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="NewContainer">
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="listField" />
+    <Attributes IsOrdered="True" Type="//ContainerType/" Name="containerType" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="AddToContainer">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="value" />
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="position" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="listField" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="ForEach">
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="listField" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="itemField" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="positionField" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="CollectBy">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="collectBy" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Element/" Name="Evaluate">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" LowerBound="1" Name="expression" />
+    <Attributes IsOrdered="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="field" />
+  </Types>
+  <Types xsi:type="nmeta:Class" IsAbstract="True" Name="Expression" />
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="IntegerLiteral">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//Integer/" Name="value" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="BooleanLiteral">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="value" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="RealLiteral">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//Double/" Name="value" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="StringLiteral">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="value" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="FieldReference">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="field" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="UnaryOperation">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="expression" />
+    <Attributes IsOrdered="True" Type="//UnaryOperator/" Name="operator" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="BinaryOperation">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="leftExpression" />
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="rightExpression" />
+    <Attributes IsOrdered="True" Type="//BinaryOperator/" Name="operator" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="FeatureCall">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="targetExpression" />
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" UpperBound="-1" Name="parameters" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="feature" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="//Expression/" Name="ConditionalExpression">
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="conditionExpression" />
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="thenExpression" />
+    <References IsContainment="True" ReferenceType="//Expression/" IsOrdered="True" Name="elseExpression" />
+  </Types>
+  <Types xsi:type="nmeta:Enumeration" Name="UnaryOperator">
+    <Literals Name="NOT" />
+    <Literals Value="1" Name="NEGATION" />
+  </Types>
+  <Types xsi:type="nmeta:Enumeration" Name="BinaryOperator">
+    <Literals Name="EQ" />
+    <Literals Value="1" Name="NE" />
+    <Literals Value="2" Name="GT" />
+    <Literals Value="3" Name="GE" />
+    <Literals Value="4" Name="LT" />
+    <Literals Value="5" Name="LE" />
+    <Literals Value="6" Name="AND" />
+    <Literals Value="7" Name="OR" />
+    <Literals Value="8" Name="XOR" />
+    <Literals Value="9" Name="ADD" />
+    <Literals Value="10" Name="SUBTRACT" />
+    <Literals Value="11" Name="MULTIPLY" />
+    <Literals Value="12" Name="DIVIDE" />
+    <Literals Value="13" Name="MODULO" />
+  </Types>
+  <Types xsi:type="nmeta:Enumeration" Name="ContainerType">
+    <Literals Name="LIST" />
+    <Literals Value="1" Name="SET" />
+  </Types>
+</nmeta:Namespace>

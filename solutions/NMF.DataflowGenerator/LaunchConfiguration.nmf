@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://transformation-tool-contest.eu/2016/launch" Prefix="lc" Name="launchConfiguration" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" Name="Configuration">
+    <References IsContainment="True" ReferenceType="//Dataflow/" IsOrdered="True" Name="dataflow" />
+    <References IsContainment="True" ReferenceType="//Model/" IsOrdered="True" UpperBound="-1" Name="models" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Dataflow">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="location" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Identifier="//Model//name/" Name="Model">
+    <References IsContainment="True" ReferenceType="//Metamodel/" IsOrdered="True" UpperBound="-1" Name="metamodels" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="name" />
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="location" />
+    <Attributes DefaultValue="true" IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="readOnLoad" />
+    <Attributes DefaultValue="false" IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean/" Name="storeOnDisposal" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Metamodel">
+    <Attributes IsOrdered="True" Type="http://nmf.codeplex.com/nmeta/#//String/" Name="location" />
+  </Types>
+</nmeta:Namespace>
