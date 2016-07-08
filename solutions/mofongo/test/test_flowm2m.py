@@ -173,6 +173,7 @@ def load_metamodel(path):
 
 def execute(tranformation_path, input_name, input_model_path, input_mm_path, output_name, output_model_path,
             output_mm_path):
+
     transformation_stream = FileStream(tranformation_path)
     lexer = FlowM2MLexer(transformation_stream)
     stream = CommonTokenStream(lexer)
@@ -206,7 +207,9 @@ def execute(tranformation_path, input_name, input_model_path, input_mm_path, out
         t.join()
     execute_end = time.time()
     # Safe the model
-    output_model.store(output_mediator)
+    rel = os.path.relpath(output_mm_path, output_model_path)
+    print(rel)
+    output_model.store(output_mediator, relative_location=rel)
     return execute_end - execute_start
 
 def main():
