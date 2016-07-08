@@ -92,6 +92,7 @@ def get_all_subclasses_mof(cls):
     except TypeError:
         return
 
+
 def get_bare_tag(elem):
     return elem.tag.rsplit('}', 1)[-1]
 
@@ -813,9 +814,9 @@ class MofModelLookup(etree.PythonElementClassLookup):
             t_class = self.classes[t.name]
         except KeyError:
             # Need to make sure super classes exist first
-            super_class = {etree.ElementBase}
+            super_class = [etree.ElementBase]
             for sc in t.super_class:
-                super_class.add(self.get_class(sc))
+                super_class.insert(0, self.get_class(sc))
             t_class = type(t.name, tuple(super_class), {})
             self.classes[t.name] = t_class
         return t_class
@@ -878,7 +879,7 @@ class MofMediator:
                 raise ex
         return elements, root
 
-    def store(self, data, packages, uri="", read_on_load=True, append=False, **kwargs):
+    def store(self, data, packages, uri="", read_on_load=True, append=False, relative_location=None, **kwargs):
         mode = 'w'
         if not read_on_load:
             # Create a new model
@@ -892,6 +893,8 @@ class MofMediator:
                 nsmap[None] = p_uri
             root = etree.Element(self.XMI + "XMI", nsmap=nsmap)
             root.set(self.XMI + 'version', "2.0")
+            if relative_location is not None:
+                root.set(self.XSI + 'schemaLocation', p_uri + ' ' + relative_location)
         else:
             with get_scheme_context_manager(uri, kwargs) as moffile:
                 ecore_tree = etree.parse(moffile, self.parser)
