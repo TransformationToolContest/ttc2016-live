@@ -36,6 +36,8 @@ public class Launcher {
 	}
 
 	public void run(String sLaunchConfig) throws Exception {
+		final long startMillis = System.currentTimeMillis();
+
 		EPackage.Registry.INSTANCE.put(DataflowPackage.eNS_URI, DataflowPackage.eINSTANCE);
 		EPackage.Registry.INSTANCE.put(LaunchConfigPackage.eNS_URI, LaunchConfigPackage.eINSTANCE);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
@@ -48,6 +50,8 @@ public class Launcher {
 		final Configuration launchConfig = (Configuration) rLaunchConfig.getContents().get(0);
 
 		run(fLaunchConfig.getParentFile().toPath(), launchConfig);
+
+		System.out.println("Total time in seconds: " + (System.currentTimeMillis() - startMillis)/1000.);
 	}
 
 	public void run(final Path basePath, final Configuration launchConfig) throws Exception {

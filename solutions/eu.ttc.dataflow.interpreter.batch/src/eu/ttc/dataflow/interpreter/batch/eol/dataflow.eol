@@ -174,7 +174,7 @@ operation Dataflow!NewInstance processIncoming() {
     if (not instance.isDefined()) {
       instance = getModel(self.`model`).createInstance(self.typeName);
       if (key.isDefined()) {
-        key.println('NewInstance -- associated key for type ' + self.typeName + ' to ' + instance + ': ');
+        --key.println('NewInstance -- associated key for type ' + self.typeName + ' to ' + instance + ': ');
         newInstanceMap.get(self.typeName).put(key, instance);
       }
     }
@@ -245,7 +245,7 @@ operation Dataflow!Element addSource(source : Dataflow!Element) {
 }
 
 operation Dataflow!Element processIncoming() {
-  self.println('Processing ');
+  --self.println('Processing ');
   return false;
 } 
 
@@ -270,7 +270,7 @@ operation Dataflow!Element hasRunningSource() : Boolean {
 
 operation Dataflow!Element addIncomingRow(row : Map) {
   self.~incomingRows.add(row);
-  row.println('Added row to ' + self.name + ': ');
+  --row.println('Added row to ' + self.name + ': ');
 }
 
 // UTILITIES //////////////////////////////////////////////////////////////////
