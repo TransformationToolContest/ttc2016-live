@@ -15,7 +15,7 @@ else:
 
 ALL_INSTANCES_QUEUE_SIZE = 100
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.CRITICAL)
 # create console handler and set level to debug
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
