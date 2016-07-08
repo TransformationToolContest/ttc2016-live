@@ -19,7 +19,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
         private HashSet<Dataflow.IElement> elementsProcessed = new HashSet<Dataflow.IElement>();
         private CodeMemberMethod main;
         private CodeTypeMember truish;
-        private IDictionary<string, IEnumerable<INamespace>> metamodels; 
+        private IDictionary<string, IEnumerable<INamespace>> metamodels;
         private string ns;
         private Dictionary<string, Stack<SymbolInfo>> symbolTable = new Dictionary<string, Stack<SymbolInfo>>();
 
@@ -87,8 +87,9 @@ namespace TTC2016.LiveContest.DataflowGenerator
                 this.models.Add(model.Name, reference);
                 index++;
             }
-            main.Statements.Add(new CodeVariableDeclarationStatement(typeof(Dictionary<object, IModelElement>), "trace",
-                new CodeObjectCreateExpression(typeof(Dictionary<object, IModelElement>))));
+            var traceType = new CodeTypeReference(typeof(Dictionary<,>).Name, new CodeTypeReference("TraceEntry"), new CodeTypeReference(typeof(IModelElement)));
+            main.Statements.Add(new CodeVariableDeclarationStatement(traceType, "trace",
+                new CodeObjectCreateExpression(traceType)));
             trace = new CodeVariableReferenceExpression("trace");
 
             foreach (var element in elements)
@@ -341,12 +342,12 @@ namespace TTC2016.LiveContest.DataflowGenerator
             if (symbol.Count == 0 || !symbol.Peek().IsTraced)
             {
                 scope.Add(new CodeVariableDeclarationStatement(typeof(IModelElement), instanceTraceRef.VariableName));
-                scope.Add(new CodeVariableDeclarationStatement("TraceEntry", keyRef.VariableName, 
+                scope.Add(new CodeVariableDeclarationStatement("TraceEntry", keyRef.VariableName,
                     new CodeObjectCreateExpression("TraceEntry", GenerateExpression(element.Key), new CodeTypeOfExpression(type))));
             }
             else
             {
-                scope.Add(new CodeAssignStatement(keyRef, 
+                scope.Add(new CodeAssignStatement(keyRef,
                     new CodeObjectCreateExpression("TraceEntry", GenerateExpression(element.Key), new CodeTypeOfExpression(type))));
             }
             var checkTrace = new CodeConditionStatement();
