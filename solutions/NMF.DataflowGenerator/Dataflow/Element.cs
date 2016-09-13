@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -51,6 +52,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IElement _target;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The name property
         /// </summary>
@@ -68,8 +71,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._name != value))
                 {
                     string old = this._name;
-                    this._name = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnNameChanging(e);
+                    this.OnPropertyChanging("Name", e);
+                    this._name = value;
                     this.OnNameChanged(e);
                     this.OnPropertyChanged("Name", e);
                 }
@@ -92,6 +97,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._target != value))
                 {
                     IElement old = this._target;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnTargetChanging(e);
+                    this.OnPropertyChanging("Target", e);
                     this._target = value;
                     if ((old != null))
                     {
@@ -101,7 +109,6 @@ namespace TTC2016.LiveContest.Dataflow
                     {
                         value.Deleted += this.OnResetTarget;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetChanged(e);
                     this.OnPropertyChanged("Target", e);
                 }
@@ -120,13 +127,17 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//Element/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Element/")));
+                }
+                return _classInstance;
             }
         }
         
@@ -142,14 +153,37 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the Name property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> NameChanging;
+        
+        /// <summary>
         /// Gets fired when the Name property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> NameChanged;
+        public event System.EventHandler<ValueChangedEventArgs> NameChanged;
+        
+        /// <summary>
+        /// Gets fired before the Target property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> TargetChanging;
         
         /// <summary>
         /// Gets fired when the Target property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> TargetChanged;
+        public event System.EventHandler<ValueChangedEventArgs> TargetChanged;
+        
+        /// <summary>
+        /// Raises the NameChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnNameChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.NameChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the NameChanged event
@@ -157,7 +191,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnNameChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.NameChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.NameChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the TargetChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnTargetChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.TargetChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -170,7 +217,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnTargetChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.TargetChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.TargetChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -182,7 +229,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetTarget(object sender, EventArgs eventArgs)
+        private void OnResetTarget(object sender, System.EventArgs eventArgs)
         {
             this.Target = null;
         }
@@ -255,7 +302,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Element/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Element/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>
@@ -264,6 +315,10 @@ namespace TTC2016.LiveContest.Dataflow
         /// <returns>The identifier string</returns>
         public override string ToIdentifierString()
         {
+            if ((this.Name == null))
+            {
+                return null;
+            }
             return this.Name.ToString();
         }
         

@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -44,6 +45,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private string _field;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The field property
         /// </summary>
@@ -60,8 +63,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._field != value))
                 {
                     string old = this._field;
-                    this._field = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnFieldChanging(e);
+                    this.OnPropertyChanging("Field", e);
+                    this._field = value;
                     this.OnFieldChanged(e);
                     this.OnPropertyChanged("Field", e);
                 }
@@ -69,20 +74,42 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//FieldReference/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//FieldReference/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the Field property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> FieldChanging;
+        
+        /// <summary>
         /// Gets fired when the Field property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> FieldChanged;
+        public event System.EventHandler<ValueChangedEventArgs> FieldChanged;
+        
+        /// <summary>
+        /// Raises the FieldChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnFieldChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.FieldChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the FieldChanged event
@@ -90,7 +117,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnFieldChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.FieldChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.FieldChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -132,7 +159,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//FieldReference/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//FieldReference/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

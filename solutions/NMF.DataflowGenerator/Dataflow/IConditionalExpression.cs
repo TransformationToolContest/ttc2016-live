@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -66,19 +67,34 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the ConditionExpression property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ConditionExpressionChanging;
+        
+        /// <summary>
         /// Gets fired when the ConditionExpression property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ConditionExpressionChanged;
+        event System.EventHandler<ValueChangedEventArgs> ConditionExpressionChanged;
+        
+        /// <summary>
+        /// Gets fired before the ThenExpression property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ThenExpressionChanging;
         
         /// <summary>
         /// Gets fired when the ThenExpression property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ThenExpressionChanged;
+        event System.EventHandler<ValueChangedEventArgs> ThenExpressionChanged;
+        
+        /// <summary>
+        /// Gets fired before the ElseExpression property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ElseExpressionChanging;
         
         /// <summary>
         /// Gets fired when the ElseExpression property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ElseExpressionChanged;
+        event System.EventHandler<ValueChangedEventArgs> ElseExpressionChanged;
     }
 }
 

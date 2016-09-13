@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -48,9 +49,14 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the SortBy property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> SortByChanging;
+        
+        /// <summary>
         /// Gets fired when the SortBy property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> SortByChanged;
+        event System.EventHandler<ValueChangedEventArgs> SortByChanged;
     }
 }
 

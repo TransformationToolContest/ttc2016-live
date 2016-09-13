@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -48,9 +49,14 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
+        /// Gets fired before the Location property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> LocationChanging;
+        
+        /// <summary>
         /// Gets fired when the Location property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> LocationChanged;
+        event System.EventHandler<ValueChangedEventArgs> LocationChanged;
     }
 }
 

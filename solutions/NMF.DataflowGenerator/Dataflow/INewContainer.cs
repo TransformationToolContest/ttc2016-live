@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -57,14 +58,24 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the ListField property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ListFieldChanging;
+        
+        /// <summary>
         /// Gets fired when the ListField property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ListFieldChanged;
+        event System.EventHandler<ValueChangedEventArgs> ListFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the ContainerType property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ContainerTypeChanging;
         
         /// <summary>
         /// Gets fired when the ContainerType property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ContainerTypeChanged;
+        event System.EventHandler<ValueChangedEventArgs> ContainerTypeChanged;
     }
 }
 

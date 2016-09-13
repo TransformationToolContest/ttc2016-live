@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -50,6 +51,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IElement _rejectTarget;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The filterBy property
         /// </summary>
@@ -67,6 +70,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._filterBy != value))
                 {
                     IExpression old = this._filterBy;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnFilterByChanging(e);
+                    this.OnPropertyChanging("FilterBy", e);
                     this._filterBy = value;
                     if ((old != null))
                     {
@@ -78,7 +84,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetFilterBy;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFilterByChanged(e);
                     this.OnPropertyChanged("FilterBy", e);
                 }
@@ -101,6 +106,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._rejectTarget != value))
                 {
                     IElement old = this._rejectTarget;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnRejectTargetChanging(e);
+                    this.OnPropertyChanging("RejectTarget", e);
                     this._rejectTarget = value;
                     if ((old != null))
                     {
@@ -110,7 +118,6 @@ namespace TTC2016.LiveContest.Dataflow
                     {
                         value.Deleted += this.OnResetRejectTarget;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRejectTargetChanged(e);
                     this.OnPropertyChanged("RejectTarget", e);
                 }
@@ -140,25 +147,52 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//Filter/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Filter/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the FilterBy property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> FilterByChanging;
+        
+        /// <summary>
         /// Gets fired when the FilterBy property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> FilterByChanged;
+        public event System.EventHandler<ValueChangedEventArgs> FilterByChanged;
+        
+        /// <summary>
+        /// Gets fired before the RejectTarget property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> RejectTargetChanging;
         
         /// <summary>
         /// Gets fired when the RejectTarget property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> RejectTargetChanged;
+        public event System.EventHandler<ValueChangedEventArgs> RejectTargetChanged;
+        
+        /// <summary>
+        /// Raises the FilterByChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnFilterByChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.FilterByChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the FilterByChanged event
@@ -166,7 +200,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnFilterByChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.FilterByChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.FilterByChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -178,9 +212,22 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetFilterBy(object sender, EventArgs eventArgs)
+        private void OnResetFilterBy(object sender, System.EventArgs eventArgs)
         {
             this.FilterBy = null;
+        }
+        
+        /// <summary>
+        /// Raises the RejectTargetChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnRejectTargetChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.RejectTargetChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
         }
         
         /// <summary>
@@ -189,7 +236,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnRejectTargetChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.RejectTargetChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.RejectTargetChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -201,7 +248,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetRejectTarget(object sender, EventArgs eventArgs)
+        private void OnResetRejectTarget(object sender, System.EventArgs eventArgs)
         {
             this.RejectTarget = null;
         }
@@ -296,7 +343,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Filter/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Filter/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

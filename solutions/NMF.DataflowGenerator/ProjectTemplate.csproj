@@ -17,6 +17,9 @@
     <Reference Include="NMF.Expressions">
       <HintPath>%NMFExpressionsPath%</HintPath>
     </Reference>
+    <Reference Include="NMF.Expressions.Utilities">
+      <HintPath>%NMFExpressionsUtilitiesPath%</HintPath>
+    </Reference>
     <Reference Include="NMF.Expressions.Linq">
       <HintPath>%NMFExpressionsLinqPath%</HintPath>
     </Reference>

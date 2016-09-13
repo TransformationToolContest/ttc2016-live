@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -54,21 +55,24 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <summary>
         /// The backing field for the ReadOnLoad property
         /// </summary>
-        private Nullable<bool> _readOnLoad;
+        private Nullable<bool> _readOnLoad = true;
         
         /// <summary>
         /// The backing field for the StoreOnDisposal property
         /// </summary>
-        private Nullable<bool> _storeOnDisposal;
+        private Nullable<bool> _storeOnDisposal = false;
         
         /// <summary>
         /// The backing field for the Metamodels property
         /// </summary>
         private ObservableCompositionList<IMetamodel> _metamodels;
         
+        private static IClass _classInstance;
+        
         public Model()
         {
             this._metamodels = new ObservableCompositionList<IMetamodel>(this);
+            this._metamodels.CollectionChanging += this.MetamodelsCollectionChanging;
             this._metamodels.CollectionChanged += this.MetamodelsCollectionChanged;
         }
         
@@ -89,8 +93,10 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                 if ((this._name != value))
                 {
                     string old = this._name;
-                    this._name = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnNameChanging(e);
+                    this.OnPropertyChanging("Name", e);
+                    this._name = value;
                     this.OnNameChanged(e);
                     this.OnPropertyChanged("Name", e);
                 }
@@ -113,8 +119,10 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                 if ((this._location != value))
                 {
                     string old = this._location;
-                    this._location = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnLocationChanging(e);
+                    this.OnPropertyChanging("Location", e);
+                    this._location = value;
                     this.OnLocationChanged(e);
                     this.OnPropertyChanged("Location", e);
                 }
@@ -124,6 +132,7 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <summary>
         /// The readOnLoad property
         /// </summary>
+        [DefaultValueAttribute(true)]
         [XmlElementNameAttribute("readOnLoad")]
         [XmlAttributeAttribute(true)]
         public virtual Nullable<bool> ReadOnLoad
@@ -137,8 +146,10 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                 if ((this._readOnLoad != value))
                 {
                     Nullable<bool> old = this._readOnLoad;
-                    this._readOnLoad = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnReadOnLoadChanging(e);
+                    this.OnPropertyChanging("ReadOnLoad", e);
+                    this._readOnLoad = value;
                     this.OnReadOnLoadChanged(e);
                     this.OnPropertyChanged("ReadOnLoad", e);
                 }
@@ -148,6 +159,7 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <summary>
         /// The storeOnDisposal property
         /// </summary>
+        [DefaultValueAttribute(false)]
         [XmlElementNameAttribute("storeOnDisposal")]
         [XmlAttributeAttribute(true)]
         public virtual Nullable<bool> StoreOnDisposal
@@ -161,8 +173,10 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                 if ((this._storeOnDisposal != value))
                 {
                     Nullable<bool> old = this._storeOnDisposal;
-                    this._storeOnDisposal = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnStoreOnDisposalChanging(e);
+                    this.OnPropertyChanging("StoreOnDisposal", e);
+                    this._storeOnDisposal = value;
                     this.OnStoreOnDisposalChanged(e);
                     this.OnPropertyChanged("StoreOnDisposal", e);
                 }
@@ -208,13 +222,17 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/launch#//Model/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Model/")));
+                }
+                return _classInstance;
             }
         }
         
@@ -230,24 +248,57 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
+        /// Gets fired before the Name property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> NameChanging;
+        
+        /// <summary>
         /// Gets fired when the Name property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> NameChanged;
+        public event System.EventHandler<ValueChangedEventArgs> NameChanged;
+        
+        /// <summary>
+        /// Gets fired before the Location property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> LocationChanging;
         
         /// <summary>
         /// Gets fired when the Location property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> LocationChanged;
+        public event System.EventHandler<ValueChangedEventArgs> LocationChanged;
+        
+        /// <summary>
+        /// Gets fired before the ReadOnLoad property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ReadOnLoadChanging;
         
         /// <summary>
         /// Gets fired when the ReadOnLoad property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ReadOnLoadChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ReadOnLoadChanged;
+        
+        /// <summary>
+        /// Gets fired before the StoreOnDisposal property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> StoreOnDisposalChanging;
         
         /// <summary>
         /// Gets fired when the StoreOnDisposal property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> StoreOnDisposalChanged;
+        public event System.EventHandler<ValueChangedEventArgs> StoreOnDisposalChanged;
+        
+        /// <summary>
+        /// Raises the NameChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnNameChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.NameChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the NameChanged event
@@ -255,7 +306,20 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnNameChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.NameChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.NameChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the LocationChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnLocationChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.LocationChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -268,7 +332,20 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnLocationChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.LocationChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.LocationChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the ReadOnLoadChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnReadOnLoadChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ReadOnLoadChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -281,7 +358,20 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnReadOnLoadChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ReadOnLoadChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ReadOnLoadChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the StoreOnDisposalChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnStoreOnDisposalChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.StoreOnDisposalChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -294,7 +384,7 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnStoreOnDisposalChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.StoreOnDisposalChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.StoreOnDisposalChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -302,7 +392,17 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
-        /// Forwards change notifications for the Metamodels property to the parent model element
+        /// Forwards CollectionChanging notifications for the Metamodels property to the parent model element
+        /// </summary>
+        /// <param name="sender">The collection that raised the change</param>
+        /// <param name="e">The original event data</param>
+        private void MetamodelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        {
+            this.OnCollectionChanging("Metamodels", e);
+        }
+        
+        /// <summary>
+        /// Forwards CollectionChanged notifications for the Metamodels property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
@@ -424,7 +524,11 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Model/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Model/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>
@@ -433,6 +537,10 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <returns>The identifier string</returns>
         public override string ToIdentifierString()
         {
+            if ((this.Name == null))
+            {
+                return null;
+            }
             return this.Name.ToString();
         }
         

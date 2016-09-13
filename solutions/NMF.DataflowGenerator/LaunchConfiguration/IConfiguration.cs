@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -56,9 +57,14 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
+        /// Gets fired before the Dataflow property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> DataflowChanging;
+        
+        /// <summary>
         /// Gets fired when the Dataflow property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> DataflowChanged;
+        event System.EventHandler<ValueChangedEventArgs> DataflowChanged;
     }
 }
 

@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -33,24 +34,29 @@ namespace TTC2016.LiveContest.Dataflow
     /// <summary>
     /// The public interface for CollectBy
     /// </summary>
-    [DefaultImplementationTypeAttribute(typeof(CollectBy))]
-    [XmlDefaultImplementationTypeAttribute(typeof(CollectBy))]
+    [DefaultImplementationTypeAttribute(typeof(CollectBy_))]
+    [XmlDefaultImplementationTypeAttribute(typeof(CollectBy_))]
     public interface ICollectBy : IModelElement, IElement
     {
         
         /// <summary>
         /// The collectBy property
         /// </summary>
-        IExpression CollectBy_
+        IExpression CollectBy
         {
             get;
             set;
         }
         
         /// <summary>
+        /// Gets fired before the CollectBy property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> CollectByChanging;
+        
+        /// <summary>
         /// Gets fired when the CollectBy property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> CollectByChanged;
+        event System.EventHandler<ValueChangedEventArgs> CollectByChanged;
     }
 }
 

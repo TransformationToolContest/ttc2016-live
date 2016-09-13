@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -48,9 +49,14 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the CopyTarget property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> CopyTargetChanging;
+        
+        /// <summary>
         /// Gets fired when the CopyTarget property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> CopyTargetChanged;
+        event System.EventHandler<ValueChangedEventArgs> CopyTargetChanged;
     }
 }
 

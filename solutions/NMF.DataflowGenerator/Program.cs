@@ -23,6 +23,8 @@ namespace DataflowGenerator
 {
     class Program
     {
+        const string DataflowFileName = "DataFlowBasics.cs";
+
         static void Main(string[] args)
         {
             var stopwatch = new Stopwatch();
@@ -92,13 +94,15 @@ namespace DataflowGenerator
             var unit = Generator.GenerateCode(dataflow.RootElements[0].As<TTC2016.LiveContest.Dataflow.Model>().Elements, ns, metamodelDict, launchConfig.Models);
             var dataflowFile = Path.ChangeExtension(launchConfig.Dataflow.Location, ".cs");
             codeFiles.Add(dataflowFile);
-            using (var dataflowSw = new StreamWriter(dataflowFile))
-            {
-                csharp.GenerateCodeFromCompileUnit(unit, dataflowSw, csharpSettings);
-            }
+            File.WriteAllText(dataflowFile, unit);
+
+            var dataflowBasicsFile = Path.Combine(Path.GetDirectoryName(dataflowFile), DataflowFileName);
+            codeFiles.Add(dataflowBasicsFile);
+            File.WriteAllText(dataflowBasicsFile, GenerateDataflowBasicsFile());
 
             var projectFile = Path.ChangeExtension(dataflowFile, ".csproj");
             File.WriteAllText(projectFile, GenerateProjectFile(codeFiles, metamodelsCovered.Keys));
+
             stopwatch.Stop();
             Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
 
@@ -120,9 +124,20 @@ namespace DataflowGenerator
             Console.WriteLine("Running model transformation for specified inputs...");
             var transformationPath = Path.Combine(Path.GetDirectoryName(projectFile), "bin", Path.GetFileNameWithoutExtension(projectFile) + ".exe");
             var runJob = Process.Start(transformationPath, string.Join(" ", launchConfig.Models.Select(m => m.Location)));
-            runJob.WaitForExit();
+            runJob.Start();
             stopwatch.Stop();
             Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
+        }
+
+        private static string GenerateDataflowBasicsFile()
+        {
+            using (var dataflowBasicsStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("TTC2016.LiveContest.DataflowGenerator.DataFlow.cs"))
+            {
+                using (var sr = new StreamReader(dataflowBasicsStream))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
         }
 
         private static string GenerateProjectFile(List<string> codeFiles, IEnumerable<string> metamodelsCovered)
@@ -135,6 +150,7 @@ namespace DataflowGenerator
             var modelsPath = typeof(NMF.Models.Model).Assembly.Location;
             var serializationsPath = typeof(XmlSerializer).Assembly.Location;
             var utilitiesPath = typeof(MemoizedFunc<,>).Assembly.Location;
+            var expressionsUtilitiesPath = typeof(ChangeAwareDictionary<,>).Assembly.Location;
 
             using (var projectTemplateStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("TTC2016.LiveContest.DataflowGenerator.ProjectTemplate.csproj"))
             {
@@ -146,6 +162,7 @@ namespace DataflowGenerator
                         .Replace("%NMFCollectionsPath%", collectionsPath)
                         .Replace("%NMFExpressionsPath%", expressionsPath)
                         .Replace("%NMFExpressionsLinqPath%", expressionsLinqPath)
+                        .Replace("%NMFExpressionsUtilitiesPath%", expressionsUtilitiesPath)
                         .Replace("%NMFModelsPath%", modelsPath)
                         .Replace("%NMFSerializationPath%", serializationsPath)
                         .Replace("%NMFUtilitiesPath%", utilitiesPath)

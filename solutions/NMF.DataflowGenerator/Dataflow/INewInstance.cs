@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -84,29 +85,54 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the InstanceField property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> InstanceFieldChanging;
+        
+        /// <summary>
         /// Gets fired when the InstanceField property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> InstanceFieldChanged;
+        event System.EventHandler<ValueChangedEventArgs> InstanceFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the Model property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ModelChanging;
         
         /// <summary>
         /// Gets fired when the Model property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ModelChanged;
+        event System.EventHandler<ValueChangedEventArgs> ModelChanged;
+        
+        /// <summary>
+        /// Gets fired before the PackageName property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> PackageNameChanging;
         
         /// <summary>
         /// Gets fired when the PackageName property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> PackageNameChanged;
+        event System.EventHandler<ValueChangedEventArgs> PackageNameChanged;
+        
+        /// <summary>
+        /// Gets fired before the TypeName property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> TypeNameChanging;
         
         /// <summary>
         /// Gets fired when the TypeName property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> TypeNameChanged;
+        event System.EventHandler<ValueChangedEventArgs> TypeNameChanged;
+        
+        /// <summary>
+        /// Gets fired before the Key property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> KeyChanging;
         
         /// <summary>
         /// Gets fired when the Key property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> KeyChanged;
+        event System.EventHandler<ValueChangedEventArgs> KeyChanged;
     }
 }
 

@@ -14,258 +14,226 @@ namespace TTC2016.LiveContest.DataflowGenerator
 {
     class Generator
     {
-        private Dictionary<string, CodeExpression> models = new Dictionary<string, CodeExpression>();
-        private CodeExpression trace;
-        private HashSet<Dataflow.IElement> elementsProcessed = new HashSet<Dataflow.IElement>();
-        private CodeMemberMethod main;
-        private CodeTypeMember truish;
-        private IDictionary<string, IEnumerable<INamespace>> metamodels;
+        private Dictionary<string, string> models = new Dictionary<string, string>();
+        private IDictionary<string, IEnumerable<INamespace>> metamodels; 
         private string ns;
-        private Dictionary<string, Stack<SymbolInfo>> symbolTable = new Dictionary<string, Stack<SymbolInfo>>();
+        private Dictionary<string, SymbolInfo> symbolTable = new Dictionary<string, SymbolInfo>();
+
+        private static readonly IType ClassType = MetaRepository.Instance.ResolveType("http://nmf.codeplex.com/nmeta/#//Class/");
+        private static readonly IType BooleanType = MetaRepository.Instance.ResolveType("http://nmf.codeplex.com/nmeta/#//Boolean/");
+        private static readonly IType StringType = MetaRepository.Instance.ResolveType("http://nmf.codeplex.com/nmeta/#//String/");
+        private static readonly IType IntegerType = MetaRepository.Instance.ResolveType("http://nmf.codeplex.com/nmeta/#//Integer/");
+
+        private StringBuilder program = new StringBuilder();
 
         private struct SymbolInfo
         {
+            public string Code { get; set; }
             public IType Type { get; set; }
             public bool IsOrdered { get; set; }
             public bool IsCollection { get; set; }
-            public bool IsTraced { get; set; }
         }
 
-        public static CodeCompileUnit GenerateCode(IEnumerable<Dataflow.IElement> elements, string ns, IDictionary<string, IEnumerable<INamespace>> metamodels, IList<IModel> models)
+        public static string GenerateCode(IEnumerable<Dataflow.IElement> elements, string ns, IDictionary<string, IEnumerable<INamespace>> metamodels, IList<IModel> models)
         {
             var instance = new Generator();
             instance.ns = ns;
             instance.metamodels = metamodels;
-            instance.CreateTruish();
-            instance.CreateMain(elements, models);
-            var unit = new CodeCompileUnit();
-            var codeNs = new CodeNamespace(ns);
-            codeNs.Imports.Add(new CodeNamespaceImport("NMF.Models"));
-            codeNs.Imports.Add(new CodeNamespaceImport("NMF.Expressions.Linq"));
-            codeNs.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
-            unit.Namespaces.Add(codeNs);
-            var programClass = new CodeTypeDeclaration()
-            {
-                Attributes = MemberAttributes.Static | MemberAttributes.Assembly,
-                Name = "Program",
-                IsClass = true
-            };
-            programClass.Members.Add(instance.main);
-            programClass.Members.Add(instance.truish);
-            programClass.Members.Add(instance.CreateTraceEntry());
-            codeNs.Types.Add(programClass);
-            return unit;
+            instance.WriteUsings();
+            instance.WriteMain(elements, models);
+            return instance.program.ToString();
         }
 
-        private void CreateMain(IEnumerable<Dataflow.IElement> elements, IList<IModel> models)
+        private void AddSymbol(string name, IType type, bool isCollection, bool isOrdered)
         {
-            main = new CodeMemberMethod()
+            SymbolInfo existing;
+            if (symbolTable.TryGetValue(name, out existing))
             {
-                Name = "Main",
-                Attributes = MemberAttributes.Static
-            };
-            main.Parameters.Add(new CodeParameterDeclarationExpression(typeof(string[]), "args"));
-            var argsRef = new CodeArgumentReferenceExpression("args");
+                var newType = GetLeastCommon(existing.Type, type);
+                symbolTable[name] = new SymbolInfo()
+                {
+                    Code = string.Format("(({0})row[\"{1}\"])", CreateTypeReference(newType), name),
+                    Type = newType,
+                    IsCollection = existing.IsCollection && isCollection,
+                    IsOrdered = existing.IsOrdered && isOrdered
+                };
+            }
+            else
+            {
+                symbolTable.Add(name, new SymbolInfo()
+                {
+                    Code = string.Format("(({0})row[\"{1}\"])", CreateTypeReference(type), name),
+                    Type = type,
+                    IsCollection = isCollection,
+                    IsOrdered = isOrdered
+                });
+            }
+        }
 
-            main.Statements.Add(new CodeVariableDeclarationStatement(typeof(ModelRepository), "repository",
-                new CodeObjectCreateExpression(typeof(ModelRepository))));
-            var repositoryRef = new CodeVariableReferenceExpression("repository");
+        private IType GetLeastCommon(IType type1, IType type2)
+        {
+            if (type1 == type2) return type1;
+
+            var class1 = type1 as IClass;
+            var class2 = type2 as IClass;
+
+            
+            var class1Bases = new List<IClass>();
+            while (class1 != null)
+            {
+                class1Bases.Add(class1);
+                class1 = class1.BaseTypes.FirstOrDefault();
+            }
+
+            while (class2 != null && !class1Bases.Contains(class2))
+            {
+                class2 = class2.BaseTypes.FirstOrDefault();
+            }
+
+            if (class2 == null) throw new InvalidOperationException(string.Format("Types {0} and {1} could not be unified", type1, type2));
+            return class2;
+        }
+
+        private void WriteUsings()
+        {
+            program.AppendLine("using NMF.Models;");
+            program.AppendLine("using NMF.Models.Repository;");
+            program.AppendLine("using NMF.Collections.ObjectModel;");
+            program.AppendLine("using NMF.Expressions;");
+            program.AppendLine("using NMF.Expressions.Linq;");
+            program.AppendLine("using TTC2016.LiveContest;");
+        }
+
+        private void WriteMain(IEnumerable<Dataflow.IElement> elements, IList<IModel> models)
+        {
+            program.AppendLine("namespace Families2persons");
+            program.AppendLine("{");
+            program.AppendLine("    public class Program");
+            program.AppendLine("    {");
+            program.AppendLine("        static void Main(string[] args)");
+            program.AppendLine("        {");
+            program.AppendLine("            ModelRepository repository = new ModelRepository();");
+            WriteModelDeclarations(models);
+            program.AppendLine("            Dataflow flow = new Dataflow();");
+
+            var defer = new StringBuilder();
+            foreach (var element in elements)
+            {
+                GenerateElement(element, defer);
+            }
+            program.Append(defer.ToString());
+
+            program.AppendLine();
+            WriteDataflowWiring(elements);
+            program.AppendLine();
+            WriteExecutes(elements);
+            program.AppendLine();
+            WriteSaveModels(models);
+            program.AppendLine("        }");
+            program.AppendLine("    }");
+            program.AppendLine("}");
+
+        }
+
+        private void WriteSaveModels(IList<IModel> models)
+        {
             var index = 0;
             foreach (var model in models)
             {
-                var reference = new CodeVariableReferenceExpression(model.Name.ToCamelCase() + "Model");
-                CodeExpression initExpression;
-                if (model.ReadOnLoad.GetValueOrDefault(true))
-                {
-                    initExpression = new CodeMethodInvokeExpression(repositoryRef, "Resolve", new CodeIndexerExpression(argsRef, new CodePrimitiveExpression(index)));
-                }
-                else
-                {
-                    initExpression = new CodeObjectCreateExpression(typeof(NMF.Models.Model));
-                }
-                main.Statements.Add(new CodeVariableDeclarationStatement(typeof(NMF.Models.Model), reference.VariableName, initExpression));
-                this.models.Add(model.Name, reference);
-                index++;
-            }
-            var traceType = new CodeTypeReference(typeof(Dictionary<,>).Name, new CodeTypeReference("TraceEntry"), new CodeTypeReference(typeof(IModelElement)));
-            main.Statements.Add(new CodeVariableDeclarationStatement(traceType, "trace",
-                new CodeObjectCreateExpression(traceType)));
-            trace = new CodeVariableReferenceExpression("trace");
-
-            foreach (var element in elements)
-            {
-                if (elementsProcessed.Add(element))
-                {
-                    GenerateElement(element, main.Statements);
-                }
-            }
-
-            index = 0;
-            foreach (var model in models)
-            {
-                CodeExpression modelReference;
+                string modelReference;
                 if (model.StoreOnDisposal.GetValueOrDefault(false) && this.models.TryGetValue(model.Name, out modelReference))
                 {
-                    main.Statements.Add(new CodeMethodInvokeExpression(repositoryRef, "Save", modelReference, new CodeIndexerExpression(argsRef, new CodePrimitiveExpression(index))));
+                    program.AppendLine(string.Format("            repository.Save({0}, args[{1}]);", modelReference, index));
                 }
                 index++;
             }
         }
 
-        private void CreateTruish()
+        private void WriteExecutes(IEnumerable<Dataflow.IElement> elements)
         {
-            truish = new CodeSnippetTypeMember(@"
-        private static bool IsTruish(object obj)
-        {
-            if (obj == null) return false;
-            if (obj is bool)
+            foreach (var element in elements)
             {
-                return (bool)obj;
-            }
-            if (obj is System.Collections.IEnumerable)
-            {
-                var enumerator = ((System.Collections.IEnumerable)obj).GetEnumerator();
-                return enumerator.MoveNext();
-            }
-            return true;
-        }");
-        }
-
-        private CodeTypeMember CreateTraceEntry()
-        {
-            return new CodeSnippetTypeMember(@"
-        private struct TraceEntry : System.IEquatable<TraceEntry>
-        {
-            public object Element { get; set; }
-            public System.Type Type { get; set; }
-
-            public TraceEntry(object element, System.Type type) : this()
-            {
-                Element = element;
-                Type = type;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is TraceEntry)
+                if (element.Target == null)
                 {
-                    return Equals((TraceEntry)obj);
-                }
-                else
-                {
-                    return false;
+                    program.AppendLine(string.Format("            {0}.Execute(true);", element.Name.ToCamelCase()));
                 }
             }
-
-            public bool Equals(TraceEntry other)
-            {
-                return Element == other.Element && Type == other.Type;
-            }
-
-            public override int GetHashCode()
-            {
-                var hash = 0;
-                if (Element != null) hash ^= Element.GetHashCode();
-                if (Type != null) hash ^= Type.GetHashCode();
-                return hash;
-            }
-        }");
         }
 
-        private void GenerateElement(Dataflow.IElement element, CodeStatementCollection scope)
+        private void WriteDataflowWiring(IEnumerable<Dataflow.IElement> elements)
         {
-            elementsProcessed.Add(element);
-            GenerateElementInternal((dynamic)element, scope);
+            foreach (var element in elements)
+            {
+                if (element.Target != null)
+                {
+                    program.AppendLine(string.Format("            {0}.AddTarget({1});", element.Name.ToCamelCase(), element.Target.Name.ToCamelCase()));
+                    var targetFilter = element.Target as Dataflow.Filter;
+                    if (targetFilter != null)
+                    {
+                        program.AppendLine(string.Format("            {0}.AddTarget({1}Reject);", element.Name.ToCamelCase(), targetFilter.Name.ToCamelCase()));
+                    }
+                    var filter = element as Dataflow.Filter;
+                    if (filter != null && filter.RejectTarget != null)
+                    {
+                        program.AppendLine(string.Format("            {0}Reject.AddTarget({1});", element.Name.ToCamelCase(), filter.RejectTarget.Name.ToCamelCase()));
+                    }
+                }
+            }
         }
 
-        private CodeExpression GenerateExpression(Dataflow.IExpression expression)
+        private void WriteModelDeclarations(IList<IModel> models)
+        {
+            var index = 0;
+            foreach (var model in models)
+            {
+                var modelName = model.Name.ToCamelCase() + "Model";
+                var initialValue = "new Model()";
+                if (model.ReadOnLoad.GetValueOrDefault(true))
+                {
+                    initialValue = string.Format("repository.Resolve(args[{0}])", index);
+                }
+                program.AppendLine(string.Format("            Model {0} = {1};", modelName, initialValue));
+                this.models.Add(model.Name, modelName);
+                index++;
+            }
+        }
+
+        private void GenerateElement(Dataflow.IElement element, StringBuilder defer)
+        {
+            defer.AppendLine(string.Format("            var {0} = new DataflowNode(source =>", element.Name.ToCamelCase()));
+            GenerateElementInternal((dynamic)element, defer);
+        }
+
+        private SymbolInfo GenerateExpression(Dataflow.IExpression expression)
         {
             return GenerateExpressionInternal((dynamic)expression);
         }
 
-        private void GenerateElementInternal(Dataflow.AddToContainer element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.AddToContainer element, StringBuilder defer)
         {
             var value = GenerateExpression(element.Value);
-            var isList = element.Position != null && value.UserData.Contains("ordered");
-            if (isList)
-            {
-                scope.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(element.ListField), "Insert", GenerateExpression(element.Position), value));
-            }
-            else
-            {
-                scope.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(element.ListField), "Add", value));
-            }
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, scope);
-            }
+            var isList = element.Position != null && value.IsOrdered;
+            var type = CreateTypeReference(value.Type);
+            defer.AppendLine(string.Format("                Dataflow.AddToCollection(source, row => {1}, row => (ICollection<{0}>)row[\"{2}\"]));", type, value.Code, element.ListField));
         }
 
-        private void GenerateElementInternal(Dataflow.AllInstances element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.AllInstances element, StringBuilder defer)
         {
-            CodeTypeReference type = CreateTypeReference(element.Model, element.TypeName);
-            var enumeratorDef = new CodeVariableDeclarationStatement(new CodeTypeReference(typeof(IEnumerator<>).Name, type), element.Field + "Enumerator");
-            var modelReference = models[element.Model];
-            enumeratorDef.InitExpression = new CodeMethodInvokeExpression(new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodeMethodInvokeExpression(modelReference, "Descendants"), "OfType", type)), "GetEnumerator");
-            var enumeratorRef = new CodeVariableReferenceExpression(enumeratorDef.Name);
-            var foreachLoop = new CodeIterationStatement(enumeratorDef, new CodeMethodInvokeExpression(enumeratorRef, "MoveNext"), new CodeSnippetStatement());
-            scope.Add(foreachLoop);
-            var fieldDef = new CodeVariableDeclarationStatement(type, element.Field, new CodePropertyReferenceExpression(enumeratorRef, "Current"));
-            foreachLoop.Statements.Add(fieldDef);
-            Stack<SymbolInfo> symbol;
-            if (!symbolTable.TryGetValue(element.Field, out symbol))
-            {
-                symbol = new Stack<SymbolInfo>();
-                symbolTable.Add(element.Field, symbol);
-            }
-            symbol.Push(new SymbolInfo()
-            {
-                Type = FindType(element.Model, element.TypeName),
-                IsCollection = false,
-                IsOrdered = false
-            });
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, foreachLoop.Statements);
-            }
-            symbol.Pop();
+            var type = CreateTypeReference(element.Model, element.TypeName);
+
+            defer.AppendLine(string.Format("               source.SelectMany(row => {0}.Descendants().OfType<{1}>(),", models[element.Model], type));
+            defer.AppendLine(string.Format("                                 (row, {0}) => row.With(\"{0}\", {0})));", element.Field));
+            AddSymbol(element.Field, FindType(element.Model, element.TypeName), false, false);
         }
 
-        private void GenerateElementInternal(Dataflow.ForEach element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.ForEach element, StringBuilder defer)
         {
-            IType type = null;
-            try
-            {
-                type = symbolTable[element.ListField].Peek().Type;
-            }
-            catch (Exception)
-            {
-            }
-            var collection = new CodeVariableReferenceExpression(element.ListField);
-            var enumeratorDef = new CodeVariableDeclarationStatement("var", element.ItemField + "Enumerator");
-            enumeratorDef.InitExpression = new CodeMethodInvokeExpression(collection, "GetEnumerator");
-            var enumeratorRef = new CodeVariableReferenceExpression(enumeratorDef.Name);
-            var foreachLoop = new CodeIterationStatement(enumeratorDef, new CodeMethodInvokeExpression(enumeratorRef, "MoveNext"), new CodeSnippetStatement());
-            scope.Add(foreachLoop);
-            var fieldDef = new CodeVariableDeclarationStatement("var", element.ItemField, new CodePropertyReferenceExpression(enumeratorRef, "Current"));
-            foreachLoop.Statements.Add(fieldDef);
-            Stack<SymbolInfo> symbol;
-            if (!symbolTable.TryGetValue(element.ItemField, out symbol))
-            {
-                symbol = new Stack<SymbolInfo>();
-                symbolTable.Add(element.ItemField, symbol);
-            }
-            symbol.Push(new SymbolInfo()
-            {
-                Type = type,
-                IsCollection = false,
-                IsOrdered = false
-            });
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, foreachLoop.Statements);
-            }
-            symbol.Pop();
+            var typeObj = symbolTable[element.ListField].Type;
+            var type = CreateTypeReference(typeObj);
+            defer.AppendLine(string.Format("               source.SelectMany(row => (IEnumerableExpression<{0}>)row[\"{1}\"],", type, element.ListField));
+            defer.AppendLine(string.Format("                                 (row, {0}) => row.With(\"{0}\", {0})));", element.ItemField));
+
+            AddSymbol(element.ItemField, typeObj, false, false);
         }
 
         private IType FindType(string model, string typeName)
@@ -294,25 +262,23 @@ namespace TTC2016.LiveContest.DataflowGenerator
             return null;
         }
 
-        private IType FindType(CodeExpression expression)
-        {
-            if (expression.UserData.Contains("type"))
-            {
-                return expression.UserData["type"] as IType;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private CodeTypeReference CreateTypeReference(string model, string typeName)
+        private string CreateTypeReference(string model, string typeName)
         {
             return CreateTypeReference(FindType(model, typeName));
         }
 
-        private CodeTypeReference CreateTypeReference(IType type)
+        private string CreateTypeReference(IType type)
         {
+            var mapped = type.GetExtension<MappedType>();
+            if (mapped != null)
+            {
+                return mapped.SystemType.FullName;
+            }
+            var primitiveType = type as IPrimitiveType;
+            if (primitiveType != null)
+            {
+                return primitiveType.SystemType;
+            }
             var typeName = type.Name.ToString();
             var ns = type.Namespace;
             while (ns != null)
@@ -320,171 +286,168 @@ namespace TTC2016.LiveContest.DataflowGenerator
                 typeName = ns.Name.ToPascalCase() + "." + typeName;
                 ns = ns.ParentNamespace;
             }
-            return new CodeTypeReference(typeName);
+            return typeName;
         }
 
-        private void GenerateElementInternal(Dataflow.NewInstance element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.NewInstance element, StringBuilder defer)
         {
-            Stack<SymbolInfo> symbol;
-            if (!symbolTable.TryGetValue(element.InstanceField, out symbol))
-            {
-                symbol = new Stack<SymbolInfo>();
-                symbolTable.Add(element.InstanceField, symbol);
-            }
-            CodeTypeReference type = CreateTypeReference(element.Model, element.TypeName);
-            var instanceRef = new CodeVariableReferenceExpression(element.InstanceField);
-            var instanceTraceRef = new CodeVariableReferenceExpression("_" + element.InstanceField + "Traced");
-            var keyRef = new CodeVariableReferenceExpression("_" + element.InstanceField + "Key");
-            if (symbol.Count == 0)
-            {
-                scope.Add(new CodeVariableDeclarationStatement(type, instanceRef.VariableName));
-            }
-            if (symbol.Count == 0 || !symbol.Peek().IsTraced)
-            {
-                scope.Add(new CodeVariableDeclarationStatement(typeof(IModelElement), instanceTraceRef.VariableName));
-                scope.Add(new CodeVariableDeclarationStatement("TraceEntry", keyRef.VariableName,
-                    new CodeObjectCreateExpression("TraceEntry", GenerateExpression(element.Key), new CodeTypeOfExpression(type))));
-            }
-            else
-            {
-                scope.Add(new CodeAssignStatement(keyRef,
-                    new CodeObjectCreateExpression("TraceEntry", GenerateExpression(element.Key), new CodeTypeOfExpression(type))));
-            }
-            var checkTrace = new CodeConditionStatement();
-            checkTrace.Condition = new CodeMethodInvokeExpression(trace, "TryGetValue", keyRef, new CodeDirectionExpression(FieldDirection.Out, instanceTraceRef));
-            checkTrace.TrueStatements.Add(new CodeAssignStatement(instanceRef, new CodeCastExpression(type, instanceTraceRef)));
-            checkTrace.FalseStatements.Add(new CodeAssignStatement(instanceRef, new CodeObjectCreateExpression(type)));
-            var modelReference = models[element.Model];
-            checkTrace.FalseStatements.Add(new CodeMethodInvokeExpression(new CodePropertyReferenceExpression(modelReference, "RootElements"), "Add", instanceRef));
-            checkTrace.FalseStatements.Add(new CodeMethodInvokeExpression(trace, "Add", keyRef, instanceRef));
-            scope.Add(checkTrace);
-            symbol.Push(new SymbolInfo()
-            {
-                Type = FindType(element.Model, element.TypeName),
-                IsCollection = false,
-                IsOrdered = false,
-                IsTraced = true
-            });
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, scope);
-            }
-            symbol.Pop();
+            var type = CreateTypeReference(element.Model, element.TypeName);
+            var key = GenerateExpression(element.Key);
+
+            program.AppendLine(string.Format("            var {0}Func = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => flow.NewInstance<{1}>({2}, {3}));",
+                element.Name.ToCamelCase(), type, models[element.Model], key.Code));
+
+            defer.AppendLine(string.Format("                source.Select(row => row.With(\"{0}\", {1}Func.Observe(row)))); ", element.InstanceField, element.Name.ToCamelCase()));
+
+            AddSymbol(element.InstanceField, FindType(element.Model, element.TypeName), false, false);
         }
 
-        private void GenerateElementInternal(Dataflow.Evaluate element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.Evaluate element, StringBuilder defer)
         {
-            var type = new CodeTypeReference("var");
+            var value = GenerateExpression(element.Expression);
+            program.AppendLine(string.Format("            var {0}Func = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => {1});", element.Name.ToCamelCase(), value.Code));
+            
+            defer.AppendLine(string.Format("                source.Select(row => row.With(\"{0}\", {1}Func.Observe(row)))); ", element.Field, element.Name.ToCamelCase()));
+
             var expression = GenerateExpression(element.Expression);
-            scope.Add(new CodeVariableDeclarationStatement(type, element.Field, expression));
-            Stack<SymbolInfo> symbol;
-            if (!symbolTable.TryGetValue(element.Field, out symbol))
-            {
-                symbol = new Stack<SymbolInfo>();
-                symbolTable.Add(element.Field, symbol);
-            }
-            symbol.Push(new SymbolInfo()
-            {
-                Type = FindType(expression),
-                IsCollection = expression.UserData.Contains("collection"),
-                IsOrdered = expression.UserData.Contains("ordered")
-            });
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, scope);
-            }
-            symbol.Pop();
+            AddSymbol(element.Field, value.Type, value.IsCollection, value.IsOrdered);
         }
 
-        private void GenerateElementInternal(Dataflow.Filter element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.Filter element, StringBuilder defer)
         {
-            var ifStmt = new CodeConditionStatement(GenerateExpression(element.FilterBy));
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, ifStmt.TrueStatements);
-            }
+            var filter = GenerateExpression(element.FilterBy);
+            defer.AppendLine(string.Format("                source.Where(row => {0})); ", filter.Code));
+
             if (element.RejectTarget != null)
             {
-                GenerateElement(element.RejectTarget, ifStmt.FalseStatements);
+                defer.AppendLine(string.Format("            var {0}Reject = new DataflowNode(source =>", element.Name.ToCamelCase()));
+                defer.AppendLine(string.Format("                source.Where(row => !{0})); ", filter.Code));
             }
-            scope.Add(ifStmt);
         }
 
-        private void GenerateElementInternal(Dataflow.SetFeature_ element, CodeStatementCollection scope)
+        private void GenerateElementInternal(Dataflow.SetFeature_ element, StringBuilder defer)
         {
-            var featureRef = new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(element.ObjectField), element.Feature.ToPascalCase());
-            scope.Add(new CodeAssignStatement(featureRef, GenerateExpression(element.Value)));
-            if (element.Target != null)
-            {
-                GenerateElement(element.Target, scope);
-            }
+            var value = GenerateExpression(element.Value);
+            var target = symbolTable[element.ObjectField];
+            defer.AppendLine(string.Format("                Dataflow.SetField(source, row => {0}, (row, value) => {1}.{2} = value)); ", value.Code, target.Code, element.Feature.ToPascalCase()));
         }
 
 
-        private CodeExpression GenerateExpressionInternal(Dataflow.BinaryOperation expression)
+        private SymbolInfo GenerateExpressionInternal(Dataflow.BinaryOperation expression)
         {
             var left = GenerateExpression(expression.LeftExpression);
             var right = GenerateExpression(expression.RightExpression);
+            var type = BooleanType;
+            string code;
             switch (expression.Operator.GetValueOrDefault(Dataflow.BinaryOperator.EQ))
             {
                 case Dataflow.BinaryOperator.EQ:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.IdentityEquality, right);
+                    code = left.Code + " == " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.NE:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.IdentityInequality, right);
+                    code = left.Code + " != " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.GT:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.GreaterThan, right);
+                    code = left.Code + " > " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.GE:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.GreaterThanOrEqual, right);
+                    code = left.Code + " >= " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.LT:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.LessThan, right);
+                    code = left.Code + " < " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.LE:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.LessThanOrEqual, right);
+                    code = left.Code + " <= " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.AND:
-                    return new CodeBinaryOperatorExpression(Truish(left), CodeBinaryOperatorType.BooleanAnd, Truish(right));
+                    code = string.Format("Dataflow.IsTruish({0}) && Dataflow.IsTruish({1})", left.Code, right.Code);
+                    break;
                 case Dataflow.BinaryOperator.OR:
-                    return new CodeBinaryOperatorExpression(Truish(left), CodeBinaryOperatorType.BooleanOr, Truish(right));
+                    code = string.Format("Dataflow.IsTruish({0}) || Dataflow.IsTruish({1})", left.Code, right.Code);
+                    break;
                 case Dataflow.BinaryOperator.XOR:
-                    throw new NotSupportedException();
+                    code = left.Code + " ^ " + right.Code;
+                    break;
                 case Dataflow.BinaryOperator.ADD:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Add, right);
+                    code = left.Code + " + " + right.Code;
+                    type = left.Type;
+                    break;
                 case Dataflow.BinaryOperator.SUBTRACT:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Subtract, right);
+                    code = left.Code + " - " + right.Code;
+                    type = left.Type;
+                    break;
                 case Dataflow.BinaryOperator.MULTIPLY:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Multiply, right);
+                    code = left.Code + " * " + right.Code;
+                    type = left.Type;
+                    break;
                 case Dataflow.BinaryOperator.DIVIDE:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Divide, right);
+                    code = left.Code + " / " + right.Code;
+                    type = left.Type;
+                    break;
                 case Dataflow.BinaryOperator.MODULO:
-                    return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Modulus, right);
+                    code = left.Code + " % " + right.Code;
+                    type = left.Type;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("expression");
             }
+            return new SymbolInfo()
+            {
+                Code = "(" + code + ")",
+                IsCollection = false,
+                IsOrdered = false,
+                Type = type
+            };
         }
 
-        private CodeExpression GenerateExpressionInternal(Dataflow.BooleanLiteral literal)
+        private SymbolInfo GenerateExpressionInternal(Dataflow.BooleanLiteral literal)
         {
-            return new CodePrimitiveExpression(literal.Value.GetValueOrDefault(false));
+            return new SymbolInfo()
+            {
+                Code = literal.Value.GetValueOrDefault(false) ? "true" : "false",
+                IsCollection = false,
+                IsOrdered = false,
+                Type = BooleanType
+            };
         }
 
-        private CodeExpression GenerateExpressionInternal(Dataflow.StringLiteral literal)
+        private SymbolInfo GenerateExpressionInternal(Dataflow.StringLiteral literal)
         {
-            return new CodePrimitiveExpression(literal.Value);
+            return new SymbolInfo()
+            {
+                Code = "\"" + literal.Value + "\"",
+                IsCollection = false,
+                IsOrdered = false,
+                Type = StringType
+            };
         }
 
-        private CodeExpression GenerateExpressionInternal(Dataflow.IntegerLiteral literal)
+        private SymbolInfo GenerateExpressionInternal(Dataflow.IntegerLiteral literal)
         {
-            return new CodePrimitiveExpression(literal.Value.GetValueOrDefault(0));
+            return new SymbolInfo()
+            {
+                Code = literal.Value.GetValueOrDefault(0).ToString(),
+                IsCollection = false,
+                IsOrdered = false,
+                Type = IntegerType
+            };
         }
 
-        private CodeExpression GenerateExpressionInternal(Dataflow.FeatureCall expression)
+        private SymbolInfo GenerateExpressionInternal(Dataflow.FeatureCall expression)
         {
             var target = GenerateExpression(expression.TargetExpression);
             if (expression.Feature == "eClass")
             {
-                return new CodeMethodInvokeExpression(target, "GetClass");
+                return new SymbolInfo()
+                {
+                    Code = target.Code + "GetClass()",
+                    Type = ClassType,
+                    IsCollection = false
+                };
             }
             else if (expression.Feature == "eContainer")
             {
-                var type = FindType(target);
+                var type = target.Type;
                 if (type == null) throw new InvalidOperationException("Could not identify type of expression " + expression.ToString());
                 var parentNs = type.Parent as INamespace;
                 var potentialParents = new List<IClass>();
@@ -497,57 +460,42 @@ namespace TTC2016.LiveContest.DataflowGenerator
                 }
                 if (potentialParents.Count != 1) throw new InvalidOperationException("The type of the parent could not be detected automatically.");
                 var parentType = CreateTypeReference(potentialParents[0]);
-                var result = new CodeCastExpression(parentType, new CodePropertyReferenceExpression(target, "Parent"));
-                result.UserData.Add("type", potentialParents[0]);
-                return result;
+                return new SymbolInfo()
+                {
+                    Code = string.Format("(({0}){1}.Parent)", parentType, target.Code),
+                    Type = potentialParents[0],
+                    IsCollection = false
+                };
             }
             else
             {
-                var result = new CodePropertyReferenceExpression(target, expression.Feature.ToPascalCase());
-                var targetType = FindType(target) as IClass;
+                var isCollection = false;
+                var isOrdered = false;
+                var targetType = target.Type as IClass;
+                IType type = null;
                 if (targetType != null)
                 {
                     var feature = (ITypedElement)targetType.LookupAttribute(expression.Feature) ?? targetType.LookupReference(expression.Feature);
                     if (feature != null)
                     {
-                        result.UserData.Add("type", feature.Type);
-                        if (feature.UpperBound != 1)
-                        {
-                            result.UserData.Add("collection", true);
-                        }
-                        if (feature.IsOrdered)
-                        {
-                            result.UserData.Add("ordered", true);
-                        }
+                        isCollection = feature.UpperBound != 1;
+                        isOrdered = feature.IsOrdered;
+                        type = feature.Type;
                     }
                 }
-                return result;
+                return new SymbolInfo()
+                {
+                    Code = target.Code + "." + expression.Feature.ToPascalCase(),
+                    Type = type,
+                    IsCollection = isCollection,
+                    IsOrdered = isOrdered
+                };
             }
         }
 
-        private CodeExpression GenerateExpressionInternal(Dataflow.FieldReference expression)
+        private SymbolInfo GenerateExpressionInternal(Dataflow.FieldReference expression)
         {
-            var result = new CodeVariableReferenceExpression(expression.Field);
-            Stack<SymbolInfo> symbol;
-            if (symbolTable.TryGetValue(expression.Field, out symbol))
-            {
-                SymbolInfo info = symbol.Peek();
-                result.UserData.Add("type", info.Type);
-                if (info.IsCollection)
-                {
-                    result.UserData.Add("collection", true);
-                }
-                if (info.IsOrdered)
-                {
-                    result.UserData.Add("ordered", true);
-                }
-            }
-            return result;
-        }
-
-        private CodeExpression Truish(CodeExpression original)
-        {
-            return new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("Program"), "IsTruish", original);
+            return symbolTable[expression.Field];
         }
     }
 }
