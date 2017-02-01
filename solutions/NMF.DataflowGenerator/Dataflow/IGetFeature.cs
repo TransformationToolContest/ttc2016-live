@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -66,19 +67,34 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the ObjectField property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ObjectFieldChanging;
+        
+        /// <summary>
         /// Gets fired when the ObjectField property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ObjectFieldChanged;
+        event System.EventHandler<ValueChangedEventArgs> ObjectFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the ValueField property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ValueFieldChanging;
         
         /// <summary>
         /// Gets fired when the ValueField property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> ValueFieldChanged;
+        event System.EventHandler<ValueChangedEventArgs> ValueFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the Feature property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> FeatureChanging;
         
         /// <summary>
         /// Gets fired when the Feature property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> FeatureChanged;
+        event System.EventHandler<ValueChangedEventArgs> FeatureChanged;
     }
 }
 

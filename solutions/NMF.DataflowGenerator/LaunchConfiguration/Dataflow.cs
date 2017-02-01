@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -44,6 +45,8 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// </summary>
         private string _location;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The location property
         /// </summary>
@@ -60,8 +63,10 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                 if ((this._location != value))
                 {
                     string old = this._location;
-                    this._location = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnLocationChanging(e);
+                    this.OnPropertyChanging("Location", e);
+                    this._location = value;
                     this.OnLocationChanged(e);
                     this.OnPropertyChanged("Location", e);
                 }
@@ -69,20 +74,42 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/launch#//Dataflow/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Dataflow/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the Location property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> LocationChanging;
+        
+        /// <summary>
         /// Gets fired when the Location property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> LocationChanged;
+        public event System.EventHandler<ValueChangedEventArgs> LocationChanged;
+        
+        /// <summary>
+        /// Raises the LocationChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnLocationChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.LocationChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the LocationChanged event
@@ -90,7 +117,7 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnLocationChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.LocationChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.LocationChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -132,7 +159,11 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Dataflow/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Dataflow/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

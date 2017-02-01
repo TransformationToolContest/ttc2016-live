@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -54,9 +55,12 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private ObservableCompositionList<IExpression> _parameters;
         
+        private static IClass _classInstance;
+        
         public FeatureCall()
         {
             this._parameters = new ObservableCompositionList<IExpression>(this);
+            this._parameters.CollectionChanging += this.ParametersCollectionChanging;
             this._parameters.CollectionChanged += this.ParametersCollectionChanged;
         }
         
@@ -76,8 +80,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._feature != value))
                 {
                     string old = this._feature;
-                    this._feature = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnFeatureChanging(e);
+                    this.OnPropertyChanging("Feature", e);
+                    this._feature = value;
                     this.OnFeatureChanged(e);
                     this.OnPropertyChanged("Feature", e);
                 }
@@ -101,6 +107,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._targetExpression != value))
                 {
                     IExpression old = this._targetExpression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnTargetExpressionChanging(e);
+                    this.OnPropertyChanging("TargetExpression", e);
                     this._targetExpression = value;
                     if ((old != null))
                     {
@@ -112,7 +121,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetTargetExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetExpressionChanged(e);
                     this.OnPropertyChanged("TargetExpression", e);
                 }
@@ -158,25 +166,52 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//FeatureCall/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//FeatureCall/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the Feature property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> FeatureChanging;
+        
+        /// <summary>
         /// Gets fired when the Feature property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> FeatureChanged;
+        public event System.EventHandler<ValueChangedEventArgs> FeatureChanged;
+        
+        /// <summary>
+        /// Gets fired before the TargetExpression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> TargetExpressionChanging;
         
         /// <summary>
         /// Gets fired when the TargetExpression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> TargetExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> TargetExpressionChanged;
+        
+        /// <summary>
+        /// Raises the FeatureChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnFeatureChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.FeatureChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the FeatureChanged event
@@ -184,7 +219,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnFeatureChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.FeatureChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.FeatureChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the TargetExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnTargetExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.TargetExpressionChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -197,7 +245,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnTargetExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.TargetExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.TargetExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -209,13 +257,23 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetTargetExpression(object sender, EventArgs eventArgs)
+        private void OnResetTargetExpression(object sender, System.EventArgs eventArgs)
         {
             this.TargetExpression = null;
         }
         
         /// <summary>
-        /// Forwards change notifications for the Parameters property to the parent model element
+        /// Forwards CollectionChanging notifications for the Parameters property to the parent model element
+        /// </summary>
+        /// <param name="sender">The collection that raised the change</param>
+        /// <param name="e">The original event data</param>
+        private void ParametersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        {
+            this.OnCollectionChanging("Parameters", e);
+        }
+        
+        /// <summary>
+        /// Forwards CollectionChanged notifications for the Parameters property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
@@ -351,7 +409,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//FeatureCall/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//FeatureCall/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

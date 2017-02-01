@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -35,9 +36,10 @@ namespace TTC2016.LiveContest.Dataflow
     /// </summary>
     [XmlNamespaceAttribute("http://transformation-tool-contest.eu/2016/dataflow")]
     [XmlNamespacePrefixAttribute("df")]
+    [XmlElementName("CollectBy")]
     [ModelRepresentationClassAttribute("http://transformation-tool-contest.eu/2016/dataflow#//CollectBy/")]
     [DebuggerDisplayAttribute("CollectBy {Name}")]
-    public class CollectBy : Element, ICollectBy, IModelElement
+    public class CollectBy_ : Element, ICollectBy, IModelElement
     {
         
         /// <summary>
@@ -45,13 +47,15 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IExpression _collectBy;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The collectBy property
         /// </summary>
         [XmlElementNameAttribute("collectBy")]
         [XmlAttributeAttribute(false)]
         [ContainmentAttribute()]
-        public virtual IExpression CollectBy_
+        public virtual IExpression CollectBy
         {
             get
             {
@@ -62,6 +66,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._collectBy != value))
                 {
                     IExpression old = this._collectBy;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnCollectByChanging(e);
+                    this.OnPropertyChanging("CollectBy", e);
                     this._collectBy = value;
                     if ((old != null))
                     {
@@ -73,7 +80,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetCollectBy;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCollectByChanged(e);
                     this.OnPropertyChanged("CollectBy", e);
                 }
@@ -103,20 +109,42 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//CollectBy/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//CollectBy/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the CollectBy property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> CollectByChanging;
+        
+        /// <summary>
         /// Gets fired when the CollectBy property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> CollectByChanged;
+        public event System.EventHandler<ValueChangedEventArgs> CollectByChanged;
+        
+        /// <summary>
+        /// Raises the CollectByChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnCollectByChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.CollectByChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the CollectByChanged event
@@ -124,7 +152,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnCollectByChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.CollectByChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.CollectByChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -136,9 +164,9 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetCollectBy(object sender, EventArgs eventArgs)
+        private void OnResetCollectBy(object sender, System.EventArgs eventArgs)
         {
-            this.CollectBy_ = null;
+            this.CollectBy = null;
         }
         
         /// <summary>
@@ -148,7 +176,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="element">The element that should be looked for</param>
         protected override string GetRelativePathForNonIdentifiedChild(IModelElement element)
         {
-            if ((element == this.CollectBy_))
+            if ((element == this.CollectBy))
             {
                 return ModelHelper.CreatePath("CollectBy");
             }
@@ -165,7 +193,7 @@ namespace TTC2016.LiveContest.Dataflow
         {
             if ((reference == "COLLECTBY"))
             {
-                return this.CollectBy_;
+                return this.CollectBy;
             }
             return base.GetModelElementForReference(reference, index);
         }
@@ -179,7 +207,7 @@ namespace TTC2016.LiveContest.Dataflow
         {
             if ((feature == "COLLECTBY"))
             {
-                this.CollectBy_ = ((IExpression)(value));
+                this.CollectBy = ((IExpression)(value));
                 return;
             }
             base.SetFeature(feature, value);
@@ -218,7 +246,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//CollectBy/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//CollectBy/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>
@@ -227,12 +259,12 @@ namespace TTC2016.LiveContest.Dataflow
         public class CollectByChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
         {
             
-            private CollectBy _parent;
+            private CollectBy_ _parent;
             
             /// <summary>
             /// Creates a new instance
             /// </summary>
-            public CollectByChildrenCollection(CollectBy parent)
+            public CollectByChildrenCollection(CollectBy_ parent)
             {
                 this._parent = parent;
             }
@@ -245,7 +277,7 @@ namespace TTC2016.LiveContest.Dataflow
                 get
                 {
                     int count = 0;
-                    if ((this._parent.CollectBy_ != null))
+                    if ((this._parent.CollectBy != null))
                     {
                         count = (count + 1);
                     }
@@ -269,12 +301,12 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="item">The item to add</param>
             public override void Add(IModelElement item)
             {
-                if ((this._parent.CollectBy_ == null))
+                if ((this._parent.CollectBy == null))
                 {
                     IExpression collectByCasted = item.As<IExpression>();
                     if ((collectByCasted != null))
                     {
-                        this._parent.CollectBy_ = collectByCasted;
+                        this._parent.CollectBy = collectByCasted;
                         return;
                     }
                 }
@@ -285,7 +317,7 @@ namespace TTC2016.LiveContest.Dataflow
             /// </summary>
             public override void Clear()
             {
-                this._parent.CollectBy_ = null;
+                this._parent.CollectBy = null;
             }
             
             /// <summary>
@@ -295,7 +327,7 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="item">The item that should be looked out for</param>
             public override bool Contains(IModelElement item)
             {
-                if ((item == this._parent.CollectBy_))
+                if ((item == this._parent.CollectBy))
                 {
                     return true;
                 }
@@ -309,9 +341,9 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="arrayIndex">The starting index</param>
             public override void CopyTo(IModelElement[] array, int arrayIndex)
             {
-                if ((this._parent.CollectBy_ != null))
+                if ((this._parent.CollectBy != null))
                 {
-                    array[arrayIndex] = this._parent.CollectBy_;
+                    array[arrayIndex] = this._parent.CollectBy;
                     arrayIndex = (arrayIndex + 1);
                 }
             }
@@ -323,9 +355,9 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="item">The item that should be removed</param>
             public override bool Remove(IModelElement item)
             {
-                if ((this._parent.CollectBy_ == item))
+                if ((this._parent.CollectBy == item))
                 {
-                    this._parent.CollectBy_ = null;
+                    this._parent.CollectBy = null;
                     return true;
                 }
                 return false;
@@ -337,7 +369,7 @@ namespace TTC2016.LiveContest.Dataflow
             /// <returns>A generic enumerator</returns>
             public override IEnumerator<IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.CollectBy_).GetEnumerator();
+                return Enumerable.Empty<IModelElement>().Concat(this._parent.CollectBy).GetEnumerator();
             }
         }
         
@@ -347,12 +379,12 @@ namespace TTC2016.LiveContest.Dataflow
         public class CollectByReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
         {
             
-            private CollectBy _parent;
+            private CollectBy_ _parent;
             
             /// <summary>
             /// Creates a new instance
             /// </summary>
-            public CollectByReferencedElementsCollection(CollectBy parent)
+            public CollectByReferencedElementsCollection(CollectBy_ parent)
             {
                 this._parent = parent;
             }
@@ -365,7 +397,7 @@ namespace TTC2016.LiveContest.Dataflow
                 get
                 {
                     int count = 0;
-                    if ((this._parent.CollectBy_ != null))
+                    if ((this._parent.CollectBy != null))
                     {
                         count = (count + 1);
                     }
@@ -389,12 +421,12 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="item">The item to add</param>
             public override void Add(IModelElement item)
             {
-                if ((this._parent.CollectBy_ == null))
+                if ((this._parent.CollectBy == null))
                 {
                     IExpression collectByCasted = item.As<IExpression>();
                     if ((collectByCasted != null))
                     {
-                        this._parent.CollectBy_ = collectByCasted;
+                        this._parent.CollectBy = collectByCasted;
                         return;
                     }
                 }
@@ -405,7 +437,7 @@ namespace TTC2016.LiveContest.Dataflow
             /// </summary>
             public override void Clear()
             {
-                this._parent.CollectBy_ = null;
+                this._parent.CollectBy = null;
             }
             
             /// <summary>
@@ -415,7 +447,7 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="item">The item that should be looked out for</param>
             public override bool Contains(IModelElement item)
             {
-                if ((item == this._parent.CollectBy_))
+                if ((item == this._parent.CollectBy))
                 {
                     return true;
                 }
@@ -429,9 +461,9 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="arrayIndex">The starting index</param>
             public override void CopyTo(IModelElement[] array, int arrayIndex)
             {
-                if ((this._parent.CollectBy_ != null))
+                if ((this._parent.CollectBy != null))
                 {
-                    array[arrayIndex] = this._parent.CollectBy_;
+                    array[arrayIndex] = this._parent.CollectBy;
                     arrayIndex = (arrayIndex + 1);
                 }
             }
@@ -443,9 +475,9 @@ namespace TTC2016.LiveContest.Dataflow
             /// <param name="item">The item that should be removed</param>
             public override bool Remove(IModelElement item)
             {
-                if ((this._parent.CollectBy_ == item))
+                if ((this._parent.CollectBy == item))
                 {
-                    this._parent.CollectBy_ = null;
+                    this._parent.CollectBy = null;
                     return true;
                 }
                 return false;
@@ -457,7 +489,7 @@ namespace TTC2016.LiveContest.Dataflow
             /// <returns>A generic enumerator</returns>
             public override IEnumerator<IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.CollectBy_).GetEnumerator();
+                return Enumerable.Empty<IModelElement>().Concat(this._parent.CollectBy).GetEnumerator();
             }
         }
         
@@ -483,11 +515,11 @@ namespace TTC2016.LiveContest.Dataflow
             {
                 get
                 {
-                    return this.ModelElement.CollectBy_;
+                    return this.ModelElement.CollectBy;
                 }
                 set
                 {
-                    this.ModelElement.CollectBy_ = value;
+                    this.ModelElement.CollectBy = value;
                 }
             }
             

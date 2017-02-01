@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -55,6 +56,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private string _feature;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The objectField property
         /// </summary>
@@ -71,8 +74,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._objectField != value))
                 {
                     string old = this._objectField;
-                    this._objectField = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnObjectFieldChanging(e);
+                    this.OnPropertyChanging("ObjectField", e);
+                    this._objectField = value;
                     this.OnObjectFieldChanged(e);
                     this.OnPropertyChanged("ObjectField", e);
                 }
@@ -95,8 +100,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._valueField != value))
                 {
                     string old = this._valueField;
-                    this._valueField = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnValueFieldChanging(e);
+                    this.OnPropertyChanging("ValueField", e);
+                    this._valueField = value;
                     this.OnValueFieldChanged(e);
                     this.OnPropertyChanged("ValueField", e);
                 }
@@ -119,8 +126,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._feature != value))
                 {
                     string old = this._feature;
-                    this._feature = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnFeatureChanging(e);
+                    this.OnPropertyChanging("Feature", e);
+                    this._feature = value;
                     this.OnFeatureChanged(e);
                     this.OnPropertyChanged("Feature", e);
                 }
@@ -128,30 +137,62 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//GetFeature/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//GetFeature/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the ObjectField property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ObjectFieldChanging;
+        
+        /// <summary>
         /// Gets fired when the ObjectField property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ObjectFieldChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ObjectFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the ValueField property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ValueFieldChanging;
         
         /// <summary>
         /// Gets fired when the ValueField property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ValueFieldChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ValueFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the Feature property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> FeatureChanging;
         
         /// <summary>
         /// Gets fired when the Feature property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> FeatureChanged;
+        public event System.EventHandler<ValueChangedEventArgs> FeatureChanged;
+        
+        /// <summary>
+        /// Raises the ObjectFieldChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnObjectFieldChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ObjectFieldChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the ObjectFieldChanged event
@@ -159,7 +200,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnObjectFieldChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ObjectFieldChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ObjectFieldChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the ValueFieldChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnValueFieldChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ValueFieldChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -172,7 +226,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnValueFieldChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ValueFieldChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ValueFieldChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the FeatureChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnFeatureChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.FeatureChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -185,7 +252,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnFeatureChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.FeatureChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.FeatureChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -245,7 +312,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//GetFeature/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//GetFeature/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

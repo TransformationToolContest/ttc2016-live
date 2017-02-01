@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -50,6 +51,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private Nullable<ContainerType> _containerType;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The listField property
         /// </summary>
@@ -66,8 +69,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._listField != value))
                 {
                     string old = this._listField;
-                    this._listField = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnListFieldChanging(e);
+                    this.OnPropertyChanging("ListField", e);
+                    this._listField = value;
                     this.OnListFieldChanged(e);
                     this.OnPropertyChanged("ListField", e);
                 }
@@ -90,8 +95,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._containerType != value))
                 {
                     Nullable<ContainerType> old = this._containerType;
-                    this._containerType = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnContainerTypeChanging(e);
+                    this.OnPropertyChanging("ContainerType", e);
+                    this._containerType = value;
                     this.OnContainerTypeChanged(e);
                     this.OnPropertyChanged("ContainerType", e);
                 }
@@ -99,25 +106,52 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//NewContainer/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//NewContainer/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the ListField property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ListFieldChanging;
+        
+        /// <summary>
         /// Gets fired when the ListField property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ListFieldChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ListFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the ContainerType property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ContainerTypeChanging;
         
         /// <summary>
         /// Gets fired when the ContainerType property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ContainerTypeChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ContainerTypeChanged;
+        
+        /// <summary>
+        /// Raises the ListFieldChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnListFieldChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ListFieldChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the ListFieldChanged event
@@ -125,7 +159,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnListFieldChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ListFieldChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ListFieldChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the ContainerTypeChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnContainerTypeChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ContainerTypeChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -138,7 +185,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnContainerTypeChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ContainerTypeChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ContainerTypeChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -189,7 +236,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//NewContainer/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//NewContainer/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

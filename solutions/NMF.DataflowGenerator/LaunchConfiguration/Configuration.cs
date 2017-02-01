@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -49,9 +50,12 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// </summary>
         private ObservableCompositionList<IModel> _models;
         
+        private static IClass _classInstance;
+        
         public Configuration()
         {
             this._models = new ObservableCompositionList<IModel>(this);
+            this._models.CollectionChanging += this.ModelsCollectionChanging;
             this._models.CollectionChanged += this.ModelsCollectionChanged;
         }
         
@@ -72,6 +76,9 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                 if ((this._dataflow != value))
                 {
                     IDataflow old = this._dataflow;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnDataflowChanging(e);
+                    this.OnPropertyChanging("Dataflow", e);
                     this._dataflow = value;
                     if ((old != null))
                     {
@@ -83,7 +90,6 @@ namespace TTC2016.LiveContest.LaunchConfiguration
                         value.Parent = this;
                         value.Deleted += this.OnResetDataflow;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDataflowChanged(e);
                     this.OnPropertyChanged("Dataflow", e);
                 }
@@ -129,20 +135,42 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/launch#//Configuration/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Configuration/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the Dataflow property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> DataflowChanging;
+        
+        /// <summary>
         /// Gets fired when the Dataflow property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> DataflowChanged;
+        public event System.EventHandler<ValueChangedEventArgs> DataflowChanged;
+        
+        /// <summary>
+        /// Raises the DataflowChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnDataflowChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.DataflowChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the DataflowChanged event
@@ -150,7 +178,7 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnDataflowChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.DataflowChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.DataflowChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -162,13 +190,23 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetDataflow(object sender, EventArgs eventArgs)
+        private void OnResetDataflow(object sender, System.EventArgs eventArgs)
         {
             this.Dataflow = null;
         }
         
         /// <summary>
-        /// Forwards change notifications for the Models property to the parent model element
+        /// Forwards CollectionChanging notifications for the Models property to the parent model element
+        /// </summary>
+        /// <param name="sender">The collection that raised the change</param>
+        /// <param name="e">The original event data</param>
+        private void ModelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        {
+            this.OnCollectionChanging("Models", e);
+        }
+        
+        /// <summary>
+        /// Forwards CollectionChanged notifications for the Models property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
@@ -284,7 +322,11 @@ namespace TTC2016.LiveContest.LaunchConfiguration
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Configuration/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/launch#//Configuration/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

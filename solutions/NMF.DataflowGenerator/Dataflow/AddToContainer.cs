@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -55,6 +56,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IExpression _position;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The listField property
         /// </summary>
@@ -71,8 +74,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._listField != value))
                 {
                     string old = this._listField;
-                    this._listField = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnListFieldChanging(e);
+                    this.OnPropertyChanging("ListField", e);
+                    this._listField = value;
                     this.OnListFieldChanged(e);
                     this.OnPropertyChanged("ListField", e);
                 }
@@ -96,6 +101,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._value != value))
                 {
                     IExpression old = this._value;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnValueChanging(e);
+                    this.OnPropertyChanging("Value", e);
                     this._value = value;
                     if ((old != null))
                     {
@@ -107,7 +115,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetValue;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanged(e);
                     this.OnPropertyChanged("Value", e);
                 }
@@ -131,6 +138,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._position != value))
                 {
                     IExpression old = this._position;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnPositionChanging(e);
+                    this.OnPropertyChanging("Position", e);
                     this._position = value;
                     if ((old != null))
                     {
@@ -142,7 +152,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetPosition;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPositionChanged(e);
                     this.OnPropertyChanged("Position", e);
                 }
@@ -172,30 +181,62 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//AddToContainer/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//AddToContainer/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the ListField property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ListFieldChanging;
+        
+        /// <summary>
         /// Gets fired when the ListField property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ListFieldChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ListFieldChanged;
+        
+        /// <summary>
+        /// Gets fired before the Value property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ValueChanging;
         
         /// <summary>
         /// Gets fired when the Value property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ValueChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ValueChanged;
+        
+        /// <summary>
+        /// Gets fired before the Position property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> PositionChanging;
         
         /// <summary>
         /// Gets fired when the Position property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> PositionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> PositionChanged;
+        
+        /// <summary>
+        /// Raises the ListFieldChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnListFieldChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ListFieldChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the ListFieldChanged event
@@ -203,7 +244,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnListFieldChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ListFieldChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ListFieldChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the ValueChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnValueChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ValueChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -216,7 +270,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnValueChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ValueChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ValueChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -228,9 +282,22 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetValue(object sender, EventArgs eventArgs)
+        private void OnResetValue(object sender, System.EventArgs eventArgs)
         {
             this.Value = null;
+        }
+        
+        /// <summary>
+        /// Raises the PositionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnPositionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.PositionChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
         }
         
         /// <summary>
@@ -239,7 +306,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnPositionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.PositionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.PositionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -251,7 +318,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetPosition(object sender, EventArgs eventArgs)
+        private void OnResetPosition(object sender, System.EventArgs eventArgs)
         {
             this.Position = null;
         }
@@ -374,7 +441,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//AddToContainer/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//AddToContainer/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

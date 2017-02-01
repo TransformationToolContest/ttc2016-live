@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -57,14 +58,24 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the FilterBy property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> FilterByChanging;
+        
+        /// <summary>
         /// Gets fired when the FilterBy property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> FilterByChanged;
+        event System.EventHandler<ValueChangedEventArgs> FilterByChanged;
+        
+        /// <summary>
+        /// Gets fired before the RejectTarget property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> RejectTargetChanging;
         
         /// <summary>
         /// Gets fired when the RejectTarget property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> RejectTargetChanged;
+        event System.EventHandler<ValueChangedEventArgs> RejectTargetChanged;
     }
 }
 

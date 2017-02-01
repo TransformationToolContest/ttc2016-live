@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -45,6 +46,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IElement _copyTarget;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The copyTarget property
         /// </summary>
@@ -61,6 +64,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._copyTarget != value))
                 {
                     IElement old = this._copyTarget;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnCopyTargetChanging(e);
+                    this.OnPropertyChanging("CopyTarget", e);
                     this._copyTarget = value;
                     if ((old != null))
                     {
@@ -70,7 +76,6 @@ namespace TTC2016.LiveContest.Dataflow
                     {
                         value.Deleted += this.OnResetCopyTarget;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCopyTargetChanged(e);
                     this.OnPropertyChanged("CopyTarget", e);
                 }
@@ -89,20 +94,42 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//Copy/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Copy/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the CopyTarget property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> CopyTargetChanging;
+        
+        /// <summary>
         /// Gets fired when the CopyTarget property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> CopyTargetChanged;
+        public event System.EventHandler<ValueChangedEventArgs> CopyTargetChanged;
+        
+        /// <summary>
+        /// Raises the CopyTargetChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnCopyTargetChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.CopyTargetChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the CopyTargetChanged event
@@ -110,7 +137,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnCopyTargetChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.CopyTargetChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.CopyTargetChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -122,7 +149,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetCopyTarget(object sender, EventArgs eventArgs)
+        private void OnResetCopyTarget(object sender, System.EventArgs eventArgs)
         {
             this.CopyTarget = null;
         }
@@ -175,7 +202,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Copy/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Copy/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

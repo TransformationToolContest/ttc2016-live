@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -54,6 +55,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IExpression _elseExpression;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The conditionExpression property
         /// </summary>
@@ -71,6 +74,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._conditionExpression != value))
                 {
                     IExpression old = this._conditionExpression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnConditionExpressionChanging(e);
+                    this.OnPropertyChanging("ConditionExpression", e);
                     this._conditionExpression = value;
                     if ((old != null))
                     {
@@ -82,7 +88,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetConditionExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConditionExpressionChanged(e);
                     this.OnPropertyChanged("ConditionExpression", e);
                 }
@@ -106,6 +111,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._thenExpression != value))
                 {
                     IExpression old = this._thenExpression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnThenExpressionChanging(e);
+                    this.OnPropertyChanging("ThenExpression", e);
                     this._thenExpression = value;
                     if ((old != null))
                     {
@@ -117,7 +125,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetThenExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThenExpressionChanged(e);
                     this.OnPropertyChanged("ThenExpression", e);
                 }
@@ -141,6 +148,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._elseExpression != value))
                 {
                     IExpression old = this._elseExpression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnElseExpressionChanging(e);
+                    this.OnPropertyChanging("ElseExpression", e);
                     this._elseExpression = value;
                     if ((old != null))
                     {
@@ -152,7 +162,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetElseExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElseExpressionChanged(e);
                     this.OnPropertyChanged("ElseExpression", e);
                 }
@@ -182,30 +191,62 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//ConditionalExpression/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//ConditionalExpression/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the ConditionExpression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ConditionExpressionChanging;
+        
+        /// <summary>
         /// Gets fired when the ConditionExpression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ConditionExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ConditionExpressionChanged;
+        
+        /// <summary>
+        /// Gets fired before the ThenExpression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ThenExpressionChanging;
         
         /// <summary>
         /// Gets fired when the ThenExpression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ThenExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ThenExpressionChanged;
+        
+        /// <summary>
+        /// Gets fired before the ElseExpression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ElseExpressionChanging;
         
         /// <summary>
         /// Gets fired when the ElseExpression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ElseExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ElseExpressionChanged;
+        
+        /// <summary>
+        /// Raises the ConditionExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnConditionExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ConditionExpressionChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the ConditionExpressionChanged event
@@ -213,7 +254,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnConditionExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ConditionExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ConditionExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -225,9 +266,22 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetConditionExpression(object sender, EventArgs eventArgs)
+        private void OnResetConditionExpression(object sender, System.EventArgs eventArgs)
         {
             this.ConditionExpression = null;
+        }
+        
+        /// <summary>
+        /// Raises the ThenExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnThenExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ThenExpressionChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
         }
         
         /// <summary>
@@ -236,7 +290,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnThenExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ThenExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ThenExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -248,9 +302,22 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetThenExpression(object sender, EventArgs eventArgs)
+        private void OnResetThenExpression(object sender, System.EventArgs eventArgs)
         {
             this.ThenExpression = null;
+        }
+        
+        /// <summary>
+        /// Raises the ElseExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnElseExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ElseExpressionChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
         }
         
         /// <summary>
@@ -259,7 +326,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnElseExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ElseExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ElseExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -271,7 +338,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetElseExpression(object sender, EventArgs eventArgs)
+        private void OnResetElseExpression(object sender, System.EventArgs eventArgs)
         {
             this.ElseExpression = null;
         }
@@ -395,7 +462,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//ConditionalExpression/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//ConditionalExpression/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

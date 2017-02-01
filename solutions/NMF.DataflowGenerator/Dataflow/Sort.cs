@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -45,6 +46,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IExpression _sortBy;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The sortBy property
         /// </summary>
@@ -62,6 +65,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._sortBy != value))
                 {
                     IExpression old = this._sortBy;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnSortByChanging(e);
+                    this.OnPropertyChanging("SortBy", e);
                     this._sortBy = value;
                     if ((old != null))
                     {
@@ -73,7 +79,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetSortBy;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSortByChanged(e);
                     this.OnPropertyChanged("SortBy", e);
                 }
@@ -103,20 +108,42 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//Sort/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Sort/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the SortBy property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> SortByChanging;
+        
+        /// <summary>
         /// Gets fired when the SortBy property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> SortByChanged;
+        public event System.EventHandler<ValueChangedEventArgs> SortByChanged;
+        
+        /// <summary>
+        /// Raises the SortByChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnSortByChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.SortByChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the SortByChanged event
@@ -124,7 +151,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnSortByChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.SortByChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.SortByChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -136,7 +163,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetSortBy(object sender, EventArgs eventArgs)
+        private void OnResetSortBy(object sender, System.EventArgs eventArgs)
         {
             this.SortBy = null;
         }
@@ -218,7 +245,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Sort/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Sort/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

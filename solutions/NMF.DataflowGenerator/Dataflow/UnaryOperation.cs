@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -49,6 +50,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IExpression _expression;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The operator property
         /// </summary>
@@ -65,8 +68,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._operator != value))
                 {
                     Nullable<UnaryOperator> old = this._operator;
-                    this._operator = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnOperatorChanging(e);
+                    this.OnPropertyChanging("Operator", e);
+                    this._operator = value;
                     this.OnOperatorChanged(e);
                     this.OnPropertyChanged("Operator", e);
                 }
@@ -90,6 +95,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._expression != value))
                 {
                     IExpression old = this._expression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnExpressionChanging(e);
+                    this.OnPropertyChanging("Expression", e);
                     this._expression = value;
                     if ((old != null))
                     {
@@ -101,7 +109,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExpressionChanged(e);
                     this.OnPropertyChanged("Expression", e);
                 }
@@ -131,25 +138,52 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//UnaryOperation/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//UnaryOperation/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the Operator property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> OperatorChanging;
+        
+        /// <summary>
         /// Gets fired when the Operator property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> OperatorChanged;
+        public event System.EventHandler<ValueChangedEventArgs> OperatorChanged;
+        
+        /// <summary>
+        /// Gets fired before the Expression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ExpressionChanging;
         
         /// <summary>
         /// Gets fired when the Expression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> ExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> ExpressionChanged;
+        
+        /// <summary>
+        /// Raises the OperatorChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnOperatorChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.OperatorChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the OperatorChanged event
@@ -157,7 +191,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnOperatorChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.OperatorChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.OperatorChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the ExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ExpressionChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -170,7 +217,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.ExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.ExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -182,7 +229,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetExpression(object sender, EventArgs eventArgs)
+        private void OnResetExpression(object sender, System.EventArgs eventArgs)
         {
             this.Expression = null;
         }
@@ -284,7 +331,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//UnaryOperation/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//UnaryOperation/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

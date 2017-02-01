@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -54,6 +55,8 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private IExpression _rightExpression;
         
+        private static IClass _classInstance;
+        
         /// <summary>
         /// The operator property
         /// </summary>
@@ -70,8 +73,10 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._operator != value))
                 {
                     Nullable<BinaryOperator> old = this._operator;
-                    this._operator = value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnOperatorChanging(e);
+                    this.OnPropertyChanging("Operator", e);
+                    this._operator = value;
                     this.OnOperatorChanged(e);
                     this.OnPropertyChanged("Operator", e);
                 }
@@ -95,6 +100,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._leftExpression != value))
                 {
                     IExpression old = this._leftExpression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnLeftExpressionChanging(e);
+                    this.OnPropertyChanging("LeftExpression", e);
                     this._leftExpression = value;
                     if ((old != null))
                     {
@@ -106,7 +114,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetLeftExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLeftExpressionChanged(e);
                     this.OnPropertyChanged("LeftExpression", e);
                 }
@@ -130,6 +137,9 @@ namespace TTC2016.LiveContest.Dataflow
                 if ((this._rightExpression != value))
                 {
                     IExpression old = this._rightExpression;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnRightExpressionChanging(e);
+                    this.OnPropertyChanging("RightExpression", e);
                     this._rightExpression = value;
                     if ((old != null))
                     {
@@ -141,7 +151,6 @@ namespace TTC2016.LiveContest.Dataflow
                         value.Parent = this;
                         value.Deleted += this.OnResetRightExpression;
                     }
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRightExpressionChanged(e);
                     this.OnPropertyChanged("RightExpression", e);
                 }
@@ -171,30 +180,62 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//BinaryOperation/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//BinaryOperation/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
+        /// Gets fired before the Operator property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> OperatorChanging;
+        
+        /// <summary>
         /// Gets fired when the Operator property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> OperatorChanged;
+        public event System.EventHandler<ValueChangedEventArgs> OperatorChanged;
+        
+        /// <summary>
+        /// Gets fired before the LeftExpression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> LeftExpressionChanging;
         
         /// <summary>
         /// Gets fired when the LeftExpression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> LeftExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> LeftExpressionChanged;
+        
+        /// <summary>
+        /// Gets fired before the RightExpression property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> RightExpressionChanging;
         
         /// <summary>
         /// Gets fired when the RightExpression property changed its value
         /// </summary>
-        public event EventHandler<ValueChangedEventArgs> RightExpressionChanged;
+        public event System.EventHandler<ValueChangedEventArgs> RightExpressionChanged;
+        
+        /// <summary>
+        /// Raises the OperatorChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnOperatorChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.OperatorChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
         
         /// <summary>
         /// Raises the OperatorChanged event
@@ -202,7 +243,20 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnOperatorChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.OperatorChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.OperatorChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the LeftExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnLeftExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.LeftExpressionChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -215,7 +269,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnLeftExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.LeftExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.LeftExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -227,9 +281,22 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetLeftExpression(object sender, EventArgs eventArgs)
+        private void OnResetLeftExpression(object sender, System.EventArgs eventArgs)
         {
             this.LeftExpression = null;
+        }
+        
+        /// <summary>
+        /// Raises the RightExpressionChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnRightExpressionChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.RightExpressionChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
         }
         
         /// <summary>
@@ -238,7 +305,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// <param name="eventArgs">The event data</param>
         protected virtual void OnRightExpressionChanged(ValueChangedEventArgs eventArgs)
         {
-            EventHandler<ValueChangedEventArgs> handler = this.RightExpressionChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.RightExpressionChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -250,7 +317,7 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         /// <param name="sender">The object that sent this reset request</param>
         /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnResetRightExpression(object sender, EventArgs eventArgs)
+        private void OnResetRightExpression(object sender, System.EventArgs eventArgs)
         {
             this.RightExpression = null;
         }
@@ -373,7 +440,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//BinaryOperation/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//BinaryOperation/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

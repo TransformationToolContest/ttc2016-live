@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -44,9 +45,12 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         private ObservableCompositionList<IElement> _elements;
         
+        private static IClass _classInstance;
+        
         public Model()
         {
             this._elements = new ObservableCompositionList<IElement>(this);
+            this._elements.CollectionChanging += this.ElementsCollectionChanging;
             this._elements.CollectionChanged += this.ElementsCollectionChanged;
         }
         
@@ -89,18 +93,32 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
-        /// Gets the Class element that describes the structure of this type
+        /// Gets the Class model for this type
         /// </summary>
-        public new static NMF.Models.Meta.IClass ClassInstance
+        public new static IClass ClassInstance
         {
             get
             {
-                return NMF.Models.Repository.MetaRepository.Instance.ResolveClass("http://transformation-tool-contest.eu/2016/dataflow#//Model/");
+                if ((_classInstance == null))
+                {
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Model/")));
+                }
+                return _classInstance;
             }
         }
         
         /// <summary>
-        /// Forwards change notifications for the Elements property to the parent model element
+        /// Forwards CollectionChanging notifications for the Elements property to the parent model element
+        /// </summary>
+        /// <param name="sender">The collection that raised the change</param>
+        /// <param name="e">The original event data</param>
+        private void ElementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        {
+            this.OnCollectionChanging("Elements", e);
+        }
+        
+        /// <summary>
+        /// Forwards CollectionChanged notifications for the Elements property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
@@ -165,7 +183,11 @@ namespace TTC2016.LiveContest.Dataflow
         /// </summary>
         public override IClass GetClass()
         {
-            return ((IClass)(NMF.Models.Repository.MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Model/")));
+            if ((_classInstance == null))
+            {
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://transformation-tool-contest.eu/2016/dataflow#//Model/")));
+            }
+            return _classInstance;
         }
         
         /// <summary>

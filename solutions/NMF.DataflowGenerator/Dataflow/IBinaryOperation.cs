@@ -16,6 +16,7 @@ using NMF.Models;
 using NMF.Models.Collections;
 using NMF.Models.Expressions;
 using NMF.Models.Meta;
+using NMF.Models.Repository;
 using NMF.Serialization;
 using NMF.Utilities;
 using System;
@@ -66,19 +67,34 @@ namespace TTC2016.LiveContest.Dataflow
         }
         
         /// <summary>
+        /// Gets fired before the Operator property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> OperatorChanging;
+        
+        /// <summary>
         /// Gets fired when the Operator property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> OperatorChanged;
+        event System.EventHandler<ValueChangedEventArgs> OperatorChanged;
+        
+        /// <summary>
+        /// Gets fired before the LeftExpression property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> LeftExpressionChanging;
         
         /// <summary>
         /// Gets fired when the LeftExpression property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> LeftExpressionChanged;
+        event System.EventHandler<ValueChangedEventArgs> LeftExpressionChanged;
+        
+        /// <summary>
+        /// Gets fired before the RightExpression property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> RightExpressionChanging;
         
         /// <summary>
         /// Gets fired when the RightExpression property changed its value
         /// </summary>
-        event EventHandler<ValueChangedEventArgs> RightExpressionChanged;
+        event System.EventHandler<ValueChangedEventArgs> RightExpressionChanged;
     }
 }
 
