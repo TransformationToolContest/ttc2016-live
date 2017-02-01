@@ -1,0 +1,13 @@
+module reflection;
+metamodel Ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+
+static def: typeByName : Map(String,OclType) = 
+	env.getMetaModels().values()
+		->collect(mm | mm.allInstancesOf(Ecore!EClass))->flatten()
+		->mappedBySingle(type | type.name);
+
+context String def: type : OclType =
+	Env::typeByName.get(self);
+
+static def: getOutputModel(modelName: String) : OclAny =
+	env.getOutputModels().get(modelName);

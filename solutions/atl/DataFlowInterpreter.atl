@@ -1,9 +1,12 @@
--- @path DF=/eu.ttc.dataflow.model/model/dataflow.ecore
--- @path IM=/eu.ttc.dataflow.examples.families2persons/metamodels/Families.ecore
--- @path OM=/eu.ttc.dataflow.examples.families2persons/metamodels/Persons.ecore
+-- @atlcompiler emftvm
+-- @path DF=platform:/resource/eu.ttc.dataflow.model/model/dataflow.ecore
+-- @path IM=platform:/resource/eu.ttc.dataflow.examples.families2persons/metamodels/Families.ecore
+-- @path OM=platform:/resource/eu.ttc.dataflow.examples.families2persons/metamodels/Persons.ecore
 
 module DataFlowInterpreter;
 create om : OM from df : DF, im : IM;
+
+uses reflection;
 
 helper def : allElements : Sequence(DF!Element) = DF!Element.allInstances();
 
@@ -19,17 +22,16 @@ helper def: typeByName : Map(String,Ecore!EClass) =
 helper context String def: type : Ecore!EClass =
 	thisModule.typeByName.get(self);
 
-
 endpoint rule Main2(){
 	do{
-		thisModule.initialElements -> collect(x|x.evaluate(Sequence{}));
+		thisModule.initialElements.debug() -> collect(x|x.evaluate(Sequence{})).flatten() -> size().debug();
 	}
 }
 
 -- Implementation of different element types
 
 helper context DF!AllInstances def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny))  =
-	let type : OclType = self.typeName.type in
+	let type : OclType = thisModule.typeByName.get(self.typeName) in
 	self.target.evaluate(type.allInstances() -> collect(x| Map{(self.field,x)}));
 
 helper context DF!Evaluate def : evaluate(rows : Sequence(Map(String,OclAny))) : Sequence(Map(String,OclAny))  =
@@ -42,22 +44,21 @@ helper context DF!Filter def : evaluate(rows : Sequence(Map(String,OclAny))) : S
 helper context DF!NewInstance def : evaluate(rows : Sequence(Map(String,OclAny))) :  Sequence(Map(String,OclAny)) = 
 	self.target.evaluate(
 		rows -> collect(x| 
-			let type : OclType = self.typeName.type in 
+			let type : OclType = thisModule.typeByName.get(self.typeName) in 
 			x.including(self.instanceField, thisModule.ni(type, self.key.eval(x)))
 		)
 	);
 
 helper def: newInstanceCache : Map(Set(OclAny),OclAny) = Map {};
-rule ni(type : Ecore!EClass,
-		key : OclAny) {
+rule ni(type : Ecore!EClass, key : OclAny) {
 	using {
 		actualKey : Set(OclAny) = Set {type, key};
 		v : OclAny = thisModule.newInstanceCache.get(actualKey);
 	}
 	do {
 		if(v.oclIsUndefined()) {
-			v <- type.newInstance();
-			thisModule.newInstanceCache <- thisModule.newInstanceCache.including(actualKey, v);
+			v <- thisModule.getOutputModel('om').newElement(type);
+			thisModule.newInstanceCache.put(actualKey, v);
 		}
 		v;
 	}
@@ -71,9 +72,7 @@ helper context DF!SetFeature def : evaluate(rows : Sequence(Map(String,OclAny)))
 		)
 	);
 
-helper context OclAny def : evaluate(rows : Sequence(Map(String,OclAny))) :Sequence(Map(String,OclAny)) = 
-	rows;
-
+helper context OclAny def : evaluate(rows : Sequence(Map(String,OclAny))) :Sequence(Map(String,OclAny)) = rows;
 
 -- Implementation of different operation types
 
@@ -97,8 +96,6 @@ helper context DF!FeatureCall def : eval(e : Map(String,OclAny)) : OclAny =
 		self.targetExpression.eval(e).refGetValue(self.feature)
 	endif;
 
-helper context DF!StringLiteral def : eval(e : Map(String,OclAny)) : String = 
-		self.value;
+helper context DF!StringLiteral def : eval(e : Map(String,OclAny)) : String = self.value;
 
-helper context DF!FieldReference def : eval(e : Map(String,OclAny)) : String = 
-		e.get(self.field);
+helper context DF!FieldReference def : eval(e : Map(String,OclAny)) : String = e.get(self.field);
