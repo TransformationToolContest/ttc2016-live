@@ -34,7 +34,7 @@ class Interpreter(
   }
 
   private def processNode(source: Element): Unit = {
-    println("-- processing " + source + " rows " + source.incomingRows)
+    //println("-- processing " + source + " rows " + source.incomingRows)
 
     source.incomingRows foreach processIncomping(source)
 
@@ -110,7 +110,7 @@ class Interpreter(
         op.target foreach { target =>
           row(op.listField) match {
             case c: Collection[Any] =>
-              println(c)
+              //println(c)
               collection.JavaConversions.asScalaIterator(c.iterator()).zipWithIndex.foreach {
                 case (v, pos) =>
                   var newRow = row.updated(op.itemField, v)
