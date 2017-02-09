@@ -33,51 +33,57 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NMF.CodeGen">
-      <HintPath>..\..\..\..\NMF\Tools\Ecore2Code\bin\Debug\NMF.CodeGen.dll</HintPath>
+    <Reference Include="NMF.CodeGen, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.CodeGen.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Collections, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.47\lib\net40\NMF.Collections.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Collections, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.EcoreInterop">
-      <HintPath>..\..\..\..\NMF\Tools\Ecore2Code\bin\Debug\NMF.EcoreInterop.dll</HintPath>
+    <Reference Include="NMF.EcoreInterop, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.EcoreInterop.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.47\lib\net40\NMF.Expressions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Expressions, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Expressions.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions.Linq, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.47\lib\net40\NMF.Expressions.Linq.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Expressions.Linq, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Expressions.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions.Utilities, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions-Utilities.1.0.47\lib\net40\NMF.Expressions.Utilities.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Expressions.Utilities, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Expressions-Utilities.1.0.63\lib\net40\NMF.Expressions.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Layering">
-      <HintPath>..\..\..\..\NMF\Tools\Ecore2Code\bin\Debug\NMF.Layering.dll</HintPath>
+    <Reference Include="NMF.Layering, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Layering.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Models, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.47\lib\net40\NMF.Models.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Models, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Models.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Models.MetaTransformation">
-      <HintPath>..\..\..\..\NMF\Tools\Ecore2Code\bin\Debug\NMF.Models.MetaTransformation.dll</HintPath>
+    <Reference Include="NMF.Models.MetaTransformation, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Models.MetaTransformation.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Serialization, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.47\lib\net40\NMF.Serialization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Serialization, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Transformations">
-      <HintPath>..\..\..\..\NMF\Tools\Ecore2Code\bin\Debug\NMF.Transformations.dll</HintPath>
+    <Reference Include="NMF.Transformations, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Transformations.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Transformations.Core">
-      <HintPath>..\..\..\..\NMF\Tools\Ecore2Code\bin\Debug\NMF.Transformations.Core.dll</HintPath>
+    <Reference Include="NMF.Transformations.Core, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Transformations.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Utilities, Version=1.0.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Utilities.1.0.47\lib\net40\NMF.Utilities.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Utilities, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NMF-Basics.1.0.63\tools\NMF.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -159,7 +165,9 @@
     <None Include="App.config" />
     <EmbeddedResource Include="Dataflow.nmf" />
     <EmbeddedResource Include="LaunchConfiguration.nmf" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectTemplate.csproj">
