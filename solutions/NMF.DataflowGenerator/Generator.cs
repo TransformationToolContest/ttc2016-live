@@ -275,11 +275,13 @@ namespace TTC2016.LiveContest.DataflowGenerator
             {
                 return mapped.SystemType.FullName;
             }
+            var primitive = type as IPrimitiveType;
+            if (primitive != null) return primitive.SystemType;
             var typeName = type.Name.ToString();
             var ns = type.Namespace;
             while (ns != null)
             {
-                typeName = ns.Name.ToPascalCase() + "." + (useInterface ? "I" : "") + typeName;
+                typeName = ns.Name.ToPascalCase() + "." + (useInterface && ns == type.Namespace ? "I" : "") + typeName;
                 ns = ns.ParentNamespace;
             }
             return typeName;
