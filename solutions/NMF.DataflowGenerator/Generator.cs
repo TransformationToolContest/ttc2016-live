@@ -107,7 +107,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
 
         private void WriteMain(IEnumerable<Dataflow.IElement> elements, IList<IModel> models, string name)
         {
-            program.AppendLine($"namespace {name}");
+            program.AppendLine(string.Format("namespace {0}", name));
             program.AppendLine("{");
             program.AppendLine("    public class Program");
             program.AppendLine("    {");
