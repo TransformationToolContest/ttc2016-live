@@ -124,7 +124,7 @@ namespace DataflowGenerator
             Console.WriteLine("Running model transformation for specified inputs...");
             var transformationPath = Path.Combine(Path.GetDirectoryName(projectFile), "bin", Path.GetFileNameWithoutExtension(projectFile) + ".exe");
             var runJob = Process.Start(transformationPath, string.Join(" ", launchConfig.Models.Select(m => m.Location)));
-            runJob.Start();
+            runJob.WaitForExit();
             stopwatch.Stop();
             Console.WriteLine("Done. Took {0}ms", stopwatch.ElapsedMilliseconds);
         }
