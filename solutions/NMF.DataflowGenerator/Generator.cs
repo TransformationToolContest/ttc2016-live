@@ -40,7 +40,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
             instance.ns = ns;
             instance.metamodels = metamodels;
             instance.WriteUsings();
-            instance.WriteMain(elements, models);
+            instance.WriteMain(elements, models, ns);
             return instance.program.ToString();
         }
 
@@ -52,7 +52,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
                 var newType = GetLeastCommon(existing.Type, type);
                 symbolTable[name] = new SymbolInfo()
                 {
-                    Code = string.Format("(({0})row[\"{1}\"])", CreateTypeReference(newType), name),
+                    Code = string.Format("(({0})row[\"{1}\"])", CreateTypeReference(newType, true), name),
                     Type = newType,
                     IsCollection = existing.IsCollection && isCollection,
                     IsOrdered = existing.IsOrdered && isOrdered
@@ -62,7 +62,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
             {
                 symbolTable.Add(name, new SymbolInfo()
                 {
-                    Code = string.Format("(({0})row[\"{1}\"])", CreateTypeReference(type), name),
+                    Code = string.Format("(({0})row[\"{1}\"])", CreateTypeReference(type, true), name),
                     Type = type,
                     IsCollection = isCollection,
                     IsOrdered = isOrdered
@@ -101,12 +101,13 @@ namespace TTC2016.LiveContest.DataflowGenerator
             program.AppendLine("using NMF.Collections.ObjectModel;");
             program.AppendLine("using NMF.Expressions;");
             program.AppendLine("using NMF.Expressions.Linq;");
+            program.AppendLine("using System.Collections.Generic;");
             program.AppendLine("using TTC2016.LiveContest;");
         }
 
-        private void WriteMain(IEnumerable<Dataflow.IElement> elements, IList<IModel> models)
+        private void WriteMain(IEnumerable<Dataflow.IElement> elements, IList<IModel> models, string name)
         {
-            program.AppendLine("namespace Families2persons");
+            program.AppendLine($"namespace {name}");
             program.AppendLine("{");
             program.AppendLine("    public class Program");
             program.AppendLine("    {");
@@ -213,23 +214,23 @@ namespace TTC2016.LiveContest.DataflowGenerator
         {
             var value = GenerateExpression(element.Value);
             var isList = element.Position != null && value.IsOrdered;
-            var type = CreateTypeReference(value.Type);
+            var type = CreateTypeReference(value.Type, true);
             defer.AppendLine(string.Format("                Dataflow.AddToCollection(source, row => {1}, row => (ICollection<{0}>)row[\"{2}\"]));", type, value.Code, element.ListField));
         }
 
         private void GenerateElementInternal(Dataflow.AllInstances element, StringBuilder defer)
         {
-            var type = CreateTypeReference(element.Model, element.TypeName);
+            var type = CreateTypeReference(element.Model, element.TypeName, true);
 
             defer.AppendLine(string.Format("               source.SelectMany(row => {0}.Descendants().OfType<{1}>(),", models[element.Model], type));
-            defer.AppendLine(string.Format("                                 (row, {0}) => row.With(\"{0}\", {0})));", element.Field));
+            defer.AppendLine(string.Format("                                 (row, _{0}) => row.With(\"{0}\", _{0})));", element.Field));
             AddSymbol(element.Field, FindType(element.Model, element.TypeName), false, false);
         }
 
         private void GenerateElementInternal(Dataflow.ForEach element, StringBuilder defer)
         {
             var typeObj = symbolTable[element.ListField].Type;
-            var type = CreateTypeReference(typeObj);
+            var type = CreateTypeReference(typeObj, true);
             defer.AppendLine(string.Format("               source.SelectMany(row => (IEnumerableExpression<{0}>)row[\"{1}\"],", type, element.ListField));
             defer.AppendLine(string.Format("                                 (row, {0}) => row.With(\"{0}\", {0})));", element.ItemField));
 
@@ -262,28 +263,23 @@ namespace TTC2016.LiveContest.DataflowGenerator
             return null;
         }
 
-        private string CreateTypeReference(string model, string typeName)
+        private string CreateTypeReference(string model, string typeName, bool useInterface)
         {
-            return CreateTypeReference(FindType(model, typeName));
+            return CreateTypeReference(FindType(model, typeName), useInterface);
         }
 
-        private string CreateTypeReference(IType type)
+        private string CreateTypeReference(IType type, bool useInterface)
         {
             var mapped = type.GetExtension<MappedType>();
             if (mapped != null)
             {
                 return mapped.SystemType.FullName;
             }
-            var primitiveType = type as IPrimitiveType;
-            if (primitiveType != null)
-            {
-                return primitiveType.SystemType;
-            }
             var typeName = type.Name.ToString();
             var ns = type.Namespace;
             while (ns != null)
             {
-                typeName = ns.Name.ToPascalCase() + "." + typeName;
+                typeName = ns.Name.ToPascalCase() + "." + (useInterface ? "I" : "") + typeName;
                 ns = ns.ParentNamespace;
             }
             return typeName;
@@ -291,7 +287,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
 
         private void GenerateElementInternal(Dataflow.NewInstance element, StringBuilder defer)
         {
-            var type = CreateTypeReference(element.Model, element.TypeName);
+            var type = CreateTypeReference(element.Model, element.TypeName, false);
             var key = GenerateExpression(element.Key);
 
             program.AppendLine(string.Format("            var {0}Func = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => flow.NewInstance<{1}>({2}, {3}));",
@@ -440,7 +436,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
             {
                 return new SymbolInfo()
                 {
-                    Code = target.Code + "GetClass()",
+                    Code = target.Code + ".GetClass()",
                     Type = ClassType,
                     IsCollection = false
                 };
@@ -459,7 +455,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
                     }
                 }
                 if (potentialParents.Count != 1) throw new InvalidOperationException("The type of the parent could not be detected automatically.");
-                var parentType = CreateTypeReference(potentialParents[0]);
+                var parentType = CreateTypeReference(potentialParents[0], true);
                 return new SymbolInfo()
                 {
                     Code = string.Format("(({0}){1}.Parent)", parentType, target.Code),
