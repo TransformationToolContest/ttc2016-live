@@ -55,8 +55,11 @@ public class Launcher {
 	}
 
 	public void run(final Path basePath, final Configuration launchConfig) throws Exception {
+		final long startEOLMillis = System.currentTimeMillis();
 		final EolModule eolModule = loadEolModule();
+		System.out.println("Loaded EOL interpreter: " + (System.currentTimeMillis() - startEOLMillis)/1000.);
 		
+		final long startDataflowLoadMillis = System.currentTimeMillis();
 		final ResourceSet rsDataflow = new ResourceSetImpl();
 		final URI dataflowURI = resolveURI(basePath, launchConfig.getDataflow().getLocation());
 		final Resource rDataflow = rsDataflow.createResource(dataflowURI);
@@ -65,8 +68,10 @@ public class Launcher {
 		final Model dataflowModelConfig = LaunchConfigFactory.eINSTANCE.createModel();
 		dataflowModelConfig.setName("Dataflow");
 		addModel(eolModule, rDataflow, dataflowModelConfig);
+		System.out.println("Loaded dataflow model: " + (System.currentTimeMillis() - startDataflowLoadMillis)/1000.);
 
 		// Note - relative paths are resolved from the folder of the .launchconfig file
+		final long startModelLoadMillis = System.currentTimeMillis();
 		ResourceSet rsMetamodels = new ResourceSetImpl();
 		for (Model m : launchConfig.getModels()) {
 			for (Metamodel mm : m.getMetamodels()) {
@@ -87,10 +92,13 @@ public class Launcher {
 			}
 			addModel(eolModule, rModel, m);
 		}
+		System.out.println("Loaded input models: " + (System.currentTimeMillis() - startModelLoadMillis)/1000.);
 
+		final long startEOLExecuteMillis = System.currentTimeMillis();
 		eolModule.execute();
 		eolModule.getContext().getModelRepository().dispose();
 		eolModule.getContext().dispose();
+		System.out.println("Transformation execution: " + (System.currentTimeMillis() - startEOLExecuteMillis)/1000.);
 	}
 
 	private void addModel(final EolModule module, final Resource emfResource, final Model modelConfiguration) {
