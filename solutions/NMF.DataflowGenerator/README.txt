@@ -1,0 +1,75 @@
+Here is the code snippet to create a number of arbitrary changes in the Families2Persons model. Insert it before the repository.Save command such that the changes are reflected in the serialized file. You may also want to call repository.Save(familiesModel, <some place>) to save the modified input file for comparison.
+
+Here is the code snippet. You can change the probabilities if you like. 
+
+
+        private void GenerateChanges(Model familiesModel, int n)
+        {
+            var stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+            var rand = new System.Random();
+            for (int i = 0; i < n; i++)
+            {
+                var dice = rand.NextDouble();
+                if (dice < 0.2)
+                {
+                    // change the name of a random family
+                    var family = familiesModel.RootElements[rand.Next(familiesModel.RootElements.Count)] as Families.Family;
+                    family.LastName = family.LastName + "-Smith";
+                }
+                else if (dice < 0.6)
+                {
+                    // rename an arbitrary family member
+                    var family = familiesModel.RootElements[rand.Next(familiesModel.RootElements.Count)] as Families.Family;
+                    var familyDice = rand.NextDouble();
+                    if (familyDice < 0.2 && family.Father != null)
+                    {
+                        family.Father.FirstName += "son";
+                    }
+                    else if (familyDice < 0.4 && family.Mother != null)
+                    {
+                        family.Mother.FirstName += "daughter";
+                    }
+                    else if (familyDice < 0.7 && family.Daughters.Count > 0)
+                    {
+                        family.Daughters.FirstOrDefault().FirstName += "daugher";
+                    }
+                    else if (family.Sons.Count > 0)
+                    {
+                        family.Sons.FirstOrDefault().FirstName += "son";
+                    }
+                    else
+                    {
+                        family.Children.OfType<Families.Member>().FirstOrDefault().FirstName += "guy";
+                    }
+                }
+                else if (dice < 0.8)
+                {
+                    // remove an arbitrary family
+                    familiesModel.RootElements.RemoveAt(rand.Next(familiesModel.RootElements.Count));
+                }
+                else
+                {
+                    var family = new Families.Family
+                    {
+                        LastName = "Simpson",
+                        Father = new Families.Member
+                        {
+                            FirstName = "Homer"
+                        },
+                        Mother = new Families.Member
+                        {
+                            FirstName = "Marge"
+                        }
+                    };
+                    family.Sons.Add(new Families.Member() { FirstName = "Bart" });
+                    family.Daughters.Add(new Families.Member() { FirstName = "Lisa" });
+                    family.Daughters.Add(new Families.Member() { FirstName = "Maggie" });
+                }
+            }
+            stopwatch.Stop();
+            System.Console.WriteLine(stopwatch.ElapsedMilliseconds);
+        }
+
+As you may guess, the time for propagating the changes will be printed to the console. To be explicit, the changes are propagated immediately.
+
