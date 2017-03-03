@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ASCII"?>
+<df:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow">
+  <elements xsi:type="df:AllInstances" name="AllMembers" target="ComputeFullName" field="member" model="Families" typeName="Member"/>
+  <elements xsi:type="df:Evaluate" name="ComputeFullName" target="SplitByGender" field="fullName">
+    <expression xsi:type="df:BinaryOperation" operator="ADD">
+      <leftExpression xsi:type="df:BinaryOperation" operator="ADD">
+        <leftExpression xsi:type="df:FeatureCall" feature="firstName">
+          <targetExpression xsi:type="df:FieldReference" field="member"/>
+        </leftExpression>
+        <rightExpression xsi:type="df:StringLiteral" value=" "/>
+      </leftExpression>
+      <rightExpression xsi:type="df:FeatureCall" feature="lastName">
+        <targetExpression xsi:type="df:FeatureCall" feature="eContainer">
+          <targetExpression xsi:type="df:FieldReference" field="member"/>
+        </targetExpression>
+      </rightExpression>
+    </expression>
+  </elements>
+  <elements xsi:type="df:Filter" name="SplitByGender" target="NewFemale" rejectTarget="NewMale">
+    <filterBy xsi:type="df:BinaryOperation" operator="OR">
+      <leftExpression xsi:type="df:FeatureCall" feature="familyMother">
+        <targetExpression xsi:type="df:FieldReference" field="member"/>
+      </leftExpression>
+      <rightExpression xsi:type="df:FeatureCall" feature="familyDaughter">
+        <targetExpression xsi:type="df:FieldReference" field="member"/>
+      </rightExpression>
+    </filterBy>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="NewMale" target="SetPersonName" instanceField="person" model="Persons" typeName="Male">
+    <key xsi:type="df:FieldReference" field="member"/>
+  </elements>
+  <elements xsi:type="df:NewInstance" name="NewFemale" target="SetPersonName" instanceField="person" model="Persons" typeName="Female">
+    <key xsi:type="df:FieldReference" field="member"/>
+  </elements>
+  <elements xsi:type="df:SetFeature" name="SetPersonName" objectField="person" feature="fullName">
+    <value xsi:type="df:FieldReference" field="fullName"/>
+  </elements>
+</df:Model>
