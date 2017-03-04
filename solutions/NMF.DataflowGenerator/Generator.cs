@@ -292,10 +292,7 @@ namespace TTC2016.LiveContest.DataflowGenerator
             var type = CreateTypeReference(element.Model, element.TypeName, false);
             var key = GenerateExpression(element.Key);
 
-            program.AppendLine(string.Format("            var {0}Func = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => flow.NewInstance<{1}>({2}, {3}));",
-                element.Name.ToCamelCase(), type, models[element.Model], key.Code));
-
-            defer.AppendLine(string.Format("                source.Select(row => row.With(\"{0}\", {1}Func.Observe(row)))); ", element.InstanceField, element.Name.ToCamelCase()));
+            defer.AppendLine(string.Format("                flow.NewInstance<{0}>(source, \"{1}\", {2}, row => {3}));", type, element.InstanceField, models[element.Model], key.Code));
 
             AddSymbol(element.InstanceField, FindType(element.Model, element.TypeName), false, false);
         }
