@@ -5,7 +5,6 @@ using NMF.Expressions;
 using NMF.Expressions.Linq;
 using System.Collections.Generic;
 using TTC2016.LiveContest;
-
 namespace Families2persons
 {
     public class Program
@@ -17,8 +16,6 @@ namespace Families2persons
             Model personsModel = new Model();
             Dataflow flow = new Dataflow();
             var computeFullNameFunc = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => ((((Families.IMember)row["member"]).FirstName + " ") + ((Families.IFamily)((Families.IMember)row["member"]).Parent).LastName));
-            var newMaleFunc = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => flow.NewInstance<Persons.Male>(personsModel, ((Families.IMember)row["member"])));
-            var newFemaleFunc = ObservingFunc<ChangeAwareDictionary<string, object>, object>.FromExpression(row => flow.NewInstance<Persons.Female>(personsModel, ((Families.IMember)row["member"])));
             var allMembers = new DataflowNode(source =>
                source.SelectMany(row => familiesModel.Descendants().OfType<Families.IMember>(),
                                  (row, _member) => row.With("member", _member)));
@@ -29,9 +26,9 @@ namespace Families2persons
             var splitByGenderReject = new DataflowNode(source =>
                 source.Where(row => !(Dataflow.IsTruish(((Families.IMember)row["member"]).FamilyMother) || Dataflow.IsTruish(((Families.IMember)row["member"]).FamilyDaughter)))); 
             var newMale = new DataflowNode(source =>
-                source.Select(row => row.With("person", newMaleFunc.Observe(row)))); 
+                flow.NewInstance<Persons.Male>(source, "person", personsModel, row => ((Families.IMember)row["member"])));
             var newFemale = new DataflowNode(source =>
-                source.Select(row => row.With("person", newFemaleFunc.Observe(row)))); 
+                flow.NewInstance<Persons.Female>(source, "person", personsModel, row => ((Families.IMember)row["member"])));
             var setPersonName = new DataflowNode(source =>
                 Dataflow.SetField(source, row => ((System.String)row["fullName"]), (row, value) => ((Persons.IPerson)row["person"]).FullName = value)); 
 
@@ -42,6 +39,8 @@ namespace Families2persons
             splitByGenderReject.AddTarget(newMale);
             newMale.AddTarget(setPersonName);
             newFemale.AddTarget(setPersonName);
+
+            setPersonName.Execute(true);
 
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
@@ -118,6 +117,7 @@ namespace Families2persons
                     family.Sons.Add(new Families.Member() { FirstName = "Bart" });
                     family.Daughters.Add(new Families.Member() { FirstName = "Lisa" });
                     family.Daughters.Add(new Families.Member() { FirstName = "Maggie" });
+                    familiesModel.RootElements.Add(family);
                 }
             }
             stopwatch.Stop();

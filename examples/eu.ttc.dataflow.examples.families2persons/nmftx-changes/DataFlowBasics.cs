@@ -14,7 +14,7 @@ namespace TTC2016.LiveContest
 
     public class Dataflow
     {
-        private Dictionary<TraceEntry, IModelElement> trace = new Dictionary<TraceEntry, IModelElement>();
+        private Dictionary<TraceEntry, ItemMultiplicity> trace = new Dictionary<TraceEntry, ItemMultiplicity>();
 
         public static bool IsTruish(object obj)
         {
@@ -67,6 +67,40 @@ namespace TTC2016.LiveContest
             }
         }
 
+        internal T CreateTraceEntry<T>(Model model, object key) where T : IModelElement, new()
+        {
+            ItemMultiplicity traced;
+            T tracedCasted;
+            TraceEntry entry = new TraceEntry(key, typeof(T));
+            if (!trace.TryGetValue(entry, out traced))
+            {
+                tracedCasted = new T();
+                traced = new ItemMultiplicity(tracedCasted);
+                traced.Increase();
+                model.RootElements.Add(tracedCasted);
+                trace.Add(entry, traced);
+            }
+            else
+            {
+                tracedCasted = (T)traced.Element;
+            }
+            return tracedCasted;
+        }
+
+        internal void RevokeTraceEntry<T>(object key)
+        {
+            ItemMultiplicity traced;
+            TraceEntry tKey = new TraceEntry(key, typeof(T));
+            if (trace.TryGetValue(tKey, out traced))
+            {
+                if (!traced.Decrease())
+                {
+                    trace.Remove(tKey);
+                    traced.Element.Delete();
+                }
+            }
+        }
+
         private struct TraceEntry : IEquatable<TraceEntry>
         {
             public object Element { get; set; }
@@ -104,24 +138,25 @@ namespace TTC2016.LiveContest
             }
         }
 
-        public T NewInstance<T>(Model model, object key)
-            where T : IModelElement, new()
+        private class ItemMultiplicity
         {
-            IModelElement traced;
-            T tracedCasted;
-            TraceEntry entry = new TraceEntry(key, typeof(T));
-            if (!trace.TryGetValue(entry, out traced))
+            public IModelElement Element { get; set; }
+            public int Count { get; private set; }
+
+            public ItemMultiplicity(IModelElement element)
             {
-                tracedCasted = new T();
-                traced = tracedCasted;
-                model.RootElements.Add(traced);
-                trace.Add(entry, traced);
+                Element = element;
             }
-            else
+
+            public void Increase()
             {
-                tracedCasted = (T)traced;
+                Count++;
             }
-            return tracedCasted;
+
+            public bool Decrease()
+            {
+                return --Count > 0;
+            }
         }
 
         public static SetField<TValue> SetField<TValue>(IEnumerableExpression<ChangeAwareDictionary<string, object>> source, Expression<Func<ChangeAwareDictionary<string, object>, TValue>> func, Action<ChangeAwareDictionary<string, object>, TValue> setter)
@@ -132,6 +167,11 @@ namespace TTC2016.LiveContest
         public static AddToCollection<TValue> AddToCollection<TValue>(IEnumerableExpression<ChangeAwareDictionary<string, object>> source, Expression<Func<ChangeAwareDictionary<string, object>, TValue>> func, Func<ChangeAwareDictionary<string, object>, ICollection<TValue>> setter)
         {
             return new AddToCollection<TValue>(source, func, setter);
+        }
+
+        public NewInstance<T> NewInstance<T>(IEnumerableExpression<ChangeAwareDictionary<string, object>> source, string field, Model model, Expression<Func<ChangeAwareDictionary<string, object>, object>> keySelector) where T : IModelElement, new()
+        {
+            return new NewInstance<T>(source, this, model, field, keySelector);
         }
     }
 
@@ -151,6 +191,156 @@ namespace TTC2016.LiveContest
             var newRow = new ChangeAwareDictionary<string, object>(current);
             newRow[key] = newValue;
             return newRow;
+        }
+    }
+
+    public class NewInstance<T> : IEnumerableExpression<ChangeAwareDictionary<string, object>> where T : IModelElement, new()
+    {
+        public IEnumerableExpression<ChangeAwareDictionary<string, object>> Source { get; private set; }
+        public Model Model { get; set; }
+        public string Field { get; set; }
+        public Dataflow Dataflow { get; set; }
+        public ObservingFunc<ChangeAwareDictionary<string, object>, object> KeySelector { get; set; }
+
+        public NewInstance(IEnumerableExpression<ChangeAwareDictionary<string, object>> source, Dataflow dataflow, Model model, string field, ObservingFunc<ChangeAwareDictionary<string, object>, object> keySelector)
+        {
+            Source = source;
+            Dataflow = dataflow;
+            Model = model;
+            Field = field;
+            KeySelector = keySelector;
+        }
+
+        public INotifyEnumerable<ChangeAwareDictionary<string, object>> AsNotifiable()
+        {
+            return new Notifiable(Source.AsNotifiable(), Model, Field, Dataflow, KeySelector);
+        }
+
+        public IEnumerator<ChangeAwareDictionary<string, object>> GetEnumerator()
+        {
+            foreach (var row in Source)
+            {
+                row[Field] = Dataflow.CreateTraceEntry<T>(Model, KeySelector.Evaluate(row));
+                yield return row;
+            }
+        }
+
+        INotifyEnumerable IEnumerableExpression.AsNotifiable()
+        {
+            return AsNotifiable();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        private class Notifiable : INotifyEnumerable<ChangeAwareDictionary<string, object>>
+        {
+            public INotifyEnumerable<ChangeAwareDictionary<string, object>> Source { get; private set; }
+            public Model Model { get; set; }
+            public string Field { get; set; }
+            public Dataflow Dataflow { get; set; }
+            public ObservingFunc<ChangeAwareDictionary<string, object>, object> KeySelector { get; set; }
+            private Dictionary<ChangeAwareDictionary<string, object>, INotifyValue<object>> dict = new Dictionary<ChangeAwareDictionary<string, object>, INotifyValue<object>>();
+
+            public Notifiable(INotifyEnumerable<ChangeAwareDictionary<string, object>> source, Model model, string field, Dataflow dataflow, ObservingFunc<ChangeAwareDictionary<string, object>, object> keySelector)
+            {
+                Source = source;
+                Model = model;
+                Field = field;
+                Dataflow = dataflow;
+                KeySelector = keySelector;
+
+                Source.CollectionChanged += SourceCollectionChanged;
+
+                if (Source.IsAttached)
+                {
+                    AttachItems(Source);
+                }
+            }
+
+            private void AttachItems(IEnumerable<ChangeAwareDictionary<string, object>> items)
+            {
+                foreach (var item in items)
+                {
+                    INotifyValue<object> keyTracker;
+                    if (!dict.TryGetValue(item, out keyTracker))
+                    {
+                        keyTracker = KeySelector.Observe(item);
+                        dict.Add(item, keyTracker);
+                        keyTracker.ValueChanged += (o, e) =>
+                        {
+                            Dataflow.RevokeTraceEntry<T>(e.OldValue);
+                            item[Field] = Dataflow.CreateTraceEntry<T>(Model, e.NewValue);
+                        };
+                    }
+                    keyTracker.Attach();
+                    item[Field] = Dataflow.CreateTraceEntry<T>(Model, keyTracker.Value);
+                }
+            }
+
+            private void DetachItems(IEnumerable<ChangeAwareDictionary<string, object>> items)
+            {
+                foreach (var item in items)
+                {
+                    INotifyValue<object> keyTracker;
+                    if (dict.TryGetValue(item, out keyTracker))
+                    {
+                        Dataflow.RevokeTraceEntry<T>(keyTracker.Value);
+                        keyTracker.Detach();
+                    }
+                }
+            }
+
+            private void SourceCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+            {
+                if (e.Action == NotifyCollectionChangedAction.Reset)
+                {
+                    foreach (var item in dict.Values)
+                    {
+                        item.Detach();
+                    }
+                    dict.Clear();
+                    AttachItems(Source);
+                    return;
+                }
+                if (e.OldItems != null) DetachItems(e.OldItems.Cast<ChangeAwareDictionary<string, object>>());
+                if (e.NewItems != null) AttachItems(e.NewItems.Cast<ChangeAwareDictionary<string, object>>());
+                CollectionChanged?.Invoke(this, e);
+            }
+
+            public bool IsAttached
+            {
+                get
+                {
+                    return Source.IsAttached;
+                }
+            }
+
+            public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+            public void Attach()
+            {
+                Source.Attach();
+                AttachItems(Source);
+            }
+
+            public void Detach()
+            {
+                DetachItems(Source);
+                Source.Detach();
+            }
+
+            public IEnumerator<ChangeAwareDictionary<string, object>> GetEnumerator()
+            {
+                return Source.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
         }
     }
 
