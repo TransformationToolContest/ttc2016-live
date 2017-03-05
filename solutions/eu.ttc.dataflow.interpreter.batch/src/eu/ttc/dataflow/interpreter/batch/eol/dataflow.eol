@@ -7,16 +7,26 @@ var STATE_FAILED = 2;
 var STATE_FINISHED = 3;
 
 // Mark all nodes as "live"
+var times = new Native('java.util.LinkedHashMap');
 for (element in runningElements) {
   element.setUp();
+  times.put(element, 0);
 }
 
 // While we have live elements...
 while (runningElements.notEmpty) {
   for (element in runningElements) {
+    var start = currentTimeMillis();
     element.processIncoming();
+    times.put(element, times.get(element) + (currentTimeMillis() - start));
   }
   runningElements = runningElements.select(e|e.isRunning());
+}
+
+for (entry in times.entrySet) {
+  var elemName = entry.key.name;
+  var time = entry.value;
+  (entry.key.eClass.name + '!' + elemName + ': ' + time/1000.0).println();
 }
 
 // ForEach primitive

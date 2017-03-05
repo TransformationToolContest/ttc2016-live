@@ -14,6 +14,8 @@ import org.eclipse.epsilon.common.parse.problem.ParseProblem;
 import org.eclipse.epsilon.emc.emf.InMemoryEmfModel;
 import org.eclipse.epsilon.eol.EolModule;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+import org.eclipse.epsilon.eol.execute.operations.contributors.OperationContributor;
+import org.eclipse.epsilon.eol.types.EolNoType;
 
 import eu.ttc.dataflow.DataflowDSLStandaloneSetup;
 import eu.ttc.dataflow.model.dataflow.DataflowPackage;
@@ -111,6 +113,17 @@ public class Launcher {
 
 	private EolModule loadEolModule() throws Exception {
 		EolModule module = new EolModule();
+		module.getContext().getOperationContributorRegistry().add(new OperationContributor() {
+			@Override
+			public boolean contributesTo(Object target) {
+				return EolNoType.NoInstance.equals(target);
+			}
+
+			@SuppressWarnings("unused")
+			public long currentTimeMillis() {
+				return System.currentTimeMillis();
+			}
+		});
 		module.parse(getClass().getResource("eol/dataflow.eol").toURI());
 		for (ParseProblem problem : module.getParseProblems()) {
 			throw new EolRuntimeException("Parsing problem: " + problem);
