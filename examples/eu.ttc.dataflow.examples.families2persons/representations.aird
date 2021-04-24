@@ -1,308 +1,599 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_Y18gECWHEeagVKbD6Nyn2w" selectedViews="_WS2w4CWKEeaNJOtCPZjOuw" version="10.1.0.201509162000">
-  <semanticResources>input/families.model</semanticResources>
-  <semanticResources>metamodels/Families.ecore</semanticResources>
-  <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
-  <semanticResources>metamodels/Persons.ecore</semanticResources>
-  <semanticResources>output/persons.model</semanticResources>
-  <semanticResources>transformation/families2persons.dataflow</semanticResources>
-  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_WS2w4CWKEeaNJOtCPZjOuw">
-    <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_WWDO0CWKEeaNJOtCPZjOuw" name="Model diagram">
-      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_WWD14CWKEeaNJOtCPZjOuw" source="DANNOTATION_CUSTOMIZATION_KEY">
-        <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_WWD14SWKEeaNJOtCPZjOuw">
-          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_WWD14iWKEeaNJOtCPZjOuw" sizeComputationExpression="2">
-            <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
-            <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_WWD14yWKEeaNJOtCPZjOuw" showIcon="false" labelExpression="aql:if self.oclIsKindOf(dataflow::Filter) then 'selected' else '' endif">
-              <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </computedStyleDescriptions>
-        </data>
-      </ownedAnnotationEntries>
-      <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_WXEigCWKEeaNJOtCPZjOuw" source="GMF_DIAGRAMS">
-        <data xmi:type="notation:Diagram" xmi:id="_WXEigSWKEeaNJOtCPZjOuw" type="Sirius" element="_WWDO0CWKEeaNJOtCPZjOuw" measurementUnit="Pixel">
-          <children xmi:type="notation:Node" xmi:id="_WXeLICWKEeaNJOtCPZjOuw" type="2001" element="_WWD15CWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WYkXUCWKEeaNJOtCPZjOuw" type="5002">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WYkXUSWKEeaNJOtCPZjOuw" y="5"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WY0O8CWKEeaNJOtCPZjOuw" type="3003" element="_WWD15SWKEeaNJOtCPZjOuw">
-              <styles xmi:type="notation:ShapeStyle" xmi:id="_WY0O8SWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY0O8iWKEeaNJOtCPZjOuw"/>
-            </children>
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_WXeLISWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXeLIiWKEeaNJOtCPZjOuw" x="205" y="425" width="131" height="30"/>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:df="http://transformation-tool-contest.eu/2016/dataflow" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis xmi:id="_Y18gECWHEeagVKbD6Nyn2w" selectedViews="_WBQlEPj1EeaUaJWexagCEw" version="11.1.0.201608251200">
+    <semanticResources>input/families.model</semanticResources>
+    <semanticResources>metamodels/Families.ecore</semanticResources>
+    <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
+    <semanticResources>metamodels/Persons.ecore</semanticResources>
+    <semanticResources>output/persons.model</semanticResources>
+    <semanticResources>transformation/families2persons.dataflow</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" xmi:id="_WS2w4CWKEeaNJOtCPZjOuw">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_z-ZycPjuEeaUaJWexagCEw" name="Model diagram" representation="_WWDO0CWKEeaNJOtCPZjOuw">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']"/>
+        <target xmi:type="df:Model" href="transformation/families2persons.dataflow#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" xmi:id="_WBQlEPj1EeaUaJWexagCEw">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_WCEdYPj1EeaUaJWexagCEw" name="Model diagram" representation="_WCEdYfj1EeaUaJWexagCEw">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']"/>
+        <target xmi:type="df:Model" href="transformation/families2persons.dataflow#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram xmi:id="_WWDO0CWKEeaNJOtCPZjOuw" name="Model diagram">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_WWD14CWKEeaNJOtCPZjOuw" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_WWD14SWKEeaNJOtCPZjOuw">
+        <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_WWD14iWKEeaNJOtCPZjOuw" sizeComputationExpression="2">
+          <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+          <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_WWD14yWKEeaNJOtCPZjOuw" showIcon="false" labelExpression="aql:if self.oclIsKindOf(dataflow::Filter) then 'selected' else '' endif">
+            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </centerLabelStyleDescription>
+        </computedStyleDescriptions>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_WXEigCWKEeaNJOtCPZjOuw" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_WXEigSWKEeaNJOtCPZjOuw" type="Sirius" element="_WWDO0CWKEeaNJOtCPZjOuw" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_WXeLICWKEeaNJOtCPZjOuw" type="2001" element="_WWD15CWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WYkXUCWKEeaNJOtCPZjOuw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WYkXUSWKEeaNJOtCPZjOuw" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_WYs6MCWKEeaNJOtCPZjOuw" type="2001" element="_WWD15iWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WYthQCWKEeaNJOtCPZjOuw" type="5002">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WYthQSWKEeaNJOtCPZjOuw" y="5"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WY02ACWKEeaNJOtCPZjOuw" type="3003" element="_WWD15yWKEeaNJOtCPZjOuw">
-              <styles xmi:type="notation:ShapeStyle" xmi:id="_WY02ASWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY02AiWKEeaNJOtCPZjOuw"/>
-            </children>
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_WYs6MSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYs6MiWKEeaNJOtCPZjOuw" x="205" y="335" width="131" height="30"/>
+          <children xmi:type="notation:Node" xmi:id="_WY0O8CWKEeaNJOtCPZjOuw" type="3003" element="_WWD15SWKEeaNJOtCPZjOuw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WY0O8SWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY0O8iWKEeaNJOtCPZjOuw"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_WYuIUCWKEeaNJOtCPZjOuw" type="2001" element="_WWD16CWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WYuvYCWKEeaNJOtCPZjOuw" type="5002">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WYuvYSWKEeaNJOtCPZjOuw" y="5"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WY02AyWKEeaNJOtCPZjOuw" type="3003" element="_WWD16SWKEeaNJOtCPZjOuw">
-              <styles xmi:type="notation:ShapeStyle" xmi:id="_WY02BCWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY02BSWKEeaNJOtCPZjOuw"/>
-            </children>
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_WYuIUSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYuIUiWKEeaNJOtCPZjOuw" x="205" y="245" width="131" height="30"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WXeLISWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WXeLIiWKEeaNJOtCPZjOuw" x="205" y="425" width="131" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WYs6MCWKEeaNJOtCPZjOuw" type="2001" element="_WWD15iWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WYthQCWKEeaNJOtCPZjOuw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WYthQSWKEeaNJOtCPZjOuw" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_WYvWcCWKEeaNJOtCPZjOuw" type="2001" element="_WWD16iWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WYv9gCWKEeaNJOtCPZjOuw" type="5002">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WYv9gSWKEeaNJOtCPZjOuw" y="5"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WY1dECWKEeaNJOtCPZjOuw" type="3003" element="_WWD16yWKEeaNJOtCPZjOuw">
-              <styles xmi:type="notation:ShapeStyle" xmi:id="_WY1dESWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY1dEiWKEeaNJOtCPZjOuw"/>
-            </children>
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_WYvWcSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYvWciWKEeaNJOtCPZjOuw" x="140" y="155" width="100" height="30"/>
+          <children xmi:type="notation:Node" xmi:id="_WY02ACWKEeaNJOtCPZjOuw" type="3003" element="_WWD15yWKEeaNJOtCPZjOuw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WY02ASWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY02AiWKEeaNJOtCPZjOuw"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_WYwkkCWKEeaNJOtCPZjOuw" type="2001" element="_WWD17CWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WYxLoCWKEeaNJOtCPZjOuw" type="5002">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WYxLoSWKEeaNJOtCPZjOuw" y="5"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WY1dEyWKEeaNJOtCPZjOuw" type="3003" element="_WWD17SWKEeaNJOtCPZjOuw">
-              <styles xmi:type="notation:ShapeStyle" xmi:id="_WY1dFCWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY1dFSWKEeaNJOtCPZjOuw"/>
-            </children>
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_WYwkkSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYwkkiWKEeaNJOtCPZjOuw" x="300" y="155" width="106" height="30"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WYs6MSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYs6MiWKEeaNJOtCPZjOuw" x="205" y="335" width="131" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WYuIUCWKEeaNJOtCPZjOuw" type="2001" element="_WWD16CWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WYuvYCWKEeaNJOtCPZjOuw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WYuvYSWKEeaNJOtCPZjOuw" y="5"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_WYxysCWKEeaNJOtCPZjOuw" type="2001" element="_WWD17iWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WYyZwCWKEeaNJOtCPZjOuw" type="5002">
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_WYyZwSWKEeaNJOtCPZjOuw" y="5"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WY1dFiWKEeaNJOtCPZjOuw" type="3003" element="_WWD17yWKEeaNJOtCPZjOuw">
-              <styles xmi:type="notation:ShapeStyle" xmi:id="_WY1dFyWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY1dGCWKEeaNJOtCPZjOuw"/>
-            </children>
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_WYxysSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYxysiWKEeaNJOtCPZjOuw" x="205" y="65" width="131" height="30"/>
+          <children xmi:type="notation:Node" xmi:id="_WY02AyWKEeaNJOtCPZjOuw" type="3003" element="_WWD16SWKEeaNJOtCPZjOuw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WY02BCWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY02BSWKEeaNJOtCPZjOuw"/>
           </children>
-          <styles xmi:type="notation:DiagramStyle" xmi:id="_WXEigiWKEeaNJOtCPZjOuw"/>
-          <edges xmi:type="notation:Edge" xmi:id="_WZPswCWKEeaNJOtCPZjOuw" type="4001" element="_WWD18CWKEeaNJOtCPZjOuw" source="_WYuIUCWKEeaNJOtCPZjOuw" target="_WYvWcCWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WZRh8CWKEeaNJOtCPZjOuw" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZRh8SWKEeaNJOtCPZjOuw" y="-10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZSJACWKEeaNJOtCPZjOuw" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZSJASWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZTXICWKEeaNJOtCPZjOuw" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZTXISWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZPswSWKEeaNJOtCPZjOuw"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_WZPswiWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZPswyWKEeaNJOtCPZjOuw" points="[0, 0, 45, 60]$[-45, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZgLcCWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZgLcSWKEeaNJOtCPZjOuw" id="(0.85,1.0)"/>
-          </edges>
-          <edges xmi:type="notation:Edge" xmi:id="_WZgygCWKEeaNJOtCPZjOuw" type="4001" element="_WWD18yWKEeaNJOtCPZjOuw" source="_WXeLICWKEeaNJOtCPZjOuw" target="_WYs6MCWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WZhZkCWKEeaNJOtCPZjOuw" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZhZkSWKEeaNJOtCPZjOuw" y="-10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZhZkiWKEeaNJOtCPZjOuw" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZhZkyWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZhZlCWKEeaNJOtCPZjOuw" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZhZlSWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZgygSWKEeaNJOtCPZjOuw"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_WZgygiWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZgygyWKEeaNJOtCPZjOuw" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZiAoCWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZiAoSWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
-          </edges>
-          <edges xmi:type="notation:Edge" xmi:id="_WZiAoiWKEeaNJOtCPZjOuw" type="4001" element="_WWD19iWKEeaNJOtCPZjOuw" source="_WYs6MCWKEeaNJOtCPZjOuw" target="_WYuIUCWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WZiApiWKEeaNJOtCPZjOuw" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZiApyWKEeaNJOtCPZjOuw" y="-10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZinsCWKEeaNJOtCPZjOuw" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZinsSWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZinsiWKEeaNJOtCPZjOuw" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZinsyWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZiAoyWKEeaNJOtCPZjOuw"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_WZiApCWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZiApSWKEeaNJOtCPZjOuw" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZjOwCWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZjOwSWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
-          </edges>
-          <edges xmi:type="notation:Edge" xmi:id="_WZjOwiWKEeaNJOtCPZjOuw" type="4001" element="_WWD1-SWKEeaNJOtCPZjOuw" source="_WYuIUCWKEeaNJOtCPZjOuw" target="_WYwkkCWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WZj10CWKEeaNJOtCPZjOuw" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZj10SWKEeaNJOtCPZjOuw" y="-10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZj10iWKEeaNJOtCPZjOuw" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZj10yWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZj11CWKEeaNJOtCPZjOuw" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZj11SWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZjOwyWKEeaNJOtCPZjOuw"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_WZjOxCWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZjOxSWKEeaNJOtCPZjOuw" points="[0, 0, -45, 60]$[45, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZkc4CWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZkc4SWKEeaNJOtCPZjOuw" id="(0.14150943396226415,1.0)"/>
-          </edges>
-          <edges xmi:type="notation:Edge" xmi:id="_WZkc4iWKEeaNJOtCPZjOuw" type="4001" element="_WWD1_CWKEeaNJOtCPZjOuw" source="_WYvWcCWKEeaNJOtCPZjOuw" target="_WYxysCWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WZkc5iWKEeaNJOtCPZjOuw" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZkc5yWKEeaNJOtCPZjOuw" y="-10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZlD8CWKEeaNJOtCPZjOuw" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZlD8SWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZlD8iWKEeaNJOtCPZjOuw" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZlD8yWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZkc4yWKEeaNJOtCPZjOuw"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_WZkc5CWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZkc5SWKEeaNJOtCPZjOuw" points="[0, 0, -45, 60]$[45, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZlrACWKEeaNJOtCPZjOuw" id="(0.85,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZlrASWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
-          </edges>
-          <edges xmi:type="notation:Edge" xmi:id="_WZlrAiWKEeaNJOtCPZjOuw" type="4001" element="_WWD1_yWKEeaNJOtCPZjOuw" source="_WYwkkCWKEeaNJOtCPZjOuw" target="_WYxysCWKEeaNJOtCPZjOuw">
-            <children xmi:type="notation:Node" xmi:id="_WZmSECWKEeaNJOtCPZjOuw" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZmSESWKEeaNJOtCPZjOuw" y="-10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZmSEiWKEeaNJOtCPZjOuw" type="6002">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZmSEyWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <children xmi:type="notation:Node" xmi:id="_WZmSFCWKEeaNJOtCPZjOuw" type="6003">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZmSFSWKEeaNJOtCPZjOuw" y="10"/>
-            </children>
-            <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZlrAyWKEeaNJOtCPZjOuw"/>
-            <styles xmi:type="notation:FontStyle" xmi:id="_WZlrBCWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZlrBSWKEeaNJOtCPZjOuw" points="[0, 0, 45, 60]$[-45, -60, 0, 0]"/>
-            <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZm5ICWKEeaNJOtCPZjOuw" id="(0.14150943396226415,0.0)"/>
-            <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZm5ISWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
-          </edges>
-        </data>
-      </ownedAnnotationEntries>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD15CWKEeaNJOtCPZjOuw" name="AllInstances &quot;AllMembers&quot;" outgoingEdges="_WWD18yWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
-        <target xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
-        <semanticElements xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
-        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD15SWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
-          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD15iWKEeaNJOtCPZjOuw" name="Evaluate &quot;ComputeFullName&quot;" outgoingEdges="_WWD19iWKEeaNJOtCPZjOuw" incomingEdges="_WWD18yWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
-        <target xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
-        <semanticElements xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
-        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD15yWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
-          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD16CWKEeaNJOtCPZjOuw" name="Filter &quot;SplitByGender&quot;" outgoingEdges="_WWD18CWKEeaNJOtCPZjOuw _WWD1-SWKEeaNJOtCPZjOuw" incomingEdges="_WWD19iWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
-        <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
-        <semanticElements xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
-        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD16SWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
-          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD16iWKEeaNJOtCPZjOuw" name="NewInstance &quot;NewMale&quot;" outgoingEdges="_WWD1_CWKEeaNJOtCPZjOuw" incomingEdges="_WWD18CWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
-        <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
-        <semanticElements xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
-        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD16yWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
-          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD17CWKEeaNJOtCPZjOuw" name="NewInstance &quot;NewFemale&quot;" outgoingEdges="_WWD1_yWKEeaNJOtCPZjOuw" incomingEdges="_WWD1-SWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
-        <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
-        <semanticElements xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
-        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD17SWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
-          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD17iWKEeaNJOtCPZjOuw" name="SetFeature &quot;SetPersonName&quot;" incomingEdges="_WWD1_CWKEeaNJOtCPZjOuw _WWD1_yWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
-        <target xmi:type="df:SetFeature" href="transformation/families2persons.dataflow#SetPersonName"/>
-        <semanticElements xmi:type="df:SetFeature" href="transformation/families2persons.dataflow#SetPersonName"/>
-        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
-        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
-        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-        <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD17yWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
-          <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD18CWKEeaNJOtCPZjOuw" name="rejected" sourceNode="_WWD16CWKEeaNJOtCPZjOuw" targetNode="_WWD16iWKEeaNJOtCPZjOuw">
-        <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD18SWKEeaNJOtCPZjOuw" size="2" strokeColor="156,12,12">
-          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']/@style"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD18iWKEeaNJOtCPZjOuw" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD18yWKEeaNJOtCPZjOuw" sourceNode="_WWD15CWKEeaNJOtCPZjOuw" targetNode="_WWD15iWKEeaNJOtCPZjOuw">
-        <target xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD19CWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
-          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD19SWKEeaNJOtCPZjOuw" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD19iWKEeaNJOtCPZjOuw" sourceNode="_WWD15iWKEeaNJOtCPZjOuw" targetNode="_WWD16CWKEeaNJOtCPZjOuw">
-        <target xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD19yWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
-          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD1-CWKEeaNJOtCPZjOuw" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD1-SWKEeaNJOtCPZjOuw" name="selected" sourceNode="_WWD16CWKEeaNJOtCPZjOuw" targetNode="_WWD17CWKEeaNJOtCPZjOuw">
-        <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD1-iWKEeaNJOtCPZjOuw" description="_WWD14iWKEeaNJOtCPZjOuw" size="2" strokeColor="77,137,20">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD1-yWKEeaNJOtCPZjOuw" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD1_CWKEeaNJOtCPZjOuw" sourceNode="_WWD16iWKEeaNJOtCPZjOuw" targetNode="_WWD17iWKEeaNJOtCPZjOuw">
-        <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD1_SWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
-          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD1_iWKEeaNJOtCPZjOuw" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD1_yWKEeaNJOtCPZjOuw" sourceNode="_WWD17CWKEeaNJOtCPZjOuw" targetNode="_WWD17iWKEeaNJOtCPZjOuw">
-        <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD2ACWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
-          <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD2ASWKEeaNJOtCPZjOuw" showIcon="false"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
-      </ownedDiagramElements>
-      <description xmi:type="description_1:DiagramDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']"/>
-      <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_WWD2AiWKEeaNJOtCPZjOuw"/>
-      <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer"/>
-      <target xmi:type="df:Model" href="transformation/families2persons.dataflow#/"/>
-    </ownedRepresentations>
-    <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']"/>
-  </ownedViews>
-</viewpoint:DAnalysis>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WYuIUSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYuIUiWKEeaNJOtCPZjOuw" x="205" y="245" width="131" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WYvWcCWKEeaNJOtCPZjOuw" type="2001" element="_WWD16iWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WYv9gCWKEeaNJOtCPZjOuw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WYv9gSWKEeaNJOtCPZjOuw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WY1dECWKEeaNJOtCPZjOuw" type="3003" element="_WWD16yWKEeaNJOtCPZjOuw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WY1dESWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY1dEiWKEeaNJOtCPZjOuw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WYvWcSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYvWciWKEeaNJOtCPZjOuw" x="140" y="155" width="100" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WYwkkCWKEeaNJOtCPZjOuw" type="2001" element="_WWD17CWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WYxLoCWKEeaNJOtCPZjOuw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WYxLoSWKEeaNJOtCPZjOuw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WY1dEyWKEeaNJOtCPZjOuw" type="3003" element="_WWD17SWKEeaNJOtCPZjOuw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WY1dFCWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY1dFSWKEeaNJOtCPZjOuw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WYwkkSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYwkkiWKEeaNJOtCPZjOuw" x="300" y="155" width="106" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WYxysCWKEeaNJOtCPZjOuw" type="2001" element="_WWD17iWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WYyZwCWKEeaNJOtCPZjOuw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WYyZwSWKEeaNJOtCPZjOuw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WY1dFiWKEeaNJOtCPZjOuw" type="3003" element="_WWD17yWKEeaNJOtCPZjOuw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WY1dFyWKEeaNJOtCPZjOuw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WY1dGCWKEeaNJOtCPZjOuw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WYxysSWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WYxysiWKEeaNJOtCPZjOuw" x="205" y="65" width="131" height="30"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_WXEigiWKEeaNJOtCPZjOuw"/>
+        <edges xmi:type="notation:Edge" xmi:id="_WZPswCWKEeaNJOtCPZjOuw" type="4001" element="_WWD18CWKEeaNJOtCPZjOuw" source="_WYuIUCWKEeaNJOtCPZjOuw" target="_WYvWcCWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WZRh8CWKEeaNJOtCPZjOuw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZRh8SWKEeaNJOtCPZjOuw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZSJACWKEeaNJOtCPZjOuw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZSJASWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZTXICWKEeaNJOtCPZjOuw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZTXISWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZPswSWKEeaNJOtCPZjOuw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WZPswiWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZPswyWKEeaNJOtCPZjOuw" points="[0, 0, 45, 60]$[-45, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZgLcCWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZgLcSWKEeaNJOtCPZjOuw" id="(0.85,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WZgygCWKEeaNJOtCPZjOuw" type="4001" element="_WWD18yWKEeaNJOtCPZjOuw" source="_WXeLICWKEeaNJOtCPZjOuw" target="_WYs6MCWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WZhZkCWKEeaNJOtCPZjOuw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZhZkSWKEeaNJOtCPZjOuw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZhZkiWKEeaNJOtCPZjOuw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZhZkyWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZhZlCWKEeaNJOtCPZjOuw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZhZlSWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZgygSWKEeaNJOtCPZjOuw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WZgygiWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZgygyWKEeaNJOtCPZjOuw" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZiAoCWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZiAoSWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WZiAoiWKEeaNJOtCPZjOuw" type="4001" element="_WWD19iWKEeaNJOtCPZjOuw" source="_WYs6MCWKEeaNJOtCPZjOuw" target="_WYuIUCWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WZiApiWKEeaNJOtCPZjOuw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZiApyWKEeaNJOtCPZjOuw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZinsCWKEeaNJOtCPZjOuw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZinsSWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZinsiWKEeaNJOtCPZjOuw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZinsyWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZiAoyWKEeaNJOtCPZjOuw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WZiApCWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZiApSWKEeaNJOtCPZjOuw" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZjOwCWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZjOwSWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WZjOwiWKEeaNJOtCPZjOuw" type="4001" element="_WWD1-SWKEeaNJOtCPZjOuw" source="_WYuIUCWKEeaNJOtCPZjOuw" target="_WYwkkCWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WZj10CWKEeaNJOtCPZjOuw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZj10SWKEeaNJOtCPZjOuw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZj10iWKEeaNJOtCPZjOuw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZj10yWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZj11CWKEeaNJOtCPZjOuw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZj11SWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZjOwyWKEeaNJOtCPZjOuw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WZjOxCWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZjOxSWKEeaNJOtCPZjOuw" points="[0, 0, -45, 60]$[45, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZkc4CWKEeaNJOtCPZjOuw" id="(0.4961832061068702,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZkc4SWKEeaNJOtCPZjOuw" id="(0.14150943396226415,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WZkc4iWKEeaNJOtCPZjOuw" type="4001" element="_WWD1_CWKEeaNJOtCPZjOuw" source="_WYvWcCWKEeaNJOtCPZjOuw" target="_WYxysCWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WZkc5iWKEeaNJOtCPZjOuw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZkc5yWKEeaNJOtCPZjOuw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZlD8CWKEeaNJOtCPZjOuw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZlD8SWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZlD8iWKEeaNJOtCPZjOuw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZlD8yWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZkc4yWKEeaNJOtCPZjOuw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WZkc5CWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZkc5SWKEeaNJOtCPZjOuw" points="[0, 0, -45, 60]$[45, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZlrACWKEeaNJOtCPZjOuw" id="(0.85,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZlrASWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WZlrAiWKEeaNJOtCPZjOuw" type="4001" element="_WWD1_yWKEeaNJOtCPZjOuw" source="_WYwkkCWKEeaNJOtCPZjOuw" target="_WYxysCWKEeaNJOtCPZjOuw">
+          <children xmi:type="notation:Node" xmi:id="_WZmSECWKEeaNJOtCPZjOuw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZmSESWKEeaNJOtCPZjOuw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZmSEiWKEeaNJOtCPZjOuw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZmSEyWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WZmSFCWKEeaNJOtCPZjOuw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WZmSFSWKEeaNJOtCPZjOuw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WZlrAyWKEeaNJOtCPZjOuw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WZlrBCWKEeaNJOtCPZjOuw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WZlrBSWKEeaNJOtCPZjOuw" points="[0, 0, 45, 60]$[-45, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZm5ICWKEeaNJOtCPZjOuw" id="(0.14150943396226415,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WZm5ISWKEeaNJOtCPZjOuw" id="(0.4961832061068702,1.0)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD15CWKEeaNJOtCPZjOuw" name="AllInstances &quot;AllMembers&quot;" outgoingEdges="_WWD18yWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
+      <semanticElements xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD15SWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD15iWKEeaNJOtCPZjOuw" name="Evaluate &quot;ComputeFullName&quot;" outgoingEdges="_WWD19iWKEeaNJOtCPZjOuw" incomingEdges="_WWD18yWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
+      <semanticElements xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD15yWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD16CWKEeaNJOtCPZjOuw" name="Filter &quot;SplitByGender&quot;" outgoingEdges="_WWD18CWKEeaNJOtCPZjOuw _WWD1-SWKEeaNJOtCPZjOuw" incomingEdges="_WWD19iWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <semanticElements xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD16SWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD16iWKEeaNJOtCPZjOuw" name="NewInstance &quot;NewMale&quot;" outgoingEdges="_WWD1_CWKEeaNJOtCPZjOuw" incomingEdges="_WWD18CWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
+      <semanticElements xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD16yWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD17CWKEeaNJOtCPZjOuw" name="NewInstance &quot;NewFemale&quot;" outgoingEdges="_WWD1_yWKEeaNJOtCPZjOuw" incomingEdges="_WWD1-SWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
+      <semanticElements xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD17SWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WWD17iWKEeaNJOtCPZjOuw" name="SetFeature &quot;SetPersonName&quot;" incomingEdges="_WWD1_CWKEeaNJOtCPZjOuw _WWD1_yWKEeaNJOtCPZjOuw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:SetFeature" href="transformation/families2persons.dataflow#SetPersonName"/>
+      <semanticElements xmi:type="df:SetFeature" href="transformation/families2persons.dataflow#SetPersonName"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WWD17yWKEeaNJOtCPZjOuw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD18CWKEeaNJOtCPZjOuw" name="rejected" sourceNode="_WWD16CWKEeaNJOtCPZjOuw" targetNode="_WWD16iWKEeaNJOtCPZjOuw">
+      <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD18SWKEeaNJOtCPZjOuw" size="2" strokeColor="156,12,12">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD18iWKEeaNJOtCPZjOuw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD18yWKEeaNJOtCPZjOuw" sourceNode="_WWD15CWKEeaNJOtCPZjOuw" targetNode="_WWD15iWKEeaNJOtCPZjOuw">
+      <target xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD19CWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD19SWKEeaNJOtCPZjOuw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD19iWKEeaNJOtCPZjOuw" sourceNode="_WWD15iWKEeaNJOtCPZjOuw" targetNode="_WWD16CWKEeaNJOtCPZjOuw">
+      <target xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD19yWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD1-CWKEeaNJOtCPZjOuw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD1-SWKEeaNJOtCPZjOuw" name="selected" sourceNode="_WWD16CWKEeaNJOtCPZjOuw" targetNode="_WWD17CWKEeaNJOtCPZjOuw">
+      <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD1-iWKEeaNJOtCPZjOuw" description="_WWD14iWKEeaNJOtCPZjOuw" size="2" strokeColor="77,137,20">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD1-yWKEeaNJOtCPZjOuw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD1_CWKEeaNJOtCPZjOuw" sourceNode="_WWD16iWKEeaNJOtCPZjOuw" targetNode="_WWD17iWKEeaNJOtCPZjOuw">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD1_SWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD1_iWKEeaNJOtCPZjOuw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WWD1_yWKEeaNJOtCPZjOuw" sourceNode="_WWD17CWKEeaNJOtCPZjOuw" targetNode="_WWD17iWKEeaNJOtCPZjOuw">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WWD2ACWKEeaNJOtCPZjOuw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WWD2ASWKEeaNJOtCPZjOuw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_WWD2AiWKEeaNJOtCPZjOuw"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer"/>
+    <target xmi:type="df:Model" href="transformation/families2persons.dataflow#/"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram xmi:id="_WCEdYfj1EeaUaJWexagCEw" name="Model diagram">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_WCEdYvj1EeaUaJWexagCEw" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_WCEdY_j1EeaUaJWexagCEw">
+        <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_WCEdZPj1EeaUaJWexagCEw" sizeComputationExpression="2">
+          <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_green']"/>
+          <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_WCEdZfj1EeaUaJWexagCEw" showIcon="false" labelExpression="aql:if self.oclIsKindOf(dataflow::Filter) then 'selected' else '' endif">
+            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </centerLabelStyleDescription>
+        </computedStyleDescriptions>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_WCFEcPj1EeaUaJWexagCEw" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_WCFEcfj1EeaUaJWexagCEw" type="Sirius" element="_WCEdYfj1EeaUaJWexagCEw" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_WCFEc_j1EeaUaJWexagCEw" type="2001" element="_WCEdZvj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCFrgPj1EeaUaJWexagCEw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WCFrgfj1EeaUaJWexagCEw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCG5p_j1EeaUaJWexagCEw" type="3003" element="_WCEdZ_j1EeaUaJWexagCEw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WCG5qPj1EeaUaJWexagCEw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCG5qfj1EeaUaJWexagCEw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WCFEdPj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCFEdfj1EeaUaJWexagCEw" width="30" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WCFrgvj1EeaUaJWexagCEw" type="2001" element="_WCEdaPj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCFrhfj1EeaUaJWexagCEw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WCFrhvj1EeaUaJWexagCEw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCHgsPj1EeaUaJWexagCEw" type="3003" element="_WCEdafj1EeaUaJWexagCEw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WCHgsfj1EeaUaJWexagCEw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCHgsvj1EeaUaJWexagCEw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WCFrg_j1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCFrhPj1EeaUaJWexagCEw" width="30" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WCFrh_j1EeaUaJWexagCEw" type="2001" element="_WCEdavj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCGSkPj1EeaUaJWexagCEw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WCGSkfj1EeaUaJWexagCEw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCHgs_j1EeaUaJWexagCEw" type="3003" element="_WCEda_j1EeaUaJWexagCEw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WCHgtPj1EeaUaJWexagCEw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCHgtfj1EeaUaJWexagCEw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WCFriPj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCFrifj1EeaUaJWexagCEw" width="30" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WCGSkvj1EeaUaJWexagCEw" type="2001" element="_WCEdbPj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCGSlfj1EeaUaJWexagCEw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WCGSlvj1EeaUaJWexagCEw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCHgtvj1EeaUaJWexagCEw" type="3003" element="_WCEdbfj1EeaUaJWexagCEw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WCHgt_j1EeaUaJWexagCEw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCHguPj1EeaUaJWexagCEw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WCGSk_j1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCGSlPj1EeaUaJWexagCEw" width="30" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WCGSl_j1EeaUaJWexagCEw" type="2001" element="_WCEdbvj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCG5oPj1EeaUaJWexagCEw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WCG5ofj1EeaUaJWexagCEw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCHgufj1EeaUaJWexagCEw" type="3003" element="_WCEdb_j1EeaUaJWexagCEw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WCHguvj1EeaUaJWexagCEw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCHgu_j1EeaUaJWexagCEw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WCGSmPj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCGSmfj1EeaUaJWexagCEw" width="30" height="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_WCG5ovj1EeaUaJWexagCEw" type="2001" element="_WCEdcPj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCG5pfj1EeaUaJWexagCEw" type="5002">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_WCG5pvj1EeaUaJWexagCEw" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCIHwPj1EeaUaJWexagCEw" type="3003" element="_WCEdcfj1EeaUaJWexagCEw">
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_WCIHwfj1EeaUaJWexagCEw" fontName="Ubuntu"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIHwvj1EeaUaJWexagCEw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_WCG5o_j1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCG5pPj1EeaUaJWexagCEw" width="30" height="30"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_WCFEcvj1EeaUaJWexagCEw"/>
+        <edges xmi:type="notation:Edge" xmi:id="_WCIHw_j1EeaUaJWexagCEw" type="4001" element="_WCEdcvj1EeaUaJWexagCEw" source="_WCFrh_j1EeaUaJWexagCEw" target="_WCGSkvj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCIHx_j1EeaUaJWexagCEw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIHyPj1EeaUaJWexagCEw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCIHyfj1EeaUaJWexagCEw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIHyvj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCIu0Pj1EeaUaJWexagCEw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIu0fj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WCIHxPj1EeaUaJWexagCEw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WCIHxfj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WCIHxvj1EeaUaJWexagCEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCIu0vj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCIu0_j1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WCIu1Pj1EeaUaJWexagCEw" type="4001" element="_WCEddfj1EeaUaJWexagCEw" source="_WCFEc_j1EeaUaJWexagCEw" target="_WCFrgvj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCIu2Pj1EeaUaJWexagCEw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIu2fj1EeaUaJWexagCEw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCIu2vj1EeaUaJWexagCEw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIu2_j1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCIu3Pj1EeaUaJWexagCEw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCIu3fj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WCIu1fj1EeaUaJWexagCEw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WCIu1vj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WCIu1_j1EeaUaJWexagCEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCJV4Pj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCJV4fj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WCJV4vj1EeaUaJWexagCEw" type="4001" element="_WCEdePj1EeaUaJWexagCEw" source="_WCFrgvj1EeaUaJWexagCEw" target="_WCFrh_j1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCJV5vj1EeaUaJWexagCEw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCJV5_j1EeaUaJWexagCEw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCJV6Pj1EeaUaJWexagCEw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCJV6fj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCJ88Pj1EeaUaJWexagCEw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCJ88fj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WCJV4_j1EeaUaJWexagCEw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WCJV5Pj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WCJV5fj1EeaUaJWexagCEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCJ88vj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCJ88_j1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WCJ89Pj1EeaUaJWexagCEw" type="4001" element="_WCEde_j1EeaUaJWexagCEw" source="_WCFrh_j1EeaUaJWexagCEw" target="_WCGSl_j1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCJ8-Pj1EeaUaJWexagCEw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCJ8-fj1EeaUaJWexagCEw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCKkAPj1EeaUaJWexagCEw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCKkAfj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCKkAvj1EeaUaJWexagCEw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCKkA_j1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WCJ89fj1EeaUaJWexagCEw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WCJ89vj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WCJ89_j1EeaUaJWexagCEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCKkBPj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCKkBfj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WCKkBvj1EeaUaJWexagCEw" type="4001" element="_WCEdfvj1EeaUaJWexagCEw" source="_WCGSkvj1EeaUaJWexagCEw" target="_WCG5ovj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCLLEPj1EeaUaJWexagCEw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCLLEfj1EeaUaJWexagCEw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCLLEvj1EeaUaJWexagCEw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCLLE_j1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCLLFPj1EeaUaJWexagCEw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCLLFfj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WCKkB_j1EeaUaJWexagCEw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WCKkCPj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WCKkCfj1EeaUaJWexagCEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCLLFvj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCLLF_j1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_WCLLGPj1EeaUaJWexagCEw" type="4001" element="_WCEdgfj1EeaUaJWexagCEw" source="_WCGSl_j1EeaUaJWexagCEw" target="_WCG5ovj1EeaUaJWexagCEw">
+          <children xmi:type="notation:Node" xmi:id="_WCLLHPj1EeaUaJWexagCEw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCLLHfj1EeaUaJWexagCEw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCLLHvj1EeaUaJWexagCEw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCLLH_j1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_WCLLIPj1EeaUaJWexagCEw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCLLIfj1EeaUaJWexagCEw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_WCLLGfj1EeaUaJWexagCEw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_WCLLGvj1EeaUaJWexagCEw" fontName="Ubuntu" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WCLLG_j1EeaUaJWexagCEw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCLyIPj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WCLyIfj1EeaUaJWexagCEw" id="(0.5,0.5)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WCEdZvj1EeaUaJWexagCEw" name="AllInstances &quot;AllMembers&quot;" outgoingEdges="_WCEddfj1EeaUaJWexagCEw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
+      <semanticElements xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WCEdZ_j1EeaUaJWexagCEw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WCEdaPj1EeaUaJWexagCEw" name="Evaluate &quot;ComputeFullName&quot;" outgoingEdges="_WCEdePj1EeaUaJWexagCEw" incomingEdges="_WCEddfj1EeaUaJWexagCEw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
+      <semanticElements xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WCEdafj1EeaUaJWexagCEw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WCEdavj1EeaUaJWexagCEw" name="Filter &quot;SplitByGender&quot;" outgoingEdges="_WCEdcvj1EeaUaJWexagCEw _WCEde_j1EeaUaJWexagCEw" incomingEdges="_WCEdePj1EeaUaJWexagCEw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <semanticElements xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WCEda_j1EeaUaJWexagCEw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WCEdbPj1EeaUaJWexagCEw" name="NewInstance &quot;NewMale&quot;" outgoingEdges="_WCEdfvj1EeaUaJWexagCEw" incomingEdges="_WCEdcvj1EeaUaJWexagCEw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
+      <semanticElements xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WCEdbfj1EeaUaJWexagCEw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WCEdbvj1EeaUaJWexagCEw" name="NewInstance &quot;NewFemale&quot;" outgoingEdges="_WCEdgfj1EeaUaJWexagCEw" incomingEdges="_WCEde_j1EeaUaJWexagCEw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
+      <semanticElements xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WCEdb_j1EeaUaJWexagCEw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_WCEdcPj1EeaUaJWexagCEw" name="SetFeature &quot;SetPersonName&quot;" incomingEdges="_WCEdfvj1EeaUaJWexagCEw _WCEdgfj1EeaUaJWexagCEw" width="3" height="3" resizeKind="NSEW">
+      <target xmi:type="df:SetFeature" href="transformation/families2persons.dataflow#SetPersonName"/>
+      <semanticElements xmi:type="df:SetFeature" href="transformation/families2persons.dataflow#SetPersonName"/>
+      <ownedStyle xmi:type="diagram:Square" xmi:id="_WCEdcfj1EeaUaJWexagCEw" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" color="194,239,255">
+        <description xmi:type="style:SquareDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@nodeMappings[name='ElementNode']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WCEdcvj1EeaUaJWexagCEw" name="rejected" sourceNode="_WCEdavj1EeaUaJWexagCEw" targetNode="_WCEdbPj1EeaUaJWexagCEw">
+      <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WCEdc_j1EeaUaJWexagCEw" size="2" strokeColor="156,12,12">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WCEddPj1EeaUaJWexagCEw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='FilterRejectTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WCEddfj1EeaUaJWexagCEw" sourceNode="_WCEdZvj1EeaUaJWexagCEw" targetNode="_WCEdaPj1EeaUaJWexagCEw">
+      <target xmi:type="df:AllInstances" href="transformation/families2persons.dataflow#AllMembers"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WCEddvj1EeaUaJWexagCEw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WCEdd_j1EeaUaJWexagCEw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WCEdePj1EeaUaJWexagCEw" sourceNode="_WCEdaPj1EeaUaJWexagCEw" targetNode="_WCEdavj1EeaUaJWexagCEw">
+      <target xmi:type="df:Evaluate" href="transformation/families2persons.dataflow#ComputeFullName"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WCEdefj1EeaUaJWexagCEw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WCEdevj1EeaUaJWexagCEw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WCEde_j1EeaUaJWexagCEw" name="selected" sourceNode="_WCEdavj1EeaUaJWexagCEw" targetNode="_WCEdbvj1EeaUaJWexagCEw">
+      <target xmi:type="df:Filter" href="transformation/families2persons.dataflow#SplitByGender"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WCEdfPj1EeaUaJWexagCEw" description="_WCEdZPj1EeaUaJWexagCEw" size="2" strokeColor="77,137,20">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WCEdffj1EeaUaJWexagCEw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WCEdfvj1EeaUaJWexagCEw" sourceNode="_WCEdbPj1EeaUaJWexagCEw" targetNode="_WCEdcPj1EeaUaJWexagCEw">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewMale"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WCEdf_j1EeaUaJWexagCEw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WCEdgPj1EeaUaJWexagCEw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_WCEdgfj1EeaUaJWexagCEw" sourceNode="_WCEdbvj1EeaUaJWexagCEw" targetNode="_WCEdcPj1EeaUaJWexagCEw">
+      <target xmi:type="df:NewInstance" href="transformation/families2persons.dataflow#NewFemale"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_WCEdgvj1EeaUaJWexagCEw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_WCEdg_j1EeaUaJWexagCEw" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer/@edgeMappings[name='ElementTargetEdge']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_WCEdhPj1EeaUaJWexagCEw"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/eu.ttc.dataflow.viewpoint/description/dataflow.odesign#//@ownedViewpoints[name='dataflows']/@ownedRepresentations[name='Model%20diagram']/@defaultLayer"/>
+    <target xmi:type="df:Model" href="transformation/families2persons.dataflow#/"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

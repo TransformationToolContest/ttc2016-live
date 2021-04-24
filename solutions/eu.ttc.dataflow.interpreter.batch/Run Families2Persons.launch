@@ -9,4 +9,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="eu.ttc.dataflow.interpreter.batch.Launcher"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${resource_loc:/eu.ttc.dataflow.examples.families2persons/families2persons.launchconfig}"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="eu.ttc.dataflow.interpreter.batch"/>
+<stringAttribute key="yk-options" value="&#10;additional-options2=onexit\=snapshot&#10;"/>
 </launchConfiguration>
