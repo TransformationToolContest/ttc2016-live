@@ -1,0 +1,2 @@
+Model.allContents.first.eClass.name.println('first object is a ');
+Model.allContents.size.println('allContents: ');
